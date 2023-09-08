@@ -1,0 +1,1761 @@
+<!-- <?php
+require_once('controladores/funciones.php');
+
+//Conectar con BBDD
+$conexion = conectarBD();
+?> -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crear personaje</title>
+    <link rel="stylesheet" href="Estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="Scripts.js"></script>
+</head>
+
+
+
+<body>
+    <header>
+        <img src="Imagenes/Wow Logo 1.png" alt="Logowow" width="30%" height="30%" class="logo">
+
+    </header>
+    <nav>
+        <ul id="menu">
+            <li tabindex="1"><a href="Index.html">Inicio</a>
+            </li>
+            <li tabindex="2"><a href="Juego.html"> Juego</a>
+            </li>
+            <li tabindex="3"><a href="Noticias.html"> Noticias</a>
+            </li>
+            <li tabindex="4"><a href="Foros.html"> Foros</a>
+        </ul>
+    </nav>
+    <div class="ficha">
+        <!-- DATOS -->
+        <div class="datos">
+            <h2 class="datos2">Datos</h2>
+            <!-- <table style="margin-left: 10%;"> -->
+            <div class="titulo">        
+                <label for="titulo">Titulo: </label>
+                <input type="text" name="titulo" placeholder="" class="titulo1" id="titulo">
+            </div>
+            <div class="nombre">
+                <label for="nombre">Nombre: </label>
+                <input required type="text" name="nombre" placeholder="" autofocus id="nombre">
+            </div>
+            <div class="apellidos">
+                <label for="apellidos">Apellidos: </label>
+                <input required type="text" name="apellidos" placeholder="" id="apellidos">
+            </div><br>
+            <div class="nacimiento">
+                <label for="nacimiento">Nacimento: </label>
+                <input required type="text" name="nacimiento" placeholder="" id="nacimiento">
+            </div>
+            <div class="faccion">
+                <label for="faccion">Facción: </label>
+                <select name="faccion" id="faccion" id="faccion">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Horda</option>
+                    <option value="2">Alianza</option>
+                    <option value="3">Neutral</option>
+                    <option value="4">Independiente</option>
+                </select>
+            </div>
+            <div class="alineamiento">
+                <label for="alineamiento">Alineamiento: </label>
+                <input required type="text" name="alineamiento" placeholder="" id="alineamiento"> <br>
+            </div><br>
+            <div class="raza">
+                <label for="raza">Raza: </label>
+                <select id="raza" onchange="ElegirRaza()">
+                    <option disabled selected>Seleccionar</option>
+                    <option value="1">Humano</option>
+                    <option value="2">Enano</option>
+                    <option value="3">Gnomo</option>
+                    <option value="4">Elfo de la noche</option>
+                    <option value="5">Alto elfo</option>
+                    <option value="6">Draenei</option>
+                    <option value="7">Huargen</option>
+                    <option value="8">Elfo de vacio</option>
+                    <option value="9">Orco</option>
+                    <option value="10">Troll</option>
+                    <option value="11">Tauren</option>
+                    <option value="12">No-Muerto</option>
+                    <option value="13">Ogro</option>
+                    <option value="14">Goblin</option>
+                    <option value="15">Elfo de sangre</option>
+                    <option value="16">Nocheterna</option>
+                    <option value="17">Pandaren</option>
+                    <option value="18">Dracthyr</option>
+                </select>
+            </div>
+            <div id="humano" style="display: none;" class="subraza">
+                <label for="humanos" onchange="ElegirSubraza()">Humanos:</label>
+                <select name="humanos" id="humano">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Ventormenta</option>
+                    <option value="2">Lordaeron</option>
+                    <option value="3">Dalaran</option>
+                    <option value="4">Gilneas</option>
+                    <option value="5">Alterac</option>
+                    <option value="6">Kul Tiras</option>
+                    <option value="7">Strom</option>
+                </select>
+            </div>
+
+            <div id="enano" style="display: none;"  class="subraza">
+                <label for="enanos" onchange="ElegirSubraza()">Enanos:</label>
+                <select name="enanos" id="enano">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="8">Barbabronce</option>
+                    <option value="9">Hierro Negro</option>
+                    <option value="10">Martillo salvaje</option>
+                </select>
+            </div>
+
+            <div id="kaldorei" style="display: none;"  class="subraza">
+                <label for="Kaldorei" onchange="ElegirSubraza()">Kaldorei:</label>
+                <select name="kaldorei" id="enano">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="11">Darnassiano</option>
+                    <option value="12">Altonato</option>
+                </select>
+            </div>
+
+            <div id="draenei" style="display: none;"  class="subraza">
+                <label for="Draenei" onchange="ElegirSubraza()">Draenei:</label>
+                <select name="draenei" id="draenei">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="13">Draenei</option>
+                    <option value="14">Forjaluz</option>
+                </select>
+            </div>
+
+            <div id="orco" style="display: none;" class="subraza">
+                <label for="Orco" onchange="ElegirSubraza()">Orcos:</label>
+                <select name="orco" id="orco">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="15">Orco</option>
+                    <option value="16">Mag'ar</option>
+                </select>
+            </div>
+
+            <div id="trol" style="display: none;" class="subraza">
+                <label for="trol" onchange="ElegirSubraza()">Trol:</label>
+                <select name="trol" id="trol">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="17">Lanza Negra</option>
+                    <option value="18">Zandalari</option>
+                </select>
+            </div>
+
+            <div id="tauren" style="display: none;" class="subraza">
+                <label for="tauren" onchange="ElegirSubraza()">Tauren:</label>
+                <select name="tauren" id="tauren">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="19">Mulgore</option>
+                    <option value="20">Monte Alto</option>
+                </select>
+            </div>
+            
+            <div id="gnomo" style="display: none;" class="subraza">
+                <label for="gnomo" onchange="ElegirSubraza()">Gnomo:</label>
+                <select name="gnomo" id="gnomo">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="21">Gnomeregan</option>
+                    <option value="22">Mecagnomo</option>
+                </select>
+            </div>
+
+            <!-- <div id="subraza" style="display:none;">
+                        <label for="forsubraza" onchange="ElegirSubraza()">subraza:</label>
+                        <select name="subraza" id="">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1">subraza</option>
+                        </select>
+                    </div> -->
+            
+            <div class="clase">
+                <label for="clase">Clase: </label>
+                <select name="clase" id="clase" onchange="ElegirClase()">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Guerrero</option>
+                    <option value="2">Mago</option>
+                    <option value="3">Cazador</option>
+                    <option value="4">Druida</option>
+                    <option value="5">Caballero de la muerte</option>
+                    <option value="6">Cazador de demonios</option>
+                    <option value="7">Brujo</option>
+                    <option value="8">Pícaro</option>
+                    <option value="9">Sacerdote</option>
+                    <option value="10">Chamán</option>
+                    <option value="11">Paladín</option>
+                    <option value="12">Monje</option>
+                    <option value="13">Evocador</option>
+                </select> 
+            </div>
+            <br>
+            <div class="nivel">
+                <label for="nivel">Nivel: </label>
+                <input required type="number" id="nivel" name="nivel" default value="1" min="1" max="25" class="stat"
+                    onkeypress="return false" ; onchange="calnivel(this)">
+            </div>
+            <div class="experiencia">    
+                <label for="experiencia">Experiencia:</label>
+                <input type="number" name="experiencia" id="experiencia">
+            </div>
+            <div class="PuntosDePractica">
+            <label for="pg">Puntos de práctica: </label>
+            <input required type="number" id="pg" name="pg" default value="20" min="0" max="999" class="stat"
+                onkeypress="return false" ; onclick="return false">
+            </div>
+            <!-- </table> -->
+        </div>
+        <!-- ATRIBUTOS -->
+        <div class="atributos">
+            <label for="atributos">
+                <h2 class="atributos2">Atributos</h2>
+            </label>
+            <table class="atributab">
+                <tr>
+                    <th><label for="pa">Puntos de atributos: </label></th>
+                    <th><input required type="number" id="pa" name="pa" default value="5" min="0" max="5" class="stat"
+                            onkeypress="return false" ; onclick="return false" ;></th>
+                </tr>
+                <tr>
+                    <td><label for="destreza">Destreza: </label></td>
+                    <td><input required type="number" id="destreza" name="destreza" default value="1" min="1" max="5"
+                            class="stat" class="att" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpa(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="percepcion">Percepción: </label></td>
+                    <td><input required type="number" id="percepcion" name="percepcion" default value="1" min="1"
+                            class="stat" max="5" class="att" onkeypress="return false" ;
+                            onfocus="this.oldvalue = this.value;" onchange="calpa(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="voluntad">Voluntad: </label></td>
+                    <td><input required type="number" id="voluntad" name="voluntad" default value="1" min="1" max="5"
+                            class="stat" class="att" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpa(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="vigor">Vigor: </label></td>
+                    <td><input required type="number" id="vigor" name="vigor" default value="1" min="1" max="5"
+                            class="stat" class="att" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpa(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="inteligencia">Inteligencia: </label></td>
+                    <td><input required type="number" id="inteligencia" name="inteligencia" default value="1" min="1"
+                            class="stat" max="5" class="att" onkeypress="return false" ;
+                            onfocus="this.oldvalue = this.value;" onchange="calpa(this)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="aguante">Aguante: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="aguante" name="aguante" default value="1" min="1" max="5"
+                            class="stat" class="att" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpa(this)">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="energia">Energía: </label></td>
+                    <td><input required type="number" id="energia" name="energia" default value="1" min="1" max="5"
+                            class="stat" class="att" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpa(this)"></td>
+                </tr>
+            </table>
+        </div>
+        <!-- DEFENSAS -->
+        <div class="defensa">
+            <label for="defensas">
+                <h2 class="defensa2">Defensas</h2>
+            </label>
+            <table class="deftab">
+                <tr>
+                    <th><label for="pd">Puntos de defensa: </label></th>
+                    <th><input required type="number" id="pd" name="pd" default value="3" min="0" max="3" class="stat"
+                            onkeypress="return false" ; onclick="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpd(this)"></th>
+                </tr>
+                <tr>
+                    <td><label for="parada">Parada: </label></td>
+                    <td><input required type="number" id="parada" name="parada" default value="0" min="0" max="5"
+                            class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpd(this)">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="esquivar">Esquivar: </label></td>
+                    <td><input required type="number" id="esquivar" name="esquivar" default value="0" min="0" max="5"
+                            class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpd(this)">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="bloqueo">Bloqueo: </label></td>
+                    <td><input required type="number" id="bloqueo" name="bloqueo" default value="0" min="0" max="5"
+                            class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpd(this)">
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="metamagia">Metamagia: </label></td>
+                    <td><input required type="number" id="metamagia" name="metamagia" default value="0" min="0" max="5"
+                            class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                            onchange="calpd(this)">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- HABILIDADES -->
+        <div class="habilidades">
+            <td><label for="habilidades">
+                    <h2 class="habilidades2">Habilidades</h2>
+                </label>
+                <table class="habtab">
+                    <tr>
+                        <th><label for="ph">Puntos de habilidad: </label></th>
+                        <th><input required type="number" id="ph" name="ph" default value="10" min="0" max="10"
+                                class="stat" onkeypress="return false" ;><br></th>
+                    </tr>
+                    <tr>
+                        <td><label for="atletismo">Atletismo: </label></td>
+                        <td><input required type="number" id="atletismo" name="atletismo" default value="0" min="0"
+                                class="stat" max="5" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="robo">Robo: </label></td>
+                        <td><input required type="number" id="robo" name="robo" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="sigilo">Sigilo: </label></td>
+                        <td><input required type="number" id="sigilo" name="sigilo" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="forzar_cerraduras">Forzar cerraduras: </label></td>
+                        <td><input required type="number" id="forcer" name="forzar_cerraduras" default value="0" min="0"
+                                class="stat" max="5" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="subsistencia">Subsistencia: </label></td>
+                        <td><input required type="number" id="subsist" name="supervivencia" default value="0" min="0"
+                                class="stat" max="5" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="trepar_escalar">Trepar/escalar: </label></td>
+                        <td><input required type="number" id="escalar" name="trepar_escalar" default value="0" min="0"
+                                class="stat" max="5" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="buscar">Buscar: </label></td>
+                        <td><input required type="number" id="buscar" name="buscar" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="alerta">Alerta: </label></td>
+                        <td><input required type="number" id="alerta" name="alerta" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="aprendizaje">Aprendizaje: </label></td>
+                        <td><input required type="number" id="aprend" name="aprendizaje" default value="0" min="0"
+                                class="stat" max="5" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="interpretacion">Interpretacion: </label></td>
+                        <td><input required type="number" id="interp" name="interpretacion" default value="0" min="0"
+                                class="stat" max="5" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="subterfugio">Subterfugio: </label></td>
+                        <td><input required type="number" id="subter" name="subterfugio" default value="0" min="0"
+                                class="stat" max="5" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="trato_con_animales">Trato con animales: </label></td>
+                        <td><input required type="number" id="tratanim" name="trato_con_animales" default value="0"
+                                class="stat" min="0" max="5" onkeypress="return false" ;
+                                onfocus="this.oldvalue = this.value;" onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="intimidacion">Intimidacion: </label></td>
+                        <td><input required type="number" id="intimidacion" name="intimidacion" default value="0"
+                                class="stat" min="0" max="5" onkeypress="return false" ;
+                                onfocus="this.oldvalue = this.value;" onchange="calph(this)"><br></td>
+                    </tr>
+                    <tr>
+                        <td><label for="carisma">Carisma: </label></td>
+                        <td><input required type="number" id="carisma" name="carisma" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calph(this)"><br></td>
+                    </tr>
+                </table>
+        </div>
+        <!-- ACTUALMENTE -->
+        <div class="actualmente">
+            <label for="actualmente">
+                <h2 class="actualmente2">Actualmente</h2>
+            </label>
+            <table class="actabla" style="padding: 0%">
+                <tr>
+                    <td>
+                        <label for="salud">Salud</label>
+                    </td>
+                    <td>
+                        <label for="armaduract">Armadura</label>
+                    </td>
+                    <td>
+                        <label for="velocidad">Velocidad</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="number" class="actualmente3" id="saludact">
+                    </td>
+                    <td>
+                        <input type="number" class="actualmente3" id="armadact">
+                    </td>
+                    <td>
+                        <input type="number" class="actualmente3" id="velact">
+                    </td>
+                </tr>
+            </table>
+            <table class="actabla2">
+                <tr>
+                    <td>
+                        <label for="armaduraact"> Armadura: </label>
+                    </td>
+                    <td>
+                        <label for="armaduraact2"> Equipados</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="armadura" class="armadura" id="tipoarmadura"><label for="tela"> Tela </label>
+                    </td>
+                    <td>
+                        Yelmo
+                    </td>
+                    <td>
+                        <input type="text" name="yelmo" class="armadura2" id="yelmo">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="armadura" class="armadura" id="tipoarmadura"><label for="cuero"> Cuero </label>
+                    </td>
+                    <td>
+                        Torso
+                    </td>
+                    <td>
+                        <input type="text" name="torso" class="armadura2" id="torso">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="armadura" class="armadura" id="tipoarmadura"> <label for="malla"> Malla </label>
+                    </td>
+                    <td>
+                        Pies
+                    </td>
+                    <td>
+                        <input type="text" name="pies" class="armadura2" id="pies">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="armadura" class="armadura" id="tipoarmadura"><label for="placas"> Placas</label>
+                    </td>
+                    <td>
+                        Capa
+                    </td>
+                    <td>
+                        <input type="text" name="capa" class="armadura2" id="capa">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" name="armadura" id="escudo"><label for="escudo"> Escudo </label>
+                    </td>
+                    <td>
+                        Escudo
+                    </td>
+                    <td>
+                        <input type="text" name="Escudo" class="armadura2" id="escudo1">
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                <h3 class="resistencias" style="margin-top: 3%;">Resistencias</h3>
+                <table class="resistab">
+                    <tr>
+                        <td>
+                            <label for="Resfis">Resistencia fisica</label>
+                        </td>
+                        <td>
+                            <input type="number" name="ResFis" id="ResFis" class="resistencias2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="ResArc">Resistencia Arcana</label>
+                        </td>
+                        <td>
+                            <input type="number" name="ResArc" id="ResArc" class="resistencias2">
+                        </td>
+                        <td>
+                            <label for="ResSom">Resistencia a la sombra</label>
+                        </td>
+                        <td>
+                            <input type="number" name="ResSomb" id="ResSomb" class="resistencias2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="ResArc">Resistencia al fuego</label>
+                        </td>
+                        <td>
+                            <input type="number" name="ResFu" id="ResFu" class="resistencias2">
+                        </td>
+                        <td>
+                            <label for="ResSom">Resistencia a la naturaleza</label>
+                        </td>
+                        <td>
+                            <input type="number" name="ResNat" id="ResNat" class="resistencias2">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="ResArc">Resistencia al frio</label>
+                        </td>
+                        <td>
+                            <input type="number" name="ResFri" id="ResFri" class="resistencias2">
+                        </td>
+                        <td>
+                            <label for="ResSom">Resistencia a la luz</label>
+                        </td>
+                        <td>
+                            <input type="number" name="ReLuz" id="ResLuz" class="resistencias2">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- MAGIA -->
+        <div class="magia">
+            <label for="magia">
+                <h2 class="magia2">Habilidad Mágica</h2>
+            </label>
+            <table class="magitab">
+                <tr>
+                    <th><label for="phm">Puntos de magia: </label></th>
+                    <th><input required type="number" id="phm" name="phm" default value="1" min="0" max="1" class="stat"
+                            onkeypress="return false" ; onclick="return false" ;></th>
+                </tr>
+                <tr>
+                    <td><label for="taumaturgia">Taumaturgia: </label></td>
+                    <td><input required type="number" id="taumaturgia" name="taumaturgia" default value="0" min="0"
+                            class="stat" max="5" onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="fe">Fe: </label></td>
+                    <td><input required type="number" id="fe" name="fe" default value="0" min="0" max="5" class="stat"
+                            onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="espiritualidad">Espiritualidad: </label></td>
+                    <td><input required type="number" id="espiritu" name="espiritualidad" default value="0" min="0"
+                            class="stat" max="5" onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="naturaleza">Naturaleza: </label></td>
+                    <td><input required type="number" id="naturaleza" name="naturaleza" default value="0" min="0"
+                            class="stat" max="5" onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td>
+                </tr>
+                <tr>
+                    <td><label for="corrupcion">Corrupcion: </label></td>
+                    <td><input required type="number" id="corrupcion" name="corrupcion" default value="0" min="0"
+                            class="stat" max="5" onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td>
+                </tr>
+            </table>
+        </div>
+        <!-- DAÑO -->
+        <div class="daño">
+            <label for="daño">
+                <h2 class="daño2">Daño</h2>
+            </label>
+            <table class="tabdaño">
+                <tr>
+                    <td>
+                        <label for="DañoArmaPrimaria">Daño arma primaria:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="DañoArmaPrim" name="DañoArmaPrim" class="daño3">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="DañoArmaSecundaria">Daño arma secundaria:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="DañoArmaSec" name="DañoArmaSec" class="daño3">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="DañoMag">Daño Mágico:</label>
+                    </td>
+                    <td>
+                        <input type="number" id="DañoMag" name="DañoMag" class="daño3">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- MAGIA Y ESTILOS -->
+        <div class="mages">
+            <label for="magia_y_estilos">
+                <h2 class="mages2">Magia y estilos</h2>
+            </label>
+            <label for="pmye">Puntos de magia y estilos: </label>
+            <input required type="number" id="pmye" name="pmye" default value="3" min="0" max="3" class="stat"
+                onkeypress="return false" ; onclick="return false" ;>
+            <br>
+            <!-- MAGIA Y ESTILOS 1 -->
+
+            <label for="Lmye0">Magia y Estilos: </label>
+            <select name="mye0" id="Smye0">
+                <option value="0" disabled selected>Seleccionar</option>
+                <option value="1">Arcanismo</option>
+                <option value="2">Piromancia</option>
+                <option value="3">Criomancia</option>
+                <option value="4">Nigromancia</option>
+                <option value="5">Magia rúnica</option>
+                <option value="6">Demonología</option>
+                <option value="7">Piromancia vil</option>
+                <option value="8">Magia sangrienta</option>
+                <option value="9">Magia de la sombra</option>
+                <option value="10">Magia druidica: Feral</option>
+                <option value="11">Magia druidica: Equilibrio</option>
+                <option value="12">Magia druidica: Vida</option>
+                <option value="13">Dominio de la luz</option>
+                <option value="14">Magia elemental: Agua</option>
+                <option value="15">Magia elemental: Fuego</option>
+                <option value="16">Magia elemental: Tierra</option>
+                <option value="17">Magia elemental: Aire</option>
+                <option value="18">Chi</option>
+                <option value="19">Maestro de armas</option>
+                <option value="20">Furibundo</option>
+                <option value="21">Protector</option>
+                <option value="22">Puntería</option>
+                <option value="23">Supervivencia</option>
+                <option value="24">Maestro de bestias</option>
+                <option value="25">A.A.M.M. Maestro cervecero</option>
+                <option value="26">A.A.M.M. Caminavientos</option>
+                <option value="27">Asesinato</option>
+                <option value="28">Sutileza</option>
+                <option value="29">Forajido</option>
+                <option value="30">Protector sagrado</option>
+                <option value="31">Represión</option>
+                <option value="32">Devastación</option>
+                <option value="33">Venganza</option>
+                <option value="34">Caballero sangriento</option>
+                <option value="35">Caballero de escarcha</option>
+                <option value="36">Caballero profano</option>
+            </select>
+            <input type="number" name="mye0" id="mye0" class="mye" default value="0" min="0" max="5"
+                onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            <button type="button" name="Añadir" value="+" onclick="addmye()">+</button>
+            <button type="button" name="Quitar" value="-" onclick="submye()">--</button><br>
+
+
+            <!-- MAGIA Y ESTILOS 2 -->
+            <div id="mages1" style="display:none;">
+                <label for="mye1">Magia y Estilos: </label>
+                <select name="mye1" id="Smye1">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Arcanismo</option>
+                    <option value="2">Piromancia</option>
+                    <option value="3">Criomancia</option>
+                    <option value="4">Nigromancia</option>
+                    <option value="5">Magia rúnica</option>
+                    <option value="6">Demonología</option>
+                    <option value="7">Piromancia vil</option>
+                    <option value="8">Magia sangrienta</option>
+                    <option value="9">Magia de la sombra</option>
+                    <option value="10">Magia druidica: Feral</option>
+                    <option value="11">Magia druidica: Equilibrio</option>
+                    <option value="12">Magia druidica: Vida</option>
+                    <option value="13">Dominio de la luz</option>
+                    <option value="14">Magia elemental: Agua</option>
+                    <option value="15">Magia elemental: Fuego</option>
+                    <option value="16">Magia elemental: Tierra</option>
+                    <option value="17">Magia elemental: Aire</option>
+                    <option value="18">Chi</option>
+                    <option value="19">Maestro de armas</option>
+                    <option value="20">Furibundo</option>
+                    <option value="21">Protector</option>
+                    <option value="22">Puntería</option>
+                    <option value="23">Supervivencia</option>
+                    <option value="24">Maestro de bestias</option>
+                    <option value="25">A.A.M.M. Maestro cervecero</option>
+                    <option value="26">A.A.M.M. Caminavientos</option>
+                    <option value="27">Asesinato</option>
+                    <option value="28">Sutileza</option>
+                    <option value="29">Forajido</option>
+                    <option value="30">Protector sagrado</option>
+                    <option value="31">Represión</option>
+                    <option value="32">Devastación</option>
+                    <option value="33">Venganza</option>
+                    <option value="34">Caballero sangriento</option>
+                    <option value="35">Caballero de escarcha</option>
+                    <option value="36">Caballero profano</option>
+                </select>
+                <input type="number" name="mye1" id="mye1" class="mye" default value="0" min="0" max="5"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            </div>
+            <!-- MAGIA Y ESTILOS 3 -->
+            <div id="mages2" style="display:none;">
+                <label for="mye2">Magia y Estilos: </label>
+                <select name="mye2" id="Smye2">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Arcanismo</option>
+                    <option value="2">Piromancia</option>
+                    <option value="3">Criomancia</option>
+                    <option value="4">Nigromancia</option>
+                    <option value="5">Magia rúnica</option>
+                    <option value="6">Demonología</option>
+                    <option value="7">Piromancia vil</option>
+                    <option value="8">Magia sangrienta</option>
+                    <option value="9">Magia de la sombra</option>
+                    <option value="10">Magia druidica: Feral</option>
+                    <option value="11">Magia druidica: Equilibrio</option>
+                    <option value="12">Magia druidica: Vida</option>
+                    <option value="13">Dominio de la luz</option>
+                    <option value="14">Magia elemental: Agua</option>
+                    <option value="15">Magia elemental: Fuego</option>
+                    <option value="16">Magia elemental: Tierra</option>
+                    <option value="17">Magia elemental: Aire</option>
+                    <option value="18">Chi</option>
+                    <option value="19">Maestro de armas</option>
+                    <option value="20">Furibundo</option>
+                    <option value="21">Protector</option>
+                    <option value="22">Puntería</option>
+                    <option value="23">Supervivencia</option>
+                    <option value="24">Maestro de bestias</option>
+                    <option value="25">A.A.M.M. Maestro cervecero</option>
+                    <option value="26">A.A.M.M. Caminavientos</option>
+                    <option value="27">Asesinato</option>
+                    <option value="28">Sutileza</option>
+                    <option value="29">Forajido</option>
+                    <option value="30">Protector sagrado</option>
+                    <option value="31">Represión</option>
+                    <option value="32">Devastación</option>
+                    <option value="33">Venganza</option>
+                    <option value="34">Caballero sangriento</option>
+                    <option value="35">Caballero de escarcha</option>
+                    <option value="36">Caballero profano</option>
+                </select>
+                <input required type="number" name="mye2" id="mye2" class="mye" default value="0" min="0" max="5"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            </div>
+            <!-- MAGIA Y ESTILOS 4 -->
+            <div id="mages3" style="display:none;">
+                <label for="mye3">Magia y Estilos: </label>
+                <select name="mye3" id="Smye3">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Arcanismo</option>
+                    <option value="2">Piromancia</option>
+                    <option value="3">Criomancia</option>
+                    <option value="4">Nigromancia</option>
+                    <option value="5">Magia rúnica</option>
+                    <option value="6">Demonología</option>
+                    <option value="7">Piromancia vil</option>
+                    <option value="8">Magia sangrienta</option>
+                    <option value="9">Magia de la sombra</option>
+                    <option value="10">Magia druidica: Feral</option>
+                    <option value="11">Magia druidica: Equilibrio</option>
+                    <option value="12">Magia druidica: Vida</option>
+                    <option value="13">Dominio de la luz</option>
+                    <option value="14">Magia elemental: Agua</option>
+                    <option value="15">Magia elemental: Fuego</option>
+                    <option value="16">Magia elemental: Tierra</option>
+                    <option value="17">Magia elemental: Aire</option>
+                    <option value="18">Chi</option>
+                    <option value="19">Maestro de armas</option>
+                    <option value="20">Furibundo</option>
+                    <option value="21">Protector</option>
+                    <option value="22">Puntería</option>
+                    <option value="23">Supervivencia</option>
+                    <option value="24">Maestro de bestias</option>
+                    <option value="25">A.A.M.M. Maestro cervecero</option>
+                    <option value="26">A.A.M.M. Caminavientos</option>
+                    <option value="27">Asesinato</option>
+                    <option value="28">Sutileza</option>
+                    <option value="29">Forajido</option>
+                    <option value="30">Protector sagrado</option>
+                    <option value="31">Represión</option>
+                    <option value="32">Devastación</option>
+                    <option value="33">Venganza</option>
+                    <option value="34">Caballero sangriento</option>
+                    <option value="35">Caballero de escarcha</option>
+                    <option value="36">Caballero profano</option>
+                </select>
+                <input required type="number" name="mye3" id="mye3" class="mye" default value="0" min="0" max="5"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            </div>
+
+            <!-- MAGIA Y ESTILOS 5 -->
+            <div id="mages4" style="display:none;">
+                <label for="mye4">Magia y Estilos: </label>
+                <select name="mye4" id="Smye4">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Arcanismo</option>
+                    <option value="2">Piromancia</option>
+                    <option value="3">Criomancia</option>
+                    <option value="4">Nigromancia</option>
+                    <option value="5">Magia rúnica</option>
+                    <option value="6">Demonología</option>
+                    <option value="7">Piromancia vil</option>
+                    <option value="8">Magia sangrienta</option>
+                    <option value="9">Magia de la sombra</option>
+                    <option value="10">Magia druidica: Feral</option>
+                    <option value="11">Magia druidica: Equilibrio</option>
+                    <option value="12">Magia druidica: Vida</option>
+                    <option value="13">Dominio de la luz</option>
+                    <option value="14">Magia elemental: Agua</option>
+                    <option value="15">Magia elemental: Fuego</option>
+                    <option value="16">Magia elemental: Tierra</option>
+                    <option value="17">Magia elemental: Aire</option>
+                    <option value="18">Chi</option>
+                    <option value="19">Maestro de armas</option>
+                    <option value="20">Furibundo</option>
+                    <option value="21">Protector</option>
+                    <option value="22">Puntería</option>
+                    <option value="23">Supervivencia</option>
+                    <option value="24">Maestro de bestias</option>
+                    <option value="25">A.A.M.M. Maestro cervecero</option>
+                    <option value="26">A.A.M.M. Caminavientos</option>
+                    <option value="27">Asesinato</option>
+                    <option value="28">Sutileza</option>
+                    <option value="29">Forajido</option>
+                    <option value="30">Protector sagrado</option>
+                    <option value="31">Represión</option>
+                    <option value="32">Devastación</option>
+                    <option value="33">Venganza</option>
+                    <option value="34">Caballero sangriento</option>
+                    <option value="35">Caballero de escarcha</option>
+                    <option value="36">Caballero profano</option>
+                </select>
+                <input required type="number" name="mye4" id="mye4" class="mye" default value="0" min="0" max="5"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            </div>
+
+            <!-- MAGIA Y ESTILOS 6 -->
+            <div id="mages5" style="display:none;">
+                <label for="mye5">Magia y Estilos: </label>
+                <select name="mye5" id="Smye5">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Arcanismo</option>
+                    <option value="2">Piromancia</option>
+                    <option value="3">Criomancia</option>
+                    <option value="4">Nigromancia</option>
+                    <option value="5">Magia rúnica</option>
+                    <option value="6">Demonología</option>
+                    <option value="7">Piromancia vil</option>
+                    <option value="8">Magia sangrienta</option>
+                    <option value="9">Magia de la sombra</option>
+                    <option value="10">Magia druidica: Feral</option>
+                    <option value="11">Magia druidica: Equilibrio</option>
+                    <option value="12">Magia druidica: Vida</option>
+                    <option value="13">Dominio de la luz</option>
+                    <option value="14">Magia elemental: Agua</option>
+                    <option value="15">Magia elemental: Fuego</option>
+                    <option value="16">Magia elemental: Tierra</option>
+                    <option value="17">Magia elemental: Aire</option>
+                    <option value="18">Chi</option>
+                    <option value="19">Maestro de armas</option>
+                    <option value="20">Furibundo</option>
+                    <option value="21">Protector</option>
+                    <option value="22">Puntería</option>
+                    <option value="23">Supervivencia</option>
+                    <option value="24">Maestro de bestias</option>
+                    <option value="25">A.A.M.M. Maestro cervecero</option>
+                    <option value="26">A.A.M.M. Caminavientos</option>
+                    <option value="27">Asesinato</option>
+                    <option value="28">Sutileza</option>
+                    <option value="29">Forajido</option>
+                    <option value="30">Protector sagrado</option>
+                    <option value="31">Represión</option>
+                    <option value="32">Devastación</option>
+                    <option value="33">Venganza</option>
+                    <option value="34">Caballero sangriento</option>
+                    <option value="35">Caballero de escarcha</option>
+                    <option value="36">Caballero profano</option>
+                </select>
+                <input required type="number" name="mye5" id="mye5" class="mye" default value="0" min="0" max="5"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            </div>
+
+            <!-- MAGIA Y ESTILOS 7 -->
+            <div id="mages6" style="display:none;">
+                <label for="mye6">Magia y Estilos: </label>
+                <select name="mye6" id="Smye6">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Arcanismo</option>
+                    <option value="2">Piromancia</option>
+                    <option value="3">Criomancia</option>
+                    <option value="4">Nigromancia</option>
+                    <option value="5">Magia rúnica</option>
+                    <option value="6">Demonología</option>
+                    <option value="7">Piromancia vil</option>
+                    <option value="8">Magia sangrienta</option>
+                    <option value="9">Magia de la sombra</option>
+                    <option value="10">Magia druidica: Feral</option>
+                    <option value="11">Magia druidica: Equilibrio</option>
+                    <option value="12">Magia druidica: Vida</option>
+                    <option value="13">Dominio de la luz</option>
+                    <option value="14">Magia elemental: Agua</option>
+                    <option value="15">Magia elemental: Fuego</option>
+                    <option value="16">Magia elemental: Tierra</option>
+                    <option value="17">Magia elemental: Aire</option>
+                    <option value="18">Chi</option>
+                    <option value="19">Maestro de armas</option>
+                    <option value="20">Furibundo</option>
+                    <option value="21">Protector</option>
+                    <option value="22">Puntería</option>
+                    <option value="23">Supervivencia</option>
+                    <option value="24">Maestro de bestias</option>
+                    <option value="25">A.A.M.M. Maestro cervecero</option>
+                    <option value="26">A.A.M.M. Caminavientos</option>
+                    <option value="27">Asesinato</option>
+                    <option value="28">Sutileza</option>
+                    <option value="29">Forajido</option>
+                    <option value="30">Protector sagrado</option>
+                    <option value="31">Represión</option>
+                    <option value="32">Devastación</option>
+                    <option value="33">Venganza</option>
+                    <option value="34">Caballero sangriento</option>
+                    <option value="35">Caballero de escarcha</option>
+                    <option value="36">Caballero profano</option>
+                </select>
+                <input required type="number" name="mye6" id="mye6" class="mye" default value="0" min="0" max="5"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            </div>
+
+            <!-- MAGIA Y ESTILOS 8 -->
+            <div id="mages7" style="display:none;">
+                <label for="mye7">Magia y Estilos: </label>
+                <select name="mye7" id="Smye7">
+                    <option value="0" disabled selected>Seleccionar</option>
+                    <option value="1">Arcanismo</option>
+                    <option value="2">Piromancia</option>
+                    <option value="3">Criomancia</option>
+                    <option value="4">Nigromancia</option>
+                    <option value="5">Magia rúnica</option>
+                    <option value="6">Demonología</option>
+                    <option value="7">Piromancia vil</option>
+                    <option value="8">Magia sangrienta</option>
+                    <option value="9">Magia de la sombra</option>
+                    <option value="10">Magia druidica: Feral</option>
+                    <option value="11">Magia druidica: Equilibrio</option>
+                    <option value="12">Magia druidica: Vida</option>
+                    <option value="13">Dominio de la luz</option>
+                    <option value="14">Magia elemental: Agua</option>
+                    <option value="15">Magia elemental: Fuego</option>
+                    <option value="16">Magia elemental: Tierra</option>
+                    <option value="17">Magia elemental: Aire</option>
+                    <option value="18">Chi</option>
+                    <option value="19">Maestro de armas</option>
+                    <option value="20">Furibundo</option>
+                    <option value="21">Protector</option>
+                    <option value="22">Puntería</option>
+                    <option value="23">Supervivencia</option>
+                    <option value="24">Maestro de bestias</option>
+                    <option value="25">A.A.M.M. Maestro cervecero</option>
+                    <option value="26">A.A.M.M. Caminavientos</option>
+                    <option value="27">Asesinato</option>
+                    <option value="28">Sutileza</option>
+                    <option value="29">Forajido</option>
+                    <option value="30">Protector sagrado</option>
+                    <option value="31">Represión</option>
+                    <option value="32">Devastación</option>
+                    <option value="33">Venganza</option>
+                    <option value="34">Caballero sangriento</option>
+                    <option value="35">Caballero de escarcha</option>
+                    <option value="36">Caballero profano</option>
+                </select>
+                <input required type="number" name="mye7" id="mye7" class="mye" default value="0" min="0" max="5"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcmye(this)"></td>
+            </div>
+        </div>
+        <!-- HABILIDAD DE ARMAS -->
+        <div class="habarmas">
+            <label for="ha">
+                <h2 class="habarmas2">Habilidades de armas</h2>
+            </label>
+            <label for="pha">Puntos de habilidades de armas: </label>
+            <input required type="number" id="pha" name="pha" default value="5" min="0" max="5" class="stat"
+                onkeypress="return false" ; onclick="return false" ;>
+            <br>
+
+            <!-- Habilidades de armas 1 -->
+            <label for="Lha0">Habilidades de armas: </label>
+            <select name="ha0" id="Sha0">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <input type="number" name="ha0" id="ha0" default value="0" min="0" max="5" class="stat"
+                onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+            <button type="button" name="Añadir" value="+" onclick="addha()">+</button>
+            <button type="button" name="Quitar" value="-" onclick="subha()">--</button><br>
+
+            <!-- Habilidades de armas 2 -->
+
+            <div id="arma1" style="display:none;">
+                <label for="Lha1">Habilidades de armas: </label>
+                <select name="ha1" id="Sha1">
+                    <option value="0" selected disabled>Seleccionar</option>
+                    <option value="1">Espadas de una mano</option>
+                    <option value="2">Espadas de dos manos</option>
+                    <option value="3">Mazas de una mano</option>
+                    <option value="4">Mazas de dos manos</option>
+                    <option value="5">Hachas de una mano</option>
+                    <option value="6">Hachas de dos manos</option>
+                    <option value="7">Arcos</option>
+                    <option value="8">Armas de fuego</option>
+                    <option value="9">Armas arrojadizas</option>
+                    <option value="10">Ballestas</option>
+                    <option value="11">Bastones</option>
+                    <option value="12">Varitas</option>
+                    <option value="13">Dagas</option>
+                    <option value="14">Armas de puño</option>
+                    <option value="15">Armas de asta</option>
+                    <option value="16">Gujas de guerra</option>
+                    <option value="17">Escudo</option>
+                    <option value="18">Sin Armas</option>
+                </select>
+                <input type="number" name="ha1" id="ha1" default value="0" min="0" max="5" class="stat"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                <!-- Habilidades de armas 3 -->
+
+                <div id="arma2" style="display:none;">
+                    <label for="Lha2">Habilidades de armas: </label>
+                    <select name="ha2" id="Sha2">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha2" id="ha2" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+                <!-- Habilidades de armas 4 -->
+
+                <div id="arma3" style="display:none;">
+                    <label for="Lha3">Habilidades de armas: </label>
+                    <select name="ha3" id="Sha3">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha3" id="ha3" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+                <!-- Habilidades de armas 5 -->
+
+                <div id="arma4" style="display:none;">
+                    <label for="Lha4">Habilidades de armas: </label>
+                    <select name="ha4" id="Sha4">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha4" id="ha4" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+                <!-- Habilidades de armas 6 -->
+
+                <div id="arma5" style="display:none;">
+                    <label for="Lha5">Habilidades de armas: </label>
+                    <select name="ha5" id="Sha5">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha5" id="ha5" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 7 -->
+
+                <div id="arma6" style="display:none;">
+                    <label for="Lha6">Habilidades de armas: </label>
+                    <select name="ha6" id="Sha6">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha6" id="ha6" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 8 -->
+
+                <div id="arma7" style="display:none;">
+                    <label for="Lha7">Habilidades de armas: </label>
+                    <select name="ha7" id="Sha7">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha7" id="ha7" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 9 -->
+
+                <div id="arma8" style="display:none;">
+                    <label for="Lha8">Habilidades de armas: </label>
+                    <select name="ha8" id="Sha8">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha8" id="ha8" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 10 -->
+
+                <div id="arma9" style="display:none;">
+                    <label for="Lha9">Habilidades de armas: </label>
+                    <select name="ha9" id="Sha9">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha9" id="ha9" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 11 -->
+
+                <div id="arma10" style="display:none;">
+                    <label for="Lha10">Habilidades de armas: </label>
+                    <select name="ha10" id="Sha10">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha10" id="ha10" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 12 -->
+
+                <div id="arma11" style="display:none;">
+                    <label for="Lha11">Habilidades de armas: </label>
+                    <select name="ha11" id="Sha11">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha1" id="ha1" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 13 -->
+
+                <div id="arma12" style="display:none;">
+                    <label for="Lha12">Habilidades de armas: </label>
+                    <select name="ha12" id="Sha12">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha12" id="ha12" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 14 -->
+
+                <div id="arma13" style="display:none;">
+                    <label for="Lha13">Habilidades de armas: </label>
+                    <select name="ha13" id="Sha13">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha13" id="ha13" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 15 -->
+
+                <div id="arma14" style="display:none;">
+                    <label for="Lha14">Habilidades de armas: </label>
+                    <select name="ha14" id="Sha14">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha14" id="ha14" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 16 -->
+
+                <div id="arma15" style="display:none;">
+                    <label for="Lha15">Habilidades de armas: </label>
+                    <select name="ha15" id="Sha15">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha15" id="ha15" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 17 -->
+
+                <div id="arma16" style="display:none;">
+                    <label for="Lha16">Habilidades de armas: </label>
+                    <select name="ha16" id="Sha16">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha16" id="ha16" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+
+                </div>
+
+                <!-- Habilidades de armas 18 -->
+
+                <div id="arma17" style="display:none;">
+                    <label for="Lha17">Habilidades de armas: </label>
+                    <select name="ha17" id="Sha17">
+                        <option value="0" selected disabled>Seleccionar</option>
+                        <option value="1">Espadas de una mano</option>
+                        <option value="2">Espadas de dos manos</option>
+                        <option value="3">Mazas de una mano</option>
+                        <option value="4">Mazas de dos manos</option>
+                        <option value="5">Hachas de una mano</option>
+                        <option value="6">Hachas de dos manos</option>
+                        <option value="7">Arcos</option>
+                        <option value="8">Armas de fuego</option>
+                        <option value="9">Armas arrojadizas</option>
+                        <option value="10">Ballestas</option>
+                        <option value="11">Bastones</option>
+                        <option value="12">Varitas</option>
+                        <option value="13">Dagas</option>
+                        <option value="14">Armas de puño</option>
+                        <option value="15">Armas de asta</option>
+                        <option value="16">Gujas de guerra</option>
+                        <option value="17">Escudo</option>
+                        <option value="18">Sin Armas</option>
+                    </select>
+                    <input type="number" name="ha17" id="ha17" default value="0" min="0" max="5" class="stat"
+                        onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcha(this)"></td>
+                </div>
+            </div>
+
+        </div>
+        <!-- PROFESIONES -->
+        <div class="profes">
+            <label for="ppoo">
+                <h2 class="profes1">Profesiones y oficios</h2>
+            </label>
+            <label for="ppo">Puntos de profesiones y oficios: </label>
+            <input required type="number" id="ppo" name="ppo" default value="2" min="0" max="2" class="stat"
+                onkeypress="return false" ; onclick="return false" ;>
+            <br>
+            <label for="ppo0">Profesion: </label>
+            <select name="ppo0" id="ppo0">
+                <option value="0" selected dicabled>Seleccionar</option>
+                <option value="1">Alquimia</option>
+                <option value="2">Sastrería</option>
+                <option value="3">Desuello</option>
+                <option value="4">Carpintería</option>
+                <option value="5">Herboristería</option>
+                <option value="6">Encantamiento</option>
+                <option value="7">Herrería</option>
+                <option value="8">Inscripción</option>
+                <option value="9">Ingeniería</option>
+                <option value="10">Joyeria</option>
+                <option value="11">Leñador</option>
+                <option value="12">Minería</option>
+                <option value="13">Peletería</option>
+                <option value="14">Granjero</option>
+                <option value="15">Bardo</option>
+                <option value="16">Marinero</option>
+                <option value="17">Mercader</option>
+                <option value="18">Cazarrecompensas</option>
+                <option value="19">Criador de animales</option>
+            </select>
+            <input required type="number" id="sppo" name="sppo0" default value="0" min="0" max="5" class="stat"
+                onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcppo(this)"></td>
+            <button type="button" name="Añadir" value="+" onclick="addppo()">+</button>
+            <button type="button" name="Quitar" value="-" onclick="subppo()">--</button><br>
+
+
+            <!-- PROFESION 2 -->
+            <div id="prof1" style="display:none;">
+                <label for="sppo1">Profesion: </label>
+                <select name="sppo1" id="sppo1">
+                    <option value="0" selected dicabled>Seleccionar</option>
+                    <option value="1">Alquimia</option>
+                    <option value="2">Sastrería</option>
+                    <option value="3">Desuello</option>
+                    <option value="4">Carpintería</option>
+                    <option value="5">Herboristería</option>
+                    <option value="6">Encantamiento</option>
+                    <option value="7">Herrería</option>
+                    <option value="8">Inscripción</option>
+                    <option value="9">Ingeniería</option>
+                    <option value="10">Joyeria</option>
+                    <option value="11">Leñador</option>
+                    <option value="12">Minería</option>
+                    <option value="13">Peletería</option>
+                    <option value="14">Granjero</option>
+                    <option value="15">Bardo</option>
+                    <option value="16">Marinero</option>
+                    <option value="17">Mercader</option>
+                    <option value="18">Cazarrecompensas</option>
+                    <option value="19">Criador de animales</option>
+                </select>
+                <input required type="number" id="sppo" name="sppo1" default value="0" min="0" max="5" class="stat"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcppo(this)"></td>
+
+            </div>
+            <!-- PROFESION 3 -->
+            <div id="prof2" style="display:none;">
+                <label for="sppo2">Profesion: </label>
+                <select name="sppo2" id="sppo2">
+                    <option value="0" selected dicabled>Seleccionar</option>
+                    <option value="1">Alquimia</option>
+                    <option value="2">Sastrería</option>
+                    <option value="3">Desuello</option>
+                    <option value="4">Carpintería</option>
+                    <option value="5">Herboristería</option>
+                    <option value="6">Encantamiento</option>
+                    <option value="7">Herrería</option>
+                    <option value="8">Inscripción</option>
+                    <option value="9">Ingeniería</option>
+                    <option value="10">Joyeria</option>
+                    <option value="11">Leñador</option>
+                    <option value="12">Minería</option>
+                    <option value="13">Peletería</option>
+                    <option value="14">Granjero</option>
+                    <option value="15">Bardo</option>
+                    <option value="16">Marinero</option>
+                    <option value="17">Mercader</option>
+                    <option value="18">Cazarrecompensas</option>
+                    <option value="19">Criador de animales</option>
+                </select>
+                <input required type="number" name="ppo2" default value="0" min="0" max="5" class="stat"
+                    onkeypress="return false" ; onfocus="this.oldvalue = this.value;" onchange="calcppo(this)"></td><br>
+            </div>
+            <!-- CONOCIMIENTOS -->
+            <h3>Conocimientos: </h3>
+            <div class="conocimientos">
+                <label for="conocimientos">
+
+                </label>
+                <table>
+                    <tr>
+                        <td><label for="pco">Puntos de conocimientos: </label></td>
+                        <td><input required type="number" id="pco" name="pco" default value="5" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onclick="return false" ;></td>
+                    </tr>
+                    <tr>
+                        <td><label for="jinete">Jinete: </label></td>
+                        <td><input required type="number" id="jinete" name="jinete" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calpco(this)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="pesca">Pesca: </label></td>
+                        <td><input required type="number" id="pesca" name="pesca" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calpco(this)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="arqueologia">Arqueología: </label></td>
+                        <td><input required type="number" id="arqueologia" name="arqueologia" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calpco(this)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="medico">Médico: </label></td>
+                        <td><input required type="number" id="PrimerosAuxilios" name="medico" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calpco(this)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="cocina">Cocina: </label></td>
+                        <td><input required type="number" id="cocina" name="cocina" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calpco(this)"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="con_mag">Conocimiento de magia: </label></td>
+                        <td><input required type="number" id="ConMag" name="con_mag" default value="0" min="0" max="5"
+                                class="stat" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
+                                onchange="calpco(this)"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- APARIENCIA -->
+        <div class="descripcion">
+            <h2>Apariencia</h2>
+            <div class="descrip">
+                <h3>Descripción</h3>
+                <textarea type="textarea" rows="10" cols="50" name="desc" id="desc"></textarea>
+            </div>
+        </div>
+        <!-- TRASFONDO -->
+        <div class="trans">
+            <h2>Transfondo</h2>
+            <textarea type="textarea" rows="10" cols="50" name="trans" id="trans"></textarea>
+        </div>
+        <!-- INVENTARIO -->
+        <div class="inventario">
+            <h2>Inventario</h2>
+            <textarea type="textarea" rows="10" cols="50" name="inventario" id="inventario"></textarea>
+            <table class="dinero">
+                <tr>
+                    <td>
+                        Oro / Real:
+                    </td>
+                    <td>
+                        <input type="number" name="oro" id="oro" style="width: 40pt;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Plata / Groat:
+                    </td>
+                    <td>
+                        <input type="number" name="plata" id="plata" style="width: 40pt;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Cobre / Penique:
+                    </td>
+                    <td>
+                        <input type="number" name="peniq" id="cobre" style="width: 40pt;">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="volver"><a href="UserProfile.html">Volver</a>
+        </div>
+        <footer>
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img
+                    alt="Licencia Creative Commons" style="border-width:0"
+                    src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Esta obra está bajo una <a
+                rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licencia Creative Commons
+                Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.
+        </footer>
+    </div>
+</body>
+
+</html>

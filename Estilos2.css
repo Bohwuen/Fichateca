@@ -1,0 +1,148 @@
+@font-face {
+    font-family: 'FrizQadrata';
+    font-style: 'normal';
+    font-weight: '400';
+    src: local("FrizQadrata"),
+        url("Fuentes/friz-quadrata-regular-os-5870333951e7c.ttf")
+}
+
+.logo {
+    margin-left: 34%;
+}
+
+.nav {
+    margin-left: 100pt;
+}
+
+.navegacion {
+    background-color: olive;
+    color: white;
+}
+
+html {
+    background-color: rgb(126, 81, 35);
+    color: rgb(0, 0, 0);
+    font-family: "FrizQadrata";
+    font-size: small;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.datos {
+    grid-area: datos;
+}
+
+
+.datos2 {
+    text-align: center;
+}
+
+.atributos {
+    grid-area: atributos;
+}
+
+.atributos2 {
+    text-align: center;
+}
+
+.atributab {
+    margin-top: 12%;
+    margin-left: 20%;
+}
+
+.defensa {
+    grid-area: defensa;
+}
+
+.habilidades {
+    grid-area: habilidades;
+}
+
+.actualmente {
+    grid-area: actualmente;
+}
+
+.actabla {
+    float: inline-start;
+}
+.armaduract2 {
+    margin-left: 15%;
+    text-align: center;
+    float: inline-start;
+}
+
+.armaduract3 {
+    margin-left: 1%;
+    display: inline-block;
+}
+
+.magia {
+    grid-area: magia;
+}
+
+.daño {
+    grid-area: daño;
+}
+
+.mages {
+    grid-area: mages;
+}
+
+.habarmas {
+    grid-area: habarmas;
+}
+
+.profes {
+    grid-area: profes;
+}
+
+.descripcion {
+    grid-area: descripcion;
+}
+
+.trans {
+    grid-area: trans;
+}
+
+.inventario {
+    grid-area: inventario;
+}
+
+.conocimientos {
+    /* text-align: center; */
+    margin-left: 35%;
+}
+
+.ficha {
+    display: grid;
+    grid-template-areas:
+        'datos datos datos datos '
+        'atributos habilidades actualmente actualmente'
+        'defensa habilidades magia daño '
+        'mages mages habarmas habarmas '
+        'mages mages profes profes '
+        'descripcion descripcion descripcion descripcion'
+        'trans trans inventario inventario';
+    gap: 0.2%;
+    background-color: #2196F3;
+    padding-top: 1%;
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 10%;
+    background-color: rgb(126, 81, 35);
+    font-size: small;
+
+}
+
+.ficha>div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 10px 0;
+    align-content: center;
+}
+
+input[type='number'] {
+    width: 30pt;
+}

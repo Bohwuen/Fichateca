@@ -1,14 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WoWRPG Crear Objeto</title>
+        <link rel="stylesheet" href="Estilos.css">
+        <script src="Scripts.js"></script>
+    </head>
 </head>
 <body>
-    <a href="UserProfile.html">Volver</a><br>
-    <a href="Index.html">Inicio</a>
-    
+    <header><img src="Imagenes/Wow Logo 1.png" alt="Logowow" width="30%" height="30%" class="logo">
+    </header>
+    <form action="" method="get">
+        <div class="createobjectgrid">
+            <nav class="nav">
+                <ul id="menu">
+                    <li tabindex="1"><a href="Index.html">Inicio</a>
+                    </li>
+                    <li tabindex="2"><a href="Juego.html"> Juego</a>
+                    </li>
+                    <li tabindex="3"><a href="Noticias.html"> Noticias</a>
+                    </li>
+                    <li tabindex="4"><a href="Foros.html"> Foros</a>
+                </ul>
+            </nav>
+
+                <div class="propobjeto">
+                    
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="obnombre" autofocus>
+                        <label for="calidad">Calidad:</label>
+                        <select name="obcalidad" id="obcalidad" style="background-color:rgb(156, 108, 60);">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1" style="color:#9d9d9d;">Basura</option>
+                            <option value="2" style="color:#ffffff;">Común</option>
+                            <option value="3" style="color:#1eff00;">Poco Común</option>
+                            <option value="4" style="color:#0070dd;">Raro</option>
+                            <option value="5" style="color:#a335ee;">Épica</option>
+                            <option value="6" style="color:#ff8000;">Legendario</option>
+                            <option value="7" style="color:#e6cc80;">Artefacto</option>
+                        </select>
+                        <label for="obtipo">Tipo:</label>
+                        <select name="obtipo" id="obtipo">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1">Equipo</option>
+                            <option value="2">Alimento</option>
+                            <option value="3">Artilugio</option>
+                            <option value="4">Componente</option>
+                            <option value="5">Receta</option>
+                            <option value="6">Poción</option>
+                            <option value="7">Miscelanea</option>
+                        </select>
+
+                    <!-- MOSTRAR SI OBTIPO ES IGUAL A EQUIPO -->
+
+                        <select name="obsubtipoa" id="obsubtipoa">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1">Arma</option>
+                            <option value="2">Armadura</option>
+                            <option value="3">Contenedor</option>
+                        </select>
+
+                    <!-- MOSTRAR SI OBTIPOA ES IGUAL A ARMA -->
+
+                        <select name="obsubtipoarma" id="obsubtipoarma">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1">Espada 1 mano</option>
+                            <option value="2">Espada 2 manos</option>
+                            <option value="3">Maza 1 mano</option>
+                            <option value="4">Maza 2 manos</option>
+                            <option value="5">Hacha 1 mano</option>
+                            <option value="6">Hacha 2 manos</option>
+                            <option value="7">Arco</option>
+                            <option value="8">Ballesta</option>
+                            <option value="9">Bastón</option>
+                            <option value="10">Varita</option>
+                            <option value="11">Daga</option>
+                            <option value="12">Arma de puño</option>
+                            <option value="13">Arma de Asta</option>
+                            <option value="14">Escudo</option>
+                        </select>
+
+                    <!-- MOSTRAR SI OBTIPOA ES IGUAL A ARMADURA -->
+
+                        <select name="obsubtipoarmadura" id="obsubtipoarmadura">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1">Tela</option>
+                            <option value="2">Cuero</option>
+                            <option value="3">Malla</option>
+                            <option value="4">Placas</option>
+                            <option value="5">Complemento</option>
+                            <option value="6">Abalorio</option>
+                        </select>
+
+                    <!-- MOSTRAR SI obsubtipoarmadura ES IGUAL A tela, cuero, malla, o placas -->
+
+                        <select name="casillaarmadura" id="casillaarmadura">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1">Cabeza</option>
+                            <option value="2">Torso</option>
+                            <option value="3">Manos</option>
+                            <option value="4">Pies</option>
+                        </select>
+
+                    <!-- MOSTRAR SI obsubtipoarmadura ES IGUAL A Complemento -->
+
+                        <select name="casillacomplemento" id="casillacomplemento">
+                            <option value="0" disabled selected>Seleccionar</option>
+                            <option value="1">Cuello</option>
+                            <option value="2">Cinturón</option>
+                            <option value="3">Anillos</option>
+                            <option value="4">Capa</option>
+                        </select>
+
+                    </div>
+            <div class="volver"><a href="UserProfile.html">Volver</a>
+            </div>
+            
+            <footer>
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img
+                alt="Licencia Creative Commons" style="border-width:0"
+                src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png" /></a><br />Esta obra está bajo una <a
+                rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Licencia Creative Commons
+                Atribución-NoComercial-SinDerivadas 4.0 Internacional</a>.
+            </footer>
+        </div>
+    </form>
 </body>
 </html>

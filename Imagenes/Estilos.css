@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'FrizQadrata';
+    font-style: 'normal';
+    font-weight: '400';
+    src: local("FrizQadrata"),
+        url("Fuentes/friz-quadrata-regular-os-5870333951e7c.ttf")
+}
+
+html {
+    background-color: rgb(126, 81, 35);
+    color: white;
+    font-family: "FrizQadrata";
+    font-size: small;
+}
+
+.logo {
+    margin-left: 34%;
+}
+
+.navegacion {
+    background-color: olive;
+    color: white;
+}
+.crearpersonaje {
+    text-align: center;
+}
+
+.datos2 {
+    text-align: center;
+}
+
+.datos1 {
+    width: fit-content;
+    color: white;
+}
+
+.datos {
+    width: fit-content;
+    /* margin-left: 15%; */
+}
+
+.atributos {
+    width: fit-content;
+    /* padding-bottom: 40% ; */
+    /* height: 400pt; */
+    color: white;
+    /* margin-left: 15.1%;     */
+    /* display: inline-block;     */
+    /* float: inline-start; */
+}
+
+.atributos2 {
+    text-align: center;
+}
+
+.defensa {
+    width: fit-content;
+    color: white;
+    padding-left: 1.9%;
+    /* margin-left: 8.15%; */
+    display: inline-block;
+    float: inline-start;
+}
+
+.defensa2 {
+    text-align: center;
+}
+
+.habilidades {
+    width: fit-content;
+    color: white;
+    display: inline-block;
+    float: inline-start;
+    /* margin-left: 1%; */
+}
+
+.habilidades2 {
+    text-align: center;
+}
+
+.att {
+    text-align: right;
+    font-family: "FrizQuadrata";
+}
+
+.actualmente {
+    width: fit-content;
+    color: white;
+    display: inline-block;
+    /* float: inline-start; */
+
+}
+
+.actualmente2 {
+    text-align: center;
+}
+
+.actualmente3 {
+    /* margin-left: 35%; */
+}
+
+.magia {
+    width: fit-content;
+    color: white;
+    /* display: inline-block;
+    float: inline-start; */
+
+}
+.magia2{
+    text-align: center;
+}
+.mages {
+    width: fit-content;
+    color: white;
+    /* margin-left: 16.1%; */
+}
+
+.mages2 {
+    text-align: center;
+}
+
+.habarmas {
+    width: fit-content;
+    color: white;
+    /* margin-left: 16.1%; */
+    float: inline-start;
+}
+
+.habarmas2 {
+    text-align: center;
+}
+
+.profes {
+    width: fit-content;
+    color: white;
+    /* margin-left: 16.1%; */
+}
+
+.profes2 {
+    text-align: center;
+}
+
+input[type='number']{
+    width: 30pt;
+    /* margin-right: 100%; */
+}
+/* .mye {
+    width: 10%;
+} */
+
+body {
+    padding: 25%;
+}

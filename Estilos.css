@@ -1,0 +1,735 @@
+/* COMUNES */
+
+@font-face {
+    font-family: 'FrizQadrata';
+    font-style: 'normal';
+    font-weight: '400';
+    src: local("FrizQadrata"),
+        url("Fuentes/friz-quadrata-regular-os-5870333951e7c.ttf")
+}
+*{
+    margin: 0;
+    border: 0 none;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    background-color: rgb(126, 81, 35);
+    color: rgb(0, 0, 0);
+    font-family: "FrizQadrata";
+    font-size: small;
+}
+
+.logo {
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ul{  list-style: none;}
+
+ul#menu {
+  width:80%;
+  max-width:980px;
+  margin:auto;
+  border:1px solid #eee;
+  background-color: olive;
+}
+ul#menu li {
+  display: inline-block;
+  width: 24%;   
+  position: relative;	
+}
+ul#menu ul {
+  width: 100%;
+  background: #eee;
+  border: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+}
+ul#menu ul li {
+  width: 100%;
+}
+ul#menu a, ul#menu span {
+  padding: 0.5em; 
+  color: #ffffff;
+  text-decoration: none;
+  font-family:"FrizQadrata";
+  font-size:1em;
+  display: block;
+  text-align: center;
+}
+ul#menu span{cursor: pointer}
+ul#menu a:hover, ul#menu a:active {
+color: #003300;
+}
+ul#menu li:focus ul, ul#menu li:active ul {
+  display: block;
+}
+
+.stat{
+  width: 3em;
+}
+header{
+  margin: auto;
+}
+body {
+  padding: 0% 5% 5% 5%;
+}
+
+/* INDEX */
+
+nav {
+  grid-area: navi;
+}
+
+.Game_Notices {
+    grid-area: Notice;
+}
+
+.To_art {
+    grid-area: Art;
+}
+
+.To_Media {
+    grid-area: Media;
+}
+
+.To_Forum {
+    grid-area: Forum;
+}
+
+.Book {
+    width: 450px;
+}
+
+.art {
+    height: 258px;
+}
+
+.Div_common {
+    width: 100%;
+    display: inline-block;
+}
+
+.login {
+  width:300%;
+  border:1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.418);
+}
+
+.Discord_logo {
+    width: 4%;
+    vertical-align: top;
+}
+
+.Logo_Discord {
+  margin-top: 10%;
+    width: 100%;
+}
+
+.Discord_grid {
+  background-color: rgb(126, 81, 35);
+  text-align: center;
+  padding: auto;
+  margin-left: 2%;
+  align-content: center;
+  width: 30%;
+}
+
+footer {
+  grid-area: footer;
+}
+
+.index_grid {
+  display: grid;
+  grid-template-areas:
+  'navi navi navi'
+  'Notice Art Discord'
+  'Media Forum Discord'
+  'footer footer Discord';
+  gap: 0.2%;
+  width: 70%;
+  padding-top: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 5%;
+  margin: 0% 0% 0% 20.5%;
+  background-color: rgb(126, 81, 35);
+  font-size: small;
+
+}
+
+.index_grid>nav {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 107.3%;
+  margin-bottom: 2%;
+  margin-left: -10.5%;
+}
+
+.index_grid>div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 100%;
+}
+
+.index_grid>footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 100%;
+  padding: 2% 0% 2% 0%;
+}
+
+/* JUEGO */
+
+.gamegrid {
+  display: grid;
+  grid-template-areas:
+  'navi navi' 
+  'login login'
+  'footer footer';
+  gap: 0.2%;
+  width: 70%;
+  padding-top: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 5%;
+  margin: 0% 0% 0% 20.5%;
+  background-color: rgb(126, 81, 35);
+  font-size: small;
+}
+
+.gamegrid>nav {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 107.3%;
+  margin-bottom: 2%;
+  margin-left: -10.5%;
+}
+
+.gamegrid>div {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 40%;
+}
+
+.gamegrid>footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 86%;
+  padding: 2% 0% 2% 0%;
+}
+
+/* NOTICIAS */
+
+.noticegrid {
+  display: grid;
+  grid-template-areas:
+  'navi navi' 
+  'login login'
+  'footer footer';
+  gap: 0.2%;
+  width: 70%;
+  padding-top: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 5%;
+  margin: 0% 0% 0% 20.5%;
+  background-color: rgb(126, 81, 35);
+  font-size: small;
+}
+
+.noticegrid>nav {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 107.3%;
+  margin-bottom: 2%;
+  margin-left: -10.5%;
+}
+
+.noticegrid>div {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 40%;
+}
+
+.noticegrid>footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 86%;
+  padding: 2% 0% 2% 0%;
+}
+
+/* FORO */
+
+.forumgrid {
+  display: grid;
+  grid-template-areas:
+  'navi navi' 
+  'login login'
+  'footer footer';
+  gap: 0.2%;
+  width: 70%;
+  padding-top: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 5%;
+  margin: 0% 0% 0% 20.5%;
+  background-color: rgb(126, 81, 35);
+  font-size: small;
+}
+
+.forumgrid>nav {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 107.3%;
+  margin-bottom: 2%;
+  margin-left: -10.5%;
+}
+
+.forumgrid>div {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 40%;
+}
+
+.forumgrid>footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 86%;
+  padding: 2% 0% 2% 0%;
+}
+
+/* PANEL DE USUARIO */
+
+.usertable {
+  grid-area: usertab;
+  padding: 2% 0% 2% 35%;
+}
+
+.usertab {
+  margin: 0% 0% 0% 0%;
+  padding: 0% 0% 0% 0%;
+}
+
+.userow {
+  height: 2em;
+}
+
+.usergrid {
+  display: grid;
+  grid-template-areas:
+  'navi navi' 
+  'usertab usertab'
+  'footer footer';
+  gap: 0.2%;
+  width: 70%;
+  padding-top: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 5%;
+  margin: 0% 0% 0% 20.5%;
+  background-color: rgb(126, 81, 35);
+  font-size: small;
+}
+
+.usergrid>nav {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 107.3%;
+  margin-bottom: 2%;
+  margin-left: -10.5%;
+}
+
+.usergrid>div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 86%;
+}
+
+.usergrid>footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 86%;
+  margin-top: 0.2%;
+  padding: 2% 0% 2% 0%;
+}
+
+/* CREADOR DE FICHA */
+
+.datos2 {
+  text-align: center;
+}
+
+.titulo {
+  float: inline-start;
+  margin: 1% 0% 0% 15%;
+}
+
+.nombre {
+  float: inline-start;
+  margin: 1% 0% 0% 5.7%;
+}
+
+.apellidos {
+  float: inline-start;
+  margin: 1% 0% 0% 4.5%;
+}
+
+.nacimiento {
+  float: inline-start;
+  margin: 1% 0% 0% 15%;
+}
+
+.faccion {
+  float: inline-start;
+  margin: 1% 0% 0% 2%;
+}
+
+.alineamiento {
+  float: inline-start;
+  margin: 1% 0% 0% 8.5%;
+}
+
+.raza {
+  float: inline-start;
+  margin: 1% 0% 0% 15%;
+}
+
+.subraza {
+  float: inline-start;
+  margin: 1% 0% 0% 9%;
+}
+
+.clase {
+  float: inline-end;
+  margin: 1% 13% 0% 0%;
+}
+
+.datos {
+  grid-area: datos;
+  text-align: center;
+}
+
+.nivel {
+  float: inline-start;
+  margin: 1% 0% 0% 15%;
+}
+
+.experiencia {
+  float: inline-start;
+  margin: 1% 0% 0% 9%;
+}
+
+.PuntosDePractica {
+  float: inline-start;
+  margin: 1% 0% 0% 9%;
+}
+
+.atributos {
+  grid-area: atributos;
+}
+
+.atributos2 {
+  text-align: center;
+}
+
+.atributab {
+  margin-top: 10%;
+  margin-left: 5%;
+  text-align: left;
+}
+
+.defensa {
+  grid-area: defensa;
+}
+
+.deftab {
+  margin-top: 10%;
+  margin-left: 5%;
+  text-align: left;
+}
+
+.habilidades {
+  grid-area: habilidades;
+}
+
+.habtab {
+  margin-top: 10%;
+  margin-left: 5%;
+  text-align: left;
+}
+
+.actualmente {
+  grid-area: actualmente;
+}
+
+.actualmente3 {
+  font-size: 3.5em;
+  width: 60pt;
+  height: 60pt;
+  text-align: left;
+  scale: 80%;
+}
+
+.actabla {
+  float: inline-start;
+  margin-left: 2%;
+  text-align: left;
+}
+
+.actabla2 {
+  margin-left: 0%;
+  text-align: left;
+  float: inline-start;
+}
+
+.armaduract3 {
+  margin-left: 1%;
+  display: inline-block;
+}
+
+.resistab {
+  margin-left: 20%;
+  text-align: left;
+}
+
+.resistencias2 {
+  width: 3em;
+}
+
+.magia {
+  grid-area: magia;
+}
+
+.magitab {
+  margin-top: 10%;
+  margin-left: 10%;
+  text-align: left;
+}
+
+.daño {
+  grid-area: daño;
+}
+
+.daño3{
+  width: 5em;
+}
+
+.tabdaño {
+  margin-top: 10%;
+  margin-left: 10%;
+  text-align: left;
+}
+
+.mages {
+  grid-area: mages;
+}
+
+.mye {
+  width: 3em;
+}
+
+.habarmas {
+  grid-area: habarmas;
+}
+
+.profes {
+  grid-area: profes;
+  align-content: center;
+}
+
+.descripcion {
+  grid-area: descripcion;
+}
+
+.trans {
+  grid-area: trans;
+}
+
+.inventario {
+  grid-area: inventario;
+}
+
+.dinero {
+  float: inline-start;
+  margin: 5% 0% 0% 30%;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+.conocimientos {
+  /* text-align: center; */
+  margin-left: 35%;
+}
+
+.ficha {
+  float: inline-start;
+  display: grid;
+  grid-template-areas:
+      'datos datos datos datos datos datos'
+      'atributos habilidades habilidades actualmente actualmente actualmente'
+      'defensa habilidades habilidades magia daño daño '
+      'mages mages mages habarmas habarmas habarmas'
+      'mages mages mages profes profes profes'
+      'descripcion descripcion descripcion descripcion descripcion descripcion'
+      'trans trans trans inventario inventario inventario'
+      'footer footer footer footer footer footer';
+  gap: 0.2%;
+  padding-top: 1%;
+  padding-left: 20.7%;
+  padding-right: 15%;
+  padding-bottom: 5%;
+  background-color: rgb(126, 81, 35);
+  font-size: small;
+  margin-right: 0%;
+
+}
+
+.ficha>div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 10px 0;
+  align-content: center;
+}
+
+.ficha>.atributos{
+  width: 90%;
+}
+
+.ficha>.defensa{
+  width: 90%;
+}
+
+.ficha>.habilidades{
+  margin-left: -9.5%;
+  width: 101.2%;
+}
+
+.ficha>.actualmente{
+  margin-left: -3%;
+}
+
+.ficha>.magia {
+  margin-left: -7.3%;
+}
+
+.ficha>.mages {
+  width: 110%;
+}
+
+.ficha>.habarmas{
+  margin-left: 7%;
+}
+
+.ficha>.profes{
+  margin-left: 7%;
+}
+
+
+.ficha>.trans{
+  width: 110%;
+}
+
+.ficha>.inventario{
+  margin-left: 7%;
+}
+
+.ficha>footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 100%;
+  padding: 2% 0% 2% 0%;
+}
+
+input {
+  font-family: "FrizQadrata";
+}
+
+/* CREADOR DE OBJETO  */
+
+.propobjeto {
+  grid-area: prop;
+  padding: 2% 0% 5% 0%;
+  margin: 0% 0% 0.1% 0%;
+}
+
+.createobjectgrid {
+  display: grid;
+  grid-template-areas:
+  'navi navi'
+  'prop prop' 
+  'footer footer';
+  gap: 0.2%;
+  width: 70%;
+  padding-top: 1%;
+  padding-left: 0%;
+  padding-right: 0%;
+  padding-bottom: 5%;
+  margin: 0% 0% 0% 20.5%;
+  background-color: rgb(126, 81, 35);
+  font-size: small;
+}
+
+.createobjectgrid>nav {
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 107.3%;
+  margin-bottom: 2%;
+  margin-left: -10.5%;
+}
+
+.createobjectgrid>div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 86%;
+}
+
+.createobjectgrid>footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: auto;
+  align-content: center;
+  width: 86%;
+  padding: 2% 0% 2% 0%;
+}
+
+/* CREADOR DE HECHIZO */
+
+
+
+/* CREADOR DE BENEFICIO O PERJUICIO */
+
+
