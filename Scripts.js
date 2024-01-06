@@ -114,6 +114,25 @@ oro = 0;
 plata = 0;
 cobre = 0;
 
+function cambiarNivel(id, ptId, incremento) {
+    var nivel = document.getElementById(id);
+    var pt = document.getElementById(ptId);
+    var num = parseInt(nivel.value);
+    var ptNum = parseInt(pt.value);
+
+    if ((incremento === -1 && num > 1) || (incremento === 1 && num < 25)) {
+      num += incremento;
+      nivel.value = num;
+
+      // Ajusta pt según el incremento
+      ptNum += incremento * 7;
+      pt.value = ptNum;
+
+      // Habilita o deshabilita botones según el valor de pt
+      habilitarDeshabilitarBotones(ptNum);
+    }
+  }
+
 function addmye() {
     const mye = getMye(ultimoMye + 1);
     if (mye != null) { ultimoMye++; }
