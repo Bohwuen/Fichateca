@@ -133,6 +133,23 @@ function cambiarNivel(id, ptId, incremento) {
     }
   }
 
+function modificarAtributo(id, ptId, resta, incremento) {
+    var campo = document.getElementById(id);
+    var pt = document.getElementById(ptId);
+    var num = parseInt(campo.value);
+    var ptNum = parseInt(pt.value);
+
+    // Verifica si es posible modificar el atributo
+    if (ptNum >= 4 && ((incremento === -1 && num > 1) || (incremento === 1 && num < 5))) {
+        num += incremento;
+        campo.value = num;
+
+        // Resta o suma 4 a pt según el incremento
+        ptNum += resta * incremento;
+        pt.value = ptNum;
+    }
+}
+
 function addmye() {
     const mye = getMye(ultimoMye + 1);
     if (mye != null) { ultimoMye++; }
