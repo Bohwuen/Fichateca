@@ -94,83 +94,84 @@ $conexion = conectarBD();
                     <option value="18">Dracthyr</option>
                 </select>
             </div>
-            <div id="humano" style="display: none;" class="subraza">
-                <label for="humanos" onchange="ElegirSubraza()">Humanos:</label>
-                <select name="humanos" id="humano">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="1">Ventormenta</option>
-                    <option value="2">Lordaeron</option>
-                    <option value="3">Dalaran</option>
-                    <option value="4">Gilneas</option>
-                    <option value="5">Alterac</option>
-                    <option value="6">Kul Tiras</option>
-                    <option value="7">Strom</option>
-                </select>
-            </div>
+            <!-- razas -->
+                <div id="humano" style="display: none;" class="subraza">
+                    <label for="humanos" onchange="ElegirSubraza()">Humanos:</label>
+                    <select name="humanos" id="humano">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="1">Ventormenta</option>
+                        <option value="2">Lordaeron</option>
+                        <option value="3">Dalaran</option>
+                        <option value="4">Gilneas</option>
+                        <option value="5">Alterac</option>
+                        <option value="6">Kul Tiras</option>
+                        <option value="7">Strom</option>
+                    </select>
+                </div>
 
-            <div id="enano" style="display: none;"  class="subraza">
-                <label for="enanos" onchange="ElegirSubraza()">Enanos:</label>
-                <select name="enanos" id="enano">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="8">Barbabronce</option>
-                    <option value="9">Hierro Negro</option>
-                    <option value="10">Martillo salvaje</option>
-                </select>
-            </div>
+                <div id="enano" style="display: none;"  class="subraza">
+                    <label for="enanos" onchange="ElegirSubraza()">Enanos:</label>
+                    <select name="enanos" id="enano">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="8">Barbabronce</option>
+                        <option value="9">Hierro Negro</option>
+                        <option value="10">Martillo salvaje</option>
+                    </select>
+                </div>
 
-            <div id="kaldorei" style="display: none;"  class="subraza">
-                <label for="Kaldorei" onchange="ElegirSubraza()">Kaldorei:</label>
-                <select name="kaldorei" id="enano">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="11">Darnassiano</option>
-                    <option value="12">Altonato</option>
-                </select>
-            </div>
+                <div id="kaldorei" style="display: none;"  class="subraza">
+                    <label for="Kaldorei" onchange="ElegirSubraza()">Kaldorei:</label>
+                    <select name="kaldorei" id="enano">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="11">Darnassiano</option>
+                        <option value="12">Altonato</option>
+                    </select>
+                </div>
 
-            <div id="draenei" style="display: none;"  class="subraza">
-                <label for="Draenei" onchange="ElegirSubraza()">Draenei:</label>
-                <select name="draenei" id="draenei">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="13">Draenei</option>
-                    <option value="14">Forjaluz</option>
-                </select>
-            </div>
+                <div id="draenei" style="display: none;"  class="subraza">
+                    <label for="Draenei" onchange="ElegirSubraza()">Draenei:</label>
+                    <select name="draenei" id="draenei">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="13">Draenei</option>
+                        <option value="14">Forjaluz</option>
+                    </select>
+                </div>
 
-            <div id="orco" style="display: none;" class="subraza">
-                <label for="Orco" onchange="ElegirSubraza()">Orcos:</label>
-                <select name="orco" id="orco">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="15">Orco</option>
-                    <option value="16">Mag'ar</option>
-                </select>
-            </div>
+                <div id="orco" style="display: none;" class="subraza">
+                    <label for="Orco" onchange="ElegirSubraza()">Orcos:</label>
+                    <select name="orco" id="orco">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="15">Orco</option>
+                        <option value="16">Mag'ar</option>
+                    </select>
+                </div>
 
-            <div id="trol" style="display: none;" class="subraza">
-                <label for="trol" onchange="ElegirSubraza()">Trol:</label>
-                <select name="trol" id="trol">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="17">Lanza Negra</option>
-                    <option value="18">Zandalari</option>
-                </select>
-            </div>
+                <div id="trol" style="display: none;" class="subraza">
+                    <label for="trol" onchange="ElegirSubraza()">Trol:</label>
+                    <select name="trol" id="trol">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="17">Lanza Negra</option>
+                        <option value="18">Zandalari</option>
+                    </select>
+                </div>
 
-            <div id="tauren" style="display: none;" class="subraza">
-                <label for="tauren" onchange="ElegirSubraza()">Tauren:</label>
-                <select name="tauren" id="tauren">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="19">Mulgore</option>
-                    <option value="20">Monte Alto</option>
-                </select>
-            </div>
-            
-            <div id="gnomo" style="display: none;" class="subraza">
-                <label for="gnomo" onchange="ElegirSubraza()">Gnomo:</label>
-                <select name="gnomo" id="gnomo">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="21">Gnomeregan</option>
-                    <option value="22">Mecagnomo</option>
-                </select>
-            </div>
+                <div id="tauren" style="display: none;" class="subraza">
+                    <label for="tauren" onchange="ElegirSubraza()">Tauren:</label>
+                    <select name="tauren" id="tauren">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="19">Mulgore</option>
+                        <option value="20">Monte Alto</option>
+                    </select>
+                </div>
+                
+                <div id="gnomo" style="display: none;" class="subraza">
+                    <label for="gnomo" onchange="ElegirSubraza()">Gnomo:</label>
+                    <select name="gnomo" id="gnomo">
+                        <option value="0" disabled selected>Seleccionar</option>
+                        <option value="21">Gnomeregan</option>
+                        <option value="22">Mecagnomo</option>
+                    </select>
+                </div>
 
             <!-- <div id="subraza" style="display:none;">
                         <label for="forsubraza" onchange="ElegirSubraza()">subraza:</label>
@@ -206,13 +207,13 @@ $conexion = conectarBD();
                 <input type="text" id="nivel" value="1" readonly>
                 <button type="button" onclick="cambiarNivel('nivel', 'pt', 1)">+</button>
             </div>
-            <div class="experiencia">    
-                <label for="experiencia">Experiencia:</label>
-                <input type="number" name="experiencia" id="experiencia">
-            </div>
             <div class="PuntosDeTrasfondo">
                 <label for="PT">Puntos de Trasfondo:</label>
                 <input type="text" id="pt" value="20" readonly>
+            </div>
+            <div class="experiencia">    
+                <label for="experiencia">Experiencia:</label>
+                <input type="number" name="experiencia" id="experiencia">
             </div>
             <!-- </table> -->
         </div>
