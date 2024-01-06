@@ -278,50 +278,6 @@ function updateTextInput(val) {
     document.getElementById('ha0').value = val;
 }
 
-function calnivel(valor) {
-
-
-    if (valor.value > valor.oldvalue && document.getElementById("nivel").value > 1) {
-        document.getElementById("pg").value - 7;
-    }
-    if (valor.value < valor.oldvalue && document.getElementById("nivel").value >= 1) {
-        document.getElementById("pg").value + 7;
-    }
-}
-
-function calpa(valor) {
-
-
-    if (valor.value > valor.oldvalue && document.getElementById("pa").value > 0) {
-        document.getElementById("pa").value--;
-    }
-    if (valor.value < valor.oldvalue && document.getElementById("pa").value >= 0) {
-        document.getElementById("pa").value++;
-    }
-}
-
-
-function calph(valor) {
-
-
-    if (valor.value > valor.oldvalue && document.getElementById("ph").value > 0) {
-        document.getElementById("ph").value--;
-    }
-    if (valor.value < valor.oldvalue && document.getElementById("ph").value >= 0) {
-        document.getElementById("ph").value++;
-    }
-}
-
-function calpd(valor) {
-
-
-    if (valor.value > valor.oldvalue && document.getElementById("pd").value > 0) {
-        document.getElementById("pd").value--;
-    }
-    if (valor.value < valor.oldvalue && document.getElementById("pd").value >= 0) {
-        document.getElementById("pd").value++;
-    }
-}
 
 function calcphm(valor) {
 
