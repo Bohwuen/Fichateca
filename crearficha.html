@@ -203,16 +203,16 @@ $conexion = conectarBD();
             <div class="nivel">
                 <label for="nivel">Nivel: </label>
                 <input required type="number" id="nivel" name="nivel" default value="1" min="1" max="25" class="stat"
-                    onkeypress="return false" ; onchange="calnivel(this)">
+                    onkeypress="return false"  onchange="calnivel(this)">
             </div>
             <div class="experiencia">    
                 <label for="experiencia">Experiencia:</label>
                 <input type="number" name="experiencia" id="experiencia">
             </div>
-            <div class="PuntosDePractica">
-            <label for="pg">Puntos de práctica: </label>
-            <input required type="number" id="pg" name="pg" default value="20" min="0" max="999" class="stat"
-                onkeypress="return false" ; onclick="return false">
+            <div class="PuntosDeTrasfondo">
+            <label for="pg">Puntos de trasfondo: </label>
+            <input required type="number" id="pg" name="pg" value="20" min="0" max="999" class="stat" 
+            disabled oninput="this.value='20';">
             </div>
             <!-- </table> -->
         </div>
