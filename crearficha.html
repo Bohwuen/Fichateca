@@ -230,9 +230,9 @@ $conexion = conectarBD();
                 </tr>
                 <tr>
                     <td><label for="destreza">Destreza: </label></td>
-                    <td><input required type="number" id="destreza" name="destreza" default value="1" min="1" max="5"
-                            class="stat" class="att" onkeypress="return false" ; onfocus="this.oldvalue = this.value;"
-                            onchange="calpa(this)"></td>
+                    <td><button type="button" onclick="modificarAtributo('destreza', 'pt', 4, -1)">-</button>
+                        <input type="text" id="destreza" value="1" readonly>
+                        <button type="button" onclick="modificarAtributo('destreza', 'pt', -4, 1)" disabled>+</button></td>
                 </tr>
                 <tr>
                     <td><label for="percepcion">Percepción: </label></td>
