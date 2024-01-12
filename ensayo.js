@@ -261,13 +261,18 @@ document.addEventListener("DOMContentLoaded", function() {
         // Llamar a mostrarSubrazas después de cargar el DOM
         mostrarSubrazas();
 
-
+    function reiniciarAtributos(){
+        //Poner a 1 los atributos correspondientes.
+    }
     // Función que maneja las opciones de subrazas
     function manejarSubraza(subrazaSeleccionada) {
         // Utilizar un bloque switch para manejar cada caso de subraza
         switch (subrazaSeleccionada) {
         case "Ventormenta":
             // Lógica para la subraza Ventormenta de Humanos
+            var minimum = document.getElementById('inteligencia');
+            minimum.min=parseInt(minimum.min)+1;
+            minimum.value=parseInt(minimum.value)+1;
             break;
     
         case "Lordaeron":
