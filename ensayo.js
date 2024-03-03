@@ -745,7 +745,7 @@ function restarHabilidad(habilidad) {
 
     if (puntohabilidad.value < 10) {
         if (habilidadElement.value < 0) {
-            puntohabilidad.value++;
+            puntohabilidad.value ++;
             habilidadElement.value --;
         }
     } else {
