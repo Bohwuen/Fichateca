@@ -41,7 +41,7 @@
           </select>
         
           <div id="subrazasContainer" style="display:none;">
-            <h2>Selecciona una subraza:</h2>
+            <label for="subrazaraza">Seleccionar subraza:</label>
         
             <select id="subrazas">
               <!-- Opciones de subrazas se agregarán dinámicamente aquí -->
@@ -49,7 +49,7 @@
           </div><br>
 
           <label for="clase">Clase:</label>
-          <select name="clase" id="clase" onchange="seleccionarRaza()">
+          <select name="clase" id="clase" onchange="seleccionarClase()">
               <option value="0" disabled selected>Seleccionar una clase</option>
               <option value="guerrero">Guerrero</option>
               <option value="mago">Mago</option>
