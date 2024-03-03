@@ -70,7 +70,7 @@ ul#menu li:focus ul, ul#menu li:active ul {
 }
 
 button{
-    padding: 5px 10px;
+    padding: 2px 2px;
     background-color: #4CAF50;
     color: white;
     border: none;
