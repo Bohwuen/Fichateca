@@ -787,7 +787,7 @@ function restarMagia(magia) {
     const magiaElement = document.getElementById(magia);
 
     if (puntomagia.value < 1) {
-        if (magiaElement.value < 0) {
+        if (magiaElement.value > 0) {
             puntomagia.value ++;
             magiaElement.value --;
         }
