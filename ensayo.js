@@ -830,7 +830,6 @@ function restarMye(mye) {
     const myeElement = document.getElementById(mye);
 
     if (puntomye.value < 3) {
-
         if (myeElement.value > 0) {
             puntomye.value ++;
             myeElement.value --;
