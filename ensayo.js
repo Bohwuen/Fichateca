@@ -659,7 +659,7 @@ function restarAtributo(atributo) {
 
     if (puntoatributo.value < 5) {
         puntoatributo.value++;
-        if (atributoElement.value > 1) {
+        if (atributoElement.value >= 1) {
             atributoElement.value = +atributoElement.value - 1;
         }
     } else {
