@@ -964,13 +964,14 @@ function restarConocimiento(conocimiento) {
     const conocimientoElement = document.getElementById(conocimiento);
 
     if (puntoconocimiento.value < 4) {
-        puntoconocimiento.value++;
+
         if (conocimientoElement.value > 0) {
-            conocimientoElement.value = +conocimientoElement.value - 1;
+            puntoconocimiento.value ++;
+            conocimientoElement.value --;
         }
     } else {
         if (conocimientoElement.value > 0) {
-            conocimientoElement.value = +conocimientoElement.value - 1;
+            conocimientoElement.value --;
             pt.value = +pt.value + 2;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
     }
