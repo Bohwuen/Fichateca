@@ -679,7 +679,7 @@ function sumarAtributo(atributo) {
 
     const atributoElement = document.getElementById(atributo);
 
-    if (puntoatributo.value >= 0 && atributoElement.value < 5) {
+    if (puntoatributo.value > 0 && atributoElement.value < 5) {
         puntoatributo.value--;
         atributoElement.value = +atributoElement.value + 1;
     } else {
@@ -728,7 +728,7 @@ function sumarDefensa(defensa) {
     } else {
         if (pt.value >= 3 && defensaElement.value < 5) {
             defensaElement.value = +defensaElement.value + 1;
-            pt.value = +pt.value - 3;  // Restar 1 a pt cuando puntodefensa es 0
+            pt.value = +pt.value - 3;  // Restar 1 a pt cuando puntoatributo es 0
         }
     }
 
