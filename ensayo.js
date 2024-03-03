@@ -702,7 +702,7 @@ function restarDefensa(defensa) {
 
     if (puntodefensa.value < 3) {
 
-        if (defensaElement.value > 0) {
+        if (defensaElement.value = 0) {
             puntodefensa.value++;
             defensaElement.value --;
         }
