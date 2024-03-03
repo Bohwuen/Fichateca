@@ -71,145 +71,74 @@ $conexion = conectarBD();
             </div><br>
             <!-- raza -->
             <div class="raza">
-                <label for="raza">Raza: </label>
-                <select id="raza" onchange="ElegirRaza()">
-                    <option disabled selected>Seleccionar</option>
-                    <option value="1">Humano</option>
-                    <option value="2">Enano</option>
-                    <option value="3">Gnomo</option>
-                    <option value="4">Elfo de la noche</option>
-                    <option value="5">Alto elfo</option>
-                    <option value="6">Draenei</option>
-                    <option value="7">Huargen</option>
-                    <option value="8">Elfo de vacio</option>
-                    <option value="9">Orco</option>
-                    <option value="10">Troll</option>
-                    <option value="11">Tauren</option>
-                    <option value="12">No-Muerto</option>
-                    <option value="13">Ogro</option>
-                    <option value="14">Goblin</option>
-                    <option value="15">Elfo de sangre</option>
-                    <option value="16">Nocheterna</option>
-                    <option value="17">Pandaren</option>
-                    <option value="18">Dracthyr</option>
+                <label for="raza">Raza:</label>
+                <select id="razas" onchange="seleccionarRaza()">
+                    <option value="">Selecciona una raza</option>
+                    <option value="humano">Humano</option>
+                    <option value="enano">Enano</option>
+                    <option value="gnomo">Gnomo</option>
+                    <option value="elfoNoche">Elfo de la noche</option>
+                    <option value="altoElfo">Alto elfo</option>
+                    <option value="draenei">Draenei</option>
+                    <option value="huargen">Huargen</option>
+                    <option value="elfoVacío">Elfo del vacío</option>
+                    <option value="orco">Orco</option>
+                    <option value="trol">Trol</option>
+                    <option value="tauren">Tauren</option>
+                    <option value="noMuerto">No-Muerto</option>
+                    <option value="ogro">Ogro</option>
+                    <option value="goblin">Goblin</option>
+                    <option value="elfoSangre">Elfo de sangre</option>
+                    <option value="nocheterna">Nocheterna</option>
+                    <option value="pandaren">Pandaren</option>
+                    <option value="vulpera">Vulpera</option>
+                    <option value="dracthyr">Dracthyr</option>
                 </select>
             </div>
             <!-- razas -->
-                <div id="humano" style="display: none;" class="subraza">
-                    <label for="humanos" onchange="ElegirSubraza()">Humanos:</label>
-                    <select name="humanos" id="humano">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="1">Ventormenta</option>
-                        <option value="2">Lordaeron</option>
-                        <option value="3">Dalaran</option>
-                        <option value="4">Gilneas</option>
-                        <option value="5">Alterac</option>
-                        <option value="6">Kul Tiras</option>
-                        <option value="7">Strom</option>
-                    </select>
-                </div>
-
-                <div id="enano" style="display: none;"  class="subraza">
-                    <label for="enanos" onchange="ElegirSubraza()">Enanos:</label>
-                    <select name="enanos" id="enano">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="8">Barbabronce</option>
-                        <option value="9">Hierro Negro</option>
-                        <option value="10">Martillo salvaje</option>
-                    </select>
-                </div>
-
-                <div id="kaldorei" style="display: none;"  class="subraza">
-                    <label for="Kaldorei" onchange="ElegirSubraza()">Kaldorei:</label>
-                    <select name="kaldorei" id="enano">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="11">Darnassiano</option>
-                        <option value="12">Altonato</option>
-                    </select>
-                </div>
-
-                <div id="draenei" style="display: none;"  class="subraza">
-                    <label for="Draenei" onchange="ElegirSubraza()">Draenei:</label>
-                    <select name="draenei" id="draenei">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="13">Draenei</option>
-                        <option value="14">Forjaluz</option>
-                    </select>
-                </div>
-
-                <div id="orco" style="display: none;" class="subraza">
-                    <label for="Orco" onchange="ElegirSubraza()">Orcos:</label>
-                    <select name="orco" id="orco">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="15">Orco</option>
-                        <option value="16">Mag'ar</option>
-                    </select>
-                </div>
-
-                <div id="trol" style="display: none;" class="subraza">
-                    <label for="trol" onchange="ElegirSubraza()">Trol:</label>
-                    <select name="trol" id="trol">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="17">Lanza Negra</option>
-                        <option value="18">Zandalari</option>
-                    </select>
-                </div>
-
-                <div id="tauren" style="display: none;" class="subraza">
-                    <label for="tauren" onchange="ElegirSubraza()">Tauren:</label>
-                    <select name="tauren" id="tauren">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="19">Mulgore</option>
-                        <option value="20">Monte Alto</option>
-                    </select>
-                </div>
-                
-                <div id="gnomo" style="display: none;" class="subraza">
-                    <label for="gnomo" onchange="ElegirSubraza()">Gnomo:</label>
-                    <select name="gnomo" id="gnomo">
-                        <option value="0" disabled selected>Seleccionar</option>
-                        <option value="21">Gnomeregan</option>
-                        <option value="22">Mecagnomo</option>
-                    </select>
-                </div>
-
-            <!-- <div id="subraza" style="display:none;">
-                        <label for="forsubraza" onchange="ElegirSubraza()">subraza:</label>
-                        <select name="subraza" id="">
-                            <option value="0" disabled selected>Seleccionar</option>
-                            <option value="1">subraza</option>
-                        </select>
-                    </div> -->
+            <div id="subrazasContainer" style="display:none;">
+                <label for="subrazaraza">Seleccionar subraza:</label>
+            
+                <select id="subrazas">
+                <!-- Opciones de subrazas se agregarán dinámicamente aquí -->
+                </select>
+            </div><br>
             
             <div class="clase">
-                <label for="clase">Clase: </label>
-                <select name="clase" id="clase" onchange="ElegirClase()">
-                    <option value="0" disabled selected>Seleccionar</option>
-                    <option value="1">Guerrero</option>
-                    <option value="2">Mago</option>
-                    <option value="3">Cazador</option>
-                    <option value="4">Druida</option>
-                    <option value="5">Caballero de la muerte</option>
-                    <option value="6">Cazador de demonios</option>
-                    <option value="7">Brujo</option>
-                    <option value="8">Pícaro</option>
-                    <option value="9">Sacerdote</option>
-                    <option value="10">Chamán</option>
-                    <option value="11">Paladín</option>
-                    <option value="12">Monje</option>
-                    <option value="13">Evocador</option>
-                </select> 
+                <label for="clase">Clase:</label>
+                <select name="clase" id="clase" onchange="seleccionarClase()">
+                    <option value="0" disabled selected>Seleccionar una clase</option>
+                    <option value="guerrero">Guerrero</option>
+                    <option value="mago">Mago</option>
+                    <option value="cazador">Cazador</option>
+                    <option value="druida">Druida</option>
+                    <option value="Cabmuerte">Caballero de la muerte</option>
+                    <option value="CazDemon">Cazador de demonios</option>
+                    <option value="brujo">Brujo</option>
+                    <option value="picaro">Pícaro</option>
+                    <option value="sacerdote">Sacerdote</option>
+                    <option value="chaman">Chamán</option>
+                    <option value="paladin">Paladín</option>
+                    <option value="monje">Monje</option>
+                    <option value="evocador">Evocador</option>
+                </select>
             </div>
+
+            <div id="demonioContainer" style="display:none;">
+                <label for="demonio">Demonio interior:</label>
+                <select id="demonios">
+            
+                </select>
+                </div>
+
             <br>
-            <div class="nivel">
-                <label for="nivel">Nivel: </label>
+            <div>
+                <label for="nivel">Nivel:</label>
                 <button type="button" onclick="restarNivel()">-</button>
                 <input type="text" id="nivel" name="nivel" value="1" min="1" max="25" class="nivel" readonly>
-                <button type="button" onclick="sumarNivel()">+</button>
-            </div>
-            <div class="PuntosDeTrasfondo">
-                <label for="PT">Puntos de Trasfondo:</label>
-                <input type="text" id="pt" value="20" readonly>
+                <button type="button" onclick="sumarNivel()">+</button><br>
+                <label for="pt">Puntos de trasfondo:</label>
+                <input type="text" id="pt" name="pt" value="20" readonly>
             </div>
             <div class="experiencia">    
                 <label for="experiencia">Experiencia:</label>
