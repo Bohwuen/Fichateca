@@ -663,7 +663,6 @@ function restarAtributo(atributo) {
             atributoElement.value = +atributoElement.value - 1;
         }
     } else {
-        // Elimina la condición anterior aquí y mueve el código dentro del bloque else
         if (atributoElement.value > 1) {
             atributoElement.value = +atributoElement.value - 1;
             pt.value = +pt.value + 4;  // Sumar 1 a pt cuando puntoatributo llega a 5
