@@ -728,7 +728,7 @@ function sumarDefensa(defensa) {
     } else {
         if (pt.value >= 3 && defensaElement.value < 5) {
             defensaElement.value = +defensaElement.value + 1;
-            pt.value = +pt.value - 3;  // Restar 1 a pt cuando puntoatributo es 0
+            pt.value = +pt.value - 3;  // Restar 1 a pt cuando puntodefensa es 0
         }
     }
 
