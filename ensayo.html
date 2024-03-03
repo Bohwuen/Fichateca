@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichas de Rol</title>
+    <link rel="stylesheet" href="Test 1.css">
+    <script src="ensayo.js"></script>
+</head>
+<body>
+
+    <h1>Ficha de Rol</h1>
+
+    <form id="rolForm">
+        <button type="reset">Resetear Formulario</button><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+
+        <label for="raza">Raza:</label>
+        <select id="razas" onchange="seleccionarRaza()">
+            <option value="">Selecciona una raza</option>
+            <option value="humano">Humano</option>
+            <option value="enano">Enano</option>
+            <option value="gnomo">Gnomo</option>
+            <option value="elfoNoche">Elfo de la noche</option>
+            <option value="altoElfo">Alto elfo</option>
+            <option value="draenei">Draenei</option>
+            <option value="huargen">Huargen</option>
+            <option value="elfoVacío">Elfo del vacío</option>
+            <option value="orco">Orco</option>
+            <option value="trol">Trol</option>
+            <option value="tauren">Tauren</option>
+            <option value="noMuerto">No-Muerto</option>
+            <option value="ogro">Ogro</option>
+            <option value="goblin">Goblin</option>
+            <option value="elfoSangre">Elfo de sangre</option>
+            <option value="nocheterna">Nocheterna</option>
+            <option value="pandaren">Pandaren</option>
+            <option value="vulpera">Vulpera</option>
+            <option value="dracthyr">Dracthyr</option>
+          </select>
+        
+          <div id="subrazasContainer" style="display:none;">
+            <h2>Selecciona una subraza:</h2>
+        
+            <select id="subrazas">
+              <!-- Opciones de subrazas se agregarán dinámicamente aquí -->
+            </select>
+          </div><br>
+
+          <label for="clase">Clase:</label>
+          <select name="clase" id="clase" onchange="seleccionarRaza()">
+              <option value="0" disabled selected>Seleccionar una clase</option>
+              <option value="guerrero">Guerrero</option>
+              <option value="mago">Mago</option>
+              <option value="cazador">Cazador</option>
+              <option value="druida">Druida</option>
+              <option value="Cabmuerte">Caballero de la muerte</option>
+              <option value="CazDemon">Cazador de demonios</option>
+              <option value="brujo">Brujo</option>
+              <option value="picaro">Pícaro</option>
+              <option value="sacerdote">Sacerdote</option>
+              <option value="chaman">Chamán</option>
+              <option value="paladin">Paladín</option>
+              <option value="monje">Monje</option>
+              <option value="evocador">Evocador</option>
+          </select>
+          
+          <div id="demonioContainer" style="display:none;">
+              <label for="demonio">Demonio interior:</label>
+              <select id="demonios">
+          
+              </select>
+            </div>
+        <div>
+            <label for="nivel">Nivel:</label>
+            <button type="button" onclick="restarNivel()">-</button>
+            <input type="text" id="nivel" name="nivel" value="1" min="1" max="25" class="nivel" readonly>
+            <button type="button" onclick="sumarNivel()">+</button><br>
+            <label for="pt">Puntos de trasfondo:</label>
+            <input type="text" id="pt" name="pt" value="20" readonly>
+        </div>
+        <table border="1">
+          <tr>
+        <div id="atributos">
+            <label for="Atributos">
+                <h2 class="atributos">Atributos</h2>
+            </label>
+          <!-- Aquí puedes agregar campos para los atributos -->
+          <td><label for="puntoatributo">Puntos de atributo:</label></td>
+          <td><input type="text" id="puntoatributo" name="puntoatributo" value="5" min="0" max="5" class="atributo" readonly></td>
+         </tr>           
+          <!-- Atributos específicos -->
+
+          <tr>
+            <td><label for="vigor">Vigor:</label></td>
+            <td><button type="button" onclick="restarAtributo('vigor')">-</button></td>
+            <td><input type="text" id="vigor" name="vigor" value="1" min="1" max="5" class="atributo" readonly></td>
+            <td><button type="button" onclick="sumarAtributo('vigor')">+</button></td>
+          </tr>
+          
+          <tr>
+            <td><label for="destreza">Destreza:</label></td>
+            <td><button type="button" onclick="restarAtributo('destreza')">-</button></td>
+            <td><input type="text" id="destreza" name="destreza" value="1" min="1" max="5" class="atributo" readonly></td>
+            <td><button type="button" onclick="sumarAtributo('destreza')">+</button></td>
+          </tr>
+            
+          <tr>
+            <td><label for="inteligencia">Inteligencia:</label></td>
+            <td><button type="button" onclick="restarAtributo('inteligencia')">-</button></td>
+            <td><input type="text" id="inteligencia" name="inteligencia" value="1" min="1" max="5" class="atributo" readonly></td>
+            <td><button type="button" onclick="sumarAtributo('inteligencia')">+</button></td>
+          </tr>   
+          
+          <tr>
+            <td><label for="voluntad">Voluntad:</label></td>
+            <td><button type="button" onclick="restarAtributo('voluntad')">-</button></td>
+            <td><input type="text" id="voluntad" name="voluntad" value="1" min="1" max="5" class="atributo" readonly></td>
+            <td><button type="button" onclick="sumarAtributo('voluntad')">+</button></td>
+          </tr>
+      
+          <tr>
+            <td>  <label for="percepcion">Percepción:</label></td>
+            <td>  <button type="button" onclick="restarAtributo('percepcion')">-</button></td>
+            <td>  <input type="text" id="percepcion" name="percepcion" value="1" min="1" max="5" class="atributo" readonly></td>
+            <td>  <button type="button" onclick="sumarAtributo('percepcion')">+</button></td>
+          </tr>
+           
+          <tr>
+            <td>  <label for="aguante">Aguante:</label></td>
+            <td>  <button type="button" onclick="restarAtributo('aguante')">-</button></td>
+            <td>  <input type="text" id="aguante" name="aguante" value="1" min="1" max="5" class="atributo" readonly></td>
+            <td>  <button type="button" onclick="sumarAtributo('aguante')">+</button></td>
+          </tr>
+
+          <tr>
+            <td>  <label for="energia">Energía:</label></td>
+            <td>  <button type="button" onclick="restarAtributo('energia')">-</button></td>
+            <td>  <input type="text" id="energia" name="energia" value="1" min="1" max="5" class="atributo" readonly></td>
+            <td>  <button type="button" onclick="sumarAtributo('energia')">+</button></td>
+          </tr>
+        </div>
+        </table>
+        <div class="defensa">
+          <label for="defensas">
+              <h2 class="defensa2">Defensas</h2>
+          </label>
+          <table class="deftab" border="1">
+              <tr>
+                  <th><label for="pd">Puntos de defensa: </label></th>
+                  <th><input type="text" id="puntodefensa" name="puntodefensa" value="3" min="0" max="3" class="defensa" readonly></th>
+              </tr>
+              <tr>
+                  <td><label for="parada">Parada:</label></td>
+                  <td><button type="button" onclick="restarDefensa('parada')">-</button></td>
+                  <td><input type="text" id="parada" name="parada" value="0" min="0" max="5" class="defensa" readonly></td>
+                  <td><button type="button" onclick="sumarDefensa('parada')">+</button></td>
+                </tr>
+                <tr>
+                  <td><label for="esquivar">Esquivar:</label></td>
+                  <td><button type="button" onclick="restarDefensa('esquivar')">-</button></td>
+                  <td><input type="text" id="esquivar" name="esquivar" value="0" min="0" max="5" class="defensa" readonly></td>
+                  <td><button type="button" onclick="sumarDefensa('esquivar')">+</button></td>
+                </tr>
+                <tr>
+                  <td><label for="bloqueo">Bloqueo:</label></td>
+                  <td><button type="button" onclick="restarDefensa('bloqueo')">-</button></td>
+                  <td><input type="text" id="bloqueo" name="bloqueo" value="0" min="0" max="5" class="defensa" readonly></td>
+                  <td><button type="button" onclick="sumarDefensa('bloqueo')">+</button></td>
+                </tr>  
+                <tr>
+                  <td><label for="metamagia">Metamagia:</label></td>
+                  <td><button type="button" onclick="restarDefensa('metamagia')">-</button></td>
+                  <td><input type="text" id="metamagia" name="metamagia" value="0" min="0" max="5" class="defensa" readonly></td>
+                  <td><button type="button" onclick="sumarDefensa('metamagia')">+</button></td>
+                </tr>  
+          </table>
+      </div>
+      <div class="habilidades">
+        <label for="habilidades"><h2 class="habilidades2">Habilidades</h2></label>
+        <table class="habtab" border="1">
+          <tr>
+            <th><label for="pd">Puntos de habilidad: </label></th>
+            <th><input type="text" id="puntohabilidad" name="puntohabilidad" value="10" min="0" max="10" class="habilidad" readonly></th>
+        </tr>
+
+        <tr>
+          <td><label for="atletismo">Atletismo: </label></td>
+          <td><button type="button" onclick="restarHabilidad('atletismo')">-</button></td>
+          <td><input type="text" id="atletismo" name="atletismo" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('atletismo')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="robo">Robo: </label></td>
+          <td><button type="button" onclick="restarHabilidad('robo')">-</button></td>
+          <td><input type="text" id="robo" name="robo" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('robo')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="sigilo">Sigilo: </label></td>
+          <td><button type="button" onclick="restarHabilidad('sigilo')">-</button></td>
+          <td><input type="text" id="sigilo" name="sigilo" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('sigilo')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="forzar_cerraduras">Forzar cerraduras: </label></td>
+          <td><button type="button" onclick="restarHabilidad('forzar_cerraduras')">-</button></td>
+          <td><input type="text" id="forzar_cerraduras" name="forzar_cerraduras" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('forzar_cerraduras')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="subsistencia">Subsistencia: </label></td>
+          <td><button type="button" onclick="restarHabilidad('subsistencia')">-</button></td>
+          <td><input type="text" id="subsistencia" name="subsistencia" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('subsistencia')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="trepar_escalar">Trepar/escalar: </label></td>
+          <td><button type="button" onclick="restarHabilidad('trepar_escalar')">-</button></td>
+          <td><input type="text" id="trepar_escalar" name="trepar_escalar" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('trepar_escalar')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="buscar">Buscar: </label></td>
+          <td><button type="button" onclick="restarHabilidad('buscar')">-</button></td>
+          <td><input type="text" id="buscar" name="buscar" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('buscar')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="alerta">Alerta: </label></td>
+          <td><button type="button" onclick="restarHabilidad('alerta')">-</button></td>
+          <td><input type="text" id="alerta" name="alerta" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('alerta')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="aprendizaje">Aprendizaje: </label></td>
+          <td><button type="button" onclick="restarHabilidad('aprendizaje')">-</button></td>
+          <td><input type="text" id="aprendizaje" name="aprendizaje" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('aprendizaje')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="interpretacion">Interpretacion: </label></td>
+          <td><button type="button" onclick="restarHabilidad('interpretacion')">-</button></td>
+          <td><input type="text" id="interpretacion" name="interpretacion" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('interpretacion')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="subterfugio">Subterfugio: </label></td>
+          <td><button type="button" onclick="restarHabilidad('subterfugio')">-</button></td>
+          <td><input type="text" id="subterfugio" name="subterfugio" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('subterfugio')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="trato_con_animales">Trato con animales: </label></td>
+          <td><button type="button" onclick="restarHabilidad('trato_con_animales')">-</button></td>
+          <td><input type="text" id="trato_con_animales" name="trato_con_animales" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('trato_con_animales')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="intimidacion">Intimidacion: </label></td>
+          <td><button type="button" onclick="restarHabilidad('intimidacion')">-</button></td>
+          <td><input type="text" id="intimidacion" name="intimidacion" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('intimidacion')">+</button></td>
+        </tr>
+        
+        <tr>
+          <td><label for="carisma">Carisma: </label></td>
+          <td><button type="button" onclick="restarHabilidad('carisma')">-</button></td>
+          <td><input type="text" id="carisma" name="carisma" value="0" min="0" max="5" class="habilidad" readonly></td>
+          <td><button type="button" onclick="sumarHabilidad('carisma')">+</button></td>
+        </tr>
+        
+        <!-- <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+         -->
+        </table>
+      </div>
+        <!-- <div class="actualmente">
+          <label for="actualmente">
+              <h2 class="actualmente2">Actualmente</h2>
+          </label>
+          <table class="actabla" style="padding: 0%">
+              <tr>
+                  <td><label for="salud">Salud</label></td>                  
+                  <td><label for="armaduract">Armadura</label></td>                  
+                  <td><label for="velocidad">Velocidad</label></td>
+              </tr>
+              <tr>
+                  <td><input type="number" class="actualmente3" id="saludact"></td>
+                  <td><input type="number" class="actualmente3" id="armadact"></td>
+                  <td><input type="number" class="actualmente3" id="velact"></td>
+              </tr>
+          </table>
+          <table class="actabla2">
+              <tr>
+                  <td><label for="armaduraact"> Armadura: </label></td>
+                  <td><label for="armaduraact2"> Equipados</label></td>
+              </tr>
+              <tr>
+                  <td><input type="radio" name="armadura" class="armadura" id="tipoarmadura"><label for="tela"> Tela </label></td>
+                  <td>Yelmo</td>
+                  <td><input type="text" name="yelmo" class="armadura2" id="yelmo"></td>
+              </tr>
+              <tr>
+                  <td><input type="radio" name="armadura" class="armadura" id="tipoarmadura"><label for="cuero"> Cuero </label></td>
+                  <td>Torso</td>
+                  <td><input type="text" name="torso" class="armadura2" id="torso"></td>
+              </tr>
+              <tr>
+                  <td><input type="radio" name="armadura" class="armadura" id="tipoarmadura"> <label for="malla"> Malla </label></td>
+                  <td>Pies</td>
+                  <td><input type="text" name="pies" class="armadura2" id="pies"></td>
+              </tr>
+              <tr>
+                  <td><input type="radio" name="armadura" class="armadura" id="tipoarmadura"><label for="placas"> Placas</label></td>
+                  <td>Capa</td>
+                  <td><input type="text" name="capa" class="armadura2" id="capa"></td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox" name="armadura" id="escudo"><label for="escudo"> Escudo </label></td>
+                  <td>Escudo</td>
+                  <td><input type="text" name="Escudo" class="armadura2" id="escudo1"></td>
+              </tr>
+          </table>
+
+          <div>
+              <h3 class="resistencias" style="margin-top: 3%;">Resistencias</h3>
+              <table class="resistab">
+                  <tr>
+                      <td><label for="Resfis">Resistencia fisica</label></td>
+                      <td><input type="number" name="ResFis" id="ResFis" class="resistencias2"></td>
+                  </tr>
+                  <tr>
+                      <td><label for="ResArc">Resistencia Arcana</label></td>
+                      <td><input type="number" name="ResArc" id="ResArc" class="resistencias2"></td>
+                      <td><label for="ResSom">Resistencia a la sombra</label></td>
+                      <td><input type="number" name="ResSomb" id="ResSomb" class="resistencias2"></td>
+                  </tr>
+                  <tr>
+                      <td><label for="ResArc">Resistencia al fuego</label></td>
+                      <td><input type="number" name="ResFu" id="ResFu" class="resistencias2"></td>
+                      <td></td><label for="ResSom">Resistencia a la naturaleza</label></td>
+                      <td><input type="number" name="ResNat" id="ResNat" class="resistencias2"></td>
+                  </tr>
+                  <tr>
+                      <td><label for="ResArc">Resistencia al frio</label></td>
+                      <td><input type="number" name="ResFri" id="ResFri" class="resistencias2"></td>
+                      <td><label for="ResSom">Resistencia a la luz</label></td>
+                      <td><input type="number" name="ReLuz" id="ResLuz" class="resistencias2"></td>
+                  </tr>
+              </table>
+          </div>
+      </div> -->
+
+      <div class="magia"></div>
+      <label for="magia">
+        <h2 class="magia2">Habilidad Mágica</h2>
+    </label>
+    <table class="magitab" border="1">
+        <tr>
+            <th><label for="phm">Puntos de magia: </label></th>
+            <th><input type="text" id="puntomagia" name="puntomagia" value="1" min="0" max="1" class="magia" readonly></th>
+        </tr>
+        <tr>
+            <td><label for="taumaturgia">Taumaturgia: </label></td>
+            <td><button type="button" onclick="restarMagia('taumaturgia')">-</button></td>
+            <td><input type="text" id="taumaturgia" name="taumaturgia" value="0" min="0" max="5" class="magia" readonly></td>
+            <td><button type="button" onclick="sumarMagia('taumaturgia')">+</button></td>
+        </tr>
+        <tr>
+            <td><label for="fe">Fe: </label></td>
+            <td><button type="button" onclick="restarMagia('fe')">-</button></td>
+            <td><input type="text" id="fe" name="fe" value="0" min="0" max="5" class="magia" readonly></td>
+            <td><button type="button" onclick="sumarMagia('fe')">+</button></td>
+        </tr>
+        <tr>
+            <td><label for="espiritualidad">Espiritualidad: </label></td>
+            <td><button type="button" onclick="restarMagia('espiritualidad')">-</button></td>
+            <td><input type="text" id="espiritualidad" name="espiritualidad" value="0" min="0" max="5" class="magia" readonly></td>
+            <td><button type="button" onclick="sumarMagia('espiritualidad')">+</button></td>
+        </tr>
+        <tr>
+            <td><label for="naturaleza">Naturaleza: </label></td>
+            <td><button type="button" onclick="restarMagia('naturaleza')">-</button></td>
+            <td><input type="text" id="naturaleza" name="naturaleza" value="0" min="0" max="5" class="magia" readonly></td>
+            <td><button type="button" onclick="sumarMagia('cnaturaleza')">+</button></td>
+        </tr>
+        <tr>
+            <td><label for="corrupcion">Corrupcion: </label></td>
+            <td><button type="button" onclick="restarMagia('corrupcion')">-</button></td>
+            <td><input type="text" id="corrupcion" name="corrupcion" value="0" min="0" max="5" class="magia" readonly></td>
+            <td><button type="button" onclick="sumarMagia('corrupcion')">+</button></td>
+        </tr>
+    </table>
+      </div>
+
+      <!-- <div class="daño">
+        <label for="daño">
+            <h2 class="daño2">Daño</h2>
+        </label>
+        <table class="tabdaño">
+            <tr>
+                <td><label for="DañoArmaPrimaria">Daño arma primaria:</label></td>
+                <td><input type="number" id="DañoArmaPrim" name="DañoArmaPrim" class="daño3"></td>
+            </tr>
+            <tr>
+                <td><label for="DañoArmaSecundaria">Daño arma secundaria:</label></td>
+                <td><input type="number" id="DañoArmaSec" name="DañoArmaSec" class="daño3"></td>
+            </tr>
+            <tr>
+                <td><label for="DañoMag">Daño Mágico:</label></td>
+                <td><input type="number" id="DañoMag" name="DañoMag" class="daño3"></td>
+            </tr>
+        </table>
+    </div> -->
+
+    <!-- MAGIA Y ESTILOS -->
+    <div class="mages">
+      <label for="magia_y_estilos">
+          <h2 class="mages2">Magia y estilos</h2>
+      </label>
+      <label for="pmye">Puntos de magia y estilos: </label>
+      <input type="text" id="puntomye" name="puntomye" value="3" min="0" max="3" class="mye" readonly>
+      <br>
+      <!-- MAGIA Y ESTILOS 1 -->
+
+      <label for="Lmye0">Magia y Estilos: </label>
+      <select name="mye0" id="Smye0">
+          <option value="0" disabled selected>Seleccionar</option>
+          <option value="1">Arcanismo</option>
+          <option value="2">Piromancia</option>
+          <option value="3">Criomancia</option>
+          <option value="4">Nigromancia</option>
+          <option value="5">Magia rúnica</option>
+          <option value="6">Demonología</option>
+          <option value="7">Piromancia vil</option>
+          <option value="8">Magia sangrienta</option>
+          <option value="9">Magia de la sombra</option>
+          <option value="10">Magia druidica: Feral</option>
+          <option value="11">Magia druidica: Equilibrio</option>
+          <option value="12">Magia druidica: Vida</option>
+          <option value="13">Dominio de la luz</option>
+          <option value="14">Magia elemental: Agua</option>
+          <option value="15">Magia elemental: Fuego</option>
+          <option value="16">Magia elemental: Tierra</option>
+          <option value="17">Magia elemental: Aire</option>
+          <option value="18">Chi</option>
+          <option value="19">Maestro de armas</option>
+          <option value="20">Furibundo</option>
+          <option value="21">Protector</option>
+          <option value="22">Puntería</option>
+          <option value="23">Supervivencia</option>
+          <option value="24">Maestro de bestias</option>
+          <option value="25">A.A.M.M. Maestro cervecero</option>
+          <option value="26">A.A.M.M. Caminavientos</option>
+          <option value="27">Asesinato</option>
+          <option value="28">Sutileza</option>
+          <option value="29">Forajido</option>
+          <option value="30">Protector sagrado</option>
+          <option value="31">Represión</option>
+          <option value="32">Devastación</option>
+          <option value="33">Venganza</option>
+          <option value="34">Caballero sangriento</option>
+          <option value="35">Caballero de escarcha</option>
+          <option value="36">Caballero profano</option>
+      </select>
+      <button type="button" onclick="restarMye('mye0')">-</button>
+      <input type="text" name="mye0" id="mye0" default value="0" min="0" max="5"class="mye" readonly>
+      <button type="button" onclick="sumarMye('mye0')">+</button>
+      <button type="button" name="Añadir" value="+" onclick="addmye()">++</button>
+      <button type="button" name="Quitar" value="-" onclick="submye()">--</button><br>
+
+
+      <!-- MAGIA Y ESTILOS 2 -->
+      <div id="mages1" style="display:none;">
+          <label for="mye1">Magia y Estilos: </label>
+          <select name="mye1" id="Smye1">
+              <option value="0" disabled selected>Seleccionar</option>
+              <option value="1">Arcanismo</option>
+              <option value="2">Piromancia</option>
+              <option value="3">Criomancia</option>
+              <option value="4">Nigromancia</option>
+              <option value="5">Magia rúnica</option>
+              <option value="6">Demonología</option>
+              <option value="7">Piromancia vil</option>
+              <option value="8">Magia sangrienta</option>
+              <option value="9">Magia de la sombra</option>
+              <option value="10">Magia druidica: Feral</option>
+              <option value="11">Magia druidica: Equilibrio</option>
+              <option value="12">Magia druidica: Vida</option>
+              <option value="13">Dominio de la luz</option>
+              <option value="14">Magia elemental: Agua</option>
+              <option value="15">Magia elemental: Fuego</option>
+              <option value="16">Magia elemental: Tierra</option>
+              <option value="17">Magia elemental: Aire</option>
+              <option value="18">Chi</option>
+              <option value="19">Maestro de armas</option>
+              <option value="20">Furibundo</option>
+              <option value="21">Protector</option>
+              <option value="22">Puntería</option>
+              <option value="23">Supervivencia</option>
+              <option value="24">Maestro de bestias</option>
+              <option value="25">A.A.M.M. Maestro cervecero</option>
+              <option value="26">A.A.M.M. Caminavientos</option>
+              <option value="27">Asesinato</option>
+              <option value="28">Sutileza</option>
+              <option value="29">Forajido</option>
+              <option value="30">Protector sagrado</option>
+              <option value="31">Represión</option>
+              <option value="32">Devastación</option>
+              <option value="33">Venganza</option>
+              <option value="34">Caballero sangriento</option>
+              <option value="35">Caballero de escarcha</option>
+              <option value="36">Caballero profano</option>
+          </select>
+          <button type="button" onclick="restarMye('mye1')">-</button>
+          <input type="text" name="mye1" id="mye1" default value="0" min="0" max="5"class="mye" readonly>
+          <button type="button" onclick="sumarMye('mye1')">+</button>
+      </div>
+      <!-- MAGIA Y ESTILOS 3 -->
+      <div id="mages2" style="display:none;">
+          <label for="mye2">Magia y Estilos: </label>
+          <select name="mye2" id="Smye2">
+              <option value="0" disabled selected>Seleccionar</option>
+              <option value="1">Arcanismo</option>
+              <option value="2">Piromancia</option>
+              <option value="3">Criomancia</option>
+              <option value="4">Nigromancia</option>
+              <option value="5">Magia rúnica</option>
+              <option value="6">Demonología</option>
+              <option value="7">Piromancia vil</option>
+              <option value="8">Magia sangrienta</option>
+              <option value="9">Magia de la sombra</option>
+              <option value="10">Magia druidica: Feral</option>
+              <option value="11">Magia druidica: Equilibrio</option>
+              <option value="12">Magia druidica: Vida</option>
+              <option value="13">Dominio de la luz</option>
+              <option value="14">Magia elemental: Agua</option>
+              <option value="15">Magia elemental: Fuego</option>
+              <option value="16">Magia elemental: Tierra</option>
+              <option value="17">Magia elemental: Aire</option>
+              <option value="18">Chi</option>
+              <option value="19">Maestro de armas</option>
+              <option value="20">Furibundo</option>
+              <option value="21">Protector</option>
+              <option value="22">Puntería</option>
+              <option value="23">Supervivencia</option>
+              <option value="24">Maestro de bestias</option>
+              <option value="25">A.A.M.M. Maestro cervecero</option>
+              <option value="26">A.A.M.M. Caminavientos</option>
+              <option value="27">Asesinato</option>
+              <option value="28">Sutileza</option>
+              <option value="29">Forajido</option>
+              <option value="30">Protector sagrado</option>
+              <option value="31">Represión</option>
+              <option value="32">Devastación</option>
+              <option value="33">Venganza</option>
+              <option value="34">Caballero sangriento</option>
+              <option value="35">Caballero de escarcha</option>
+              <option value="36">Caballero profano</option>
+          </select>
+          <button type="button" onclick="restarMye('mye2')">-</button>
+          <input type="text" name="mye2" id="mye2" default value="0" min="0" max="5"class="mye" readonly>
+          <button type="button" onclick="sumarMye('mye2')">+</button>
+      </div>
+      <!-- MAGIA Y ESTILOS 4 -->
+      <div id="mages3" style="display:none;">
+          <label for="mye3">Magia y Estilos: </label>
+          <select name="mye3" id="Smye3">
+              <option value="0" disabled selected>Seleccionar</option>
+              <option value="1">Arcanismo</option>
+              <option value="2">Piromancia</option>
+              <option value="3">Criomancia</option>
+              <option value="4">Nigromancia</option>
+              <option value="5">Magia rúnica</option>
+              <option value="6">Demonología</option>
+              <option value="7">Piromancia vil</option>
+              <option value="8">Magia sangrienta</option>
+              <option value="9">Magia de la sombra</option>
+              <option value="10">Magia druidica: Feral</option>
+              <option value="11">Magia druidica: Equilibrio</option>
+              <option value="12">Magia druidica: Vida</option>
+              <option value="13">Dominio de la luz</option>
+              <option value="14">Magia elemental: Agua</option>
+              <option value="15">Magia elemental: Fuego</option>
+              <option value="16">Magia elemental: Tierra</option>
+              <option value="17">Magia elemental: Aire</option>
+              <option value="18">Chi</option>
+              <option value="19">Maestro de armas</option>
+              <option value="20">Furibundo</option>
+              <option value="21">Protector</option>
+              <option value="22">Puntería</option>
+              <option value="23">Supervivencia</option>
+              <option value="24">Maestro de bestias</option>
+              <option value="25">A.A.M.M. Maestro cervecero</option>
+              <option value="26">A.A.M.M. Caminavientos</option>
+              <option value="27">Asesinato</option>
+              <option value="28">Sutileza</option>
+              <option value="29">Forajido</option>
+              <option value="30">Protector sagrado</option>
+              <option value="31">Represión</option>
+              <option value="32">Devastación</option>
+              <option value="33">Venganza</option>
+              <option value="34">Caballero sangriento</option>
+              <option value="35">Caballero de escarcha</option>
+              <option value="36">Caballero profano</option>
+          </select>
+          <button type="button" onclick="restarMye('mye3')">-</button>
+          <input type="text" name="mye3" id="mye3" default value="0" min="0" max="5"class="mye" readonly>
+          <button type="button" onclick="sumarMye('mye3')">+</button>
+      </div>
+
+      <!-- MAGIA Y ESTILOS 5 -->
+      <div id="mages4" style="display:none;">
+          <label for="mye4">Magia y Estilos: </label>
+          <select name="mye4" id="Smye4">
+              <option value="0" disabled selected>Seleccionar</option>
+              <option value="1">Arcanismo</option>
+              <option value="2">Piromancia</option>
+              <option value="3">Criomancia</option>
+              <option value="4">Nigromancia</option>
+              <option value="5">Magia rúnica</option>
+              <option value="6">Demonología</option>
+              <option value="7">Piromancia vil</option>
+              <option value="8">Magia sangrienta</option>
+              <option value="9">Magia de la sombra</option>
+              <option value="10">Magia druidica: Feral</option>
+              <option value="11">Magia druidica: Equilibrio</option>
+              <option value="12">Magia druidica: Vida</option>
+              <option value="13">Dominio de la luz</option>
+              <option value="14">Magia elemental: Agua</option>
+              <option value="15">Magia elemental: Fuego</option>
+              <option value="16">Magia elemental: Tierra</option>
+              <option value="17">Magia elemental: Aire</option>
+              <option value="18">Chi</option>
+              <option value="19">Maestro de armas</option>
+              <option value="20">Furibundo</option>
+              <option value="21">Protector</option>
+              <option value="22">Puntería</option>
+              <option value="23">Supervivencia</option>
+              <option value="24">Maestro de bestias</option>
+              <option value="25">A.A.M.M. Maestro cervecero</option>
+              <option value="26">A.A.M.M. Caminavientos</option>
+              <option value="27">Asesinato</option>
+              <option value="28">Sutileza</option>
+              <option value="29">Forajido</option>
+              <option value="30">Protector sagrado</option>
+              <option value="31">Represión</option>
+              <option value="32">Devastación</option>
+              <option value="33">Venganza</option>
+              <option value="34">Caballero sangriento</option>
+              <option value="35">Caballero de escarcha</option>
+              <option value="36">Caballero profano</option>
+          </select>
+          <button type="button" onclick="restarMye('mye4')">-</button>
+          <input type="text" name="mye4" id="mye4" default value="0" min="0" max="5"class="mye" readonly>
+          <button type="button" onclick="sumarMye('mye4')">+</button>
+      </div>
+
+      <!-- MAGIA Y ESTILOS 6 -->
+      <div id="mages5" style="display:none;">
+          <label for="mye5">Magia y Estilos: </label>
+          <select name="mye5" id="Smye5">
+              <option value="0" disabled selected>Seleccionar</option>
+              <option value="1">Arcanismo</option>
+              <option value="2">Piromancia</option>
+              <option value="3">Criomancia</option>
+              <option value="4">Nigromancia</option>
+              <option value="5">Magia rúnica</option>
+              <option value="6">Demonología</option>
+              <option value="7">Piromancia vil</option>
+              <option value="8">Magia sangrienta</option>
+              <option value="9">Magia de la sombra</option>
+              <option value="10">Magia druidica: Feral</option>
+              <option value="11">Magia druidica: Equilibrio</option>
+              <option value="12">Magia druidica: Vida</option>
+              <option value="13">Dominio de la luz</option>
+              <option value="14">Magia elemental: Agua</option>
+              <option value="15">Magia elemental: Fuego</option>
+              <option value="16">Magia elemental: Tierra</option>
+              <option value="17">Magia elemental: Aire</option>
+              <option value="18">Chi</option>
+              <option value="19">Maestro de armas</option>
+              <option value="20">Furibundo</option>
+              <option value="21">Protector</option>
+              <option value="22">Puntería</option>
+              <option value="23">Supervivencia</option>
+              <option value="24">Maestro de bestias</option>
+              <option value="25">A.A.M.M. Maestro cervecero</option>
+              <option value="26">A.A.M.M. Caminavientos</option>
+              <option value="27">Asesinato</option>
+              <option value="28">Sutileza</option>
+              <option value="29">Forajido</option>
+              <option value="30">Protector sagrado</option>
+              <option value="31">Represión</option>
+              <option value="32">Devastación</option>
+              <option value="33">Venganza</option>
+              <option value="34">Caballero sangriento</option>
+              <option value="35">Caballero de escarcha</option>
+              <option value="36">Caballero profano</option>
+          </select>
+          <button type="button" onclick="restarMye('mye5')">-</button>
+          <input type="text" name="mye5" id="mye5" default value="0" min="0" max="5"class="mye" readonly>
+          <button type="button" onclick="sumarMye('mye5')">+</button>
+      </div>
+
+      <!-- MAGIA Y ESTILOS 7 -->
+      <div id="mages6" style="display:none;">
+          <label for="mye6">Magia y Estilos: </label>
+          <select name="mye6" id="Smye6">
+              <option value="0" disabled selected>Seleccionar</option>
+              <option value="1">Arcanismo</option>
+              <option value="2">Piromancia</option>
+              <option value="3">Criomancia</option>
+              <option value="4">Nigromancia</option>
+              <option value="5">Magia rúnica</option>
+              <option value="6">Demonología</option>
+              <option value="7">Piromancia vil</option>
+              <option value="8">Magia sangrienta</option>
+              <option value="9">Magia de la sombra</option>
+              <option value="10">Magia druidica: Feral</option>
+              <option value="11">Magia druidica: Equilibrio</option>
+              <option value="12">Magia druidica: Vida</option>
+              <option value="13">Dominio de la luz</option>
+              <option value="14">Magia elemental: Agua</option>
+              <option value="15">Magia elemental: Fuego</option>
+              <option value="16">Magia elemental: Tierra</option>
+              <option value="17">Magia elemental: Aire</option>
+              <option value="18">Chi</option>
+              <option value="19">Maestro de armas</option>
+              <option value="20">Furibundo</option>
+              <option value="21">Protector</option>
+              <option value="22">Puntería</option>
+              <option value="23">Supervivencia</option>
+              <option value="24">Maestro de bestias</option>
+              <option value="25">A.A.M.M. Maestro cervecero</option>
+              <option value="26">A.A.M.M. Caminavientos</option>
+              <option value="27">Asesinato</option>
+              <option value="28">Sutileza</option>
+              <option value="29">Forajido</option>
+              <option value="30">Protector sagrado</option>
+              <option value="31">Represión</option>
+              <option value="32">Devastación</option>
+              <option value="33">Venganza</option>
+              <option value="34">Caballero sangriento</option>
+              <option value="35">Caballero de escarcha</option>
+              <option value="36">Caballero profano</option>
+          </select>
+          <button type="button" onclick="restarMye('mye6')">-</button>
+          <input type="text" name="mye6" id="mye6" default value="0" min="0" max="5"class="mye" readonly>
+          <button type="button" onclick="sumarMye('mye6')">+</button>
+      </div>
+
+      <!-- MAGIA Y ESTILOS 8 -->
+      <div id="mages7" style="display:none;">
+          <label for="mye7">Magia y Estilos: </label>
+          <select name="mye7" id="Smye7">
+              <option value="0" disabled selected>Seleccionar</option>
+              <option value="1">Arcanismo</option>
+              <option value="2">Piromancia</option>
+              <option value="3">Criomancia</option>
+              <option value="4">Nigromancia</option>
+              <option value="5">Magia rúnica</option>
+              <option value="6">Demonología</option>
+              <option value="7">Piromancia vil</option>
+              <option value="8">Magia sangrienta</option>
+              <option value="9">Magia de la sombra</option>
+              <option value="10">Magia druidica: Feral</option>
+              <option value="11">Magia druidica: Equilibrio</option>
+              <option value="12">Magia druidica: Vida</option>
+              <option value="13">Dominio de la luz</option>
+              <option value="14">Magia elemental: Agua</option>
+              <option value="15">Magia elemental: Fuego</option>
+              <option value="16">Magia elemental: Tierra</option>
+              <option value="17">Magia elemental: Aire</option>
+              <option value="18">Chi</option>
+              <option value="19">Maestro de armas</option>
+              <option value="20">Furibundo</option>
+              <option value="21">Protector</option>
+              <option value="22">Puntería</option>
+              <option value="23">Supervivencia</option>
+              <option value="24">Maestro de bestias</option>
+              <option value="25">A.A.M.M. Maestro cervecero</option>
+              <option value="26">A.A.M.M. Caminavientos</option>
+              <option value="27">Asesinato</option>
+              <option value="28">Sutileza</option>
+              <option value="29">Forajido</option>
+              <option value="30">Protector sagrado</option>
+              <option value="31">Represión</option>
+              <option value="32">Devastación</option>
+              <option value="33">Venganza</option>
+              <option value="34">Caballero sangriento</option>
+              <option value="35">Caballero de escarcha</option>
+              <option value="36">Caballero profano</option>
+          </select>
+          <button type="button" onclick="restarMye('mye7')">-</button>
+          <input type="text" name="mye7" id="mye7" default value="0" min="0" max="5"class="mye" readonly>
+          <button type="button" onclick="sumarMye('mye7')">+</button>
+      </div>
+  </div>
+ 
+  <div class="habarmas">
+    <label for="ha">
+        <h2 class="habarmas2">Habilidades de armas</h2>
+    </label>
+    <label for="pha">Puntos de habilidades de armas: </label>
+    <input required type="text" id="puntoha" name="pha" value="5" min="0" max="5" class="ha" readonly>
+    <br>
+
+    <!-- Habilidades de armas 1 -->
+    <label for="Lha0">Habilidades de armas: </label>
+    <select name="ha0" id="Sha0">
+        <option value="0" selected disabled>Seleccionar</option>
+        <option value="1">Espadas de una mano</option>
+        <option value="2">Espadas de dos manos</option>
+        <option value="3">Mazas de una mano</option>
+        <option value="4">Mazas de dos manos</option>
+        <option value="5">Hachas de una mano</option>
+        <option value="6">Hachas de dos manos</option>
+        <option value="7">Arcos</option>
+        <option value="8">Armas de fuego</option>
+        <option value="9">Armas arrojadizas</option>
+        <option value="10">Ballestas</option>
+        <option value="11">Bastones</option>
+        <option value="12">Varitas</option>
+        <option value="13">Dagas</option>
+        <option value="14">Armas de puño</option>
+        <option value="15">Armas de asta</option>
+        <option value="16">Gujas de guerra</option>
+        <option value="17">Escudo</option>
+        <option value="18">Sin Armas</option>
+    </select>
+    <button type="button" onclick="restarHa('ha0')">-</button>
+    <input type="text" name="ha0" id="ha0" default value="0" min="0" max="5"class="ha" readonly>
+    <button type="button" onclick="sumarHa('ha0')">+</button>
+    <button type="button" name="Añadir" value="+" onclick="addha()">++</button>
+    <button type="button" name="Quitar" value="-" onclick="subha()">--</button><br>
+
+    <!-- Habilidades de armas 2 -->
+
+    <div id="arma1" style="display:none;">
+        <label for="Lha1">Habilidades de armas: </label>
+        <select name="ha1" id="Sha1">
+            <option value="0" selected disabled>Seleccionar</option>
+            <option value="1">Espadas de una mano</option>
+            <option value="2">Espadas de dos manos</option>
+            <option value="3">Mazas de una mano</option>
+            <option value="4">Mazas de dos manos</option>
+            <option value="5">Hachas de una mano</option>
+            <option value="6">Hachas de dos manos</option>
+            <option value="7">Arcos</option>
+            <option value="8">Armas de fuego</option>
+            <option value="9">Armas arrojadizas</option>
+            <option value="10">Ballestas</option>
+            <option value="11">Bastones</option>
+            <option value="12">Varitas</option>
+            <option value="13">Dagas</option>
+            <option value="14">Armas de puño</option>
+            <option value="15">Armas de asta</option>
+            <option value="16">Gujas de guerra</option>
+            <option value="17">Escudo</option>
+            <option value="18">Sin Armas</option>
+        </select>
+        <button type="button" onclick="restarHa('ha1')">-</button>
+        <input type="text" name="ha1" id="ha1" default value="0" min="0" max="5"class="ha" readonly>
+        <button type="button" onclick="sumarHa('ha1')">+</button>
+
+        <!-- Habilidades de armas 3 -->
+
+        <div id="arma2" style="display:none;">
+            <label for="Lha2">Habilidades de armas: </label>
+            <select name="ha2" id="Sha2">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha2')">-</button>
+            <input type="text" name="ha2" id="ha2" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha2')">+</button>
+    
+        </div>
+        <!-- Habilidades de armas 4 -->
+
+        <div id="arma3" style="display:none;">
+            <label for="Lha3">Habilidades de armas: </label>
+            <select name="ha3" id="Sha3">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha3')">-</button>
+            <input type="text" name="ha3" id="ha3" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha3')">+</button>
+    
+        </div>
+        <!-- Habilidades de armas 5 -->
+
+        <div id="arma4" style="display:none;">
+            <label for="Lha4">Habilidades de armas: </label>
+            <select name="ha4" id="Sha4">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha4')">-</button>
+            <input type="text" name="ha4" id="ha4" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha4')">+</button>
+    
+        </div>
+        <!-- Habilidades de armas 6 -->
+
+        <div id="arma5" style="display:none;">
+            <label for="Lha5">Habilidades de armas: </label>
+            <select name="ha5" id="Sha5">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha5')">-</button>
+            <input type="text" name="ha5" id="ha5" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha5')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 7 -->
+
+        <div id="arma6" style="display:none;">
+            <label for="Lha6">Habilidades de armas: </label>
+            <select name="ha6" id="Sha6">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha6')">-</button>
+            <input type="text" name="ha6" id="ha6" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha6')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 8 -->
+
+        <div id="arma7" style="display:none;">
+            <label for="Lha7">Habilidades de armas: </label>
+            <select name="ha7" id="Sha7">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha7')">-</button>
+            <input type="text" name="ha7" id="ha7" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha7')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 9 -->
+
+        <div id="arma8" style="display:none;">
+            <label for="Lha8">Habilidades de armas: </label>
+            <select name="ha8" id="Sha8">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha8')">-</button>
+            <input type="text" name="ha8" id="ha8" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha8')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 10 -->
+
+        <div id="arma9" style="display:none;">
+            <label for="Lha9">Habilidades de armas: </label>
+            <select name="ha9" id="Sha9">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha9')">-</button>
+            <input type="text" name="ha9" id="ha9" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha9')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 11 -->
+
+        <div id="arma10" style="display:none;">
+            <label for="Lha10">Habilidades de armas: </label>
+            <select name="ha10" id="Sha10">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha10')">-</button>
+            <input type="text" name="ha10" id="ha10" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha10')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 12 -->
+
+        <div id="arma11" style="display:none;">
+            <label for="Lha11">Habilidades de armas: </label>
+            <select name="ha11" id="Sha11">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha11')">-</button>
+            <input type="text" name="ha11" id="ha11" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha11')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 13 -->
+
+        <div id="arma12" style="display:none;">
+            <label for="Lha12">Habilidades de armas: </label>
+            <select name="ha12" id="Sha12">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha12')">-</button>
+            <input type="text" name="ha12" id="ha12" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha12')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 14 -->
+
+        <div id="arma13" style="display:none;">
+            <label for="Lha13">Habilidades de armas: </label>
+            <select name="ha13" id="Sha13">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha13')">-</button>
+            <input type="text" name="ha13" id="ha13" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha13')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 15 -->
+
+        <div id="arma14" style="display:none;">
+            <label for="Lha14">Habilidades de armas: </label>
+            <select name="ha14" id="Sha14">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha14')">-</button>
+            <input type="text" name="ha14" id="ha14" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha14')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 16 -->
+
+        <div id="arma15" style="display:none;">
+            <label for="Lha15">Habilidades de armas: </label>
+            <select name="ha15" id="Sha15">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha15')">-</button>
+            <input type="text" name="ha15" id="ha15" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha15')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 17 -->
+
+        <div id="arma16" style="display:none;">
+            <label for="Lha16">Habilidades de armas: </label>
+            <select name="ha16" id="Sha16">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha16')">-</button>
+            <input type="text" name="ha16" id="ha16" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha16')">+</button>
+    
+        </div>
+
+        <!-- Habilidades de armas 18 -->
+
+        <div id="arma17" style="display:none;">
+            <label for="Lha17">Habilidades de armas: </label>
+            <select name="ha17" id="Sha17">
+                <option value="0" selected disabled>Seleccionar</option>
+                <option value="1">Espadas de una mano</option>
+                <option value="2">Espadas de dos manos</option>
+                <option value="3">Mazas de una mano</option>
+                <option value="4">Mazas de dos manos</option>
+                <option value="5">Hachas de una mano</option>
+                <option value="6">Hachas de dos manos</option>
+                <option value="7">Arcos</option>
+                <option value="8">Armas de fuego</option>
+                <option value="9">Armas arrojadizas</option>
+                <option value="10">Ballestas</option>
+                <option value="11">Bastones</option>
+                <option value="12">Varitas</option>
+                <option value="13">Dagas</option>
+                <option value="14">Armas de puño</option>
+                <option value="15">Armas de asta</option>
+                <option value="16">Gujas de guerra</option>
+                <option value="17">Escudo</option>
+                <option value="18">Sin Armas</option>
+            </select>
+            <button type="button" onclick="restarHa('ha17')">-</button>
+            <input type="text" name="ha17" id="ha17" default value="0" min="0" max="5"class="ha" readonly>
+            <button type="button" onclick="sumarHa('ha17')">+</button>
+            </div>
+        </div>
+    
+            <!-- PROFESIONES -->
+        <div class="profes">
+            <label for="ppoo"><h2 class="profes1">Profesiones y oficios</h2></label>
+            <label for="ppo">Puntos de profesiones y oficios: </label>
+            <input type="text" id="puntoppo" name="puntoppo" value="2" min="0" max="2" class="ppo" readonly><br>
+            <label for="ppo0">Profesion: </label>
+            <select name="sppo0" id="sppo0">
+                <option value="0" selected dicabled>Seleccionar</option>
+                <option value="1">Alquimia</option>
+                <option value="2">Sastrería</option>
+                <option value="3">Desuello</option>
+                <option value="4">Carpintería</option>
+                <option value="5">Herboristería</option>
+                <option value="6">Encantamiento</option>
+                <option value="7">Herrería</option>
+                <option value="8">Inscripción</option>
+                <option value="9">Ingeniería</option>
+                <option value="10">Joyeria</option>
+                <option value="11">Leñador</option>
+                <option value="12">Minería</option>
+                <option value="13">Peletería</option>
+                <option value="14">Granjero</option>
+                <option value="15">Bardo</option>
+                <option value="16">Marinero</option>
+                <option value="17">Mercader</option>
+                <option value="18">Cazarrecompensas</option>
+                <option value="19">Criador de animales</option>
+            </select>
+            <button type="button" onclick="restarPpo('ppo0')">-</button>
+            <input type="text" name="ppo0" id="ppo0" default value="0" min="0" max="5"class="ppo" readonly>
+            <button type="button" onclick="sumarPpo('ppo0')">+</button>
+            <button type="button" name="Añadir" value="+" onclick="addppo()">++</button>
+            <button type="button" name="Quitar" value="-" onclick="subppo()">--</button><br>
+            <!-- PROFESION 2 -->
+            <div id="prof1" style="display:none;">
+                <label for="sppo1">Profesion: </label>
+                <select name="sppo1" id="sppo1">
+                    <option value="0" selected dicabled>Seleccionar</option>
+                    <option value="1">Alquimia</option>
+                    <option value="2">Sastrería</option>
+                    <option value="3">Desuello</option>
+                    <option value="4">Carpintería</option>
+                    <option value="5">Herboristería</option>
+                    <option value="6">Encantamiento</option>
+                    <option value="7">Herrería</option>
+                    <option value="8">Inscripción</option>
+                    <option value="9">Ingeniería</option>
+                    <option value="10">Joyeria</option>
+                    <option value="11">Leñador</option>
+                    <option value="12">Minería</option>
+                    <option value="13">Peletería</option>
+                    <option value="14">Granjero</option>
+                    <option value="15">Bardo</option>
+                    <option value="16">Marinero</option>
+                    <option value="17">Mercader</option>
+                    <option value="18">Cazarrecompensas</option>
+                    <option value="19">Criador de animales</option>
+                </select>
+                <button type="button" onclick="restarPpo('ppo1')">-</button>
+                <input type="text" name="ppo1" id="ppo1" default value="0" min="0" max="5"class="ppo" readonly>
+                <button type="button" onclick="sumarPpo('ppo1')">+</button>
+            </div>
+            <!-- PROFESION 3 -->
+                <div id="prof2" style="display:none;">
+                    <label for="sppo2">Profesion: </label>
+                    <select name="sppo2" id="sppo2">
+                        <option value="0" selected dicabled>Seleccionar</option>
+                        <option value="1">Alquimia</option>
+                        <option value="2">Sastrería</option>
+                        <option value="3">Desuello</option>
+                        <option value="4">Carpintería</option>
+                        <option value="5">Herboristería</option>
+                        <option value="6">Encantamiento</option>
+                        <option value="7">Herrería</option>
+                        <option value="8">Inscripción</option>
+                        <option value="9">Ingeniería</option>
+                        <option value="10">Joyeria</option>
+                        <option value="11">Leñador</option>
+                        <option value="12">Minería</option>
+                        <option value="13">Peletería</option>
+                        <option value="14">Granjero</option>
+                        <option value="15">Bardo</option>
+                        <option value="16">Marinero</option>
+                        <option value="17">Mercader</option>
+                        <option value="18">Cazarrecompensas</option>
+                        <option value="19">Criador de animales</option>
+                    </select>
+                <button type="button" onclick="restarPpo('ppo2')">-</button>
+                <input type="text" name="ppo2" id="ppo2" default value="0" min="0" max="5"class="ppo" readonly>
+                <button type="button" onclick="sumarPpo('ppo2')">+</button>
+                </div>
+            </div>
+            <!-- CONOCIMIENTOS -->
+            <h3>Conocimientos: </h3>
+            <div class="conocimientos">
+                <label for="conocimientos">
+
+                </label>
+                <table class="contab" border="1">
+                    <tr>
+                        <th><label for="pco">Puntos de conocimientos: </label></th>
+                        <th><input type="text" id="puntoconocimiento" name="puntoconocimiento" value="4" min="0" max="4" class="conocimiento" readonly></th>
+                    </tr>
+                    <tr>
+                        <td><label for="jinete">Equitación: </label></td>
+                        <td><button type="button" onclick="restarConocimiento('equitacion')">-</button></td>
+                        <td><input type="text" id="equitacion" name="equitacion" value="0" min="0" max="5" class="conocimiento" readonly></td>
+                        <td><button type="button" onclick="sumarConocimiento('equitacion')">+</button></td>                    
+                    </tr>
+                    <tr>
+                        <td><label for="pesca">Pesca: </label></td>
+                        <td><button type="button" onclick="restarConocimiento('pesca')">-</button></td>
+                        <td><input type="text" id="pesca" name="pesca" value="0" min="0" max="5" class="conocimiento" readonly></td>
+                        <td><button type="button" onclick="sumarConocimiento('pesca')">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><label for="arqueologia">Arqueología: </label></td>
+                        <td><button type="button" onclick="restarConocimiento('arqueologia')">-</button></td>
+                        <td><input type="text" id="arqueologia" name="arqueologia" value="0" min="0" max="5" class="conocimiento" readonly></td>
+                        <td><button type="button" onclick="sumarConocimiento('arqueologia')">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><label for="medico">Primeros auxilios: </label></td>
+                        <td><button type="button" onclick="restarConocimiento('primeros_auxilios')">-</button></td>
+                        <td><input type="text" id="primeros_auxilios" name="primeros_auxilios" value="0" min="0" max="5" class="conocimiento" readonly></td>
+                        <td><button type="button" onclick="sumarConocimiento('primeros_auxilios')">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><label for="cocina">Cocina: </label></td>
+                        <td><button type="button" onclick="restarConocimiento('cocina')">-</button></td>
+                        <td><input type="text" id="cocina" name="cocina" value="0" min="0" max="5" class="conocimiento" readonly></td>
+                        <td><button type="button" onclick="sumarConocimiento('cocina')">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><label for="con_mag">Conocimiento de magia: </label></td>
+                        <td><button type="button" onclick="restarConocimiento('con_magia')">-</button></td>
+                        <td><input type="text" id="con_magia" name="con_magia" value="0" min="0" max="5" class="conocimiento" readonly></td>
+                        <td><button type="button" onclick="sumarConocimiento('con_magia')">+</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+
+        <button type="button" onclick="guardarFicha()">Guardar Ficha</button>
+        <button type="reset">Resetear Formulario</button><br>
+    </form>
+
+</body>
+</html>
+
+
