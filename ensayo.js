@@ -659,11 +659,11 @@ function restarAtributo(atributo) {
 
     if (puntoatributo.value < 5) {
         puntoatributo.value++;
-        if (atributoElement.value > 0) {
+        if (atributoElement.value > 1) {
             atributoElement.value = +atributoElement.value - 1;
         }
     } else {
-        if (atributoElement.value > 0) {
+        if (atributoElement.value > 1) {
             atributoElement.value = +atributoElement.value - 1;
             pt.value = +pt.value + 4;  // Sumar 1 a pt cuando puntoatributo llega a 5
         }
