@@ -836,7 +836,7 @@ function restarMye(mye) {
         }
     } else {
         if (myeElement.value > 0) {
-            myeElement.value = +myeElement.value - 1;
+            myeElement.value --;
             pt.value = +pt.value + 3;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
     }
