@@ -72,6 +72,7 @@ ul#menu li:focus ul, ul#menu li:active ul {
 button{
     margin-left: 2pc;
     margin-right: 2pc;
+    padding: 4pc;
 }
 
 header{
