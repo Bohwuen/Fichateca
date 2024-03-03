@@ -744,13 +744,13 @@ function restarHabilidad(habilidad) {
     const habilidadElement = document.getElementById(habilidad);
 
     if (puntohabilidad.value < 10) {
-        puntohabilidad.value++;
         if (habilidadElement.value > 0) {
-            habilidadElement.value = +habilidadElement.value - 1;
+            puntohabilidad.value++;
+            habilidadElement.value --;
         }
     } else {
         if (habilidadElement.value > 0) {
-            habilidadElement.value = +habilidadElement.value - 1;
+            habilidadElement.value --;
             pt.value = +pt.value + 2;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
     }
