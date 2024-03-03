@@ -881,7 +881,7 @@ function restarHa(ha) {
         }
     } else {
         if (haElement.value > 0) {
-            haElement.value = +haElement.value - 1;
+            haElement.value --;
             pt.value = +pt.value + 3;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
     }
