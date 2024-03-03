@@ -203,9 +203,9 @@ $conexion = conectarBD();
             <br>
             <div class="nivel">
                 <label for="nivel">Nivel: </label>
-                <button type="button" onclick="cambiarNivel('nivel', 'pt', -1)">-</button>
-                <input type="text" id="nivel" value="1" readonly>
-                <button type="button" onclick="cambiarNivel('nivel', 'pt', 1)">+</button>
+                <button type="button" onclick="restarNivel()">-</button>
+                <input type="text" id="nivel" name="nivel" value="1" min="1" max="25" class="nivel" readonly>
+                <button type="button" onclick="sumarNivel()">+</button>
             </div>
             <div class="PuntosDeTrasfondo">
                 <label for="PT">Puntos de Trasfondo:</label>
