@@ -831,7 +831,7 @@ function restarMye(mye) {
 
     if (puntomye.value < 3) {
 
-        if (myeElement.value < 0) {
+        if (myeElement.value > 0) {
             puntomye.value ++;
             myeElement.value --;
         }
