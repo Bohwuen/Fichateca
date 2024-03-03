@@ -658,7 +658,9 @@ function restarAtributo(atributo) {
     const atributoElement = document.getElementById(atributo);
 
     if (puntoatributo.value < 5) {
-        puntoatributo.value++;
+        if (atributoElement.value > 1) {
+            puntoatributo.value++;
+        }
         if (atributoElement.value > 1) {
             atributoElement.value = +atributoElement.value - 1;
         }
