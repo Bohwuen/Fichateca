@@ -17,6 +17,7 @@
     color: rgb(255, 255, 255);
     font-family: "FrizQadrata";
     font-size: small;
+
 }
 
 .logo {
@@ -66,6 +67,11 @@ color: #003300;
 }
 ul#menu li:focus ul, ul#menu li:active ul {
   display: block;
+}
+
+button{
+    margin-left: 2pc;
+    margin-right: 2pc;
 }
 
 header{
