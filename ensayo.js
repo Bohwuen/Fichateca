@@ -874,9 +874,10 @@ function restarHa(ha) {
     const haElement = document.getElementById(ha);
 
     if (puntoha.value < 5) {
-        puntoha.value++;
+
         if (haElement.value > 0) {
-            haElement.value = +haElement.value - 1;
+            puntoha.value ++;
+            haElement.value --;
         }
     } else {
         if (haElement.value > 0) {
