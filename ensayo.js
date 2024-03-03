@@ -659,7 +659,8 @@ function restarAtributo(atributo) {
 
     if (puntoatributo.value < 5) {
         // Verificar si el contenido del atributo es mayor a 1 antes de decrementar
-        if (atributoElement.value > 1) {
+        if (atributoElement.value == 1) {
+        }else {
             puntoatributo.value++;
             atributoElement.value = +atributoElement.value - 1;
         }
