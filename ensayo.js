@@ -664,7 +664,7 @@ function restarAtributo(atributo) {
         }
     } else {
         if (atributoElement.value > 1) {
-            atributoElement.value = +atributoElement.value - 1;
+            atributoElement.value --;
             pt.value = +pt.value + 4;  // Sumar 1 a pt cuando puntoatributo llega a 5
         }
     }
