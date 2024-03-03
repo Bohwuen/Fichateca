@@ -919,13 +919,14 @@ function restarPpo(ppo) {
     const ppoElement = document.getElementById(ppo);
 
     if (puntoppo.value < 2) {
-        puntoppo.value++;
+
         if (ppoElement.value > 0) {
-            ppoElement.value = +ppoElement.value - 1;
+            puntoppo.value++;
+            ppoElement.value --;
         }
     } else {
         if (ppoElement.value > 0) {
-            ppoElement.value = +ppoElement.value - 1;
+            ppoElement.value --;
             pt.value = +pt.value + 2;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
     }
