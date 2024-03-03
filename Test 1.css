@@ -68,6 +68,19 @@ ul#menu li:focus ul, ul#menu li:active ul {
   display: block;
 }
 
+header{
+    margin: auto;
+  }
+  body {
+    padding: 0% 5% 5% 5%;
+  }
+  
+  /* INDEX */
+  
+  nav {
+    grid-area: navi;
+  }
+
 .atributo {
     width: 15px;
 }
