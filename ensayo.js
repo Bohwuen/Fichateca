@@ -708,7 +708,7 @@ function restarDefensa(defensa) {
     } else {
         if (defensaElement.value > 0) {
             defensaElement.value --;
-            pt.value = pt.value + 3;  // Sumar 1 a pt cuando puntodefensa llega a 3
+            pt.value = +pt.value + 3;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
     }
 
