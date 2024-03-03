@@ -19,6 +19,55 @@
     font-size: small;
 }
 
+.logo {
+    display: block;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ul{  list-style: none;}
+
+ul#menu {
+  width:80%;
+  max-width:980px;
+  margin:auto;
+  border:1px solid #eee;
+  background-color: olive;
+}
+ul#menu li {
+  display: inline-block;
+  width: 24%;   
+  position: relative;	
+}
+ul#menu ul {
+  width: 100%;
+  background: #eee;
+  border: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  display: none;
+}
+ul#menu ul li {
+  width: 100%;
+}
+ul#menu a, ul#menu span {
+  padding: 0.5em; 
+  color: #ffffff;
+  text-decoration: none;
+  font-family:"FrizQadrata";
+  font-size:1em;
+  display: block;
+  text-align: center;
+}
+ul#menu span{cursor: pointer}
+ul#menu a:hover, ul#menu a:active {
+color: #003300;
+}
+ul#menu li:focus ul, ul#menu li:active ul {
+  display: block;
+}
+
 .atributo {
     width: 15px;
 }
