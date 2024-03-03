@@ -679,7 +679,7 @@ function sumarAtributo(atributo) {
 
     const atributoElement = document.getElementById(atributo);
 
-    if (puntoatributo.value > 0 && atributoElement.value < 5) {
+    if (puntoatributo.value >= 0 && atributoElement.value < 5) {
         puntoatributo.value--;
         atributoElement.value = +atributoElement.value + 1;
     } else {
