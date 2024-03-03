@@ -787,14 +787,13 @@ function restarMagia(magia) {
     const magiaElement = document.getElementById(magia);
 
     if (puntomagia.value < 1) {
-
-        if (magiaElement.value > 0) {
+        if (magiaElement.value < 0) {
             puntomagia.value ++;
             magiaElement.value --;
         }
     } else {
         if (magiaElement.value > 0) {
-            magiaElement.value = +magiaElement.value - 1;
+            magiaElement.value --;
             pt.value = +pt.value + 3;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
     }
