@@ -701,8 +701,8 @@ function restarDefensa(defensa) {
     const defensaElement = document.getElementById(defensa);
 
     if (puntodefensa.value < 3) {
-        if (defensaElement.value > 0) {
-            puntodefensa.value++;
+        if (defensaElement.value < 0) {
+            puntodefensa.value ++;
             defensaElement.value --;
         }
     } else {
