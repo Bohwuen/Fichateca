@@ -14,7 +14,7 @@
     box-sizing: border-box;
   }
   html {
-    background-color: rgb(126, 81, 35);
+    /* background-color: rgb(126, 81, 35); */
     color: rgb(0, 0, 0);
     font-family: "FrizQadrata";
     font-size: small;

@@ -1,3 +1,24 @@
+@font-face {
+    font-family: 'FrizQadrata';
+    font-style: 'normal';
+    font-weight: '400';
+    src: local("FrizQadrata"),
+        url("Fuentes/friz-quadrata-regular-os-5870333951e7c.ttf")
+}
+
+*{
+    margin: 0;
+    border: 0 none;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    /* background-color: rgb(126, 81, 35); */
+    color: rgb(0, 0, 0);
+    font-family: "FrizQadrata";
+    font-size: small;
+}
+
 .atributo {
     width: 15px;
 }
