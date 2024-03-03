@@ -701,12 +701,12 @@ function restarDefensa(defensa) {
     const defensaElement = document.getElementById(defensa);
 
     if (puntodefensa.value < 3) {
-        if (defensaElement.value < 0) {
+        if (defensaElement.value > 0) {
             puntodefensa.value ++;
             defensaElement.value --;
         }
     } else {
-        if (defensaElement.value < 0) {
+        if (defensaElement.value > 0) {
             defensaElement.value --;
             pt.value +3;  // Sumar 1 a pt cuando puntodefensa llega a 3
         }
