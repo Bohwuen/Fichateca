@@ -69,7 +69,7 @@ brujo,Aprendizaje,1
 brujo,Subterfugio,1
 brujo,Intimidacion,1
 brujo,Metamagia,1
-brujo,Corrupcion,1
+brujo,caos,1
 brujo,Bastones,1
 brujo,Varitas,1
 brujo,Dagas,1
@@ -154,7 +154,7 @@ caballero_muerte,Aguante,1
 caballero_muerte,Atletismo,1
 caballero_muerte,Intimidacion,1
 caballero_muerte,Parada_y_bloqueo,1
-caballero_muerte,Corrupcion,1
+caballero_muerte,caos,1
 caballero_muerte,Espadas_de_una_mano,1
 caballero_muerte,Espadas_de_dos_manos,1
 caballero_muerte,Hachas_de_una_mano,1

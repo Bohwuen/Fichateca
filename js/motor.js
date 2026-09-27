@@ -192,13 +192,13 @@ function fichaEnBlanco() {
             trato_con_animales: 0, intimidacion: 0, carisma: 0
         },
         magia: {
-            taumaturgia: 0, fe: 0, espiritualidad: 0, naturaleza: 0, corrupcion: 0
+            taumaturgia: 0, fe: 0, espiritualidad: 0, naturaleza: 0, caos: 0
         },
-        mye: [],   // lista de { id: "arcanismo", valor: 0 }
-        armasHabilidades: [],   // { id, valor }
-        profesiones:      [],   // { id, valor }
-        conocimientos:    [],   // { id, valor }
-                resistencias: {
+        mye: [],
+        armasHabilidades: [],
+        profesiones: [],
+        conocimientos: [],
+        resistencias: {
             res_fisica: 0, res_arcana: 0, res_fuego: 0, res_frio: 0,
             res_vil: 0, res_sombra: 0, res_naturaleza: 0, res_luz: 0
         },
@@ -211,9 +211,5 @@ function fichaEnBlanco() {
         trasfondo: "",
         inventario: "",
         dinero: { oro: 0, plata: 0, cobre: 0 }
-        // los demás los añadiremos al hacer la ficha completa
-        descripcion: "",
-        transfondo: "",
-        inventario: ""
     };
 }

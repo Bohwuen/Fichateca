@@ -1,42 +1,42 @@
-id,nombre
-arcanismo,Arcanismo
-piromancia,Piromancia
-criomancia,Criomancia
-nigromancia,Nigromancia
-magia_runica,Magia rúnica
-demonologia,Demonología
-piromancia_vil,Piromancia vil
-magia_sangrienta,Magia sangrienta
-magia_sombra,Magia de la sombra
-magia_druidica_feral,Magia druídica: Feral
-magia_druidica_equilibrio,Magia druídica: Equilibrio
-magia_druidica_vida,Magia druídica: Vida
-dominio_luz,Dominio de la luz
-magia_elemental_agua,Magia elemental: Agua
-magia_elemental_fuego,Magia elemental: Fuego
-magia_elemental_tierra,Magia elemental: Tierra
-magia_elemental_aire,Magia elemental: Aire
-chi,Chi
-evocacion_rojo,Evocación: Rojo
-evocacion_verde,Evocación: Verde
-evocacion_azul,Evocación: Azul
-evocacion_bronce,Evocación: Bronce
-evocacion_negro,Evocación: Negro
-maestro_armas,Maestro de armas
-furibundo,Furibundo
-protector,Protector
-punteria,Puntería
-supervivencia,Supervivencia
-maestro_bestias,Maestro de bestias
-aamm_cervecero,A.A.M.M. Maestro cervecero
-aamm_caminavientos,A.A.M.M. Caminavientos
-asesinato,Asesinato
-sutileza,Sutileza
-forajido,Forajido
-protector_sagrado,Protector sagrado
-represion,Represión
-devastacion,Devastación
-venganza,Venganza
-caballero_sangriento,Caballero sangriento
-caballero_hielo,Caballero de hielo
-caballero_profano,Caballero profano
+id,nombre,columna_bono
+arcanismo,Arcanismo,Arcanismo
+piromancia,Piromancia,Piromancia
+criomancia,Criomancia,Criomancia
+nigromancia,Nigromancia,Nigromancia
+magia_runica,Magia rúnica,Magia_Rúnica
+demonologia,Demonología,Demonología
+piromancia_vil,Piromancia vil,Piromancia_vil
+magia_sangrienta,Magia sangrienta,Magia_sangrienta
+magia_sombra,Magia de la sombra,Magia_de_la_sombra
+magia_druidica_feral,Magia druídica: Feral,Magia_druidica:_Feral
+magia_druidica_equilibrio,Magia druídica: Equilibrio,Magia_druidica:_Equilibrio
+magia_druidica_vida,Magia druídica: Vida,Magia_druidica:_Vida
+dominio_luz,Dominio de la luz,Dominio_de_la_luz
+magia_elemental_agua,Magia elemental: Agua,Magia_elemental:_Agua
+magia_elemental_fuego,Magia elemental: Fuego,Magia_elemental:_Fuego
+magia_elemental_tierra,Magia elemental: Tierra,Magia_elemental:_Tierra
+magia_elemental_aire,Magia elemental: Aire,Magia_elemental:_Aire
+chi,Chi,Chi
+evocacion_rojo,Evocación: Rojo,Evocación:_Rojo
+evocacion_verde,Evocación: Verde,Evocación:_Verde
+evocacion_azul,Evocación: Azul,Evocación:_Azul
+evocacion_bronce,Evocación: Bronce,Evocación:_Bronce
+evocacion_negro,Evocación: Negro,Evocación:_Negro
+maestro_armas,Maestro de armas,Maestro_de_armas
+furibundo,Furibundo,Furibundo
+protector,Protector,Protector
+punteria,Puntería,Puntería
+supervivencia,Supervivencia,Supervivencia
+maestro_bestias,Maestro de bestias,Maestro_de_bestias
+aamm_cervecero,A.A.M.M. Maestro cervecero,A.A.M.M_Maestro_cervecero
+aamm_caminavientos,A.A.M.M. Caminavientos,A.A.M.M._Caminavientos
+asesinato,Asesinato,Asesinato
+sutileza,Sutileza,Sutileza
+forajido,Forajido,Forajido
+protector_sagrado,Protector sagrado,Protector_sagrado
+represion,Represión,Represión
+devastacion,Devastación,Devastación
+venganza,Venganza,Venganza
+caballero_sangriento,Caballero sangriento,Caballero_sangriento
+caballero_hielo,Caballero de hielo,Caballero_de_hielo
+caballero_profano,Caballero profano,Caballero_profano

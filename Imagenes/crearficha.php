@@ -157,8 +157,8 @@ $conexion = conectarBD();
       <input required type="number" name="espiritualidad" default value="0" min="0" max="5"onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td><br>
       <td><label for="naturaleza">Naturaleza: </label>
       <input required type="number" name="naturaleza" default value="0" min="0" max="5"onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td><br>
-      <td><label for="corrupcion">Corrupcion: </label>
-      <input required type="number" name="corrupcion" default value="0" min="0" max="5"onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td><br>
+      <td><label for="caos">caos: </label>
+      <input required type="number" name="caos" default value="0" min="0" max="5"onfocus="this.oldvalue = this.value;" onchange="calcphm(this)"></td><br>
       </fieldset>
     <!-- MAGIA Y ESTILOS -->
       <fieldset>

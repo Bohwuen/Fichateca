@@ -408,7 +408,7 @@
             { id: "fe",            nombre: "Fe" },
             { id: "espiritualidad",nombre: "Espiritualidad" },
             { id: "naturaleza",    nombre: "Naturaleza" },
-            { id: "corrupcion",    nombre: "Corrupción" }
+            { id: "caos",    nombre: "caos" }
         ];
 
         const MAX_ARMAS_HAB = 18;
@@ -590,14 +590,13 @@
                         if (accion === "mas") sumarItem("magia", "phm", COSTES.magia, 5, id);
                         else restarItem("magia", "phm", COSTES.magia, id);
                     }
-                    else if (tipo === "resistencia") {
-                    // Las resistencias no tienen pool: se modifican directamente
-                    if (accion === "mas" && ficha.resistencias[id] < 99) {
-                        ficha.resistencias[id]++;
-                    } else if (accion === "menos" && ficha.resistencias[id] > 0) {
-                        ficha.resistencias[id]--;
+                     else if (tipo === "resistencia") {
+                        if (accion === "mas" && ficha.resistencias[id] < 99) {
+                            ficha.resistencias[id]++;
+                        } else if (accion === "menos" && ficha.resistencias[id] > 0) {
+                            ficha.resistencias[id]--;
+                        }
                     }
-                }
 
                     pintarTodasTablas();
                 });
@@ -734,40 +733,122 @@
         // ---------------------------------------------------
         // MAGIA Y ESTILOS (lista dinámica)
         // ---------------------------------------------------
+        // ---------------------------------------------------
+        // MAGIA Y ESTILOS (lista dinámica)
+        // ---------------------------------------------------
         const MAX_MYE = 8;
+
+        function bonosParaMye() {
+            if (!DATOS) return [];
+            const bonos = calcularBonos(ficha);
+            const resultado = [];
+
+            DATOS.magias.forEach(op => {
+                let valor = 0;
+                for (const col in bonos) {
+                    if (normalizarNombre(col) === normalizarNombre(op.columna_bono || op.nombre)) {
+                        valor += bonos[col];
+                        break;
+                    }
+                }
+                if (valor !== 0) {
+                    resultado.push({ id: op.id, nombre: op.nombre, valor });
+                }
+            });
+
+            return resultado;
+        }
+
+                // ---------------------------------------------------
+        // SINCRONIZACIÓN DE ENTRADAS AUTOMÁTICAS
+        // Recibe: nombre del grupo ("mye", "armasHabilidades", ...) y bonos [{id, valor}]
+        // Deja ficha[grupo] con:
+        //   - las entradas manuales del usuario
+        //   - las entradas automáticas que toquen ahora
+        // ---------------------------------------------------
+        function sincronizarAutomaticos(grupo, bonosAuto) {
+            if (!ficha[grupo]) ficha[grupo] = [];
+
+            const idsAuto = bonosAuto.map(b => b.id);
+
+            // 1. Manuales (no auto, y que no estén ahora en la lista automática)
+            const manuales = ficha[grupo].filter(e =>
+                !e.auto && !idsAuto.includes(e.id)
+            );
+
+            // 2. Automáticas: preservar valor previo si existía
+            const automaticas = bonosAuto.map(b => {
+                const previa = ficha[grupo].find(e => e.auto && e.id === b.id);
+                return {
+                    id: b.id,
+                    valor: previa ? previa.valor : 0,
+                    auto: true
+                };
+            });
+
+            // 3. Reconstruir: primero automáticas, luego manuales
+            ficha[grupo] = automaticas.concat(manuales);
+        }
 
         function pintarMye() {
             const cont = document.getElementById("lista-mye");
             if (!cont) return;
             cont.innerHTML = "";
 
-            // Necesitamos la lista de magias/estilos del CSV. La cargamos cuando esté DATOS.
+            // 1. Sincronizar ficha.mye con los bonos automáticos
+            sincronizarAutomaticos("mye", bonosParaMye());
+
+            // 2. Pintar cabecera
+            const tabla = document.createElement("table");
+            tabla.className = "tabla-lista";
+            tabla.innerHTML =
+                `<thead><tr>
+                    <th style="text-align:left">Magia/estilo</th>
+                    <th>Valor</th>
+                    <th>Bono racial/clase</th>
+                    <th>Total</th>
+                    <th colspan="2">Ajustar</th>
+                </tr></thead><tbody></tbody>`;
+            cont.appendChild(tabla);
+            const tbody = tabla.querySelector("tbody");
+
+            // 3. Pintar cada fila
             const opcionesMye = DATOS ? DATOS.magias : [];
+            const bonosActuales = calcularBonos(ficha);
 
             ficha.mye.forEach((entrada, indice) => {
-                const div = document.createElement("div");
-                div.style.marginBottom = "0.4em";
+                const valorBase = entrada.valor || 0;
+                const nombreBono = columnaBonoDe(entrada.id, opcionesMye);
+                const bono = nombreBono ? (bonosActuales[nombreBono] || 0) : 0;
+                const total = valorBase + bono;
 
-                // Select con todas las magias/estilos
-                let htmlSelect = `<select data-mye-select="${indice}">`;
+                const tr = document.createElement("tr");
+
+                const idsAutomaticosMye = ficha.mye.filter(e => e.auto).map(e => e.id);
+
+                let htmlSelect = `<select data-mye-select="${indice}"${entrada.auto ? " disabled" : ""}>`;
                 htmlSelect += `<option value="">—</option>`;
                 opcionesMye.forEach(op => {
+                    if (!entrada.auto && idsAutomaticosMye.includes(op.id)) return;
                     const sel = (op.id === entrada.id) ? " selected" : "";
                     htmlSelect += `<option value="${op.id}"${sel}>${op.nombre}</option>`;
                 });
                 htmlSelect += `</select>`;
 
-                // Input de valor + botones
-                const htmlValor =
-                    `<button type="button" data-mye-menos="${indice}">−</button>` +
-                    `<input type="number" value="${entrada.valor}" readonly style="width:3em">` +
-                    `<button type="button" data-mye-mas="${indice}">+</button>`;
+                const htmlBotones =
+                    `<button type="button" data-mye-menos="${indice}">−</button>
+                    <button type="button" data-mye-mas="${indice}">+</button>`;
 
-                div.innerHTML = htmlSelect + " " + htmlValor;
-                cont.appendChild(div);
+                tr.innerHTML =
+                    `<td style="text-align:left">${htmlSelect}</td>` +
+                    `<td>${valorBase}</td>` +
+                    `<td>${bono >= 0 ? "+" + bono : bono}</td>` +
+                    `<td><strong>${total}</strong></td>` +
+                    `<td colspan="2">${htmlBotones}</td>`;
+                tbody.appendChild(tr);
             });
 
-            // Listeners
+            // 4. Listeners
             cont.querySelectorAll("[data-mye-select]").forEach(sel => {
                 sel.addEventListener("change", e => {
                     const i = parseInt(e.target.dataset.myeSelect, 10);
@@ -786,8 +867,7 @@
                     restarMye(i);
                 });
             });
-        }
-
+        }    
         function sumarMye(indice) {
             const entrada = ficha.mye[indice];
             if (entrada.valor >= 5) return;
@@ -823,28 +903,60 @@
             refrescarPT();
             pintarMye();
         }
-
-                // ---------------------------------------------------
-        // LISTAS DINÁMICAS GENÉRICAS (armas-hab, profesiones, conocimientos)
-        // ---------------------------------------------------
-
-        const LISTAS_DINAMICAS = {
-            armasHabilidades: { contenedor: "lista-armas-hab", campoCsv: "armasHabilidades", idPool: "pha", coste: COSTES.habilidadArma, maximo: 5 },
-            profesiones:      { contenedor: "lista-profesiones", campoCsv: "profesiones",      idPool: "ppo", coste: COSTES.profesion,     maximo: 5 },
-            conocimientos:    { contenedor: "lista-conocimientos", campoCsv: "conocimientos", idPool: "pco", coste: COSTES.conocimiento,  maximo: 5 }
-        };
-
+    
         // ---------------------------------------------------
         // NORMALIZACIÓN DE NOMBRES
-        // Convierte "Conocimiento de la magia" → "conocimiento_de_la_magia"
         // ---------------------------------------------------
         function normalizarNombre(txt) {
             return txt
                 .toLowerCase()
                 .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")   // quita tildes
-                .replace(/\s+/g, "_")              // espacios a _
-                .replace(/[^a-z0-9_]/g, "");       // quita otros caracteres raros
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/\s+/g, "_")
+                .replace(/[^a-z0-9_]/g, "");
+        }
+
+        // Devuelve la columna de bonos que corresponde a una opción (id).
+        // Busca el campo `columna_bono` en el CSV correspondiente.
+        function columnaBonoDe(idOpcion, opcionesCSV) {
+            if (!idOpcion || !opcionesCSV) return null;
+            const op = opcionesCSV.find(o => o.id === idOpcion);
+            if (!op) return null;
+            // Devolvemos el nombre "humanizado" para que coincida con las claves de bonos
+            return (op.columna_bono || op.nombre || "").replace(/_/g, "_");
+        }
+
+        // ---------------------------------------------------
+        // LISTAS DINÁMICAS GENÉRICAS (armas-hab, profesiones, conocimientos)
+        // ---------------------------------------------------
+        const LISTAS_DINAMICAS = {
+            armasHabilidades: { contenedor: "lista-armas-hab",     campoCsv: "armasHabilidades", idPool: "pha", coste: COSTES.habilidadArma, maximo: 5, etiqueta: "Habilidad de arma" },
+            profesiones:      { contenedor: "lista-profesiones",   campoCsv: "profesiones",      idPool: "ppo", coste: COSTES.profesion,     maximo: 5, etiqueta: "Profesión" },
+            conocimientos:    { contenedor: "lista-conocimientos", campoCsv: "conocimientos",    idPool: "pco", coste: COSTES.conocimiento,  maximo: 5, etiqueta: "Conocimiento" }
+        };
+
+        function bonosParaLista(grupo) {
+            const cfg = LISTAS_DINAMICAS[grupo];
+            if (!cfg || !DATOS) return [];
+
+            const opciones = DATOS[cfg.campoCsv] || [];
+            const bonos = calcularBonos(ficha);
+            const resultado = [];
+
+            opciones.forEach(op => {
+                let valor = 0;
+                for (const col in bonos) {
+                    if (normalizarNombre(col) === normalizarNombre(op.columna_bono || op.nombre)) {
+                        valor += bonos[col];
+                        break;
+                    }
+                }
+                if (valor !== 0) {
+                    resultado.push({ id: op.id, nombre: op.nombre, valor });
+                }
+            });
+
+            return resultado;
         }
 
         function pintarListaDinamica(nombreGrupo) {
@@ -853,29 +965,60 @@
             if (!cont) return;
             cont.innerHTML = "";
 
+            // 1. Sincronizar
+            sincronizarAutomaticos(nombreGrupo, bonosParaLista(nombreGrupo));
+
+            // 2. Cabecera
+            const tabla = document.createElement("table");
+            tabla.className = "tabla-lista";
+            tabla.innerHTML =
+                `<thead><tr>
+                    <th style="text-align:left">${cfg.etiqueta || "Opción"}</th>
+                    <th>Valor</th>
+                    <th>Bono racial/clase</th>
+                    <th>Total</th>
+                    <th colspan="2">Ajustar</th>
+                </tr></thead><tbody></tbody>`;
+            cont.appendChild(tabla);
+            const tbody = tabla.querySelector("tbody");
+
+            // 3. Filas
             const opciones = DATOS ? DATOS[cfg.campoCsv] : [];
+            const bonosActuales = calcularBonos(ficha);
 
             ficha[nombreGrupo].forEach((entrada, indice) => {
-                const div = document.createElement("div");
-                div.style.marginBottom = "0.4em";
+                const valorBase = entrada.valor || 0;
+                const nombreBono = columnaBonoDe(entrada.id, opciones);
+                const bono = nombreBono ? (bonosActuales[nombreBono] || 0) : 0;
+                const total = valorBase + bono;
 
-                let htmlSelect = `<select data-lista-select="${nombreGrupo}" data-indice="${indice}">`;
+                const tr = document.createElement("tr");
+
+                const idsAutomaticosLista = ficha[nombreGrupo].filter(e => e.auto).map(e => e.id);
+
+                let htmlSelect = `<select data-lista-select="${nombreGrupo}" data-indice="${indice}"${entrada.auto ? " disabled" : ""}>`;
                 htmlSelect += `<option value="">—</option>`;
                 opciones.forEach(op => {
+                    if (!entrada.auto && idsAutomaticosLista.includes(op.id)) return;
                     const sel = (op.id === entrada.id) ? " selected" : "";
                     htmlSelect += `<option value="${op.id}"${sel}>${op.nombre}</option>`;
                 });
                 htmlSelect += `</select>`;
 
-                const htmlValor =
-                    `<button type="button" data-lista-menos="${nombreGrupo}" data-indice="${indice}">−</button>` +
-                    `<input type="number" value="${entrada.valor}" readonly style="width:3em">` +
-                    `<button type="button" data-lista-mas="${nombreGrupo}" data-indice="${indice}">+</button>`;
+                const htmlBotones =
+                    `<button type="button" data-lista-menos="${nombreGrupo}" data-indice="${indice}">−</button>
+                    <button type="button" data-lista-mas="${nombreGrupo}" data-indice="${indice}">+</button>`;
 
-                div.innerHTML = htmlSelect + " " + htmlValor;
-                cont.appendChild(div);
+                tr.innerHTML =
+                    `<td style="text-align:left">${htmlSelect}</td>` +
+                    `<td>${valorBase}</td>` +
+                    `<td>${bono >= 0 ? "+" + bono : bono}</td>` +
+                    `<td><strong>${total}</strong></td>` +
+                    `<td colspan="2">${htmlBotones}</td>`;
+                tbody.appendChild(tr);
             });
 
+            // 4. Listeners
             cont.querySelectorAll("[data-lista-select]").forEach(sel => {
                 sel.addEventListener("change", e => {
                     const grupo = e.target.dataset.listaSelect;
@@ -898,7 +1041,6 @@
                 });
             });
         }
-
         function sumarListaDinamica(grupo, i) {
             const cfg = LISTAS_DINAMICAS[grupo];
             const entrada = ficha[grupo][i];
@@ -938,6 +1080,7 @@
             refrescarPT();
             pintarListaDinamica(grupo);
         }
+
 
         // ---------------------------------------------------
         // GUARDAR / BORRAR

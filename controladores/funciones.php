@@ -180,7 +180,7 @@ function altaFicha($conexion)
     $fe = $_POST["fe"];
     $espiritualidad = $_POST["espiritualidad"]; 
     $naturaleza = $_POST["naturaleza"]; 
-    $corrupcion = $_POST["corrupcion"];
+    $caos = $_POST["caos"];
     $mye0 = $_POST["mye0"]; 
     $mye1 = $_POST["mye1"]; 
     $mye2 = $_POST["mye2"]; 
@@ -274,7 +274,7 @@ function altaFicha($conexion)
     fe,
     espiritualidad,
     naturaleza,
-    corrupcion,
+    caos,
     mye0,
     mye1,
     mye2,
@@ -359,7 +359,7 @@ function altaFicha($conexion)
     '$fe',
     '$espiritualidad',
     '$naturaleza',
-    '$corrupcion',
+    '$caos',
     '$mye0',
     '$mye1',
     '$mye2',

@@ -238,3 +238,53 @@ footer {
 footer a {
     color: #333;
 }
+
+/* ---------- Tablas de listas dinámicas (magia y estilos, armas, profesiones, conocimientos) ---------- */
+.tabla-lista {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.tabla-lista th,
+.tabla-lista td {
+    padding: 0.2em 0.4em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tabla-lista th:nth-child(1),
+.tabla-lista td:nth-child(1) { width: 30%; text-align: left; }
+
+.tabla-lista th:nth-child(2),
+.tabla-lista td:nth-child(2) { width: 10%; }
+
+.tabla-lista th:nth-child(3),
+.tabla-lista td:nth-child(3) { width: 15%; }
+
+.tabla-lista th:nth-child(4),
+.tabla-lista td:nth-child(4) { width: 10%; }
+
+.tabla-lista th:nth-child(5),
+.tabla-lista td:nth-child(5) { width: 35%; }
+
+.tabla-lista select {
+    max-width: 100%;
+}
+
+.tabla-lista select:disabled {
+    background-color: #eee;
+    color: #333;
+    opacity: 1;
+    cursor: default;
+}
+
+.tabla-lista button {
+    padding: 0.15em 0.5em;
+    font-size: 0.9em;
+}
+
+.tabla-lista input[type="number"] {
+    width: 2.5em;
+    text-align: center;
+}
