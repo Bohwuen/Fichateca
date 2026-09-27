@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichateca - Crear cuenta</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="../imagenes/Wow Logo 1.png" alt="Fichateca" class="logo">
+    </header>
+
+    <nav id="nav-principal" class="nav-principal"></nav>
+
+    <div id="barra-sesion" class="barra-sesion"></div>
+
+    <main class="contenedor">
+        <h1>Crear cuenta</h1>
+        <p><em>(Registro ficticio: no se guarda en ningún servidor, solo en tu navegador.)</em></p>
+
+        <form id="form-signup">
+            <p>
+                <label for="usuario">Nombre de usuario:</label><br>
+                <input type="text" id="usuario" name="usuario" required autofocus>
+            </p>
+            <p>
+                <label for="mail">Correo:</label><br>
+                <input type="email" id="mail" name="mail">
+            </p>
+            <p>
+                <label for="pass">Contraseña:</label><br>
+                <input type="password" id="pass" name="pass" required>
+            </p>
+            <p>
+                <button type="submit">Crear cuenta</button>
+            </p>
+        </form>
+
+        <p>¿Ya tienes cuenta? <a href="signin.html">Inicia sesión</a></p>
+    </main>
+
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0"
+                 src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+        </a><br>
+        Esta obra está bajo una
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional
+        </a>.
+    </footer>
+
+    <script src="../js/comun.js"></script>
+    <script>
+        pintarMenu("../", "");
+        pintarBarraSesion("../");
+
+        document.getElementById("form-signup").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = document.getElementById("usuario").value.trim();
+            if (!nombre) return;
+            iniciarSesion(nombre);
+            window.location.href = "../usuario/perfil.html";
+        });
+    </script>
+</body>
+</html>
