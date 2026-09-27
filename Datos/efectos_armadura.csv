@@ -1,0 +1,38 @@
+id,nombre,coste
+aceleracion,Aceleración,-1
+armadura,Armadura,-1
+aturdidor,Aturdidor,-3
+aumento_temporal,Aumento temporal,-1
+consumo,Consumo,2
+dano_fijo,Daño fijo,-2
+dano_fijo_arcano,Daño fijo arcano,-2
+dano_fijo_frio,Daño fijo de frío,-2
+dano_fijo_fuego,Daño fijo de fuego,-2
+dano_fijo_naturaleza,Daño fijo de naturaleza,-2
+dano_fijo_sombra,Daño fijo de sombra,-2
+dano_fijo_sagrado,Daño fijo sagrado,-2
+dano_fijo_vil,Daño fijo vil,-2
+efecto_inferior,Efecto inferior,-4
+efecto_mayor,Efecto mayor,-8
+efecto_menor,Efecto menor,-2
+efecto_normal,Efecto normal,-6
+efecto_potenciado,Efecto potenciado,-12
+efecto_superior,Efecto superior,-10
+mana,Maná,-1
+potenciar_magia,Potenciar magia,-2
+res_arcano,Res. arcano,-1
+res_fisica,Res. física,-1
+res_frio,Res. frío,-1
+res_fuego,Res. fuego,-1
+res_naturaleza,Res. naturaleza,-1
+res_sagrado,Res. sagrado,-1
+res_sombra,Res. sombra,-1
+res_vil,Res. vil,-1
+res_mana_d4,Res. maná D4,-1
+res_mana_d6,Res. maná D6,-3
+res_mana_d8,Res. maná D8,-4
+res_mana_d10,Res. maná D10,-5
+res_mana_d12,Res. maná D12,-6
+res_mana_d20,Res. maná D20,-10
+sanacion,Sanación,-1
+velocidad,Velocidad,-1

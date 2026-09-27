@@ -1,0 +1,95 @@
+id,nombre,coste
+aceleracion,Aceleración,1
+amenazante,Amenazante,1
+amplificar,Amplificar,2
+area,Área,2
+area_absoluta,Área absoluta,4
+armadura,Armadura,1
+aturdidor,Aturdidor,2
+aumento_tamano,Aumento de tamaño,1
+aumento_temporal,Aumento temporal,1
+caida_lenta,Caída lenta,1
+canalizado,Canalizado,0
+consume_combo,Consume combo,1
+consumo,Consumo,2
+control_mental,Control mental,4
+dano_arcano,Daño arcano,1
+dano_d10,Daño D10,8
+dano_d12,Daño D12,10
+dano_d20,Daño D20,12
+dano_d4,Daño D4,2
+dano_d6,Daño D6,4
+dano_d8,Daño D8,6
+dano_frio,Daño de frío,1
+dano_fuego,Daño de fuego,1
+dano_naturaleza,Daño de naturaleza,1
+dano_sombra,Daño de sombra,1
+dano_por_turno,Daño por turno,1
+dano_sagrado,Daño sagrado,1
+dano_vil,Daño vil,1
+desarmar,Desarmar,1
+desplazamiento,Desplazamiento,1
+disminucion_tamano,Disminución de tamaño,1
+efecto_inferior,Efecto inferior,4
+efecto_mayor,Efecto mayor,8
+efecto_menor,Efecto menor,2
+efecto_normal,Efecto normal,6
+efecto_potenciado,Efecto potenciado,12
+efecto_superior,Efecto superior,10
+empuje,Empuje,1
+enraizado,Enraizado,2
+escudo_d10,Escudo D10,4
+escudo_d12,Escudo D12,5
+escudo_d20,Escudo D20,6
+escudo_d4,Escudo D4,1
+escudo_d6,Escudo D6,2
+escudo_d8,Escudo D8,3
+inbloqueable,Inbloqueable,1
+inmovilizacion,Inmovilización,1
+interruptor,Interruptor,2
+invocacion,Invocación,1
+levitacion,Levitación,1
+salud,Salud,1
+mana,Maná,0
+penetracion,Penetración,2
+perdida_control,Pérdida de control,2
+potenciar,Potenciar,1
+potenciar_arcano,Potenciar arcano,2
+potenciar_frio,Potenciar frío,2
+potenciar_fuego,Potenciar fuego,2
+potenciar_magia,Potenciar magia,2
+potenciar_naturaleza,Potenciar naturaleza,2
+potenciar_sagrado,Potenciar sagrado,2
+potenciar_sombra,Potenciar sombra,2
+potenciar_vil,Potenciar vil,2
+precision,Precisión,2
+punto_combo,Punto combo,1
+ralentizacion,Ralentización,1
+res_arcano,Res. arcano,1
+res_fisica,Res. física,1
+res_frio,Res. frío,1
+res_fuego,Res. fuego,1
+res_naturaleza,Res. naturaleza,1
+res_sagrado,Res. sagrado,1
+res_sombra,Res. sombra,1
+res_vil,Res. vil,1
+rest_mana_d10,Rest. maná D10,0
+rest_mana_d12,Rest. maná D12,0
+rest_mana_d20,Rest. maná D20,0
+rest_mana_d4,Rest. maná D4,0
+rest_mana_d6,Rest. maná D6,0
+rest_mana_d8,Rest. maná D8,0
+resurreccion_impura,Resurrección impura,5
+resurreccion_pura,Resurrección pura,10
+sanacion,Sanación,1
+sanacion_d10,Sanación D10,8
+sanacion_d12,Sanación D12,10
+sanacion_d20,Sanación D20,12
+sanacion_d4,Sanación D4,2
+sanacion_d6,Sanación D6,4
+sanacion_d8,Sanación D8,6
+sanacion_fija,Sanación fija,2
+secuela_dano,Secuela: daño,1
+silencio,Silencio,2
+sin_prueba,Sin prueba,1
+velocidad,Velocidad,1

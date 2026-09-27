@@ -1,0 +1,16 @@
+id,nombre,dado,tipo_dano
+espada_1m,Espada a una mano,1D6,Cortante
+espada_2m,Espada a dos manos,1D8,Cortante
+maza_1m,Maza a una mano,1D6,Contundente
+maza_2m,Maza a dos manos,1D8,Contundente
+hacha_1m,Hacha a una mano,1D6,Seccionador
+hacha_2m,Hacha a dos manos,1D8,Seccionador
+arco,Arco,1D6,Punzante
+ballesta,Ballesta,1D6,Punzante y Penetrante
+armas_fuego,Armas de fuego,1D6,Punzante y Penetrante
+baston,Bastón,1D6,Incapacitante
+varita,Varita,1D6,Daño mágico
+daga,Daga,1D4,Punzante
+armas_puno,Armas de puño,1D4,Incapacitante/Cortante/Punzante
+armas_asta,Armas de asta,1D8,Incapacitante/Cortante/Punzante
+escudo,Escudo,1D4,Contundente

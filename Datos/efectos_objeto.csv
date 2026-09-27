@@ -1,0 +1,99 @@
+id,nombre,coste
+aceleracion,Aceleración,-1
+amenazante,Amenazante,-1
+amplificar,Amplificar,-1
+area,Área,-2
+area_absoluta,Área absoluta,-6
+armadura,Armadura,-1
+aturdidor,Aturdidor,-3
+aumento_tamano,Aumento de tamaño,-3
+aumento_temporal,Aumento temporal,-1
+caida_lenta,Caída lenta,-1
+canalizado,Canalizado,0
+consumo,Consumo,2
+control_mental,Control mental,-3
+dano_d4,Daño D4,-3
+dano_d6,Daño D6,-4
+dano_d8,Daño D8,-5
+dano_d10,Daño D10,-6
+dano_d12,Daño D12,-10
+dano_d20,Daño D20,-2
+dano_arcano,Daño arcano,-1
+dano_frio,Daño de frío,-1
+dano_fuego,Daño de fuego,-1
+dano_naturaleza,Daño de naturaleza,-1
+dano_sombra,Daño de sombra,-1
+dano_sagrado,Daño sagrado,-1
+dano_vil,Daño vil,-1
+dano_por_turno,Daño por turno,-1
+dano_fijo,Daño fijo,-2
+dano_fijo_arcano,Daño fijo arcano,-2
+dano_fijo_frio,Daño fijo de frío,-2
+dano_fijo_fuego,Daño fijo de fuego,-2
+dano_fijo_naturaleza,Daño fijo de naturaleza,-2
+dano_fijo_sombra,Daño fijo de sombra,-2
+dano_fijo_sagrado,Daño fijo sagrado,-2
+dano_fijo_vil,Daño fijo vil,-2
+desplazamiento,Desplazamiento,-2
+desarmar,Desarmar,-1
+disminucion_tamano,Disminución de tamaño,-1
+efecto_inferior,Efecto inferior,-4
+efecto_mayor,Efecto mayor,-8
+efecto_menor,Efecto menor,-2
+efecto_normal,Efecto normal,-6
+efecto_potenciado,Efecto potenciado,-12
+efecto_superior,Efecto superior,-10
+empuje,Empuje,-1
+enraizado,Enraizado,-1
+escudo_d4,Escudo D4,-1
+escudo_d6,Escudo D6,-2
+escudo_d8,Escudo D8,-4
+escudo_d10,Escudo D10,-6
+escudo_d12,Escudo D12,-8
+escudo_d20,Escudo D20,-10
+inmovilizacion,Inmovilización,-2
+interruptor,Interruptor,-1
+invocacion,Invocación,-1
+levitacion,Levitación,-1
+mana,Maná,-1
+penetracion,Penetración,-1
+perdida_control,Pérdida de control,-1
+potenciar,Potenciar,-1
+potenciar_arcano,Potenciar arcano,-1
+potenciar_frio,Potenciar frío,-1
+potenciar_fuego,Potenciar fuego,-1
+potenciar_naturaleza,Potenciar naturaleza,-1
+potenciar_sombra,Potenciar sombra,-1
+potenciar_sagrado,Potenciar sagrado,-1
+potenciar_vil,Potenciar vil,-1
+potenciar_magia,Potenciar magia,-2
+precision,Precisión,-1
+punto_combo,Punto de combo,-1
+secuela_dano,Secuela: daño,-1
+ralentizacion,Ralentización,-1
+rest_mana_d4,Rest. maná D4,-1
+rest_mana_d6,Rest. maná D6,-3
+rest_mana_d8,Rest. maná D8,-4
+rest_mana_d10,Rest. maná D10,-5
+rest_mana_d12,Rest. maná D12,-6
+rest_mana_d20,Rest. maná D20,-10
+res_arcano,Res. arcano,-1
+res_fisica,Res. física,-1
+res_frio,Res. frío,-1
+res_fuego,Res. fuego,-1
+res_naturaleza,Res. naturaleza,-1
+res_sagrado,Res. sagrado,-1
+res_sombra,Res. sombra,-1
+res_vil,Res. vil,-1
+resurreccion_impura,Resurrección impura,-5
+resurreccion_pura,Resurrección pura,-10
+sanacion_fija,Sanación fija,-2
+sanacion,Sanación,-1
+sanacion_d4,Sanación D4,-1
+sanacion_d6,Sanación D6,-3
+sanacion_d8,Sanación D8,-4
+sanacion_d10,Sanación D10,-5
+sanacion_d12,Sanación D12,-6
+sanacion_d20,Sanación D20,-10
+silencio,Silencio,-1
+velocidad,Velocidad,-1

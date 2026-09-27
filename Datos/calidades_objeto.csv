@@ -1,0 +1,7 @@
+id,nombre,valor
+basura,Basura,0
+comun,Común,1
+poco_comun,Poco común,2
+raro,Raro,3
+epico,Épico,4
+legendario,Legendario,5

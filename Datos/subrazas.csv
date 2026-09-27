@@ -1,0 +1,30 @@
+id,raza_id,nombre
+humano_ventormenta,humano,Ventormenta
+humano_strom,humano,Strom
+humano_lordaeron,humano,Lordaeron
+humano_dalaran,humano,Dalaran
+humano_gilneas,humano,Gilneas
+humano_kultiras,humano,Kul Tiras
+humano_alterac,humano,Alterac
+enano_barbabronce,enano,Barbabronce
+enano_martillo_salvaje,enano,Martillo Salvaje
+enano_hierro_negro,enano,Hierro Negro
+enano_terraneo,terraneo,Terráneo
+gnomo_gnomeregan,gnomo,Gnomeregan
+gnomo_mecandria,gnomo,Mecandria
+elfo_noche_darnassiano,elfo_noche,Darnassiano
+elfo_noche_altonato,elfo_noche,Altonato
+quel_dorei,alto_elfo,Quel'Dorei
+draenei_exiliado,draenei,Exiliado
+draenei_forjaluz,draenei,Forjado por la luz
+manari,draenei,Man'ari
+orco_durotar,orco,Durotar
+orco_maghar,orco,Mag'Har
+trol_lanza_negra,trol,Lanza Negra
+trol_zandalari,trol,Zandalari
+trol_farraki,trol,Farraki
+trol_gurubashi,trol,Gurubashi
+trol_amani,trol,Amani
+trol_drakkari,trol,Drakkari
+tauren_mulgore,tauren,Mulgore
+tauren_monte_alto,tauren,Monte Alto
