@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichateca - Ficha</title>
+    <link rel="stylesheet" href="../../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="../../imagenes/Wow Logo 1.png" alt="Fichateca" class="logo">
+    </header>
+
+    <nav id="nav-principal" class="nav-principal"></nav>
+
+    <div id="barra-sesion" class="barra-sesion"></div>
+
+    <main class="contenedor-ancho">
+        <h1 id="titulo-pagina">Crear ficha</h1>
+        <p><a href="lista.html">← Volver a mis fichas</a></p>
+
+        <div id="aviso"></div>
+
+        <form id="form-ficha">
+
+            <!-- ================= DATOS ================= -->
+            <section class="bloque">
+                <h2>Datos</h2>
+
+                <p>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" required>
+                </p>
+                <p>
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos">
+                </p>
+                <p>
+                    <label for="titulo">Título:</label>
+                    <input type="text" id="titulo">
+                </p>
+                <p>
+                    <label for="nacimiento">Nacimiento:</label>
+                    <input type="text" id="nacimiento">
+                </p>
+                <p>
+                    <label for="faccion">Facción:</label>
+                    <select id="faccion">
+                        <option value="">—</option>
+                        <option>Horda</option>
+                        <option>Alianza</option>
+                        <option>Neutral</option>
+                        <option>Independiente</option>
+                    </select>
+                </p>
+                <p>
+                    <label for="alineamiento">Alineamiento:</label>
+                    <input type="text" id="alineamiento">
+                </p>
+                <p>
+                    <label for="raza">Raza:</label>
+                    <select id="raza"></select>
+                </p>
+                <p id="fila-subraza" style="display:none;">
+                    <label for="subraza">Subraza:</label>
+                    <select id="subraza"></select>
+                </p>
+                <p>
+                    <label for="clase">Clase:</label>
+                    <select id="clase"></select>
+                </p>
+                <p>
+                    <label for="nivel">Nivel:</label>
+                    <button type="button" id="nivel-menos">−</button>
+                    <input type="number" id="nivel" value="1" min="1" max="25" readonly>
+                    <button type="button" id="nivel-mas">+</button>
+                </p>
+                <p>
+                    <label for="pt">Puntos de Trasfondo:</label>
+                    <input type="number" id="pt" readonly>
+                </p>
+            </section>
+
+            <!-- ================= ATRIBUTOS ================= -->
+            <section class="bloque bloque-atributos">
+                <h2>Atributos</h2>
+                <p>
+                    <label>Puntos de atributo:</label>
+                    <input type="number" id="pa" value="5" min="0" max="5" readonly>
+                </p>
+
+                <table id="tabla-atributos">
+                    <thead>
+                        <tr>
+                            <th>Atributo</th>
+                            <th>Valor</th>
+                            <th>Bono racial/clase</th>
+                            <th>Total</th>
+                            <th colspan="2">Ajustar</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- ================= DEFENSAS ================= -->
+            <section class="bloque bloque-defensas">
+                <h2>Defensas</h2>
+                <p>
+                    <label>Puntos de defensa:</label>
+                    <input type="number" id="pd" value="3" min="0" max="3" readonly>
+                </p>
+
+                <table id="tabla-defensas">
+                    <thead>
+                        <tr>
+                            <th>Defensa</th>
+                            <th>Valor</th>
+                            <th>Bono racial/clase</th>
+                            <th>Total</th>
+                            <th colspan="2">Ajustar</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- ================= HABILIDADES ================= -->
+            <section class="bloque bloque-habilidades">
+                <h2>Habilidades</h2>
+                <p>
+                    <label>Puntos de habilidad:</label>
+                    <input type="number" id="ph" value="10" min="0" max="10" readonly>
+                </p>
+
+                <table id="tabla-habilidades">
+                    <thead>
+                        <tr>
+                            <th>Habilidad</th>
+                            <th>Valor</th>
+                            <th>Bono racial/clase</th>
+                            <th>Total</th>
+                            <th colspan="2">Ajustar</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+            <!-- ================= MAGIA ================= -->
+            <section class="bloque bloque-magia">
+                <h2>Magia</h2>
+                <p>
+                    <label>Puntos de magia:</label>
+                    <input type="number" id="phm" value="1" min="0" max="1" readonly>
+                </p>
+
+                <table id="tabla-magia">
+                    <thead>
+                        <tr>
+                            <th>Habilidad mágica</th>
+                            <th>Valor</th>
+                            <th>Bono racial/clase</th>
+                            <th>Total</th>
+                            <th colspan="2">Ajustar</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- ================= MAGIA Y ESTILOS ================= -->
+            <section class="bloque bloque-magia">
+                <h2>Magia y estilos</h2>
+                <p>
+                    <label>Puntos de magia y estilos:</label>
+                    <input type="number" id="pmye" value="3" min="0" max="3" readonly>
+                </p>
+
+                <div id="lista-mye"></div>
+
+                <p>
+                    <button type="button" id="btn-add-mye">+ Añadir magia/estilo</button>
+                    <button type="button" id="btn-del-mye">− Quitar último</button>
+                </p>
+            </section>
+                        <!-- ================= HABILIDADES DE ARMAS ================= -->
+            <section class="bloque bloque-armas">
+                <h2>Habilidades de armas</h2>
+                <p>
+                    <label>Puntos de habilidades de armas:</label>
+                    <input type="number" id="pha" value="5" min="0" max="5" readonly>
+                </p>
+
+                <div id="lista-armas-hab"></div>
+
+                <p>
+                    <button type="button" id="btn-add-arma-hab">+ Añadir habilidad de arma</button>
+                    <button type="button" id="btn-del-arma-hab">− Quitar última</button>
+                </p>
+            </section>
+
+            <!-- ================= PROFESIONES ================= -->
+            <section class="bloque bloque-profesiones">
+                <h2>Profesiones y oficios</h2>
+                <p>
+                    <label>Puntos de profesiones:</label>
+                    <input type="number" id="ppo" value="2" min="0" max="2" readonly>
+                </p>
+
+                <div id="lista-profesiones"></div>
+
+                <p>
+                    <button type="button" id="btn-add-profesion">+ Añadir profesión</button>
+                    <button type="button" id="btn-del-profesion">− Quitar última</button>
+                </p>
+            </section>
+
+            <!-- ================= CONOCIMIENTOS ================= -->
+            <section class="bloque bloque-conocimientos">
+                <h2>Conocimientos</h2>
+                <p>
+                    <label>Puntos de conocimientos:</label>
+                    <input type="number" id="pco" value="4" min="0" max="4" readonly>
+                </p>
+
+                <div id="lista-conocimientos"></div>
+
+                <p>
+                    <button type="button" id="btn-add-conocimiento">+ Añadir conocimiento</button>
+                    <button type="button" id="btn-del-conocimiento">− Quitar último</button>
+                </p>
+            </section>
+
+                        <!-- ================= RESISTENCIAS ================= -->
+            <section class="bloque bloque-resistencias">
+                <h2>Resistencias</h2>
+                <table id="tabla-resistencias">
+                    <thead>
+                        <tr>
+                            <th>Resistencia</th>
+                            <th>Valor</th>
+                            <th>Bono racial/clase</th>
+                            <th>Total</th>
+                            <th colspan="2">Ajustar</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+
+            <!-- ================= ACTUALMENTE ================= -->
+            <section class="bloque">
+                <h2>Actualmente</h2>
+                <p>
+                    <label for="salud">Salud:</label>
+                    <input type="number" id="salud">
+                    <label for="armadura-act">Armadura:</label>
+                    <input type="number" id="armadura-act">
+                    <label for="velocidad">Velocidad:</label>
+                    <input type="number" id="velocidad">
+                </p>
+                <p>
+                    <label>Tipo de armadura:</label>
+                    <label><input type="radio" name="tipo-armadura" value="tela"> Tela</label>
+                    <label><input type="radio" name="tipo-armadura" value="cuero"> Cuero</label>
+                    <label><input type="radio" name="tipo-armadura" value="malla"> Malla</label>
+                    <label><input type="radio" name="tipo-armadura" value="placas"> Placas</label>
+                    <label><input type="checkbox" id="escudo-equipado"> Escudo</label>
+                </p>
+                <p>
+                    <label for="yelmo">Yelmo:</label><input type="text" id="yelmo">
+                    <label for="torso">Torso:</label><input type="text" id="torso">
+                </p>
+                <p>
+                    <label for="manos">Manos:</label><input type="text" id="manos">
+                    <label for="pies">Pies:</label><input type="text" id="pies">
+                </p>
+                <p>
+                    <label for="capa">Capa:</label><input type="text" id="capa">
+                    <label for="escudo-nombre">Escudo:</label><input type="text" id="escudo-nombre">
+                </p>
+            </section>
+
+            <!-- ================= APARIENCIA ================= -->
+            <section class="bloque">
+                <h2>Apariencia</h2>
+                <textarea id="descripcion" rows="4"></textarea>
+            </section>
+
+            <!-- ================= TRASFONDO ================= -->
+            <section class="bloque">
+                <h2>Trasfondo</h2>
+                <textarea id="trasfondo" rows="4"></textarea>
+            </section>
+
+            <!-- ================= INVENTARIO ================= -->
+            <section class="bloque">
+                <h2>Inventario</h2>
+                <textarea id="inventario" rows="4"></textarea>
+                <p>
+                    <label>Oro:</label><input type="number" id="oro" style="width:5em">
+                    <label>Plata:</label><input type="number" id="plata" style="width:5em">
+                    <label>Cobre:</label><input type="number" id="cobre" style="width:5em">
+                </p>
+            </section>
+
+            <!-- ================= RACIALES ESPECIALES ================= -->
+            <section class="bloque">
+                <h2>Raciales especiales</h2>
+                <p id="raciales-especiales"><em>Elige una raza.</em></p>
+            </section>
+
+            <!-- ================= BOTONES ================= -->
+            <p>
+                <button type="button" id="btn-guardar">Guardar ficha</button>
+                <button type="button" id="btn-borrar" style="display:none;background:#b00020;">Borrar ficha</button>
+                <button type="reset">Resetear</button>
+            </p>
+            <p id="mensaje-guardado"></p>
+
+        </form>
+    </main>
+
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0"
+                 src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+        </a><br>
+        Esta obra está bajo una
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional
+        </a>.
+    </footer>
+
+    <!-- ============ SCRIPTS ============ -->
+    <script>window.RUTA_BASE = "../../";</script>
+    <script src="../../js/comun.js"></script>
+    <script src="../../js/csv.js"></script>
+    <script src="../../js/motor.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        exigirSesion("../../login/signin.html");
+        pintarMenu("../../", "");
+        pintarBarraSesion("../../");
+
+        // ---------------------------------------------------
+        // MODO: crear o editar
+        // ---------------------------------------------------
+        const params = new URLSearchParams(window.location.search);
+        const idFicha = params.get("id");
+        const modoEdicion = !!idFicha;
+
+        let ficha;
+        if (modoEdicion) {
+            ficha = obtenerFicha(idFicha);
+            if (!ficha) {
+                document.getElementById("aviso").innerHTML =
+                    '<p class="aviso-error">No se ha encontrado la ficha.</p>';
+                return;
+            }
+            document.getElementById("titulo-pagina").textContent = "Editar ficha";
+            document.getElementById("btn-borrar").style.display = "inline-block";
+        } else {
+            ficha = fichaEnBlanco();
+        }
+
+        // ---------------------------------------------------
+        // CONSTANTES
+        // ---------------------------------------------------
+        const ATRIBUTOS = [
+            { id: "vigor",        nombre: "Vigor" },
+            { id: "destreza",     nombre: "Destreza" },
+            { id: "inteligencia", nombre: "Inteligencia" },
+            { id: "voluntad",     nombre: "Voluntad" },
+            { id: "percepcion",   nombre: "Percepción" },
+            { id: "aguante",      nombre: "Aguante" },
+            { id: "energia",      nombre: "Energía" }
+        ];
+
+        const DEFENSAS = [
+            { id: "parada",    nombre: "Parada" },
+            { id: "esquivar",  nombre: "Esquivar" },
+            { id: "bloqueo",   nombre: "Bloqueo" },
+            { id: "metamagia", nombre: "Metamagia" }
+        ];
+
+        const HABILIDADES = [
+            { id: "atletismo",           nombre: "Atletismo" },
+            { id: "robo",                nombre: "Robo" },
+            { id: "sigilo",              nombre: "Sigilo" },
+            { id: "forzar_cerraduras",   nombre: "Forzar cerraduras" },
+            { id: "subsistencia",        nombre: "Subsistencia" },
+            { id: "trepar_escalar",      nombre: "Trepar/Escalar" },
+            { id: "buscar",              nombre: "Buscar" },
+            { id: "alerta",              nombre: "Alerta" },
+            { id: "aprendizaje",         nombre: "Aprendizaje" },
+            { id: "interpretacion",      nombre: "Interpretación" },
+            { id: "subterfugio",         nombre: "Subterfugio" },
+            { id: "trato_con_animales",  nombre: "Trato con animales" },
+            { id: "intimidacion",        nombre: "Intimidación" },
+            { id: "carisma",             nombre: "Carisma" }
+        ];
+
+        const MAGIA = [
+            { id: "taumaturgia",   nombre: "Taumaturgia" },
+            { id: "fe",            nombre: "Fe" },
+            { id: "espiritualidad",nombre: "Espiritualidad" },
+            { id: "naturaleza",    nombre: "Naturaleza" },
+            { id: "corrupcion",    nombre: "Corrupción" }
+        ];
+
+        const MAX_ARMAS_HAB = 18;
+        const MAX_PROFESIONES = 3;
+        const MAX_CONOCIMIENTOS = 6;
+
+        const RESISTENCIAS = [
+            { id: "res_fisica",       nombre: "Resistencia física" },
+            { id: "res_arcana",       nombre: "Resistencia arcana" },
+            { id: "res_fuego",        nombre: "Resistencia al fuego" },
+            { id: "res_frio",         nombre: "Resistencia al frío" },
+            { id: "res_vil",          nombre: "Resistencia vil" },
+            { id: "res_sombra",       nombre: "Resistencia a la sombra" },
+            { id: "res_naturaleza",   nombre: "Resistencia a la naturaleza" },
+            { id: "res_luz",          nombre: "Resistencia a la luz" }
+        ];
+
+        const POOL_MAX = { pa: 5, pd: 3, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 4 };
+        // ---------------------------------------------------
+        // CARGA INICIAL
+        // ---------------------------------------------------
+        cargarDatosMotor().then(() => {
+            rellenarSelect("raza", DATOS.razas, "id", "nombre");
+            rellenarSelect("clase", DATOS.clases, "id", "nombre");
+            if (modoEdicion) cargarValores();
+            pintarTodasTablas();
+            refrescarPT();
+            enlazarEventos();
+        });
+
+        function rellenarSelect(idSelect, filas, campoValor, campoTexto) {
+            const sel = document.getElementById(idSelect);
+            sel.innerHTML = '<option value="">—</option>' +
+                filas.map(f => `<option value="${f[campoValor]}">${f[campoTexto]}</option>`).join("");
+        }
+
+        function cargarValores() {
+            document.getElementById("nombre").value       = ficha.nombre || "";
+            document.getElementById("apellidos").value    = ficha.apellidos || "";
+            document.getElementById("titulo").value       = ficha.titulo || "";
+            document.getElementById("nacimiento").value   = ficha.nacimiento || "";
+            document.getElementById("faccion").value      = ficha.faccion || "";
+            document.getElementById("alineamiento").value = ficha.alineamiento || "";
+            document.getElementById("raza").value         = ficha.raza || "";
+            document.getElementById("clase").value        = ficha.clase || "";
+            document.getElementById("nivel").value        = ficha.nivel || 1;
+            document.getElementById("pt").value           = ficha.pt || 0;
+
+            actualizarSubrazas();
+            document.getElementById("subraza").value = ficha.subraza || "";
+            actualizarRacialesEspeciales();
+                        // Actualmente
+            document.getElementById("salud").value        = ficha.actual.salud || 0;
+            document.getElementById("armadura-act").value = ficha.actual.armadura || 0;
+            document.getElementById("velocidad").value    = ficha.actual.velocidad || 0;
+            document.getElementById("yelmo").value        = ficha.actual.yelmo || "";
+            document.getElementById("torso").value        = ficha.actual.torso || "";
+            document.getElementById("manos").value        = ficha.actual.manos || "";
+            document.getElementById("pies").value         = ficha.actual.pies || "";
+            document.getElementById("capa").value         = ficha.actual.capa || "";
+            document.getElementById("escudo-nombre").value = ficha.actual.escudoNombre || "";
+            document.getElementById("escudo-equipado").checked = !!ficha.actual.escudo;
+
+            document.querySelectorAll('input[name="tipo-armadura"]').forEach(radio => {
+                radio.checked = (radio.value === ficha.actual.tipoArmadura);
+            });
+
+            // Texto
+            document.getElementById("descripcion").value = ficha.descripcion || "";
+            document.getElementById("trasfondo").value   = ficha.trasfondo || "";
+            document.getElementById("inventario").value  = ficha.inventario || "";
+
+            // Dinero
+            document.getElementById("oro").value    = ficha.dinero.oro || 0;
+            document.getElementById("plata").value  = ficha.dinero.plata || 0;
+            document.getElementById("cobre").value  = ficha.dinero.cobre || 0;
+        }
+
+        // ---------------------------------------------------
+        // TABLAS
+        // ---------------------------------------------------
+        function pintarTodasTablas() {
+            pintarTablaGenerica("#tabla-atributos tbody", ATRIBUTOS, ficha.atributos, "atributo");
+            pintarTablaGenerica("#tabla-defensas tbody", DEFENSAS, ficha.defensas, "defensa");
+            pintarTablaGenerica("#tabla-habilidades tbody", HABILIDADES, ficha.habilidades, "habilidad");
+            pintarTablaGenerica("#tabla-magia tbody", MAGIA, ficha.magia, "magia");
+            pintarMye();
+            pintarListaDinamica("armasHabilidades");
+            pintarListaDinamica("profesiones");
+            pintarListaDinamica("conocimientos");
+            pintarTablaGenerica("#tabla-resistencias tbody", RESISTENCIAS, ficha.resistencias, "resistencia");
+        }
+
+        function pintarTablaGenerica(selector, lista, valores, tipo) {
+            const tbody = document.querySelector(selector);
+            if (!tbody) return;
+            tbody.innerHTML = "";
+
+            const bonos = calcularBonos(ficha);
+
+            lista.forEach(item => {
+                const valorBase = valores[item.id] || 0;
+                const bono = bonos[nombreColumna(item.id)] || 0;
+                const total = valorBase + bono;
+
+                const tr = document.createElement("tr");
+                tr.innerHTML =
+                    `<td>${item.nombre}</td>` +
+                    `<td>${valorBase}</td>` +
+                    `<td>${bono >= 0 ? "+" + bono : bono}</td>` +
+                    `<td><strong>${total}</strong></td>` +
+                    `<td><button type="button" data-tipo="${tipo}" data-accion="menos" data-id="${item.id}">−</button></td>` +
+                    `<td><button type="button" data-tipo="${tipo}" data-accion="mas" data-id="${item.id}">+</button></td>`;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function nombreColumna(id) {
+            const mapa = {
+                vigor: "Vigor", destreza: "Destreza", inteligencia: "Inteligencia",
+                voluntad: "Voluntad", percepcion: "Percepcion", aguante: "Aguante",
+                energia: "Energia",
+                parada: "Parada_y_bloqueo", esquivar: "Esquivar", bloqueo: "Parada_y_bloqueo",
+                metamagia: "Metamagia",
+                atletismo: "Atletismo", robo: "Robo", sigilo: "Sigilo",
+                forzar_cerraduras: "Forzar_cerraduras", subsistencia: "Subsistencia",
+                trepar_escalar: "Trepar_escalar", buscar: "Buscar", alerta: "Alerta",
+                aprendizaje: "Aprendizaje", interpretacion: "Interpretacion",
+                subterfugio: "Subterfugio", trato_con_animales: "Trato_con_animales",
+                intimidacion: "Intimidacion", carisma: "Carisma"
+            };
+            return mapa[id] || id;
+        }
+
+        // ---------------------------------------------------
+        // EVENTOS
+        // ---------------------------------------------------
+                function enlazarEventos() {
+
+            document.getElementById("raza").addEventListener("change", e => {
+                ficha.raza = e.target.value;
+                ficha.subraza = "";
+                actualizarSubrazas();
+                actualizarRacialesEspeciales();
+                pintarTodasTablas();
+            });
+
+            document.getElementById("subraza").addEventListener("change", e => {
+                ficha.subraza = e.target.value;
+                actualizarRacialesEspeciales();
+                pintarTodasTablas();
+            });
+
+            document.getElementById("clase").addEventListener("change", e => {
+                ficha.clase = e.target.value;
+                pintarTodasTablas();
+            });
+
+            document.getElementById("nivel-menos").addEventListener("click", () => cambiarNivel(-1));
+            document.getElementById("nivel-mas").addEventListener("click", () => cambiarNivel(+1));
+
+            document.querySelectorAll("#tabla-atributos, #tabla-defensas, #tabla-habilidades, #tabla-magia, #tabla-resistencias").forEach(tabla => {                tabla.addEventListener("click", e => {
+                    const btn = e.target.closest("button");
+                    if (!btn) return;
+                    const tipo = btn.dataset.tipo;
+                    const id = btn.dataset.id;
+                    const accion = btn.dataset.accion;
+
+                    if (tipo === "atributo") {
+                        if (accion === "mas") sumarItem("atributos", "pa", COSTES.atributo, 5, id);
+                        else restarItem("atributos", "pa", COSTES.atributo, id);
+                    } else if (tipo === "defensa") {
+                        if (accion === "mas") sumarItem("defensas", "pd", COSTES.defensa, 3, id);
+                        else restarItem("defensas", "pd", COSTES.defensa, id);
+                    } else if (tipo === "habilidad") {
+                        if (accion === "mas") sumarItem("habilidades", "ph", COSTES.habilidad, 5, id);
+                        else restarItem("habilidades", "ph", COSTES.habilidad, id);
+                    } else if (tipo === "magia") {
+                        if (accion === "mas") sumarItem("magia", "phm", COSTES.magia, 5, id);
+                        else restarItem("magia", "phm", COSTES.magia, id);
+                    }
+                    else if (tipo === "resistencia") {
+                    // Las resistencias no tienen pool: se modifican directamente
+                    if (accion === "mas" && ficha.resistencias[id] < 99) {
+                        ficha.resistencias[id]++;
+                    } else if (accion === "menos" && ficha.resistencias[id] > 0) {
+                        ficha.resistencias[id]--;
+                    }
+                }
+
+                    pintarTodasTablas();
+                });
+            });
+
+            document.getElementById("btn-add-mye").addEventListener("click", () => {
+                if (ficha.mye.length >= MAX_MYE) return;
+                ficha.mye.push({ id: "", valor: 0 });
+                pintarMye();
+            });
+
+            document.getElementById("btn-del-mye").addEventListener("click", () => {
+                if (ficha.mye.length === 0) return;
+                const ultima = ficha.mye[ficha.mye.length - 1];
+                if (ultima.valor > 0) {
+                    ficha.pt += ultima.valor * COSTES.mye;
+                    refrescarPT();
+                }
+                ficha.mye.pop();
+                pintarMye();
+            });
+
+            // ----- NUEVOS: Botones de añadir/quitar de las listas dinámicas -----
+
+            document.getElementById("btn-add-arma-hab").addEventListener("click", () => {
+                if (ficha.armasHabilidades.length >= MAX_ARMAS_HAB) return;
+                ficha.armasHabilidades.push({ id: "", valor: 0 });
+                pintarListaDinamica("armasHabilidades");
+            });
+            document.getElementById("btn-del-arma-hab").addEventListener("click", () => {
+                quitarUltimaDeLista("armasHabilidades", COSTES.habilidadArma, MAX_ARMAS_HAB);
+            });
+
+            document.getElementById("btn-add-profesion").addEventListener("click", () => {
+                if (ficha.profesiones.length >= MAX_PROFESIONES) return;
+                ficha.profesiones.push({ id: "", valor: 0 });
+                pintarListaDinamica("profesiones");
+            });
+            document.getElementById("btn-del-profesion").addEventListener("click", () => {
+                quitarUltimaDeLista("profesiones", COSTES.profesion, MAX_PROFESIONES);
+            });
+
+            document.getElementById("btn-add-conocimiento").addEventListener("click", () => {
+                if (ficha.conocimientos.length >= MAX_CONOCIMIENTOS) return;
+                ficha.conocimientos.push({ id: "", valor: 0 });
+                pintarListaDinamica("conocimientos");
+            });
+            document.getElementById("btn-del-conocimiento").addEventListener("click", () => {
+                quitarUltimaDeLista("conocimientos", COSTES.conocimiento, MAX_CONOCIMIENTOS);
+            });
+
+            // ----- Guardar / Borrar -----
+
+            document.getElementById("btn-guardar").addEventListener("click", guardar);
+            if (modoEdicion) {
+                document.getElementById("btn-borrar").addEventListener("click", borrar);
+            }
+        }
+
+        function actualizarSubrazas() {
+            const fila = document.getElementById("fila-subraza");
+            const sel = document.getElementById("subraza");
+            const subs = subrazasDe(ficha.raza);
+
+            if (subs.length === 0) {
+                fila.style.display = "none";
+                sel.innerHTML = "";
+                return;
+            }
+            fila.style.display = "block";
+            sel.innerHTML = '<option value="">—</option>' +
+                subs.map(s => `<option value="${s.id}">${s.nombre}</option>`).join("");
+        }
+
+        function actualizarRacialesEspeciales() {
+            const origen = ficha.subraza || ficha.raza;
+            const cont = document.getElementById("raciales-especiales");
+            if (!origen) { cont.innerHTML = "<em>Elige una raza.</em>"; return; }
+            const desc = racialesEspecialesDe(origen);
+            cont.innerHTML = desc || "<em>Sin raciales especiales.</em>";
+        }
+
+        // ---------------------------------------------------
+        // NIVEL Y PT
+        // ---------------------------------------------------
+        function cambiarNivel(delta) {
+            const nuevo = ficha.nivel + delta;
+            if (nuevo < 1 || nuevo > 25) return;
+            ficha.nivel = nuevo;
+            ficha.pt += delta * COSTES.nivel;
+            document.getElementById("nivel").value = ficha.nivel;
+            document.getElementById("pt").value = ficha.pt;
+        }
+
+        function refrescarPT() {
+            document.getElementById("pt").value = ficha.pt;
+        }
+
+        // ---------------------------------------------------
+        // POOLS E ITEMS
+        // ---------------------------------------------------
+        function sumarItem(grupo, idPool, coste, maximo, id) {
+            if (ficha[grupo][id] >= maximo) return;
+            const pool = parseInt(document.getElementById(idPool).value, 10);
+            if (pool > 0) {
+                document.getElementById(idPool).value = pool - 1;
+                ficha[grupo][id]++;
+                return;
+            }
+            if (ficha.pt >= coste) {
+                ficha.pt -= coste;
+                ficha[grupo][id]++;
+                refrescarPT();
+            }
+        }
+
+        function restarItem(grupo, idPool, coste, id) {
+            const minimo = (grupo === "atributos") ? 1 : 0;
+            if (ficha[grupo][id] <= minimo) return;
+
+            const pool = parseInt(document.getElementById(idPool).value, 10);
+            const poolMax = POOL_MAX[idPool] || 5;
+
+            if (pool < poolMax) {
+                document.getElementById(idPool).value = pool + 1;
+                ficha[grupo][id]--;
+                return;
+            }
+            ficha.pt += coste;
+            ficha[grupo][id]--;
+            refrescarPT();
+        }
+
+        // ---------------------------------------------------
+        // MAGIA Y ESTILOS (lista dinámica)
+        // ---------------------------------------------------
+        const MAX_MYE = 8;
+
+        function pintarMye() {
+            const cont = document.getElementById("lista-mye");
+            if (!cont) return;
+            cont.innerHTML = "";
+
+            // Necesitamos la lista de magias/estilos del CSV. La cargamos cuando esté DATOS.
+            const opcionesMye = DATOS ? DATOS.magias : [];
+
+            ficha.mye.forEach((entrada, indice) => {
+                const div = document.createElement("div");
+                div.style.marginBottom = "0.4em";
+
+                // Select con todas las magias/estilos
+                let htmlSelect = `<select data-mye-select="${indice}">`;
+                htmlSelect += `<option value="">—</option>`;
+                opcionesMye.forEach(op => {
+                    const sel = (op.id === entrada.id) ? " selected" : "";
+                    htmlSelect += `<option value="${op.id}"${sel}>${op.nombre}</option>`;
+                });
+                htmlSelect += `</select>`;
+
+                // Input de valor + botones
+                const htmlValor =
+                    `<button type="button" data-mye-menos="${indice}">−</button>` +
+                    `<input type="number" value="${entrada.valor}" readonly style="width:3em">` +
+                    `<button type="button" data-mye-mas="${indice}">+</button>`;
+
+                div.innerHTML = htmlSelect + " " + htmlValor;
+                cont.appendChild(div);
+            });
+
+            // Listeners
+            cont.querySelectorAll("[data-mye-select]").forEach(sel => {
+                sel.addEventListener("change", e => {
+                    const i = parseInt(e.target.dataset.myeSelect, 10);
+                    ficha.mye[i].id = e.target.value;
+                });
+            });
+            cont.querySelectorAll("[data-mye-mas]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const i = parseInt(e.target.dataset.myeMas, 10);
+                    sumarMye(i);
+                });
+            });
+            cont.querySelectorAll("[data-mye-menos]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const i = parseInt(e.target.dataset.myeMenos, 10);
+                    restarMye(i);
+                });
+            });
+        }
+
+        function sumarMye(indice) {
+            const entrada = ficha.mye[indice];
+            if (entrada.valor >= 5) return;
+
+            const pool = parseInt(document.getElementById("pmye").value, 10);
+            if (pool > 0) {
+                document.getElementById("pmye").value = pool - 1;
+                entrada.valor++;
+                pintarMye();
+                return;
+            }
+            if (ficha.pt >= COSTES.mye) {
+                ficha.pt -= COSTES.mye;
+                entrada.valor++;
+                refrescarPT();
+                pintarMye();
+            }
+        }
+
+        function restarMye(indice) {
+            const entrada = ficha.mye[indice];
+            if (entrada.valor <= 0) return;
+
+            const pool = parseInt(document.getElementById("pmye").value, 10);
+            if (pool < 3) {
+                document.getElementById("pmye").value = pool + 1;
+                entrada.valor--;
+                pintarMye();
+                return;
+            }
+            ficha.pt += COSTES.mye;
+            entrada.valor--;
+            refrescarPT();
+            pintarMye();
+        }
+
+                // ---------------------------------------------------
+        // LISTAS DINÁMICAS GENÉRICAS (armas-hab, profesiones, conocimientos)
+        // ---------------------------------------------------
+
+        const LISTAS_DINAMICAS = {
+            armasHabilidades: { contenedor: "lista-armas-hab", campoCsv: "armasHabilidades", idPool: "pha", coste: COSTES.habilidadArma, maximo: 5 },
+            profesiones:      { contenedor: "lista-profesiones", campoCsv: "profesiones",      idPool: "ppo", coste: COSTES.profesion,     maximo: 5 },
+            conocimientos:    { contenedor: "lista-conocimientos", campoCsv: "conocimientos", idPool: "pco", coste: COSTES.conocimiento,  maximo: 5 }
+        };
+
+        // ---------------------------------------------------
+        // NORMALIZACIÓN DE NOMBRES
+        // Convierte "Conocimiento de la magia" → "conocimiento_de_la_magia"
+        // ---------------------------------------------------
+        function normalizarNombre(txt) {
+            return txt
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")   // quita tildes
+                .replace(/\s+/g, "_")              // espacios a _
+                .replace(/[^a-z0-9_]/g, "");       // quita otros caracteres raros
+        }
+
+        function pintarListaDinamica(nombreGrupo) {
+            const cfg = LISTAS_DINAMICAS[nombreGrupo];
+            const cont = document.getElementById(cfg.contenedor);
+            if (!cont) return;
+            cont.innerHTML = "";
+
+            const opciones = DATOS ? DATOS[cfg.campoCsv] : [];
+
+            ficha[nombreGrupo].forEach((entrada, indice) => {
+                const div = document.createElement("div");
+                div.style.marginBottom = "0.4em";
+
+                let htmlSelect = `<select data-lista-select="${nombreGrupo}" data-indice="${indice}">`;
+                htmlSelect += `<option value="">—</option>`;
+                opciones.forEach(op => {
+                    const sel = (op.id === entrada.id) ? " selected" : "";
+                    htmlSelect += `<option value="${op.id}"${sel}>${op.nombre}</option>`;
+                });
+                htmlSelect += `</select>`;
+
+                const htmlValor =
+                    `<button type="button" data-lista-menos="${nombreGrupo}" data-indice="${indice}">−</button>` +
+                    `<input type="number" value="${entrada.valor}" readonly style="width:3em">` +
+                    `<button type="button" data-lista-mas="${nombreGrupo}" data-indice="${indice}">+</button>`;
+
+                div.innerHTML = htmlSelect + " " + htmlValor;
+                cont.appendChild(div);
+            });
+
+            cont.querySelectorAll("[data-lista-select]").forEach(sel => {
+                sel.addEventListener("change", e => {
+                    const grupo = e.target.dataset.listaSelect;
+                    const i = parseInt(e.target.dataset.indice, 10);
+                    ficha[grupo][i].id = e.target.value;
+                });
+            });
+            cont.querySelectorAll("[data-lista-mas]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const grupo = e.target.dataset.listaMas;
+                    const i = parseInt(e.target.dataset.indice, 10);
+                    sumarListaDinamica(grupo, i);
+                });
+            });
+            cont.querySelectorAll("[data-lista-menos]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const grupo = e.target.dataset.listaMenos;
+                    const i = parseInt(e.target.dataset.indice, 10);
+                    restarListaDinamica(grupo, i);
+                });
+            });
+        }
+
+        function sumarListaDinamica(grupo, i) {
+            const cfg = LISTAS_DINAMICAS[grupo];
+            const entrada = ficha[grupo][i];
+            if (entrada.valor >= cfg.maximo) return;
+
+            const pool = parseInt(document.getElementById(cfg.idPool).value, 10);
+            if (pool > 0) {
+                document.getElementById(cfg.idPool).value = pool - 1;
+                entrada.valor++;
+                pintarListaDinamica(grupo);
+                return;
+            }
+            if (ficha.pt >= cfg.coste) {
+                ficha.pt -= cfg.coste;
+                entrada.valor++;
+                refrescarPT();
+                pintarListaDinamica(grupo);
+            }
+        }
+
+        function restarListaDinamica(grupo, i) {
+            const cfg = LISTAS_DINAMICAS[grupo];
+            const entrada = ficha[grupo][i];
+            if (entrada.valor <= 0) return;
+
+            const pool = parseInt(document.getElementById(cfg.idPool).value, 10);
+            const poolMax = POOL_MAX[cfg.idPool] || 5;
+
+            if (pool < poolMax) {
+                document.getElementById(cfg.idPool).value = pool + 1;
+                entrada.valor--;
+                pintarListaDinamica(grupo);
+                return;
+            }
+            ficha.pt += cfg.coste;
+            entrada.valor--;
+            refrescarPT();
+            pintarListaDinamica(grupo);
+        }
+
+        // ---------------------------------------------------
+        // GUARDAR / BORRAR
+        // ---------------------------------------------------
+        function guardar() {
+            ficha.nombre       = document.getElementById("nombre").value.trim();
+            ficha.apellidos    = document.getElementById("apellidos").value.trim();
+            ficha.titulo       = document.getElementById("titulo").value.trim();
+            ficha.nacimiento   = document.getElementById("nacimiento").value.trim();
+            ficha.faccion      = document.getElementById("faccion").value;
+            ficha.alineamiento = document.getElementById("alineamiento").value.trim();
+            ficha.nivel        = parseInt(document.getElementById("nivel").value, 10) || 1;
+            ficha.pt           = parseInt(document.getElementById("pt").value, 10) || 0;
+                        // Actualmente
+            ficha.actual.salud        = parseInt(document.getElementById("salud").value, 10) || 0;
+            ficha.actual.armadura     = parseInt(document.getElementById("armadura-act").value, 10) || 0;
+            ficha.actual.velocidad    = parseInt(document.getElementById("velocidad").value, 10) || 0;
+            ficha.actual.yelmo        = document.getElementById("yelmo").value.trim();
+            ficha.actual.torso        = document.getElementById("torso").value.trim();
+            ficha.actual.manos        = document.getElementById("manos").value.trim();
+            ficha.actual.pies         = document.getElementById("pies").value.trim();
+            ficha.actual.capa         = document.getElementById("capa").value.trim();
+            ficha.actual.escudoNombre = document.getElementById("escudo-nombre").value.trim();
+            ficha.actual.escudo       = document.getElementById("escudo-equipado").checked;
+
+            const radioArm = document.querySelector('input[name="tipo-armadura"]:checked');
+            ficha.actual.tipoArmadura = radioArm ? radioArm.value : "";
+
+            // Texto
+            ficha.descripcion = document.getElementById("descripcion").value;
+            ficha.trasfondo   = document.getElementById("trasfondo").value;
+            ficha.inventario  = document.getElementById("inventario").value;
+
+            // Dinero
+            ficha.dinero.oro    = parseInt(document.getElementById("oro").value, 10) || 0;
+            ficha.dinero.plata  = parseInt(document.getElementById("plata").value, 10) || 0;
+            ficha.dinero.cobre  = parseInt(document.getElementById("cobre").value, 10) || 0;
+
+            if (!ficha.nombre || !ficha.raza || !ficha.clase) {
+                document.getElementById("mensaje-guardado").innerHTML =
+                    '<span class="aviso-error">Faltan campos obligatorios: nombre, raza y clase.</span>';
+                return;
+            }
+
+            const id = guardarFicha(ficha);
+            document.getElementById("mensaje-guardado").innerHTML =
+                '✅ Ficha guardada. <a href="lista.html">Volver a la lista</a>';
+            if (!modoEdicion) {
+                // tras crear, recargamos en modo edición
+                window.location.href = "ficha.html?id=" + id;
+            }
+        }
+
+        function borrar() {
+            if (!confirm("¿Seguro que quieres borrar esta ficha?")) return;
+            borrarFicha(ficha.id);
+            window.location.href = "lista.html";
+        }
+
+    });
+    </script>
+</body>
+</html>

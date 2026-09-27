@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichateca - Mi perfil</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="../imagenes/Wow Logo 1.png" alt="Fichateca" class="logo">
+    </header>
+
+    <nav id="nav-principal" class="nav-principal"></nav>
+
+    <div id="barra-sesion" class="barra-sesion"></div>
+
+    <main class="contenedor">
+        <h1>Mi perfil</h1>
+        <p>Bienvenido, <strong id="nombre-usuario">…</strong>.</p>
+
+        <h2>¿Qué quieres hacer?</h2>
+        <div class="ficha-grid">
+            <div class="bloque">
+                <h3>📋 Mis fichas</h3>
+                <p>Crea un personaje nuevo o edita uno existente.</p>
+                <p>
+                    <a href="ficha/lista.html">Ver mis fichas</a> ·
+                    <a href="ficha/crear.html">Crear ficha</a>
+                </p>
+            </div>
+            <div class="bloque">
+                <h3>⚔️ Mis objetos</h3>
+                <p>Crea objetos (armas, armaduras, pociones, etc.).</p>
+                <p>
+                    <a href="objeto/lista.html">Ver mis objetos</a> ·
+                    <a href="objeto/crear.html">Crear objeto</a>
+                </p>
+            </div>
+            <div class="bloque">
+                <h3>✨ Mis hechizos</h3>
+                <p>Crea hechizos y define sus efectos.</p>
+                <p>
+                    <a href="hechizo/lista.html">Ver mis hechizos</a> ·
+                    <a href="hechizo/crear.html">Crear hechizo</a>
+                </p>
+            </div>
+            <div class="bloque">
+                <h3>🎭 Beneficios y perjuicios</h3>
+                <p>Crea ventajas y desventajas para tus personajes.</p>
+                <p>
+                    <a href="benper/lista.html">Ver mis ben/per</a> ·
+                    <a href="benper/crear.html">Crear ben/per</a>
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0"
+                 src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+        </a><br>
+        Esta obra está bajo una
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional
+        </a>.
+    </footer>
+
+    <script src="../js/comun.js"></script>
+    <script>
+        exigirSesion("../login/signin.html");   // si no hay sesión, redirige al login
+        pintarMenu("../", "");
+        pintarBarraSesion("../");
+
+        const usuario = obtenerUsuario();
+        if (usuario) {
+            document.getElementById("nombre-usuario").textContent = usuario;
+        }
+    </script>
+</body>
+</html>

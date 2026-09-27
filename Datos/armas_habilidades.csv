@@ -1,0 +1,19 @@
+id,nombre,columna_bono
+espadas_1m,Espadas de una mano,Espadas_de_una_mano
+espadas_2m,Espadas de dos manos,Espadas_de_dos_manos
+mazas_1m,Mazas de una mano,Mazas_de_una_mano
+mazas_2m,Mazas de dos manos,Mazas_de_dos_manos
+hachas_1m,Hachas de una mano,Hachas_de_una_mano
+hachas_2m,Hachas de dos manos,Hachas_de_dos_manos
+arcos,Arcos,Arcos
+armas_fuego,Armas de fuego,Armas_de_fuego
+armas_arrojadizas,Armas arrojadizas,Armas_arrojadizas
+ballestas,Ballestas,Ballestas
+bastones,Bastones,Bastones
+varitas,Varitas,Varitas
+dagas,Dagas,Dagas
+armas_puno,Armas de puño,Armas_de_puno
+armas_asta,Armas de asta,Armas_de_asta
+gujas_guerra,Gujas de guerra,Gujas_de_guerra
+escudo,Escudo,Escudo
+sin_armas,Sin armas,Sin_armas

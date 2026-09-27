@@ -2,50 +2,47 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Test CSV</title>
+    <title>Test CSV + Motor</title>
     <style>
         body { font-family: sans-serif; padding: 2em; }
-        table { border-collapse: collapse; }
+        table { border-collapse: collapse; margin-top: 1em; }
         td, th { border: 1px solid #999; padding: 4px 8px; }
         th { background: #eee; }
         .error { color: red; font-weight: bold; }
+        pre { background: #f4f4f4; padding: 1em; }
     </style>
 </head>
 <body>
-    <h1>Test: leer razas.csv</h1>
+    <h1>Test: CSVs + Motor</h1>
     <div id="salida">Cargando…</div>
 
+    <script>window.RUTA_BASE = "../";</script>
+    <script src="../js/comun.js"></script>
+    <script src="../js/csv.js"></script>
+    <script src="../js/motor.js"></script>
     <script>
-        // Ruta relativa: desde /pruebas/ subimos a /datos/
-        const CSV_URL = '../datos/razas.csv';
+        cargarDatosMotor().then(() => {
+            let html = "<p>✅ CSVs cargados correctamente.</p>";
+            html += "<p>Razas: " + DATOS.razas.length + "</p>";
+            html += "<p>Subrazas: " + DATOS.subrazas.length + "</p>";
+            html += "<p>Clases: " + DATOS.clases.length + "</p>";
+            html += "<p>Bonos raciales: " + DATOS.bonosRaciales.length + "</p>";
+            html += "<p>Bonos de clase: " + DATOS.bonosClase.length + "</p>";
 
-        function parseCSV(texto) {
-            // Parser simple: corta por líneas y luego por comas.
-            // Suficiente para test. El parser "de verdad" vendrá después.
-            const lineas = texto.trim().split(/\r?\n/);
-            return lineas.map(linea => linea.split(','));
-        }
-
-        fetch(CSV_URL)
-            .then(resp => {
-                if (!resp.ok) throw new Error('HTTP ' + resp.status);
-                return resp.text();
-            })
-            .then(texto => {
-                const filas = parseCSV(texto);
-                let html = '<table>';
-                filas.forEach((fila, i) => {
-                    const tag = (i === 0) ? 'th' : 'td';
-                    html += '<tr>' + fila.map(c => `<${tag}>${c}</${tag}>`).join('') + '</tr>';
-                });
-                html += '</table>';
-                document.getElementById('salida').innerHTML = html;
-            })
-            .catch(err => {
-                document.getElementById('salida').innerHTML =
-                    '<p class="error">Error: ' + err.message + '</p>' +
-                    '<p>Comprueba que existe <code>datos/razas.csv</code> y que estás abriendo la página desde un servidor (no con doble clic en el archivo).</p>';
+            const ejemplo = calcularBonos({
+                raza: "humano",
+                subraza: "humano_ventormenta",
+                clase: "guerrero",
+                transformacion: ""
             });
+            html += "<p>Bonos de Humano de Ventormenta + Guerrero:</p>";
+            html += "<pre>" + JSON.stringify(ejemplo, null, 2) + "</pre>";
+
+            document.getElementById("salida").innerHTML = html;
+        }).catch(err => {
+            document.getElementById("salida").innerHTML =
+                '<p class="error">Error: ' + err.message + '</p>';
+        });
     </script>
 </body>
 </html>
