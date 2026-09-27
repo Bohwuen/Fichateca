@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test CSV</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; }
+        table { border-collapse: collapse; }
+        td, th { border: 1px solid #999; padding: 4px 8px; }
+        th { background: #eee; }
+        .error { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Test: leer razas.csv</h1>
+    <div id="salida">Cargando…</div>
+
+    <script>
+        // Ruta relativa: desde /pruebas/ subimos a /datos/
+        const CSV_URL = '../datos/razas.csv';
+
+        function parseCSV(texto) {
+            // Parser simple: corta por líneas y luego por comas.
+            // Suficiente para test. El parser "de verdad" vendrá después.
+            const lineas = texto.trim().split(/\r?\n/);
+            return lineas.map(linea => linea.split(','));
+        }
+
+        fetch(CSV_URL)
+            .then(resp => {
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                return resp.text();
+            })
+            .then(texto => {
+                const filas = parseCSV(texto);
+                let html = '<table>';
+                filas.forEach((fila, i) => {
+                    const tag = (i === 0) ? 'th' : 'td';
+                    html += '<tr>' + fila.map(c => `<${tag}>${c}</${tag}>`).join('') + '</tr>';
+                });
+                html += '</table>';
+                document.getElementById('salida').innerHTML = html;
+            })
+            .catch(err => {
+                document.getElementById('salida').innerHTML =
+                    '<p class="error">Error: ' + err.message + '</p>' +
+                    '<p>Comprueba que existe <code>datos/razas.csv</code> y que estás abriendo la página desde un servidor (no con doble clic en el archivo).</p>';
+            });
+    </script>
+</body>
+</html>
