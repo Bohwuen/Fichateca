@@ -174,6 +174,7 @@ function fichaEnBlanco() {
         alineamiento: "",
         raza: "",
         subraza: "",
+        transformacion: "",
         clase: "",
         nivel: 1,
         experiencia: 0,
@@ -222,13 +223,24 @@ function fichaEnBlanco() {
  */
 function velocidadDe(ficha) {
     if (!ficha) return 0;
+
+    // 1. Transformación activa (sobrescribe todo)
+    if (ficha.transformacion && DATOS && DATOS.razas) {
+        const trans = DATOS.razas.find(r => r.id === ficha.transformacion);
+        if (trans && trans.velocidad) return parseInt(trans.velocidad, 10) || 0;
+    }
+
+    // 2. Subraza
     if (ficha.subraza) {
         const sub = subrazasDe(ficha.raza).find(s => s.id === ficha.subraza);
         if (sub && sub.velocidad) return parseInt(sub.velocidad, 10) || 0;
     }
+
+    // 3. Raza
     if (ficha.raza && DATOS) {
         const raza = DATOS.razas.find(r => r.id === ficha.raza);
         if (raza && raza.velocidad) return parseInt(raza.velocidad, 10) || 0;
     }
+
     return 0;
 }

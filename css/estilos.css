@@ -411,3 +411,11 @@ footer a {
         grid-template-columns: 1fr;
     }
 }
+
+/* ---------- Enlaces deshabilitados ---------- */
+.enlace-deshabilitado {
+    color: #999;
+    text-decoration: none;
+    cursor: not-allowed;
+    pointer-events: none;
+}

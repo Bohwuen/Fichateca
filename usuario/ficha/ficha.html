@@ -9,7 +9,7 @@
 <body>
 
     <header>
-        <img src="../../imagenes/Wow Logo 1.png" alt="Fichateca" class="logo">
+        <img src="../../imagenes/Wow_Logo_1.png" alt="Fichateca" class="logo">
     </header>
 
     <nav id="nav-principal" class="nav-principal"></nav>
@@ -62,7 +62,7 @@
                         <label>Subraza:</label>
                         <select id="subraza"></select>
                         <label title="Convertir en Huargen (solo humanos)">
-                            <input type="checkbox" id="transformacion-huargen" disabled>
+                            <input type="checkbox" id="transformacion-huargen">
                             Huargen
                         </label>
                     </div>
@@ -483,6 +483,9 @@
             actualizarSubrazas();
             document.getElementById("subraza").value = ficha.subraza || "";
             actualizarRacialesEspeciales();
+            actualizarCheckboxHuargen();
+            document.getElementById("transformacion-huargen").checked =
+                ficha.transformacion === "huargen";
                         // Actualmente
             // Actualmente
             document.getElementById("salud-extra").value   = ficha.actual.saludExtra || 0;
@@ -552,7 +555,7 @@
             });
         }
 
-        function nombreColumna(id) {
+                function nombreColumna(id) {
             const mapa = {
                 vigor: "Vigor", destreza: "Destreza", inteligencia: "Inteligencia",
                 voluntad: "Voluntad", percepcion: "Percepcion", aguante: "Aguante",
@@ -564,7 +567,15 @@
                 trepar_escalar: "Trepar_escalar", buscar: "Buscar", alerta: "Alerta",
                 aprendizaje: "Aprendizaje", interpretacion: "Interpretacion",
                 subterfugio: "Subterfugio", trato_con_animales: "Trato_con_animales",
-                intimidacion: "Intimidacion", carisma: "Carisma"
+                intimidacion: "Intimidacion", carisma: "Carisma",
+                res_fisica: "Resistencia_fisica",
+                res_arcana: "Resistencia_arcana",
+                res_fuego: "Resistencia_al_fuego",
+                res_frio: "Resistencia_al_frio",
+                res_vil: "Resistencia_a_lo_vil",
+                res_sombra: "Resistencia_a_la_sombra",
+                res_naturaleza: "Resistencia_a_la_naturaleza",
+                res_luz: "Resistencia_a_la_luz"
             };
             return mapa[id] || id;
         }
@@ -579,11 +590,18 @@
                 ficha.subraza = "";
                 actualizarSubrazas();
                 actualizarRacialesEspeciales();
+                actualizarCheckboxHuargen();
                 pintarTodasTablas();
             });
 
             document.getElementById("subraza").addEventListener("change", e => {
                 ficha.subraza = e.target.value;
+                actualizarRacialesEspeciales();
+                pintarTodasTablas();
+            });
+
+            document.getElementById("transformacion-huargen").addEventListener("change", e => {
+                ficha.transformacion = e.target.checked ? "huargen" : "";
                 actualizarRacialesEspeciales();
                 pintarTodasTablas();
             });
@@ -701,12 +719,53 @@
             sel.innerHTML = '<option value="">—</option>' +
                 subs.map(s => `<option value="${s.id}">${s.nombre}</option>`).join("");
         }
+
+        function actualizarCheckboxHuargen() {
+            const chk = document.getElementById("transformacion-huargen");
+            if (!chk) return;
+
+            const esHumano = ficha.raza === "humano";
+
+            // Solo habilitado si la raza es humano
+            chk.disabled = !esHumano;
+
+            // Si ya no es humano, desmarcar
+            if (!esHumano) {
+                chk.checked = false;
+                ficha.transformacion = "";
+            }
+        }
+
         function actualizarRacialesEspeciales() {
-            const origen = ficha.subraza || ficha.raza;
             const cont = document.getElementById("raciales-especiales");
-            if (!origen) { cont.innerHTML = "<em>Elige una raza.</em>"; return; }
-            const desc = racialesEspecialesDe(origen);
-            cont.innerHTML = desc || "<em>Sin raciales especiales.</em>";
+            const origen = ficha.subraza || ficha.raza;
+
+            if (!origen) {
+                cont.innerHTML = "<em>Elige una raza.</em>";
+                return;
+            }
+
+            const partes = [];
+
+            // 1. Raciales de la raza/subraza (siempre)
+            const descRacial = racialesEspecialesDe(origen);
+            if (descRacial) partes.push(descRacial);
+
+            // 2. Raciales de la transformación (si está activa)
+            if (ficha.transformacion) {
+                const descTrans = racialesEspecialesDe(ficha.transformacion);
+                if (descTrans) partes.push(descTrans);
+            }
+
+            if (partes.length === 0) {
+                cont.innerHTML = "<em>Sin raciales especiales.</em>";
+                return;
+            }
+
+            // Mostrar cada bloque separado por saltos de línea
+            cont.innerHTML = partes
+                .map(p => `<p>${p}</p>`)
+                .join("");
         }
 
         // ---------------------------------------------------
@@ -1180,6 +1239,7 @@
             ficha.nacimiento   = document.getElementById("nacimiento").value.trim();
             ficha.faccion      = document.getElementById("faccion").value;
             ficha.alineamiento = document.getElementById("alineamiento").value.trim();
+            ficha.transformacion = document.getElementById("transformacion-huargen").checked ? "huargen" : "";
             ficha.nivel        = parseInt(document.getElementById("nivel").value, 10) || 1;
             ficha.pt           = parseInt(document.getElementById("pt").value, 10) || 0;
             // Actualmente
