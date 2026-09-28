@@ -1,30 +1,29 @@
-id,raza_id,nombre
-humano_ventormenta,humano,Ventormenta
-humano_strom,humano,Strom
-humano_lordaeron,humano,Lordaeron
-humano_dalaran,humano,Dalaran
-humano_gilneas,humano,Gilneas
-humano_kultiras,humano,Kul Tiras
-humano_alterac,humano,Alterac
-enano_barbabronce,enano,Barbabronce
-enano_martillo_salvaje,enano,Martillo Salvaje
-enano_hierro_negro,enano,Hierro Negro
-enano_terraneo,terraneo,Terráneo
-gnomo_gnomeregan,gnomo,Gnomeregan
-gnomo_mecandria,gnomo,Mecandria
-elfo_noche_darnassiano,elfo_noche,Darnassiano
-elfo_noche_altonato,elfo_noche,Altonato
-quel_dorei,alto_elfo,Quel'Dorei
-draenei_exiliado,draenei,Exiliado
-draenei_forjaluz,draenei,Forjado por la luz
-manari,draenei,Man'ari
-orco_durotar,orco,Durotar
-orco_maghar,orco,Mag'Har
-trol_lanza_negra,trol,Lanza Negra
-trol_zandalari,trol,Zandalari
-trol_farraki,trol,Farraki
-trol_gurubashi,trol,Gurubashi
-trol_amani,trol,Amani
-trol_drakkari,trol,Drakkari
-tauren_mulgore,tauren,Mulgore
-tauren_monte_alto,tauren,Monte Alto
+id,raza_id,nombre,velocidad
+humano_ventormenta,humano,Ventormenta,10
+humano_strom,humano,Strom,10
+humano_lordaeron,humano,Lordaeron,10
+humano_dalaran,humano,Dalaran,10
+humano_gilneas,humano,Gilneas,10
+humano_kultiras,humano,Kul Tiras,10
+humano_alterac,humano,Alterac,10
+enano_barbabronce,enano,Barbabronce,8
+enano_martillo_salvaje,enano,Martillo Salvaje,8
+enano_hierro_negro,enano,Hierro Negro,8
+enano_terraneo,terraneo,Terráneo,8
+gnomo_gnomeregan,gnomo,Gnomeregan,6
+gnomo_mecandria,gnomo,Mecandria,6
+elfo_noche_darnassiano,elfo_noche,Darnassiano,12
+elfo_noche_altonato,elfo_noche,Altonato,12
+draenei_exiliado,draenei,Exiliado,12
+draenei_forjaluz,draenei,Forjado por la luz,12
+manari,draenei,Man'ari,12
+orco_durotar,orco,Durotar,10
+orco_maghar,orco,Mag'Har,10
+trol_lanza_negra,trol,Lanza Negra,12
+trol_zandalari,trol,Zandalari,12
+trol_farraki,trol,Farraki,12
+trol_gurubashi,trol,Gurubashi,12
+trol_amani,trol,Amani,12
+trol_drakkari,trol,Drakkari,12
+tauren_mulgore,tauren,Mulgore,12
+tauren_monte_alto,tauren,Monte Alto,12

@@ -288,3 +288,126 @@ footer a {
     width: 2.5em;
     text-align: center;
 }
+
+/* ================= CABECERA COMPACTA ================= */
+.cabecera-ficha {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 16px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    background: #f4e9d8;
+    border: 1px solid #c8b89a;
+    border-radius: 6px;
+    font-size: 0.9em;
+}
+
+.cabecera-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cabecera-datos .fila {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.cabecera-datos .fila label {
+    font-weight: bold;
+    white-space: nowrap;
+    margin-right: 2px;
+}
+
+.cabecera-datos .fila input[type="text"],
+.cabecera-datos .fila input[type="number"],
+.cabecera-datos .fila select {
+    padding: 2px 4px;
+    font-size: 0.95em;
+    border: 1px solid #a89878;
+    border-radius: 3px;
+    background: #fffdf7;
+    min-width: 80px;
+}
+
+.cabecera-datos .fila input[type="number"]#nivel {
+    width: 3.5em;
+    text-align: center;
+}
+
+.cabecera-datos .fila input[type="number"]#pt {
+    width: 4em;
+    text-align: center;
+}
+
+.cabecera-datos .fila button {
+    padding: 1px 8px;
+    font-size: 1em;
+    line-height: 1;
+    border: 1px solid #a89878;
+    border-radius: 3px;
+    background: #e6d7b8;
+    cursor: pointer;
+}
+
+.cabecera-datos .fila button:hover {
+    background: #d8c79f;
+}
+
+/* ----- Panel de estadísticas (derecha) ----- */
+.cabecera-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 10px;
+    background: #fffdf7;
+    border: 1px solid #c8b89a;
+    border-radius: 4px;
+}
+
+.cabecera-stats .stat {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cabecera-stats .stat label {
+    font-weight: bold;
+    width: 80px;
+    white-space: nowrap;
+}
+
+.cabecera-stats .stat input {
+    width: 4em;
+    text-align: center;
+    padding: 2px 4px;
+    font-size: 0.95em;
+    border: 1px solid #a89878;
+    border-radius: 3px;
+    background: #fffdf7;
+}
+
+.cabecera-stats .stat input[readonly] {
+    background: #f0e9d8;
+    cursor: default;
+}
+
+/* ================= GRID PRINCIPAL DE BLOQUES ================= */
+.grid-ficha {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    grid-auto-flow: dense;
+}
+
+.grid-ficha .bloque {
+    margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+    .grid-ficha {
+        grid-template-columns: 1fr;
+    }
+}

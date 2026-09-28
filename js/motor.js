@@ -203,8 +203,11 @@ function fichaEnBlanco() {
             res_vil: 0, res_sombra: 0, res_naturaleza: 0, res_luz: 0
         },
         actual: {
-            salud: 0, armadura: 0, velocidad: 0,
-            tipoArmadura: "", escudo: false,
+            saludExtra: 0,
+            energiaExtra: 0,
+            armadura: 0,
+            tipoArmadura: "",
+            escudo: false,
             yelmo: "", torso: "", manos: "", pies: "", capa: "", escudoNombre: ""
         },
         descripcion: "",
@@ -212,4 +215,20 @@ function fichaEnBlanco() {
         inventario: "",
         dinero: { oro: 0, plata: 0, cobre: 0 }
     };
+}
+
+/**
+ * Devuelve la velocidad de la ficha (subraza si existe, si no raza).
+ */
+function velocidadDe(ficha) {
+    if (!ficha) return 0;
+    if (ficha.subraza) {
+        const sub = subrazasDe(ficha.raza).find(s => s.id === ficha.subraza);
+        if (sub && sub.velocidad) return parseInt(sub.velocidad, 10) || 0;
+    }
+    if (ficha.raza && DATOS) {
+        const raza = DATOS.razas.find(r => r.id === ficha.raza);
+        if (raza && raza.velocidad) return parseInt(raza.velocidad, 10) || 0;
+    }
+    return 0;
 }

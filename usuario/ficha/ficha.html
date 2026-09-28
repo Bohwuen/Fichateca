@@ -24,64 +24,91 @@
 
         <form id="form-ficha">
 
-            <!-- ================= DATOS ================= -->
-            <section class="bloque">
-                <h2>Datos</h2>
+           <!-- ================= CABECERA ================= -->
+            <section class="cabecera-ficha">
 
-                <p>
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" required>
-                </p>
-                <p>
-                    <label for="apellidos">Apellidos:</label>
-                    <input type="text" id="apellidos">
-                </p>
-                <p>
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo">
-                </p>
-                <p>
-                    <label for="nacimiento">Nacimiento:</label>
-                    <input type="text" id="nacimiento">
-                </p>
-                <p>
-                    <label for="faccion">Facción:</label>
-                    <select id="faccion">
-                        <option value="">—</option>
-                        <option>Horda</option>
-                        <option>Alianza</option>
-                        <option>Neutral</option>
-                        <option>Independiente</option>
-                    </select>
-                </p>
-                <p>
-                    <label for="alineamiento">Alineamiento:</label>
-                    <input type="text" id="alineamiento">
-                </p>
-                <p>
-                    <label for="raza">Raza:</label>
-                    <select id="raza"></select>
-                </p>
-                <p id="fila-subraza" style="display:none;">
-                    <label for="subraza">Subraza:</label>
-                    <select id="subraza"></select>
-                </p>
-                <p>
-                    <label for="clase">Clase:</label>
-                    <select id="clase"></select>
-                </p>
-                <p>
-                    <label for="nivel">Nivel:</label>
-                    <button type="button" id="nivel-menos">−</button>
-                    <input type="number" id="nivel" value="1" min="1" max="25" readonly>
-                    <button type="button" id="nivel-mas">+</button>
-                </p>
-                <p>
-                    <label for="pt">Puntos de Trasfondo:</label>
-                    <input type="number" id="pt" readonly>
-                </p>
+                <div class="cabecera-datos">
+
+                    <div class="fila">
+                        <label>Nombre:</label>
+                        <input type="text" id="nombre" required>
+                        <label>Apellidos:</label>
+                        <input type="text" id="apellidos">
+                    </div>
+
+                    <div class="fila">
+                        <label>Título:</label>
+                        <input type="text" id="titulo">
+                        <label>Nacimiento:</label>
+                        <input type="text" id="nacimiento">
+                    </div>
+
+                    <div class="fila">
+                        <label>Facción:</label>
+                        <select id="faccion">
+                            <option value="">—</option>
+                            <option>Horda</option>
+                            <option>Alianza</option>
+                            <option>Neutral</option>
+                            <option>Independiente</option>
+                        </select>
+                        <label>Alineamiento:</label>
+                        <input type="text" id="alineamiento">
+                    </div>
+
+                    <div class="fila">
+                        <label>Raza:</label>
+                        <select id="raza"></select>
+                        <label>Subraza:</label>
+                        <select id="subraza"></select>
+                        <label title="Convertir en Huargen (solo humanos)">
+                            <input type="checkbox" id="transformacion-huargen" disabled>
+                            Huargen
+                        </label>
+                    </div>
+
+                    <div class="fila">
+                        <label>Clase:</label>
+                        <select id="clase"></select>
+                        <label>Nivel:</label>
+                        <button type="button" id="nivel-menos">−</button>
+                        <input type="number" id="nivel" value="1" min="1" max="25" readonly>
+                        <button type="button" id="nivel-mas">+</button>
+                        <label>PT:</label>
+                        <input type="number" id="pt" readonly>
+                    </div>
+
+                </div>
+
+                <div class="cabecera-stats">
+
+                    <div class="stat">
+                        <label>Salud:</label>
+                        <input type="number" id="salud" readonly>
+                        <input type="number" id="salud-extra" value="0">
+                    </div>
+
+                    <div class="stat">
+                        <label>Energía:</label>
+                        <input type="number" id="energia" readonly>
+                        <input type="number" id="energia-extra" value="0">
+                    </div>
+
+                    <div class="stat">
+                        <label>Velocidad:</label>
+                        <input type="number" id="velocidad" readonly>
+                    </div>
+
+                    <div class="stat">
+                        <label>Armadura:</label>
+                        <input type="number" id="armadura-act" value="0">
+                    </div>
+
+                </div>
+
             </section>
-
+<!-- ================= GRID PRINCIPAL ================= -->
+<div class="grid-ficha">
             <!-- ================= ATRIBUTOS ================= -->
             <section class="bloque bloque-atributos">
                 <h2>Atributos</h2>
@@ -95,7 +122,7 @@
                         <tr>
                             <th>Atributo</th>
                             <th>Valor</th>
-                            <th>Bono racial/clase</th>
+                            <th>Bono</th>
                             <th>Total</th>
                             <th colspan="2">Ajustar</th>
                         </tr>
@@ -117,7 +144,7 @@
                         <tr>
                             <th>Defensa</th>
                             <th>Valor</th>
-                            <th>Bono racial/clase</th>
+                            <th>Bono</th>
                             <th>Total</th>
                             <th colspan="2">Ajustar</th>
                         </tr>
@@ -139,7 +166,7 @@
                         <tr>
                             <th>Habilidad</th>
                             <th>Valor</th>
-                            <th>Bono racial/clase</th>
+                            <th>Bono</th>
                             <th>Total</th>
                             <th colspan="2">Ajustar</th>
                         </tr>
@@ -160,7 +187,7 @@
                         <tr>
                             <th>Habilidad mágica</th>
                             <th>Valor</th>
-                            <th>Bono racial/clase</th>
+                            <th>Bono</th>
                             <th>Total</th>
                             <th colspan="2">Ajustar</th>
                         </tr>
@@ -240,7 +267,7 @@
                         <tr>
                             <th>Resistencia</th>
                             <th>Valor</th>
-                            <th>Bono racial/clase</th>
+                            <th>Bono</th>
                             <th>Total</th>
                             <th colspan="2">Ajustar</th>
                         </tr>
@@ -248,6 +275,8 @@
                     <tbody></tbody>
                 </table>
             </section>
+</div>
+<!-- ================= FIN GRID ================= -->
 
             <!-- ================= ACTUALMENTE ================= -->
             <section class="bloque">
@@ -441,8 +470,9 @@
 
         function rellenarSelect(idSelect, filas, campoValor, campoTexto) {
             const sel = document.getElementById(idSelect);
+            const visibles = filas.filter(f => !f.oculta || f.oculta === "0");
             sel.innerHTML = '<option value="">—</option>' +
-                filas.map(f => `<option value="${f[campoValor]}">${f[campoTexto]}</option>`).join("");
+            visibles.map(f => `<option value="${f[campoValor]}">${f[campoTexto]}</option>`).join("");
         }
 
         function cargarValores() {
@@ -461,9 +491,10 @@
             document.getElementById("subraza").value = ficha.subraza || "";
             actualizarRacialesEspeciales();
                         // Actualmente
-            document.getElementById("salud").value        = ficha.actual.salud || 0;
-            document.getElementById("armadura-act").value = ficha.actual.armadura || 0;
-            document.getElementById("velocidad").value    = ficha.actual.velocidad || 0;
+            // Actualmente
+            document.getElementById("salud-extra").value   = ficha.actual.saludExtra || 0;
+            document.getElementById("energia-extra").value = ficha.actual.energiaExtra || 0;
+            document.getElementById("armadura-act").value  = ficha.actual.armadura || 0;
             document.getElementById("yelmo").value        = ficha.actual.yelmo || "";
             document.getElementById("torso").value        = ficha.actual.torso || "";
             document.getElementById("manos").value        = ficha.actual.manos || "";
@@ -500,6 +531,8 @@
             pintarListaDinamica("profesiones");
             pintarListaDinamica("conocimientos");
             pintarTablaGenerica("#tabla-resistencias tbody", RESISTENCIAS, ficha.resistencias, "resistencia");
+
+        refrescarStatsCabecera();
         }
 
         function pintarTablaGenerica(selector, lista, valores, tipo) {
@@ -569,6 +602,9 @@
 
             document.getElementById("nivel-menos").addEventListener("click", () => cambiarNivel(-1));
             document.getElementById("nivel-mas").addEventListener("click", () => cambiarNivel(+1));
+
+            document.getElementById("salud-extra").addEventListener("input", refrescarStatsCabecera);
+            document.getElementById("energia-extra").addEventListener("input", refrescarStatsCabecera);
 
             document.querySelectorAll("#tabla-atributos, #tabla-defensas, #tabla-habilidades, #tabla-magia, #tabla-resistencias").forEach(tabla => {                tabla.addEventListener("click", e => {
                     const btn = e.target.closest("button");
@@ -657,20 +693,21 @@
         }
 
         function actualizarSubrazas() {
-            const fila = document.getElementById("fila-subraza");
             const sel = document.getElementById("subraza");
+            if (!sel) return;
+
             const subs = subrazasDe(ficha.raza);
 
             if (subs.length === 0) {
-                fila.style.display = "none";
-                sel.innerHTML = "";
+                sel.innerHTML = '<option value="">—</option>';
+                sel.disabled = true;
                 return;
             }
-            fila.style.display = "block";
+
+            sel.disabled = false;
             sel.innerHTML = '<option value="">—</option>' +
                 subs.map(s => `<option value="${s.id}">${s.nombre}</option>`).join("");
         }
-
         function actualizarRacialesEspeciales() {
             const origen = ficha.subraza || ficha.raza;
             const cont = document.getElementById("raciales-especiales");
@@ -728,6 +765,27 @@
             ficha.pt += coste;
             ficha[grupo][id]--;
             refrescarPT();
+        }
+
+        function refrescarStatsCabecera() {
+            const bonos = calcularBonos(ficha);
+
+            // Salud = 5 × (Aguante base + bono) + extra
+            const aguanteBase = ficha.atributos.aguante || 0;
+            const bonoAguante = bonos["Aguante"] || 0;
+            const saludCalculada = (aguanteBase + bonoAguante) * 5;
+            const saludExtra = parseInt(document.getElementById("salud-extra").value, 10) || 0;
+            document.getElementById("salud").value = saludCalculada + saludExtra;
+
+            // Energía = 5 × (Energía base + bono) + extra
+            const energiaBase = ficha.atributos.energia || 0;
+            const bonoEnergia = bonos["Energia"] || 0;
+            const energiaCalculada = (energiaBase + bonoEnergia) * 5;
+            const energiaExtra = parseInt(document.getElementById("energia-extra").value, 10) || 0;
+            document.getElementById("energia").value = energiaCalculada + energiaExtra;
+
+            // Velocidad
+            document.getElementById("velocidad").value = velocidadDe(ficha);
         }
 
         // ---------------------------------------------------
@@ -805,7 +863,7 @@
                 `<thead><tr>
                     <th style="text-align:left">Magia/estilo</th>
                     <th>Valor</th>
-                    <th>Bono racial/clase</th>
+                    <th>Bono</th>
                     <th>Total</th>
                     <th colspan="2">Ajustar</th>
                 </tr></thead><tbody></tbody>`;
@@ -975,7 +1033,7 @@
                 `<thead><tr>
                     <th style="text-align:left">${cfg.etiqueta || "Opción"}</th>
                     <th>Valor</th>
-                    <th>Bono racial/clase</th>
+                    <th>Bono</th>
                     <th>Total</th>
                     <th colspan="2">Ajustar</th>
                 </tr></thead><tbody></tbody>`;
