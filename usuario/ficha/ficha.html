@@ -282,14 +282,6 @@
             <section class="bloque">
                 <h2>Actualmente</h2>
                 <p>
-                    <label for="salud">Salud:</label>
-                    <input type="number" id="salud">
-                    <label for="armadura-act">Armadura:</label>
-                    <input type="number" id="armadura-act">
-                    <label for="velocidad">Velocidad:</label>
-                    <input type="number" id="velocidad">
-                </p>
-                <p>
                     <label>Tipo de armadura:</label>
                     <label><input type="radio" name="tipo-armadura" value="tela"> Tela</label>
                     <label><input type="radio" name="tipo-armadura" value="cuero"> Cuero</label>
@@ -443,6 +435,7 @@
         const MAX_ARMAS_HAB = 18;
         const MAX_PROFESIONES = 3;
         const MAX_CONOCIMIENTOS = 6;
+        const MAX_MYE = 8;
 
         const RESISTENCIAS = [
             { id: "res_fisica",       nombre: "Resistencia física" },
@@ -791,12 +784,8 @@
         // ---------------------------------------------------
         // MAGIA Y ESTILOS (lista dinámica)
         // ---------------------------------------------------
-        // ---------------------------------------------------
-        // MAGIA Y ESTILOS (lista dinámica)
-        // ---------------------------------------------------
-        const MAX_MYE = 8;
-
         function bonosParaMye() {
+
             if (!DATOS) return [];
             const bonos = calcularBonos(ficha);
             const resultado = [];
@@ -1139,6 +1128,47 @@
             pintarListaDinamica(grupo);
         }
 
+                // ---------------------------------------------------
+        // QUITAR LA ÚLTIMA ENTRADA DE UNA LISTA DINÁMICA
+        // ---------------------------------------------------
+        function quitarUltimaDeLista(nombreGrupo, coste, maximo) {
+            const lista = ficha[nombreGrupo];
+            if (!lista || lista.length === 0) return;
+
+            // Buscar la última entrada MANUAL (las automáticas no se quitan)
+            let ultimaManualIdx = -1;
+            for (let i = lista.length - 1; i >= 0; i--) {
+                if (!lista[i].auto) { ultimaManualIdx = i; break; }
+            }
+            if (ultimaManualIdx === -1) return;   // solo hay automáticas
+
+            const ultima = lista[ultimaManualIdx];
+
+            // Devolver PT/pool de lo gastado
+            if (ultima.valor > 0) {
+                const pool = parseInt(document.getElementById(LISTAS_DINAMICAS[nombreGrupo].idPool).value, 10);
+                const poolMax = POOL_MAX[LISTAS_DINAMICAS[nombreGrupo].idPool] || 5;
+                const sobrante = ultima.valor;
+
+                if (pool < poolMax) {
+                    const aDevolver = Math.min(sobrante, poolMax - pool);
+                    document.getElementById(LISTAS_DINAMICAS[nombreGrupo].idPool).value = pool + aDevolver;
+                    const resto = sobrante - aDevolver;
+                    if (resto > 0) {
+                        ficha.pt += resto * coste;
+                        refrescarPT();
+                    }
+                } else {
+                    ficha.pt += sobrante * coste;
+                    refrescarPT();
+                }
+            }
+
+            // Quitar solo esa entrada manual
+            lista.splice(ultimaManualIdx, 1);
+            pintarListaDinamica(nombreGrupo);
+        }
+
 
         // ---------------------------------------------------
         // GUARDAR / BORRAR
@@ -1152,10 +1182,10 @@
             ficha.alineamiento = document.getElementById("alineamiento").value.trim();
             ficha.nivel        = parseInt(document.getElementById("nivel").value, 10) || 1;
             ficha.pt           = parseInt(document.getElementById("pt").value, 10) || 0;
-                        // Actualmente
-            ficha.actual.salud        = parseInt(document.getElementById("salud").value, 10) || 0;
+            // Actualmente
+            ficha.actual.saludExtra   = parseInt(document.getElementById("salud-extra").value, 10) || 0;
+            ficha.actual.energiaExtra = parseInt(document.getElementById("energia-extra").value, 10) || 0;
             ficha.actual.armadura     = parseInt(document.getElementById("armadura-act").value, 10) || 0;
-            ficha.actual.velocidad    = parseInt(document.getElementById("velocidad").value, 10) || 0;
             ficha.actual.yelmo        = document.getElementById("yelmo").value.trim();
             ficha.actual.torso        = document.getElementById("torso").value.trim();
             ficha.actual.manos        = document.getElementById("manos").value.trim();
