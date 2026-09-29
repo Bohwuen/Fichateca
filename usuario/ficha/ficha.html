@@ -369,14 +369,14 @@
         // ---------------------------------------------------
         // MODO: crear o editar
         // ---------------------------------------------------
-        const params = new URLSearchParams(window.location.search);
-        const idFicha = params.get("id");
-        const modoEdicion = !!idFicha;
+        const Params = new URLSearchParams(window.location.search);
+        const IdFicha = Params.get("id");
+        const ModoEdicion = !!IdFicha;
 
-        let ficha;
-        if (modoEdicion) {
-            ficha = obtenerFicha(idFicha);
-            if (!ficha) {
+        let Ficha;
+        if (ModoEdicion) {
+            Ficha = obtenerFicha(IdFicha);
+            if (!Ficha) {
                 document.getElementById("aviso").innerHTML =
                     '<p class="aviso-error">No se ha encontrado la ficha.</p>';
                 return;
@@ -384,13 +384,13 @@
             document.getElementById("titulo-pagina").textContent = "Editar ficha";
             document.getElementById("btn-borrar").style.display = "inline-block";
         } else {
-            ficha = fichaEnBlanco();
+            Ficha = fichaEnBlanco();
         }
 
         // ---------------------------------------------------
         // CONSTANTES
         // ---------------------------------------------------
-        const ATRIBUTOS = [
+        const Atributos = [
             { id: "vigor",        nombre: "Vigor" },
             { id: "destreza",     nombre: "Destreza" },
             { id: "inteligencia", nombre: "Inteligencia" },
@@ -400,14 +400,14 @@
             { id: "energia",      nombre: "Energía" }
         ];
 
-        const DEFENSAS = [
+        const Defensas = [
             { id: "parada",    nombre: "Parada" },
             { id: "esquivar",  nombre: "Esquivar" },
             { id: "bloqueo",   nombre: "Bloqueo" },
             { id: "metamagia", nombre: "Metamagia" }
         ];
 
-        const HABILIDADES = [
+        const Habilidades = [
             { id: "atletismo",           nombre: "Atletismo" },
             { id: "robo",                nombre: "Robo" },
             { id: "sigilo",              nombre: "Sigilo" },
@@ -424,7 +424,7 @@
             { id: "carisma",             nombre: "Carisma" }
         ];
 
-        const MAGIA = [
+        const Magia = [
             { id: "taumaturgia",   nombre: "Taumaturgia" },
             { id: "fe",            nombre: "Fe" },
             { id: "espiritualidad",nombre: "Espiritualidad" },
@@ -432,12 +432,12 @@
             { id: "caos",    nombre: "caos" }
         ];
 
-        const MAX_ARMAS_HAB = 18;
-        const MAX_PROFESIONES = 3;
-        const MAX_CONOCIMIENTOS = 6;
-        const MAX_MYE = 8;
+        const MaxArmasHab = 18;
+        const MaxProfesiones = 3;
+        const MaxConocimientos = 6;
+        const MaxMye = 8;
 
-        const RESISTENCIAS = [
+        const Resistencias = [
             { id: "res_fisica",       nombre: "Resistencia física" },
             { id: "res_arcana",       nombre: "Resistencia arcana" },
             { id: "res_fuego",        nombre: "Resistencia al fuego" },
@@ -448,115 +448,115 @@
             { id: "res_luz",          nombre: "Resistencia a la luz" }
         ];
 
-        const POOL_MAX = { pa: 5, pd: 3, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 4 };
+        const PoolMax = { pa: 5, pd: 3, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 4 };
         // ---------------------------------------------------
         // CARGA INICIAL
         // ---------------------------------------------------
         cargarDatosMotor().then(() => {
-            rellenarSelect("raza", DATOS.razas, "id", "nombre");
-            rellenarSelect("clase", DATOS.clases, "id", "nombre");
-            if (modoEdicion) cargarValores();
+            rellenarSelect("raza", Datos.razas, "id", "nombre");
+            rellenarSelect("clase", Datos.clases, "id", "nombre");
+            if (ModoEdicion) cargarValores();
             pintarTodasTablas();
             refrescarPT();
             enlazarEventos();
         });
 
-        function rellenarSelect(idSelect, filas, campoValor, campoTexto) {
-            const sel = document.getElementById(idSelect);
-            const visibles = filas.filter(f => !f.oculta || f.oculta === "0");
-            sel.innerHTML = '<option value="">—</option>' +
-            visibles.map(f => `<option value="${f[campoValor]}">${f[campoTexto]}</option>`).join("");
+        function rellenarSelect(IdSelect, Filas, CampoValor, CampoTexto) {
+            const Sel = document.getElementById(IdSelect);
+            const Visibles = Filas.filter(Fila => !Fila.oculta || Fila.oculta === "0");
+            Sel.innerHTML = '<option value="">—</option>' +
+            Visibles.map(f => `<option value="${f[CampoValor]}">${f[CampoTexto]}</option>`).join("");
         }
 
         function cargarValores() {
-            document.getElementById("nombre").value       = ficha.nombre || "";
-            document.getElementById("apellidos").value    = ficha.apellidos || "";
-            document.getElementById("titulo").value       = ficha.titulo || "";
-            document.getElementById("nacimiento").value   = ficha.nacimiento || "";
-            document.getElementById("faccion").value      = ficha.faccion || "";
-            document.getElementById("alineamiento").value = ficha.alineamiento || "";
-            document.getElementById("raza").value         = ficha.raza || "";
-            document.getElementById("clase").value        = ficha.clase || "";
-            document.getElementById("nivel").value        = ficha.nivel || 1;
-            document.getElementById("pt").value           = ficha.pt || 0;
+            document.getElementById("nombre").value       = Ficha.nombre || "";
+            document.getElementById("apellidos").value    = Ficha.apellidos || "";
+            document.getElementById("titulo").value       = Ficha.titulo || "";
+            document.getElementById("nacimiento").value   = Ficha.nacimiento || "";
+            document.getElementById("faccion").value      = Ficha.faccion || "";
+            document.getElementById("alineamiento").value = Ficha.alineamiento || "";
+            document.getElementById("raza").value         = Ficha.raza || "";
+            document.getElementById("clase").value        = Ficha.clase || "";
+            document.getElementById("nivel").value        = Ficha.nivel || 1;
+            document.getElementById("pt").value           = Ficha.pt || 0;
 
             actualizarSubrazas();
-            document.getElementById("subraza").value = ficha.subraza || "";
+            document.getElementById("subraza").value = Ficha.subraza || "";
             actualizarRacialesEspeciales();
             actualizarCheckboxHuargen();
             document.getElementById("transformacion-huargen").checked =
-                ficha.transformacion === "huargen";
+                Ficha.transformacion === "huargen";
                         // Actualmente
             // Actualmente
-            document.getElementById("salud-extra").value   = ficha.actual.saludExtra || 0;
-            document.getElementById("energia-extra").value = ficha.actual.energiaExtra || 0;
-            document.getElementById("armadura-act").value  = ficha.actual.armadura || 0;
-            document.getElementById("yelmo").value        = ficha.actual.yelmo || "";
-            document.getElementById("torso").value        = ficha.actual.torso || "";
-            document.getElementById("manos").value        = ficha.actual.manos || "";
-            document.getElementById("pies").value         = ficha.actual.pies || "";
-            document.getElementById("capa").value         = ficha.actual.capa || "";
-            document.getElementById("escudo-nombre").value = ficha.actual.escudoNombre || "";
-            document.getElementById("escudo-equipado").checked = !!ficha.actual.escudo;
+            document.getElementById("salud-extra").value   = Ficha.actual.saludExtra || 0;
+            document.getElementById("energia-extra").value = Ficha.actual.energiaExtra || 0;
+            document.getElementById("armadura-act").value  = Ficha.actual.armadura || 0;
+            document.getElementById("yelmo").value        = Ficha.actual.yelmo || "";
+            document.getElementById("torso").value        = Ficha.actual.torso || "";
+            document.getElementById("manos").value        = Ficha.actual.manos || "";
+            document.getElementById("pies").value         = Ficha.actual.pies || "";
+            document.getElementById("capa").value         = Ficha.actual.capa || "";
+            document.getElementById("escudo-nombre").value = Ficha.actual.escudoNombre || "";
+            document.getElementById("escudo-equipado").checked = !!Ficha.actual.escudo;
 
             document.querySelectorAll('input[name="tipo-armadura"]').forEach(radio => {
-                radio.checked = (radio.value === ficha.actual.tipoArmadura);
+                radio.checked = (radio.value === Ficha.actual.tipoArmadura);
             });
 
             // Texto
-            document.getElementById("descripcion").value = ficha.descripcion || "";
-            document.getElementById("trasfondo").value   = ficha.trasfondo || "";
-            document.getElementById("inventario").value  = ficha.inventario || "";
+            document.getElementById("descripcion").value = Ficha.descripcion || "";
+            document.getElementById("trasfondo").value   = Ficha.trasfondo || "";
+            document.getElementById("inventario").value  = Ficha.inventario || "";
 
             // Dinero
-            document.getElementById("oro").value    = ficha.dinero.oro || 0;
-            document.getElementById("plata").value  = ficha.dinero.plata || 0;
-            document.getElementById("cobre").value  = ficha.dinero.cobre || 0;
+            document.getElementById("oro").value    = Ficha.dinero.oro || 0;
+            document.getElementById("plata").value  = Ficha.dinero.plata || 0;
+            document.getElementById("cobre").value  = Ficha.dinero.cobre || 0;
         }
 
         // ---------------------------------------------------
         // TABLAS
         // ---------------------------------------------------
         function pintarTodasTablas() {
-            pintarTablaGenerica("#tabla-atributos tbody", ATRIBUTOS, ficha.atributos, "atributo");
-            pintarTablaGenerica("#tabla-defensas tbody", DEFENSAS, ficha.defensas, "defensa");
-            pintarTablaGenerica("#tabla-habilidades tbody", HABILIDADES, ficha.habilidades, "habilidad");
-            pintarTablaGenerica("#tabla-magia tbody", MAGIA, ficha.magia, "magia");
+            pintarTablaGenerica("#tabla-atributos tbody", Atributos, Ficha.atributos, "atributo");
+            pintarTablaGenerica("#tabla-defensas tbody", Defensas, Ficha.defensas, "defensa");
+            pintarTablaGenerica("#tabla-habilidades tbody", Habilidades, Ficha.habilidades, "habilidad");
+            pintarTablaGenerica("#tabla-magia tbody", Magia, Ficha.magia, "magia");
             pintarMye();
             pintarListaDinamica("armasHabilidades");
             pintarListaDinamica("profesiones");
             pintarListaDinamica("conocimientos");
-            pintarTablaGenerica("#tabla-resistencias tbody", RESISTENCIAS, ficha.resistencias, "resistencia");
+            pintarTablaGenerica("#tabla-resistencias tbody", Resistencias, Ficha.resistencias, "resistencia");
 
         refrescarStatsCabecera();
         }
 
-        function pintarTablaGenerica(selector, lista, valores, tipo) {
-            const tbody = document.querySelector(selector);
-            if (!tbody) return;
-            tbody.innerHTML = "";
+        function pintarTablaGenerica(Selector, Lista, Valores, Tipo) {
+            const TBody = document.querySelector(Selector);
+            if (!TBody) return;
+            TBody.innerHTML = "";
 
-            const bonos = calcularBonos(ficha);
+            const Bonos = calcularBonos(Ficha);
 
-            lista.forEach(item => {
-                const valorBase = valores[item.id] || 0;
-                const bono = bonos[nombreColumna(item.id)] || 0;
-                const total = valorBase + bono;
+            Lista.forEach(Item => {
+                const ValorBase = Valores[Item.id] || 0;
+                const Bono = Bonos[nombreColumna(Item.id)] || 0;
+                const Total = ValorBase + Bono;
 
-                const tr = document.createElement("tr");
-                tr.innerHTML =
-                    `<td>${item.nombre}</td>` +
-                    `<td>${valorBase}</td>` +
-                    `<td>${bono >= 0 ? "+" + bono : bono}</td>` +
-                    `<td><strong>${total}</strong></td>` +
-                    `<td><button type="button" data-tipo="${tipo}" data-accion="menos" data-id="${item.id}">−</button></td>` +
-                    `<td><button type="button" data-tipo="${tipo}" data-accion="mas" data-id="${item.id}">+</button></td>`;
-                tbody.appendChild(tr);
+                const FilaTabla = document.createElement("tr");
+                FilaTabla.innerHTML =
+                    `<td>${Item.nombre}</td>` +
+                    `<td>${ValorBase}</td>` +
+                    `<td>${Bono >= 0 ? "+" + Bono : Bono}</td>` +
+                    `<td><strong>${Total}</strong></td>` +
+                    `<td><button type="button" data-tipo="${Tipo}" data-accion="menos" data-id="${Item.id}">−</button></td>` +
+                    `<td><button type="button" data-tipo="${Tipo}" data-accion="mas" data-id="${Item.id}">+</button></td>`;
+                TBody.appendChild(FilaTabla);
             });
         }
 
-                function nombreColumna(id) {
-            const mapa = {
+                function nombreColumna(Id) {
+            const Mapa = {
                 vigor: "Vigor", destreza: "Destreza", inteligencia: "Inteligencia",
                 voluntad: "Voluntad", percepcion: "Percepcion", aguante: "Aguante",
                 energia: "Energia",
@@ -577,7 +577,7 @@
                 res_naturaleza: "Resistencia_a_la_naturaleza",
                 res_luz: "Resistencia_a_la_luz"
             };
-            return mapa[id] || id;
+            return Mapa[Id] || Id;
         }
 
         // ---------------------------------------------------
@@ -585,29 +585,29 @@
         // ---------------------------------------------------
                 function enlazarEventos() {
 
-            document.getElementById("raza").addEventListener("change", e => {
-                ficha.raza = e.target.value;
-                ficha.subraza = "";
+            document.getElementById("raza").addEventListener("change", Evento => {
+                Ficha.raza = Evento.target.value;
+                Ficha.subraza = "";
                 actualizarSubrazas();
                 actualizarRacialesEspeciales();
                 actualizarCheckboxHuargen();
                 pintarTodasTablas();
             });
 
-            document.getElementById("subraza").addEventListener("change", e => {
-                ficha.subraza = e.target.value;
+            document.getElementById("subraza").addEventListener("change", Evento => {
+                Ficha.subraza = Evento.target.value;
                 actualizarRacialesEspeciales();
                 pintarTodasTablas();
             });
 
-            document.getElementById("transformacion-huargen").addEventListener("change", e => {
-                ficha.transformacion = e.target.checked ? "huargen" : "";
+            document.getElementById("transformacion-huargen").addEventListener("change", Evento => {
+                Ficha.transformacion = Evento.target.checked ? "huargen" : "";
                 actualizarRacialesEspeciales();
                 pintarTodasTablas();
             });
 
-            document.getElementById("clase").addEventListener("change", e => {
-                ficha.clase = e.target.value;
+            document.getElementById("clase").addEventListener("change", Evento => {
+                Ficha.clase = Evento.target.value;
                 pintarTodasTablas();
             });
 
@@ -617,31 +617,31 @@
             document.getElementById("salud-extra").addEventListener("input", refrescarStatsCabecera);
             document.getElementById("energia-extra").addEventListener("input", refrescarStatsCabecera);
 
-            document.querySelectorAll("#tabla-atributos, #tabla-defensas, #tabla-habilidades, #tabla-magia, #tabla-resistencias").forEach(tabla => {                tabla.addEventListener("click", e => {
-                    const btn = e.target.closest("button");
-                    if (!btn) return;
-                    const tipo = btn.dataset.tipo;
-                    const id = btn.dataset.id;
-                    const accion = btn.dataset.accion;
+            document.querySelectorAll("#tabla-atributos, #tabla-defensas, #tabla-habilidades, #tabla-magia, #tabla-resistencias").forEach(tabla => {                tabla.addEventListener("click", Evento => {
+                    const Boton = Evento.target.closest("button");
+                    if (!Boton) return;
+                    const Tipo = Boton.dataset.tipo;
+                    const Id = Boton.dataset.id;
+                    const Accion = Boton.dataset.accion;
 
-                    if (tipo === "atributo") {
-                        if (accion === "mas") sumarItem("atributos", "pa", COSTES.atributo, 5, id);
-                        else restarItem("atributos", "pa", COSTES.atributo, id);
-                    } else if (tipo === "defensa") {
-                        if (accion === "mas") sumarItem("defensas", "pd", COSTES.defensa, 3, id);
-                        else restarItem("defensas", "pd", COSTES.defensa, id);
-                    } else if (tipo === "habilidad") {
-                        if (accion === "mas") sumarItem("habilidades", "ph", COSTES.habilidad, 5, id);
-                        else restarItem("habilidades", "ph", COSTES.habilidad, id);
-                    } else if (tipo === "magia") {
-                        if (accion === "mas") sumarItem("magia", "phm", COSTES.magia, 5, id);
-                        else restarItem("magia", "phm", COSTES.magia, id);
+                    if (Tipo === "atributo") {
+                        if (Accion === "mas") sumarItem("atributos", "pa", Costes.atributo, 5, Id);
+                        else restarItem("atributos", "pa", Costes.atributo, Id);
+                    } else if (Tipo === "defensa") {
+                        if (Accion === "mas") sumarItem("defensas", "pd", Costes.defensa, 3, Id);
+                        else restarItem("defensas", "pd", Costes.defensa, Id);
+                    } else if (Tipo === "habilidad") {
+                        if (Accion === "mas") sumarItem("habilidades", "ph", Costes.habilidad, 5, Id);
+                        else restarItem("habilidades", "ph", Costes.habilidad, Id);
+                    } else if (Tipo === "magia") {
+                        if (Accion === "mas") sumarItem("magia", "phm", Costes.magia, 5, Id);
+                        else restarItem("magia", "phm", Costes.magia, Id);
                     }
-                     else if (tipo === "resistencia") {
-                        if (accion === "mas" && ficha.resistencias[id] < 99) {
-                            ficha.resistencias[id]++;
-                        } else if (accion === "menos" && ficha.resistencias[id] > 0) {
-                            ficha.resistencias[id]--;
+                     else if (Tipo === "resistencia") {
+                        if (Accion === "mas" && Ficha.resistencias[Id] < 99) {
+                            Ficha.resistencias[Id]++;
+                        } else if (Accion === "menos" && Ficha.resistencias[Id] > 0) {
+                            Ficha.resistencias[Id]--;
                         }
                     }
 
@@ -650,194 +650,194 @@
             });
 
             document.getElementById("btn-add-mye").addEventListener("click", () => {
-                if (ficha.mye.length >= MAX_MYE) return;
-                ficha.mye.push({ id: "", valor: 0 });
+                if (Ficha.mye.length >= MaxMye) return;
+                Ficha.mye.push({ id: "", valor: 0 });
                 pintarMye();
             });
 
             document.getElementById("btn-del-mye").addEventListener("click", () => {
-                if (ficha.mye.length === 0) return;
-                const ultima = ficha.mye[ficha.mye.length - 1];
-                if (ultima.valor > 0) {
-                    ficha.pt += ultima.valor * COSTES.mye;
+                if (Ficha.mye.length === 0) return;
+                const Ultima = Ficha.mye[Ficha.mye.length - 1];
+                if (Ultima.valor > 0) {
+                    Ficha.pt += Ultima.valor * Costes.mye;
                     refrescarPT();
                 }
-                ficha.mye.pop();
+                Ficha.mye.pop();
                 pintarMye();
             });
 
             // ----- NUEVOS: Botones de añadir/quitar de las listas dinámicas -----
 
             document.getElementById("btn-add-arma-hab").addEventListener("click", () => {
-                if (ficha.armasHabilidades.length >= MAX_ARMAS_HAB) return;
-                ficha.armasHabilidades.push({ id: "", valor: 0 });
+                if (Ficha.armasHabilidades.length >= MaxArmasHab) return;
+                Ficha.armasHabilidades.push({ id: "", valor: 0 });
                 pintarListaDinamica("armasHabilidades");
             });
             document.getElementById("btn-del-arma-hab").addEventListener("click", () => {
-                quitarUltimaDeLista("armasHabilidades", COSTES.habilidadArma, MAX_ARMAS_HAB);
+                quitarUltimaDeLista("armasHabilidades", Costes.habilidadArma, MaxArmasHab);
             });
 
             document.getElementById("btn-add-profesion").addEventListener("click", () => {
-                if (ficha.profesiones.length >= MAX_PROFESIONES) return;
-                ficha.profesiones.push({ id: "", valor: 0 });
+                if (Ficha.profesiones.length >= MaxProfesiones) return;
+                Ficha.profesiones.push({ id: "", valor: 0 });
                 pintarListaDinamica("profesiones");
             });
             document.getElementById("btn-del-profesion").addEventListener("click", () => {
-                quitarUltimaDeLista("profesiones", COSTES.profesion, MAX_PROFESIONES);
+                quitarUltimaDeLista("profesiones", Costes.profesion, MaxProfesiones);
             });
 
             document.getElementById("btn-add-conocimiento").addEventListener("click", () => {
-                if (ficha.conocimientos.length >= MAX_CONOCIMIENTOS) return;
-                ficha.conocimientos.push({ id: "", valor: 0 });
+                if (Ficha.conocimientos.length >= MaxConocimientos) return;
+                Ficha.conocimientos.push({ id: "", valor: 0 });
                 pintarListaDinamica("conocimientos");
             });
             document.getElementById("btn-del-conocimiento").addEventListener("click", () => {
-                quitarUltimaDeLista("conocimientos", COSTES.conocimiento, MAX_CONOCIMIENTOS);
+                quitarUltimaDeLista("conocimientos", Costes.conocimiento, MaxConocimientos);
             });
 
             // ----- Guardar / Borrar -----
 
             document.getElementById("btn-guardar").addEventListener("click", guardar);
-            if (modoEdicion) {
+            if (ModoEdicion) {
                 document.getElementById("btn-borrar").addEventListener("click", borrar);
             }
         }
 
         function actualizarSubrazas() {
-            const sel = document.getElementById("subraza");
-            if (!sel) return;
+            const Sel = document.getElementById("subraza");
+            if (!Sel) return;
 
-            const subs = subrazasDe(ficha.raza);
+            const Subrazas = subrazasDe(Ficha.raza);
 
-            if (subs.length === 0) {
-                sel.innerHTML = '<option value="">—</option>';
-                sel.disabled = true;
+            if (Subrazas.length === 0) {
+                Sel.innerHTML = '<option value="">—</option>';
+                Sel.disabled = true;
                 return;
             }
 
-            sel.disabled = false;
-            sel.innerHTML = '<option value="">—</option>' +
-                subs.map(s => `<option value="${s.id}">${s.nombre}</option>`).join("");
+            Sel.disabled = false;
+            Sel.innerHTML = '<option value="">—</option>' +
+                Subrazas.map(Subraza => `<option value="${Subraza.id}">${Subraza.nombre}</option>`).join("");
         }
 
         function actualizarCheckboxHuargen() {
-            const chk = document.getElementById("transformacion-huargen");
-            if (!chk) return;
+            const Checkbox = document.getElementById("transformacion-huargen");
+            if (!Checkbox) return;
 
-            const esHumano = ficha.raza === "humano";
+            const EsHumano = Ficha.raza === "humano";
 
             // Solo habilitado si la raza es humano
-            chk.disabled = !esHumano;
+            Checkbox.disabled = !EsHumano;
 
             // Si ya no es humano, desmarcar
-            if (!esHumano) {
-                chk.checked = false;
-                ficha.transformacion = "";
+            if (!EsHumano) {
+                Checkbox.checked = false;
+                Ficha.transformacion = "";
             }
         }
 
         function actualizarRacialesEspeciales() {
-            const cont = document.getElementById("raciales-especiales");
-            const origen = ficha.subraza || ficha.raza;
+            const Contenedor = document.getElementById("raciales-especiales");
+            const Origen = Ficha.subraza || Ficha.raza;
 
-            if (!origen) {
-                cont.innerHTML = "<em>Elige una raza.</em>";
+            if (!Origen) {
+                Contenedor.innerHTML = "<em>Elige una raza.</em>";
                 return;
             }
 
-            const partes = [];
+            const Partes = [];
 
             // 1. Raciales de la raza/subraza (siempre)
-            const descRacial = racialesEspecialesDe(origen);
-            if (descRacial) partes.push(descRacial);
+            const DescripcionRacial = racialesEspecialesDe(Origen);
+            if (DescripcionRacial) Partes.push(DescripcionRacial);
 
             // 2. Raciales de la transformación (si está activa)
-            if (ficha.transformacion) {
-                const descTrans = racialesEspecialesDe(ficha.transformacion);
-                if (descTrans) partes.push(descTrans);
+            if (Ficha.transformacion) {
+                const DescripcionTransformacion = racialesEspecialesDe(Ficha.transformacion);
+                if (DescripcionTransformacion) Partes.push(DescripcionTransformacion);
             }
 
-            if (partes.length === 0) {
-                cont.innerHTML = "<em>Sin raciales especiales.</em>";
+            if (Partes.length === 0) {
+                Contenedor.innerHTML = "<em>Sin raciales especiales.</em>";
                 return;
             }
 
             // Mostrar cada bloque separado por saltos de línea
-            cont.innerHTML = partes
-                .map(p => `<p>${p}</p>`)
+            Contenedor.innerHTML = Partes
+                .map(Parte => `<p>${Parte}</p>`)
                 .join("");
         }
 
         // ---------------------------------------------------
         // NIVEL Y PT
         // ---------------------------------------------------
-        function cambiarNivel(delta) {
-            const nuevo = ficha.nivel + delta;
-            if (nuevo < 1 || nuevo > 25) return;
-            ficha.nivel = nuevo;
-            ficha.pt += delta * COSTES.nivel;
-            document.getElementById("nivel").value = ficha.nivel;
-            document.getElementById("pt").value = ficha.pt;
+        function cambiarNivel(Delta) {
+            const NuevoNivel = Ficha.nivel + Delta;
+            if (NuevoNivel < 1 || NuevoNivel > 25) return;
+            Ficha.nivel = NuevoNivel;
+            Ficha.pt += Delta * Costes.nivel;
+            document.getElementById("nivel").value = Ficha.nivel;
+            document.getElementById("pt").value = Ficha.pt;
         }
 
         function refrescarPT() {
-            document.getElementById("pt").value = ficha.pt;
+            document.getElementById("pt").value = Ficha.pt;
         }
 
         // ---------------------------------------------------
         // POOLS E ITEMS
         // ---------------------------------------------------
-        function sumarItem(grupo, idPool, coste, maximo, id) {
-            if (ficha[grupo][id] >= maximo) return;
-            const pool = parseInt(document.getElementById(idPool).value, 10);
-            if (pool > 0) {
-                document.getElementById(idPool).value = pool - 1;
-                ficha[grupo][id]++;
+        function sumarItem(Grupo, IdPool, Coste, Maximo, Id) {
+            if (Ficha[Grupo][Id] >= Maximo) return;
+            const Pool = parseInt(document.getElementById(IdPool).value, 10);
+            if (Pool > 0) {
+                document.getElementById(IdPool).value = Pool - 1;
+                Ficha[Grupo][Id]++;
                 return;
             }
-            if (ficha.pt >= coste) {
-                ficha.pt -= coste;
-                ficha[grupo][id]++;
+            if (Ficha.pt >= Coste) {
+                Ficha.pt -= Coste;
+                Ficha[Grupo][Id]++;
                 refrescarPT();
             }
         }
 
-        function restarItem(grupo, idPool, coste, id) {
-            const minimo = (grupo === "atributos") ? 1 : 0;
-            if (ficha[grupo][id] <= minimo) return;
+        function restarItem(Grupo, IdPool, Coste, Id) {
+            const Minimo = (Grupo === "atributos") ? 1 : 0;
+            if (Ficha[Grupo][Id] <= Minimo) return;
 
-            const pool = parseInt(document.getElementById(idPool).value, 10);
-            const poolMax = POOL_MAX[idPool] || 5;
+            const Pool = parseInt(document.getElementById(IdPool).value, 10);
+            const PoolMaximo = PoolMax[IdPool] || 5;
 
-            if (pool < poolMax) {
-                document.getElementById(idPool).value = pool + 1;
-                ficha[grupo][id]--;
+            if (Pool < PoolMaximo) {
+                document.getElementById(IdPool).value = Pool + 1;
+                Ficha[Grupo][Id]--;
                 return;
             }
-            ficha.pt += coste;
-            ficha[grupo][id]--;
+            Ficha.pt += Coste;
+            Ficha[Grupo][Id]--;
             refrescarPT();
         }
 
         function refrescarStatsCabecera() {
-            const bonos = calcularBonos(ficha);
+            const Bonos = calcularBonos(Ficha);
 
             // Salud = 5 × (Aguante base + bono) + extra
-            const aguanteBase = ficha.atributos.aguante || 0;
-            const bonoAguante = bonos["Aguante"] || 0;
-            const saludCalculada = (aguanteBase + bonoAguante) * 5;
-            const saludExtra = parseInt(document.getElementById("salud-extra").value, 10) || 0;
-            document.getElementById("salud").value = saludCalculada + saludExtra;
+            const AguanteBase = Ficha.atributos.aguante || 0;
+            const BonoAguante = Bonos["Aguante"] || 0;
+            const SaludCalculada = (AguanteBase + BonoAguante) * 5;
+            const SaludExtra = parseInt(document.getElementById("salud-extra").value, 10) || 0;
+            document.getElementById("salud").value = SaludCalculada + SaludExtra;
 
             // Energía = 5 × (Energía base + bono) + extra
-            const energiaBase = ficha.atributos.energia || 0;
-            const bonoEnergia = bonos["Energia"] || 0;
-            const energiaCalculada = (energiaBase + bonoEnergia) * 5;
-            const energiaExtra = parseInt(document.getElementById("energia-extra").value, 10) || 0;
-            document.getElementById("energia").value = energiaCalculada + energiaExtra;
+            const EnergiaBase = Ficha.atributos.energia || 0;
+            const BonoEnergia = Bonos["Energia"] || 0;
+            const EnergiaCalculada = (EnergiaBase + BonoEnergia) * 5;
+            const EnergiaExtra = parseInt(document.getElementById("energia-extra").value, 10) || 0;
+            document.getElementById("energia").value = EnergiaCalculada + EnergiaExtra;
 
             // Velocidad
-            document.getElementById("velocidad").value = velocidadDe(ficha);
+            document.getElementById("velocidad").value = velocidadDe(Ficha);
         }
 
         // ---------------------------------------------------
@@ -845,24 +845,24 @@
         // ---------------------------------------------------
         function bonosParaMye() {
 
-            if (!DATOS) return [];
-            const bonos = calcularBonos(ficha);
-            const resultado = [];
+            if (!Datos) return [];
+            const Bonos = calcularBonos(Ficha);
+            const Resultado = [];
 
-            DATOS.magias.forEach(op => {
-                let valor = 0;
-                for (const col in bonos) {
-                    if (normalizarNombre(col) === normalizarNombre(op.columna_bono || op.nombre)) {
-                        valor += bonos[col];
+            Datos.magias.forEach(Opcion => {
+                let Valor = 0;
+                for (const Columna in Bonos) {
+                    if (normalizarNombre(Columna) === normalizarNombre(Opcion.columna_bono || Opcion.nombre)) {
+                        Valor += Bonos[Columna];
                         break;
                     }
                 }
-                if (valor !== 0) {
-                    resultado.push({ id: op.id, nombre: op.nombre, valor });
+                if (Valor !== 0) {
+                    Resultado.push({ id: Opcion.id, nombre: Opcion.nombre, valor: Valor });
                 }
             });
 
-            return resultado;
+            return Resultado;
         }
 
                 // ---------------------------------------------------
@@ -872,42 +872,42 @@
         //   - las entradas manuales del usuario
         //   - las entradas automáticas que toquen ahora
         // ---------------------------------------------------
-        function sincronizarAutomaticos(grupo, bonosAuto) {
-            if (!ficha[grupo]) ficha[grupo] = [];
+        function sincronizarAutomaticos(Grupo, BonosAuto) {
+            if (!Ficha[Grupo]) Ficha[Grupo] = [];
 
-            const idsAuto = bonosAuto.map(b => b.id);
+            const IdsAuto = BonosAuto.map(Bono => Bono.id);
 
             // 1. Manuales (no auto, y que no estén ahora en la lista automática)
-            const manuales = ficha[grupo].filter(e =>
-                !e.auto && !idsAuto.includes(e.id)
+            const Manuales = Ficha[Grupo].filter(Entrada =>
+                !Entrada.auto && !IdsAuto.includes(Entrada.id)
             );
 
             // 2. Automáticas: preservar valor previo si existía
-            const automaticas = bonosAuto.map(b => {
-                const previa = ficha[grupo].find(e => e.auto && e.id === b.id);
+            const Automaticas = BonosAuto.map(Bono => {
+                const Previa = Ficha[Grupo].find(Entrada => Entrada.auto && Entrada.id === Bono.id);
                 return {
-                    id: b.id,
-                    valor: previa ? previa.valor : 0,
+                    id: Bono.id,
+                    valor: Previa ? Previa.valor : 0,
                     auto: true
                 };
             });
 
             // 3. Reconstruir: primero automáticas, luego manuales
-            ficha[grupo] = automaticas.concat(manuales);
+            Ficha[Grupo] = Automaticas.concat(Manuales);
         }
 
         function pintarMye() {
-            const cont = document.getElementById("lista-mye");
-            if (!cont) return;
-            cont.innerHTML = "";
+            const Contenedor = document.getElementById("lista-mye");
+            if (!Contenedor) return;
+            Contenedor.innerHTML = "";
 
             // 1. Sincronizar ficha.mye con los bonos automáticos
             sincronizarAutomaticos("mye", bonosParaMye());
 
             // 2. Pintar cabecera
-            const tabla = document.createElement("table");
-            tabla.className = "tabla-lista";
-            tabla.innerHTML =
+            const Tabla = document.createElement("table");
+            Tabla.className = "tabla-lista";
+            Tabla.innerHTML =
                 `<thead><tr>
                     <th style="text-align:left">Magia/estilo</th>
                     <th>Valor</th>
@@ -915,97 +915,97 @@
                     <th>Total</th>
                     <th colspan="2">Ajustar</th>
                 </tr></thead><tbody></tbody>`;
-            cont.appendChild(tabla);
-            const tbody = tabla.querySelector("tbody");
+            Contenedor.appendChild(Tabla);
+            const TBody = Tabla.querySelector("tbody");
 
             // 3. Pintar cada fila
-            const opcionesMye = DATOS ? DATOS.magias : [];
-            const bonosActuales = calcularBonos(ficha);
+            const OpcionesMye = Datos ? Datos.magias : [];
+            const BonosActuales = calcularBonos(Ficha);
 
-            ficha.mye.forEach((entrada, indice) => {
-                const valorBase = entrada.valor || 0;
-                const nombreBono = columnaBonoDe(entrada.id, opcionesMye);
-                const bono = nombreBono ? (bonosActuales[nombreBono] || 0) : 0;
-                const total = valorBase + bono;
+            Ficha.mye.forEach((Entrada, Indice) => {
+                const ValorBase = Entrada.valor || 0;
+                const NombreBono = columnaBonoDe(Entrada.id, OpcionesMye);
+                const Bono = NombreBono ? (BonosActuales[NombreBono] || 0) : 0;
+                const Total = ValorBase + Bono;
 
-                const tr = document.createElement("tr");
+                const FilaTabla = document.createElement("tr");
 
-                const idsAutomaticosMye = ficha.mye.filter(e => e.auto).map(e => e.id);
+                const IdsAutomaticosMye = Ficha.mye.filter(EntradaMye => EntradaMye.auto).map(EntradaMye => EntradaMye.id);
 
-                let htmlSelect = `<select data-mye-select="${indice}"${entrada.auto ? " disabled" : ""}>`;
-                htmlSelect += `<option value="">—</option>`;
-                opcionesMye.forEach(op => {
-                    if (!entrada.auto && idsAutomaticosMye.includes(op.id)) return;
-                    const sel = (op.id === entrada.id) ? " selected" : "";
-                    htmlSelect += `<option value="${op.id}"${sel}>${op.nombre}</option>`;
+                let HtmlSelect = `<select data-mye-select="${Indice}"${Entrada.auto ? " disabled" : ""}>`;
+                HtmlSelect += `<option value="">—</option>`;
+                OpcionesMye.forEach(Opcion => {
+                    if (!Entrada.auto && IdsAutomaticosMye.includes(Opcion.id)) return;
+                    const Seleccion = (Opcion.id === Entrada.id) ? " selected" : "";
+                    HtmlSelect += `<option value="${Opcion.id}"${Seleccion}>${Opcion.nombre}</option>`;
                 });
-                htmlSelect += `</select>`;
+                HtmlSelect += `</select>`;
 
-                const htmlBotones =
-                    `<button type="button" data-mye-menos="${indice}">−</button>
-                    <button type="button" data-mye-mas="${indice}">+</button>`;
+                const HtmlBotones =
+                    `<button type="button" data-mye-menos="${Indice}">−</button>
+                    <button type="button" data-mye-mas="${Indice}">+</button>`;
 
-                tr.innerHTML =
-                    `<td style="text-align:left">${htmlSelect}</td>` +
-                    `<td>${valorBase}</td>` +
-                    `<td>${bono >= 0 ? "+" + bono : bono}</td>` +
-                    `<td><strong>${total}</strong></td>` +
-                    `<td colspan="2">${htmlBotones}</td>`;
-                tbody.appendChild(tr);
+                FilaTabla.innerHTML =
+                    `<td style="text-align:left">${HtmlSelect}</td>` +
+                    `<td>${ValorBase}</td>` +
+                    `<td>${Bono >= 0 ? "+" + Bono : Bono}</td>` +
+                    `<td><strong>${Total}</strong></td>` +
+                    `<td colspan="2">${HtmlBotones}</td>`;
+                TBody.appendChild(FilaTabla);
             });
 
             // 4. Listeners
-            cont.querySelectorAll("[data-mye-select]").forEach(sel => {
-                sel.addEventListener("change", e => {
-                    const i = parseInt(e.target.dataset.myeSelect, 10);
-                    ficha.mye[i].id = e.target.value;
+            Contenedor.querySelectorAll("[data-mye-select]").forEach(Selector => {
+                Selector.addEventListener("change", Evento => {
+                    const Indice = parseInt(Evento.target.dataset.myeSelect, 10);
+                    Ficha.mye[Indice].id = Evento.target.value;
                 });
             });
-            cont.querySelectorAll("[data-mye-mas]").forEach(btn => {
-                btn.addEventListener("click", e => {
-                    const i = parseInt(e.target.dataset.myeMas, 10);
-                    sumarMye(i);
+            Contenedor.querySelectorAll("[data-mye-mas]").forEach(Boton => {
+                Boton.addEventListener("click", Evento => {
+                    const Indice = parseInt(Evento.target.dataset.myeMas, 10);
+                    sumarMye(Indice);
                 });
             });
-            cont.querySelectorAll("[data-mye-menos]").forEach(btn => {
-                btn.addEventListener("click", e => {
-                    const i = parseInt(e.target.dataset.myeMenos, 10);
-                    restarMye(i);
+            Contenedor.querySelectorAll("[data-mye-menos]").forEach(Boton => {
+                Boton.addEventListener("click", Evento => {
+                    const Indice = parseInt(Evento.target.dataset.myeMenos, 10);
+                    restarMye(Indice);
                 });
             });
         }    
-        function sumarMye(indice) {
-            const entrada = ficha.mye[indice];
-            if (entrada.valor >= 5) return;
+        function sumarMye(Indice) {
+            const Entrada = Ficha.mye[Indice];
+            if (Entrada.valor >= 5) return;
 
-            const pool = parseInt(document.getElementById("pmye").value, 10);
-            if (pool > 0) {
-                document.getElementById("pmye").value = pool - 1;
-                entrada.valor++;
+            const Pool = parseInt(document.getElementById("pmye").value, 10);
+            if (Pool > 0) {
+                document.getElementById("pmye").value = Pool - 1;
+                Entrada.valor++;
                 pintarMye();
                 return;
             }
-            if (ficha.pt >= COSTES.mye) {
-                ficha.pt -= COSTES.mye;
-                entrada.valor++;
+            if (Ficha.pt >= Costes.mye) {
+                Ficha.pt -= Costes.mye;
+                Entrada.valor++;
                 refrescarPT();
                 pintarMye();
             }
         }
 
-        function restarMye(indice) {
-            const entrada = ficha.mye[indice];
-            if (entrada.valor <= 0) return;
+        function restarMye(Indice) {
+            const Entrada = Ficha.mye[Indice];
+            if (Entrada.valor <= 0) return;
 
-            const pool = parseInt(document.getElementById("pmye").value, 10);
-            if (pool < 3) {
-                document.getElementById("pmye").value = pool + 1;
-                entrada.valor--;
+            const Pool = parseInt(document.getElementById("pmye").value, 10);
+            if (Pool < 3) {
+                document.getElementById("pmye").value = Pool + 1;
+                Entrada.valor--;
                 pintarMye();
                 return;
             }
-            ficha.pt += COSTES.mye;
-            entrada.valor--;
+            Ficha.pt += Costes.mye;
+            Entrada.valor--;
             refrescarPT();
             pintarMye();
         }
@@ -1013,8 +1013,8 @@
         // ---------------------------------------------------
         // NORMALIZACIÓN DE NOMBRES
         // ---------------------------------------------------
-        function normalizarNombre(txt) {
-            return txt
+        function normalizarNombre(Texto) {
+            return Texto
                 .toLowerCase()
                 .normalize("NFD")
                 .replace(/[\u0300-\u036f]/g, "")
@@ -1024,208 +1024,208 @@
 
         // Devuelve la columna de bonos que corresponde a una opción (id).
         // Busca el campo `columna_bono` en el CSV correspondiente.
-        function columnaBonoDe(idOpcion, opcionesCSV) {
-            if (!idOpcion || !opcionesCSV) return null;
-            const op = opcionesCSV.find(o => o.id === idOpcion);
-            if (!op) return null;
+        function columnaBonoDe(IdOpcion, OpcionesCsv) {
+            if (!IdOpcion || !OpcionesCsv) return null;
+            const Opcion = OpcionesCsv.find(Elemento => Elemento.id === IdOpcion);
+            if (!Opcion) return null;
             // Devolvemos el nombre "humanizado" para que coincida con las claves de bonos
-            return (op.columna_bono || op.nombre || "").replace(/_/g, "_");
+            return (Opcion.columna_bono || Opcion.nombre || "").replace(/_/g, "_");
         }
 
         // ---------------------------------------------------
         // LISTAS DINÁMICAS GENÉRICAS (armas-hab, profesiones, conocimientos)
         // ---------------------------------------------------
-        const LISTAS_DINAMICAS = {
-            armasHabilidades: { contenedor: "lista-armas-hab",     campoCsv: "armasHabilidades", idPool: "pha", coste: COSTES.habilidadArma, maximo: 5, etiqueta: "Habilidad de arma" },
-            profesiones:      { contenedor: "lista-profesiones",   campoCsv: "profesiones",      idPool: "ppo", coste: COSTES.profesion,     maximo: 5, etiqueta: "Profesión" },
-            conocimientos:    { contenedor: "lista-conocimientos", campoCsv: "conocimientos",    idPool: "pco", coste: COSTES.conocimiento,  maximo: 5, etiqueta: "Conocimiento" }
+        const ListasDinamicas = {
+            armasHabilidades: { contenedor: "lista-armas-hab",     campoCsv: "armasHabilidades", idPool: "pha", coste: Costes.habilidadArma, maximo: 5, etiqueta: "Habilidad de arma" },
+            profesiones:      { contenedor: "lista-profesiones",   campoCsv: "profesiones",      idPool: "ppo", coste: Costes.profesion,     maximo: 5, etiqueta: "Profesión" },
+            conocimientos:    { contenedor: "lista-conocimientos", campoCsv: "conocimientos",    idPool: "pco", coste: Costes.conocimiento, maximo: 5, etiqueta: "Conocimiento" }
         };
 
-        function bonosParaLista(grupo) {
-            const cfg = LISTAS_DINAMICAS[grupo];
-            if (!cfg || !DATOS) return [];
+        function bonosParaLista(Grupo) {
+            const Configuracion = ListasDinamicas[Grupo];
+            if (!Configuracion || !Datos) return [];
 
-            const opciones = DATOS[cfg.campoCsv] || [];
-            const bonos = calcularBonos(ficha);
-            const resultado = [];
+            const Opciones = Datos[Configuracion.campoCsv] || [];
+            const Bonos = calcularBonos(Ficha);
+            const Resultado = [];
 
-            opciones.forEach(op => {
-                let valor = 0;
-                for (const col in bonos) {
-                    if (normalizarNombre(col) === normalizarNombre(op.columna_bono || op.nombre)) {
-                        valor += bonos[col];
+            Opciones.forEach(Opcion => {
+                let Valor = 0;
+                for (const Columna in Bonos) {
+                    if (normalizarNombre(Columna) === normalizarNombre(Opcion.columna_bono || Opcion.nombre)) {
+                        Valor += Bonos[Columna];
                         break;
                     }
                 }
-                if (valor !== 0) {
-                    resultado.push({ id: op.id, nombre: op.nombre, valor });
+                if (Valor !== 0) {
+                    Resultado.push({ id: Opcion.id, nombre: Opcion.nombre, valor: Valor });
                 }
             });
 
-            return resultado;
+            return Resultado;
         }
 
-        function pintarListaDinamica(nombreGrupo) {
-            const cfg = LISTAS_DINAMICAS[nombreGrupo];
-            const cont = document.getElementById(cfg.contenedor);
-            if (!cont) return;
-            cont.innerHTML = "";
+        function pintarListaDinamica(NombreGrupo) {
+            const Configuracion = ListasDinamicas[NombreGrupo];
+            const Contenedor = document.getElementById(Configuracion.contenedor);
+            if (!Contenedor) return;
+            Contenedor.innerHTML = "";
 
             // 1. Sincronizar
-            sincronizarAutomaticos(nombreGrupo, bonosParaLista(nombreGrupo));
+            sincronizarAutomaticos(NombreGrupo, bonosParaLista(NombreGrupo));
 
             // 2. Cabecera
-            const tabla = document.createElement("table");
-            tabla.className = "tabla-lista";
-            tabla.innerHTML =
+            const Tabla = document.createElement("table");
+            Tabla.className = "tabla-lista";
+            Tabla.innerHTML =
                 `<thead><tr>
-                    <th style="text-align:left">${cfg.etiqueta || "Opción"}</th>
+                    <th style="text-align:left">${Configuracion.etiqueta || "Opción"}</th>
                     <th>Valor</th>
                     <th>Bono</th>
                     <th>Total</th>
                     <th colspan="2">Ajustar</th>
                 </tr></thead><tbody></tbody>`;
-            cont.appendChild(tabla);
-            const tbody = tabla.querySelector("tbody");
+            Contenedor.appendChild(Tabla);
+            const TBody = Tabla.querySelector("tbody");
 
             // 3. Filas
-            const opciones = DATOS ? DATOS[cfg.campoCsv] : [];
-            const bonosActuales = calcularBonos(ficha);
+            const Opciones = Datos ? Datos[Configuracion.campoCsv] : [];
+            const BonosActuales = calcularBonos(Ficha);
 
-            ficha[nombreGrupo].forEach((entrada, indice) => {
-                const valorBase = entrada.valor || 0;
-                const nombreBono = columnaBonoDe(entrada.id, opciones);
-                const bono = nombreBono ? (bonosActuales[nombreBono] || 0) : 0;
-                const total = valorBase + bono;
+            Ficha[NombreGrupo].forEach((Entrada, Indice) => {
+                const ValorBase = Entrada.valor || 0;
+                const NombreBono = columnaBonoDe(Entrada.id, Opciones);
+                const Bono = NombreBono ? (BonosActuales[NombreBono] || 0) : 0;
+                const Total = ValorBase + Bono;
 
-                const tr = document.createElement("tr");
+                const FilaTabla = document.createElement("tr");
 
-                const idsAutomaticosLista = ficha[nombreGrupo].filter(e => e.auto).map(e => e.id);
+                const IdsAutomaticosLista = Ficha[NombreGrupo].filter(EntradaLista => EntradaLista.auto).map(EntradaLista => EntradaLista.id);
 
-                let htmlSelect = `<select data-lista-select="${nombreGrupo}" data-indice="${indice}"${entrada.auto ? " disabled" : ""}>`;
-                htmlSelect += `<option value="">—</option>`;
-                opciones.forEach(op => {
-                    if (!entrada.auto && idsAutomaticosLista.includes(op.id)) return;
-                    const sel = (op.id === entrada.id) ? " selected" : "";
-                    htmlSelect += `<option value="${op.id}"${sel}>${op.nombre}</option>`;
+                let HtmlSelect = `<select data-lista-select="${NombreGrupo}" data-indice="${Indice}"${Entrada.auto ? " disabled" : ""}>`;
+                HtmlSelect += `<option value="">—</option>`;
+                Opciones.forEach(Opcion => {
+                    if (!Entrada.auto && IdsAutomaticosLista.includes(Opcion.id)) return;
+                    const Seleccion = (Opcion.id === Entrada.id) ? " selected" : "";
+                    HtmlSelect += `<option value="${Opcion.id}"${Seleccion}>${Opcion.nombre}</option>`;
                 });
-                htmlSelect += `</select>`;
+                HtmlSelect += `</select>`;
 
-                const htmlBotones =
-                    `<button type="button" data-lista-menos="${nombreGrupo}" data-indice="${indice}">−</button>
-                    <button type="button" data-lista-mas="${nombreGrupo}" data-indice="${indice}">+</button>`;
+                const HtmlBotones =
+                    `<button type="button" data-lista-menos="${NombreGrupo}" data-indice="${Indice}">−</button>
+                    <button type="button" data-lista-mas="${NombreGrupo}" data-indice="${Indice}">+</button>`;
 
-                tr.innerHTML =
-                    `<td style="text-align:left">${htmlSelect}</td>` +
-                    `<td>${valorBase}</td>` +
-                    `<td>${bono >= 0 ? "+" + bono : bono}</td>` +
-                    `<td><strong>${total}</strong></td>` +
-                    `<td colspan="2">${htmlBotones}</td>`;
-                tbody.appendChild(tr);
+                FilaTabla.innerHTML =
+                    `<td style="text-align:left">${HtmlSelect}</td>` +
+                    `<td>${ValorBase}</td>` +
+                    `<td>${Bono >= 0 ? "+" + Bono : Bono}</td>` +
+                    `<td><strong>${Total}</strong></td>` +
+                    `<td colspan="2">${HtmlBotones}</td>`;
+                TBody.appendChild(FilaTabla);
             });
 
             // 4. Listeners
-            cont.querySelectorAll("[data-lista-select]").forEach(sel => {
-                sel.addEventListener("change", e => {
-                    const grupo = e.target.dataset.listaSelect;
-                    const i = parseInt(e.target.dataset.indice, 10);
-                    ficha[grupo][i].id = e.target.value;
+            Contenedor.querySelectorAll("[data-lista-select]").forEach(Selector => {
+                Selector.addEventListener("change", Evento => {
+                    const Grupo = Evento.target.dataset.listaSelect;
+                    const Indice = parseInt(Evento.target.dataset.indice, 10);
+                    Ficha[Grupo][Indice].id = Evento.target.value;
                 });
             });
-            cont.querySelectorAll("[data-lista-mas]").forEach(btn => {
-                btn.addEventListener("click", e => {
-                    const grupo = e.target.dataset.listaMas;
-                    const i = parseInt(e.target.dataset.indice, 10);
-                    sumarListaDinamica(grupo, i);
+            Contenedor.querySelectorAll("[data-lista-mas]").forEach(Boton => {
+                Boton.addEventListener("click", Evento => {
+                    const Grupo = Evento.target.dataset.listaMas;
+                    const Indice = parseInt(Evento.target.dataset.indice, 10);
+                    sumarListaDinamica(Grupo, Indice);
                 });
             });
-            cont.querySelectorAll("[data-lista-menos]").forEach(btn => {
-                btn.addEventListener("click", e => {
-                    const grupo = e.target.dataset.listaMenos;
-                    const i = parseInt(e.target.dataset.indice, 10);
-                    restarListaDinamica(grupo, i);
+            Contenedor.querySelectorAll("[data-lista-menos]").forEach(Boton => {
+                Boton.addEventListener("click", Evento => {
+                    const Grupo = Evento.target.dataset.listaMenos;
+                    const Indice = parseInt(Evento.target.dataset.indice, 10);
+                    restarListaDinamica(Grupo, Indice);
                 });
             });
         }
-        function sumarListaDinamica(grupo, i) {
-            const cfg = LISTAS_DINAMICAS[grupo];
-            const entrada = ficha[grupo][i];
-            if (entrada.valor >= cfg.maximo) return;
+        function sumarListaDinamica(Grupo, Indice) {
+            const Configuracion = ListasDinamicas[Grupo];
+            const Entrada = Ficha[Grupo][Indice];
+            if (Entrada.valor >= Configuracion.maximo) return;
 
-            const pool = parseInt(document.getElementById(cfg.idPool).value, 10);
-            if (pool > 0) {
-                document.getElementById(cfg.idPool).value = pool - 1;
-                entrada.valor++;
-                pintarListaDinamica(grupo);
+            const Pool = parseInt(document.getElementById(Configuracion.idPool).value, 10);
+            if (Pool > 0) {
+                document.getElementById(Configuracion.idPool).value = Pool - 1;
+                Entrada.valor++;
+                pintarListaDinamica(Grupo);
                 return;
             }
-            if (ficha.pt >= cfg.coste) {
-                ficha.pt -= cfg.coste;
-                entrada.valor++;
+            if (Ficha.pt >= Configuracion.coste) {
+                Ficha.pt -= Configuracion.coste;
+                Entrada.valor++;
                 refrescarPT();
-                pintarListaDinamica(grupo);
+                pintarListaDinamica(Grupo);
             }
         }
 
-        function restarListaDinamica(grupo, i) {
-            const cfg = LISTAS_DINAMICAS[grupo];
-            const entrada = ficha[grupo][i];
-            if (entrada.valor <= 0) return;
+        function restarListaDinamica(Grupo, Indice) {
+            const Configuracion = ListasDinamicas[Grupo];
+            const Entrada = Ficha[Grupo][Indice];
+            if (Entrada.valor <= 0) return;
 
-            const pool = parseInt(document.getElementById(cfg.idPool).value, 10);
-            const poolMax = POOL_MAX[cfg.idPool] || 5;
+            const Pool = parseInt(document.getElementById(Configuracion.idPool).value, 10);
+            const PoolMaximo = PoolMax[Configuracion.idPool] || 5;
 
-            if (pool < poolMax) {
-                document.getElementById(cfg.idPool).value = pool + 1;
-                entrada.valor--;
-                pintarListaDinamica(grupo);
+            if (Pool < PoolMaximo) {
+                document.getElementById(Configuracion.idPool).value = Pool + 1;
+                Entrada.valor--;
+                pintarListaDinamica(Grupo);
                 return;
             }
-            ficha.pt += cfg.coste;
-            entrada.valor--;
+            Ficha.pt += Configuracion.coste;
+            Entrada.valor--;
             refrescarPT();
-            pintarListaDinamica(grupo);
+            pintarListaDinamica(Grupo);
         }
 
                 // ---------------------------------------------------
         // QUITAR LA ÚLTIMA ENTRADA DE UNA LISTA DINÁMICA
         // ---------------------------------------------------
-        function quitarUltimaDeLista(nombreGrupo, coste, maximo) {
-            const lista = ficha[nombreGrupo];
-            if (!lista || lista.length === 0) return;
+        function quitarUltimaDeLista(NombreGrupo, Coste, Maximo) {
+            const Lista = Ficha[NombreGrupo];
+            if (!Lista || Lista.length === 0) return;
 
             // Buscar la última entrada MANUAL (las automáticas no se quitan)
-            let ultimaManualIdx = -1;
-            for (let i = lista.length - 1; i >= 0; i--) {
-                if (!lista[i].auto) { ultimaManualIdx = i; break; }
+            let UltimaManualIndice = -1;
+            for (let Indice = Lista.length - 1; Indice >= 0; Indice--) {
+                if (!Lista[Indice].auto) { UltimaManualIndice = Indice; break; }
             }
-            if (ultimaManualIdx === -1) return;   // solo hay automáticas
+            if (UltimaManualIndice === -1) return;   // solo hay automáticas
 
-            const ultima = lista[ultimaManualIdx];
+            const Ultima = Lista[UltimaManualIndice];
 
             // Devolver PT/pool de lo gastado
-            if (ultima.valor > 0) {
-                const pool = parseInt(document.getElementById(LISTAS_DINAMICAS[nombreGrupo].idPool).value, 10);
-                const poolMax = POOL_MAX[LISTAS_DINAMICAS[nombreGrupo].idPool] || 5;
-                const sobrante = ultima.valor;
+            if (Ultima.valor > 0) {
+                const Pool = parseInt(document.getElementById(ListasDinamicas[NombreGrupo].idPool).value, 10);
+                const PoolMaximo = PoolMax[ListasDinamicas[NombreGrupo].idPool] || 5;
+                const Sobrante = Ultima.valor;
 
-                if (pool < poolMax) {
-                    const aDevolver = Math.min(sobrante, poolMax - pool);
-                    document.getElementById(LISTAS_DINAMICAS[nombreGrupo].idPool).value = pool + aDevolver;
-                    const resto = sobrante - aDevolver;
-                    if (resto > 0) {
-                        ficha.pt += resto * coste;
+                if (Pool < PoolMaximo) {
+                    const ADevolver = Math.min(Sobrante, PoolMaximo - Pool);
+                    document.getElementById(ListasDinamicas[NombreGrupo].idPool).value = Pool + ADevolver;
+                    const Resto = Sobrante - ADevolver;
+                    if (Resto > 0) {
+                        Ficha.pt += Resto * Coste;
                         refrescarPT();
                     }
                 } else {
-                    ficha.pt += sobrante * coste;
+                    Ficha.pt += Sobrante * Coste;
                     refrescarPT();
                 }
             }
 
             // Quitar solo esa entrada manual
-            lista.splice(ultimaManualIdx, 1);
-            pintarListaDinamica(nombreGrupo);
+            Lista.splice(UltimaManualIndice, 1);
+            pintarListaDinamica(NombreGrupo);
         }
 
 
@@ -1233,58 +1233,58 @@
         // GUARDAR / BORRAR
         // ---------------------------------------------------
         function guardar() {
-            ficha.nombre       = document.getElementById("nombre").value.trim();
-            ficha.apellidos    = document.getElementById("apellidos").value.trim();
-            ficha.titulo       = document.getElementById("titulo").value.trim();
-            ficha.nacimiento   = document.getElementById("nacimiento").value.trim();
-            ficha.faccion      = document.getElementById("faccion").value;
-            ficha.alineamiento = document.getElementById("alineamiento").value.trim();
-            ficha.transformacion = document.getElementById("transformacion-huargen").checked ? "huargen" : "";
-            ficha.nivel        = parseInt(document.getElementById("nivel").value, 10) || 1;
-            ficha.pt           = parseInt(document.getElementById("pt").value, 10) || 0;
+            Ficha.nombre       = document.getElementById("nombre").value.trim();
+            Ficha.apellidos    = document.getElementById("apellidos").value.trim();
+            Ficha.titulo       = document.getElementById("titulo").value.trim();
+            Ficha.nacimiento   = document.getElementById("nacimiento").value.trim();
+            Ficha.faccion      = document.getElementById("faccion").value;
+            Ficha.alineamiento = document.getElementById("alineamiento").value.trim();
+            Ficha.transformacion = document.getElementById("transformacion-huargen").checked ? "huargen" : "";
+            Ficha.nivel        = parseInt(document.getElementById("nivel").value, 10) || 1;
+            Ficha.pt           = parseInt(document.getElementById("pt").value, 10) || 0;
             // Actualmente
-            ficha.actual.saludExtra   = parseInt(document.getElementById("salud-extra").value, 10) || 0;
-            ficha.actual.energiaExtra = parseInt(document.getElementById("energia-extra").value, 10) || 0;
-            ficha.actual.armadura     = parseInt(document.getElementById("armadura-act").value, 10) || 0;
-            ficha.actual.yelmo        = document.getElementById("yelmo").value.trim();
-            ficha.actual.torso        = document.getElementById("torso").value.trim();
-            ficha.actual.manos        = document.getElementById("manos").value.trim();
-            ficha.actual.pies         = document.getElementById("pies").value.trim();
-            ficha.actual.capa         = document.getElementById("capa").value.trim();
-            ficha.actual.escudoNombre = document.getElementById("escudo-nombre").value.trim();
-            ficha.actual.escudo       = document.getElementById("escudo-equipado").checked;
+            Ficha.actual.saludExtra   = parseInt(document.getElementById("salud-extra").value, 10) || 0;
+            Ficha.actual.energiaExtra = parseInt(document.getElementById("energia-extra").value, 10) || 0;
+            Ficha.actual.armadura     = parseInt(document.getElementById("armadura-act").value, 10) || 0;
+            Ficha.actual.yelmo        = document.getElementById("yelmo").value.trim();
+            Ficha.actual.torso        = document.getElementById("torso").value.trim();
+            Ficha.actual.manos        = document.getElementById("manos").value.trim();
+            Ficha.actual.pies         = document.getElementById("pies").value.trim();
+            Ficha.actual.capa         = document.getElementById("capa").value.trim();
+            Ficha.actual.escudoNombre = document.getElementById("escudo-nombre").value.trim();
+            Ficha.actual.escudo       = document.getElementById("escudo-equipado").checked;
 
-            const radioArm = document.querySelector('input[name="tipo-armadura"]:checked');
-            ficha.actual.tipoArmadura = radioArm ? radioArm.value : "";
+            const RadioArmadura = document.querySelector('input[name="tipo-armadura"]:checked');
+            Ficha.actual.tipoArmadura = RadioArmadura ? RadioArmadura.value : "";
 
             // Texto
-            ficha.descripcion = document.getElementById("descripcion").value;
-            ficha.trasfondo   = document.getElementById("trasfondo").value;
-            ficha.inventario  = document.getElementById("inventario").value;
+            Ficha.descripcion = document.getElementById("descripcion").value;
+            Ficha.trasfondo   = document.getElementById("trasfondo").value;
+            Ficha.inventario  = document.getElementById("inventario").value;
 
             // Dinero
-            ficha.dinero.oro    = parseInt(document.getElementById("oro").value, 10) || 0;
-            ficha.dinero.plata  = parseInt(document.getElementById("plata").value, 10) || 0;
-            ficha.dinero.cobre  = parseInt(document.getElementById("cobre").value, 10) || 0;
+            Ficha.dinero.oro    = parseInt(document.getElementById("oro").value, 10) || 0;
+            Ficha.dinero.plata  = parseInt(document.getElementById("plata").value, 10) || 0;
+            Ficha.dinero.cobre  = parseInt(document.getElementById("cobre").value, 10) || 0;
 
-            if (!ficha.nombre || !ficha.raza || !ficha.clase) {
+            if (!Ficha.nombre || !Ficha.raza || !Ficha.clase) {
                 document.getElementById("mensaje-guardado").innerHTML =
                     '<span class="aviso-error">Faltan campos obligatorios: nombre, raza y clase.</span>';
                 return;
             }
 
-            const id = guardarFicha(ficha);
+            const IdGuardado = guardarFicha(Ficha);
             document.getElementById("mensaje-guardado").innerHTML =
                 '✅ Ficha guardada. <a href="lista.html">Volver a la lista</a>';
-            if (!modoEdicion) {
+            if (!ModoEdicion) {
                 // tras crear, recargamos en modo edición
-                window.location.href = "ficha.html?id=" + id;
+                window.location.href = "ficha.html?id=" + IdGuardado;
             }
         }
 
         function borrar() {
             if (!confirm("¿Seguro que quieres borrar esta ficha?")) return;
-            borrarFicha(ficha.id);
+            borrarFicha(Ficha.id);
             window.location.href = "lista.html";
         }
 

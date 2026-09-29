@@ -57,11 +57,11 @@
         pintarMenu("../", "");
         pintarBarraSesion("../");
 
-        document.getElementById("form-signup").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const nombre = document.getElementById("usuario").value.trim();
-            if (!nombre) return;
-            iniciarSesion(nombre);
+        document.getElementById("form-signup").addEventListener("submit", function (Evento) {
+            Evento.preventDefault();
+            const Nombre = document.getElementById("usuario").value.trim();
+            if (!Nombre) return;
+            iniciarSesion(Nombre);
             window.location.href = "../usuario/perfil.html";
         });
     </script>

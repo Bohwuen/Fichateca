@@ -54,54 +54,54 @@
         });
 
         function pintarLista() {
-            const cont = document.getElementById("lista-fichas");
-            const fichas = obtenerFichas();
+            const Contenedor = document.getElementById("lista-fichas");
+            const Fichas = obtenerFichas();
 
-            if (fichas.length === 0) {
-                cont.innerHTML = "<p><em>Todavía no has creado ninguna ficha.</em></p>";
+            if (Fichas.length === 0) {
+                Contenedor.innerHTML = "<p><em>Todavía no has creado ninguna ficha.</em></p>";
                 return;
             }
 
-            let html = '<table style="width:100%"><thead><tr>' +
+            let Html = '<table style="width:100%"><thead><tr>' +
                 '<th>Nombre</th><th>Raza</th><th>Clase</th><th>Nivel</th><th>Acciones</th>' +
                 '</tr></thead><tbody>';
 
-            fichas.forEach(f => {
-                const nombreRaza = nombreDe("razas", f.raza);
-                const nombreSub  = f.subraza ? " (" + nombreDe("subrazas", f.subraza) + ")" : "";
-                const nombreClase = nombreDe("clases", f.clase);
+            Fichas.forEach(Ficha => {
+                const NombreRaza = nombreDe("razas", Ficha.raza);
+                const NombreSub  = Ficha.subraza ? " (" + nombreDe("subrazas", Ficha.subraza) + ")" : "";
+                const NombreClase = nombreDe("clases", Ficha.clase);
 
-                html += '<tr>' +
-                    '<td>' + escapar((f.nombre || "") + " " + (f.apellidos || "")) + '</td>' +
-                    '<td>' + escapar(nombreRaza + nombreSub) + '</td>' +
-                    '<td>' + escapar(nombreClase) + '</td>' +
-                    '<td>' + (f.nivel || 1) + '</td>' +
+                Html += '<tr>' +
+                    '<td>' + escapar((Ficha.nombre || "") + " " + (Ficha.apellidos || "")) + '</td>' +
+                    '<td>' + escapar(NombreRaza + NombreSub) + '</td>' +
+                    '<td>' + escapar(NombreClase) + '</td>' +
+                    '<td>' + (Ficha.nivel || 1) + '</td>' +
                     '<td>' +
-                        '<a href="ficha.html?id=' + f.id + '">Editar</a> · ' +
-                        '<a href="#" data-borrar="' + f.id + '">Borrar</a>' +
+                        '<a href="ficha.html?id=' + Ficha.id + '">Editar</a> · ' +
+                        '<a href="#" data-borrar="' + Ficha.id + '">Borrar</a>' +
                     '</td>' +
                 '</tr>';
             });
 
-            html += '</tbody></table>';
-            cont.innerHTML = html;
+            Html += '</tbody></table>';
+            Contenedor.innerHTML = Html;
 
             // Enlazar borrado
-            cont.querySelectorAll("[data-borrar]").forEach(a => {
-                a.addEventListener("click", e => {
-                    e.preventDefault();
+            Contenedor.querySelectorAll("[data-borrar]").forEach(Enlace => {
+                Enlace.addEventListener("click", Evento => {
+                    Evento.preventDefault();
                     if (confirm("¿Seguro que quieres borrar esta ficha?")) {
-                        borrarFicha(a.dataset.borrar);
+                        borrarFicha(Enlace.dataset.borrar);
                         pintarLista();
                     }
                 });
             });
         }
 
-        function nombreDe(csv, id) {
-            if (!id) return "—";
-            const fila = DATOS[csv].find(x => x.id === id);
-            return fila ? fila.nombre : id;
+        function nombreDe(Csv, Id) {
+            if (!Id) return "—";
+            const Fila = Datos[Csv].find(Elemento => Elemento.id === Id);
+            return Fila ? Fila.nombre : Id;
         }
 
     });

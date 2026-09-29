@@ -6,36 +6,36 @@
 // LOGIN FICTICIO (localStorage)
 // -----------------------------------------------------------
 
-const CLAVE_SESION = "fichateca_usuario";
+const ClaveSesion = "fichateca_usuario";
 
 /**
  * Devuelve el nombre del usuario logueado, o null si no hay sesión.
  */
 function obtenerUsuario() {
-    return localStorage.getItem(CLAVE_SESION);
+    return localStorage.getItem(ClaveSesion);
 }
 
 /**
  * Guarda el usuario en sesión.
  */
-function iniciarSesion(nombre) {
-    localStorage.setItem(CLAVE_SESION, nombre);
+function iniciarSesion(Nombre) {
+    localStorage.setItem(ClaveSesion, Nombre);
 }
 
 /**
  * Cierra la sesión.
  */
 function cerrarSesion() {
-    localStorage.removeItem(CLAVE_SESION);
+    localStorage.removeItem(ClaveSesion);
 }
 
 /**
  * Comprueba si hay sesión. Si no la hay, redirige a login.
  * @param {string} rutaLogin - ruta relativa al signin (por defecto login/signin.html)
  */
-function exigirSesion(rutaLogin = "login/signin.html") {
+function exigirSesion(RutaLogin = "login/signin.html") {
     if (!obtenerUsuario()) {
-        window.location.href = rutaLogin;
+        window.location.href = RutaLogin;
     }
 }
 
@@ -49,23 +49,23 @@ function exigirSesion(rutaLogin = "login/signin.html") {
  *  - Nombre + botón cerrar sesión si lo hay
  * @param {string} rutaBase - prefijo relativo a la raíz del proyecto ("" en raíz, "../" en subcarpetas)
  */
-function pintarBarraSesion(rutaBase = "") {
-    const cont = document.getElementById("barra-sesion");
-    if (!cont) return;
+function pintarBarraSesion(RutaBase = "") {
+    const Cont = document.getElementById("barra-sesion");
+    if (!Cont) return;
 
-    const usuario = obtenerUsuario();
+    const Usuario = obtenerUsuario();
 
-    if (usuario) {
-        cont.innerHTML =
-            `<span>Hola, <a href="${rutaBase}usuario/perfil.html">${usuario}</a></span>` +
+    if (Usuario) {
+        Cont.innerHTML =
+            `<span>Hola, <a href="${RutaBase}usuario/perfil.html">${Usuario}</a></span>` +
             `<a href="#" id="btn-cerrar-sesion">Cerrar sesión</a>`;
-        document.getElementById("btn-cerrar-sesion").addEventListener("click", (e) => {
-            e.preventDefault();
+        document.getElementById("btn-cerrar-sesion").addEventListener("click", (Evento) => {
+            Evento.preventDefault();
             cerrarSesion();
-            window.location.href = rutaBase + "index.html";
+            window.location.href = RutaBase + "index.html";
         });
     } else {
-        cont.innerHTML = `<a href="${rutaBase}login/signin.html">Inicia sesión</a>`;
+        Cont.innerHTML = `<a href="${RutaBase}login/signin.html">Inicia sesión</a>`;
     }
 }
 
@@ -78,25 +78,25 @@ function pintarBarraSesion(rutaBase = "") {
  * @param {string} rutaBase - prefijo relativo a la raíz ("" o "../" etc.)
  * @param {string} activo - id de la sección activa: 'inicio' | 'manual' | 'addon' | 'foro'
  */
-function pintarMenu(rutaBase = "", activo = "") {
-    const cont = document.getElementById("nav-principal");
-    if (!cont) return;
+function pintarMenu(RutaBase = "", Activo = "") {
+    const Cont = document.getElementById("nav-principal");
+    if (!Cont) return;
 
-    const enlaces = [
-        { id: "inicio", texto: "Inicio",  href: rutaBase + "index.html" },
-        { id: "manual", texto: "Manual",  href: rutaBase + "manual/index.html" },
-        { id: "addon",  texto: "Addon",   href: rutaBase + "addon/index.html" },
-        { id: "foro",   texto: "Foro",    href: rutaBase + "foro/index.html" }
+    const Enlaces = [
+        { id: "inicio", texto: "Inicio",  href: RutaBase + "index.html" },
+        { id: "manual", texto: "Manual",  href: RutaBase + "manual/index.html" },
+        { id: "addon",  texto: "Addon",   href: RutaBase + "addon/index.html" },
+        { id: "foro",   texto: "Foro",    href: RutaBase + "foro/index.html" }
     ];
 
-    const html =
+    const Html =
         `<ul>` +
-        enlaces.map(e =>
-            `<li><a href="${e.href}"${e.id === activo ? ' class="activo"' : ''}>${e.texto}</a></li>`
+        Enlaces.map(Enlace =>
+            `<li><a href="${Enlace.href}"${Enlace.id === Activo ? ' class="activo"' : ''}>${Enlace.texto}</a></li>`
         ).join("") +
         `</ul>`;
 
-    cont.innerHTML = html;
+    Cont.innerHTML = Html;
 }
 
 // -----------------------------------------------------------
@@ -106,21 +106,21 @@ function pintarMenu(rutaBase = "", activo = "") {
 /**
  * Crea un elemento HTML con atributos y contenido.
  */
-function crear(tag, atributos = {}, contenido = "") {
-    const el = document.createElement(tag);
-    for (const k in atributos) {
-        if (k === "clase") el.className = atributos[k];
-        else el.setAttribute(k, atributos[k]);
+function crear(Tag, Atributos = {}, Contenido = "") {
+    const Elemento = document.createElement(Tag);
+    for (const Clave in Atributos) {
+        if (Clave === "clase") Elemento.className = Atributos[Clave];
+        else Elemento.setAttribute(Clave, Atributos[Clave]);
     }
-    if (contenido) el.innerHTML = contenido;
-    return el;
+    if (Contenido) Elemento.innerHTML = Contenido;
+    return Elemento;
 }
 
 /**
  * Escapa HTML para evitar inyección al pintar texto de usuario.
  */
-function escapar(texto) {
-    return String(texto)
+function escapar(Texto) {
+    return String(Texto)
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")

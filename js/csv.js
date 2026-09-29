@@ -2,7 +2,7 @@
    FICHATECA - Lector de CSVs
    ========================================================= */
 
-const CACHE_CSV = {};
+const CacheCsv = {};
 
 /**
  * Convierte el texto de un CSV en un array de objetos.
@@ -16,57 +16,57 @@ const CACHE_CSV = {};
  * @param {string} texto
  * @returns {Array<Object>}
  */
-function parsearCSV(texto) {
-    const filas = [];
-    let fila = [];
-    let campo = "";
-    let entreComillas = false;
+function parsearCSV(Texto) {
+    const Filas = [];
+    let Fila = [];
+    let Campo = "";
+    let EntreComillas = false;
 
-    for (let i = 0; i < texto.length; i++) {
-        const c = texto[i];
+    for (let Indice = 0; Indice < Texto.length; Indice++) {
+        const Caracter = Texto[Indice];
 
-        if (entreComillas) {
-            if (c === '"') {
-                if (texto[i + 1] === '"') { campo += '"'; i++; }
-                else entreComillas = false;
+        if (EntreComillas) {
+            if (Caracter === '"') {
+                if (Texto[Indice + 1] === '"') { Campo += '"'; Indice++; }
+                else EntreComillas = false;
             } else {
-                campo += c;
+                Campo += Caracter;
             }
         } else {
-            if (c === '"') {
-                entreComillas = true;
-            } else if (c === ',') {
-                fila.push(campo); campo = "";
-            } else if (c === '\n' || c === '\r') {
-                if (c === '\r' && texto[i + 1] === '\n') i++;
-                fila.push(campo); campo = "";
-                if (fila.length > 1 || fila[0] !== "") filas.push(fila);
-                fila = [];
+            if (Caracter === '"') {
+                EntreComillas = true;
+            } else if (Caracter === ',') {
+                Fila.push(Campo); Campo = "";
+            } else if (Caracter === '\n' || Caracter === '\r') {
+                if (Caracter === '\r' && Texto[Indice + 1] === '\n') Indice++;
+                Fila.push(Campo); Campo = "";
+                if (Fila.length > 1 || Fila[0] !== "") Filas.push(Fila);
+                Fila = [];
             } else {
-                campo += c;
+                Campo += Caracter;
             }
         }
     }
     // Última fila si no terminó con salto de línea
-    if (campo !== "" || fila.length > 0) {
-        fila.push(campo);
-        if (fila.length > 1 || fila[0] !== "") filas.push(fila);
+    if (Campo !== "" || Fila.length > 0) {
+        Fila.push(Campo);
+        if (Fila.length > 1 || Fila[0] !== "") Filas.push(Fila);
     }
 
-    if (filas.length === 0) return [];
+    if (Filas.length === 0) return [];
 
-    const cabecera = filas[0].map(h => h.trim());
-    const resultado = [];
+    const Cabecera = Filas[0].map(Columna => Columna.trim());
+    const Resultado = [];
 
-    for (let i = 1; i < filas.length; i++) {
-        const obj = {};
-        cabecera.forEach((col, idx) => {
-            obj[col] = (filas[i][idx] || "").trim();
+    for (let Indice = 1; Indice < Filas.length; Indice++) {
+        const Objeto = {};
+        Cabecera.forEach((Columna, IndiceColumna) => {
+            Objeto[Columna] = (Filas[Indice][IndiceColumna] || "").trim();
         });
-        resultado.push(obj);
+        Resultado.push(Objeto);
     }
 
-    return resultado;
+    return Resultado;
 }
 
 /**
@@ -74,19 +74,19 @@ function parsearCSV(texto) {
  * @param {string} ruta - ruta relativa al CSV
  * @returns {Promise<Array<Object>>}
  */
-function cargarCSV(ruta) {
-    if (CACHE_CSV[ruta]) {
-        return Promise.resolve(CACHE_CSV[ruta]);
+function cargarCSV(Ruta) {
+    if (CacheCsv[Ruta]) {
+        return Promise.resolve(CacheCsv[Ruta]);
     }
-    return fetch(ruta)
-        .then(resp => {
-            if (!resp.ok) throw new Error("No se pudo cargar " + ruta + " (HTTP " + resp.status + ")");
-            return resp.text();
+    return fetch(Ruta)
+        .then(Respuesta => {
+            if (!Respuesta.ok) throw new Error("No se pudo cargar " + Ruta + " (HTTP " + Respuesta.status + ")");
+            return Respuesta.text();
         })
-        .then(texto => {
-            const datos = parsearCSV(texto);
-            CACHE_CSV[ruta] = datos;
-            return datos;
+        .then(Texto => {
+            const Datos = parsearCSV(Texto);
+            CacheCsv[Ruta] = Datos;
+            return Datos;
         });
 }
 
@@ -95,12 +95,12 @@ function cargarCSV(ruta) {
  * @param {Object} mapa - { clave: "ruta/al/csv.csv", ... }
  * @returns {Promise<Object>} - { clave: [filas], ... }
  */
-function cargarVariosCSV(mapa) {
-    const claves = Object.keys(mapa);
-    return Promise.all(claves.map(k => cargarCSV(mapa[k])))
-        .then(resultados => {
-            const salida = {};
-            claves.forEach((k, i) => salida[k] = resultados[i]);
-            return salida;
+function cargarVariosCSV(Mapa) {
+    const Claves = Object.keys(Mapa);
+    return Promise.all(Claves.map(Clave => cargarCSV(Mapa[Clave])))
+        .then(Resultados => {
+            const Salida = {};
+            Claves.forEach((Clave, Indice) => Salida[Clave] = Resultados[Indice]);
+            return Salida;
         });
 }

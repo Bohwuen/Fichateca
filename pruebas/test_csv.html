@@ -22,26 +22,26 @@
     <script src="../js/motor.js"></script>
     <script>
         cargarDatosMotor().then(() => {
-            let html = "<p>✅ CSVs cargados correctamente.</p>";
-            html += "<p>Razas: " + DATOS.razas.length + "</p>";
-            html += "<p>Subrazas: " + DATOS.subrazas.length + "</p>";
-            html += "<p>Clases: " + DATOS.clases.length + "</p>";
-            html += "<p>Bonos raciales: " + DATOS.bonosRaciales.length + "</p>";
-            html += "<p>Bonos de clase: " + DATOS.bonosClase.length + "</p>";
+            let Html = "<p>✅ CSVs cargados correctamente.</p>";
+            Html += "<p>Razas: " + Datos.razas.length + "</p>";
+            Html += "<p>Subrazas: " + Datos.subrazas.length + "</p>";
+            Html += "<p>Clases: " + Datos.clases.length + "</p>";
+            Html += "<p>Bonos raciales: " + Datos.bonosRaciales.length + "</p>";
+            Html += "<p>Bonos de clase: " + Datos.bonosClase.length + "</p>";
 
-            const ejemplo = calcularBonos({
+            const Ejemplo = calcularBonos({
                 raza: "humano",
                 subraza: "humano_ventormenta",
                 clase: "guerrero",
                 transformacion: ""
             });
             html += "<p>Bonos de Humano de Ventormenta + Guerrero:</p>";
-            html += "<pre>" + JSON.stringify(ejemplo, null, 2) + "</pre>";
+            Html += "<pre>" + JSON.stringify(Ejemplo, null, 2) + "</pre>";
 
-            document.getElementById("salida").innerHTML = html;
-        }).catch(err => {
+            document.getElementById("salida").innerHTML = Html;
+        }).catch(Error => {
             document.getElementById("salida").innerHTML =
-                '<p class="error">Error: ' + err.message + '</p>';
+                '<p class="error">Error: ' + Error.message + '</p>';
         });
     </script>
 </body>

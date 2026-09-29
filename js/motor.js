@@ -5,7 +5,7 @@
 // -----------------------------------------------------------
 // RUTAS DE CSVs
 // -----------------------------------------------------------
-const RUTAS_CSV = {
+const RutasCsv = {
     razas:               "datos/razas.csv",
     subrazas:            "datos/subrazas.csv",
     clases:              "datos/clases.csv",
@@ -23,7 +23,7 @@ const RUTAS_CSV = {
 // -----------------------------------------------------------
 // COSTES (constantes del sistema)
 // -----------------------------------------------------------
-const COSTES = {
+const Costes = {
     atributo:     4,
     defensa:      3,
     habilidad:    2,
@@ -35,23 +35,23 @@ const COSTES = {
     nivel:        7      // puntos de trasfondo por subir nivel
 };
 
-const PT_INICIAL = 20;
+const PtInicial = 20;
 
 // -----------------------------------------------------------
 // CARGA INICIAL
 // -----------------------------------------------------------
-let DATOS = null;
+let Datos = null;
 
 function cargarDatosMotor() {
     // Ajustamos rutas al prefijo (para subcarpetas)
-    const prefijo = window.RUTA_BASE || "";
-    const mapa = {};
-    for (const clave in RUTAS_CSV) {
-        mapa[clave] = prefijo + RUTAS_CSV[clave];
+    const Prefijo = window.RUTA_BASE || "";
+    const Mapa = {};
+    for (const Clave in RutasCsv) {
+        Mapa[Clave] = Prefijo + RutasCsv[Clave];
     }
-    return cargarVariosCSV(mapa).then(d => {
-        DATOS = d;
-        return d;
+    return cargarVariosCSV(Mapa).then(DatosCargados => {
+        Datos = DatosCargados;
+        return DatosCargados;
     });
 }
 
@@ -62,9 +62,9 @@ function cargarDatosMotor() {
 /**
  * Devuelve las subrazas de una raza dada.
  */
-function subrazasDe(razaId) {
-    if (!DATOS) return [];
-    return DATOS.subrazas.filter(s => s.raza_id === razaId);
+function subrazasDe(RazaId) {
+    if (!Datos) return [];
+    return Datos.subrazas.filter(Subraza => Subraza.raza_id === RazaId);
 }
 
 /**
@@ -72,92 +72,92 @@ function subrazasDe(razaId) {
  * @param {Object} ficha - { raza, subraza, clase, transformacion }
  * @returns {Object} - { columna: valorTotal }
  */
-function calcularBonos(ficha) {
-    const acumulado = {};
+function calcularBonos(Ficha) {
+    const Acumulado = {};
 
-    function sumar(filas) {
-        filas.forEach(f => {
-            const col = f.columna;
-            const val = parseInt(f.valor, 10);
-            if (!col || isNaN(val)) return;
-            acumulado[col] = (acumulado[col] || 0) + val;
+    function sumar(Filas) {
+        Filas.forEach(Fila => {
+            const Columna = Fila.columna;
+            const Valor = parseInt(Fila.valor, 10);
+            if (!Columna || isNaN(Valor)) return;
+            Acumulado[Columna] = (Acumulado[Columna] || 0) + Valor;
         });
     }
 
     // Origen racial: si hay subraza, se usa subraza; si no, la raza.
-    const origenRacial = ficha.subraza || ficha.raza;
-    if (origenRacial) {
-        sumar(DATOS.bonosRaciales.filter(b => b.origen_id === origenRacial));
+    const OrigenRacial = Ficha.subraza || Ficha.raza;
+    if (OrigenRacial) {
+        sumar(Datos.bonosRaciales.filter(Bono => Bono.origen_id === OrigenRacial));
     }
 
     // Bonos de clase
-    if (ficha.clase) {
-        sumar(DATOS.bonosClase.filter(b => b.clase_id === ficha.clase));
+    if (Ficha.clase) {
+        sumar(Datos.bonosClase.filter(Bono => Bono.clase_id === Ficha.clase));
     }
 
     // Bonos de transformación activa
-    if (ficha.transformacion) {
-        sumar(DATOS.bonosTransformacion.filter(b => b.transformacion_id === ficha.transformacion));
+    if (Ficha.transformacion) {
+        sumar(Datos.bonosTransformacion.filter(Bono => Bono.transformacion_id === Ficha.transformacion));
     }
 
-    return acumulado;
+    return Acumulado;
 }
 
 /**
  * Devuelve la descripción de raciales especiales de una raza/subraza.
  */
-function racialesEspecialesDe(origenId) {
-    if (!DATOS) return "";
-    const fila = DATOS.racialesEspeciales.find(r => r.origen_id === origenId);
-    return fila ? fila.descripcion : "";
+function racialesEspecialesDe(OrigenId) {
+    if (!Datos) return "";
+    const Fila = Datos.racialesEspeciales.find(Racial => Racial.origen_id === OrigenId);
+    return Fila ? Fila.descripcion : "";
 }
 
 // -----------------------------------------------------------
 // ESTADO DE LA FICHA (localStorage)
 // -----------------------------------------------------------
 
-const CLAVE_FICHAS = "fichateca_fichas";
+const ClaveFichas = "fichateca_fichas";
 
 /**
  * Devuelve todas las fichas guardadas como array.
  */
 function obtenerFichas() {
-    const txt = localStorage.getItem(CLAVE_FICHAS);
-    return txt ? JSON.parse(txt) : [];
+    const Texto = localStorage.getItem(ClaveFichas);
+    return Texto ? JSON.parse(Texto) : [];
 }
 
 /**
  * Guarda o actualiza una ficha. Si lleva `id`, reemplaza; si no, crea.
  * Devuelve el id.
  */
-function guardarFicha(ficha) {
-    const fichas = obtenerFichas();
-    if (!ficha.id) {
-        ficha.id = "f_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
-        ficha.fechaCreacion = new Date().toISOString();
-        fichas.push(ficha);
+function guardarFicha(Ficha) {
+    const Fichas = obtenerFichas();
+    if (!Ficha.id) {
+        Ficha.id = "f_" + Date.now() + "_" + Math.floor(Math.random() * 1000);
+        Ficha.fechaCreacion = new Date().toISOString();
+        Fichas.push(Ficha);
     } else {
-        const i = fichas.findIndex(f => f.id === ficha.id);
-        if (i >= 0) fichas[i] = ficha;
-        else fichas.push(ficha);
+        const Indice = Fichas.findIndex(Elemento => Elemento.id === Ficha.id);
+        if (Indice >= 0) Fichas[Indice] = Ficha;
+        else Fichas.push(Ficha);
     }
-    localStorage.setItem(CLAVE_FICHAS, JSON.stringify(fichas));
-    return ficha.id;
+    localStorage.setItem(ClaveFichas, JSON.stringify(Fichas));
+    return Ficha.id;
 }
 
 /**
  * Devuelve una ficha por id, o null.
  */
-function obtenerFicha(id) {
-    return obtenerFichas().find(f => f.id === id) || null;
+function obtenerFicha(Id) {
+    return obtenerFichas().find(Ficha => Ficha.id === Id) || null;
 }
 
 /**
  * Borra una ficha por id.
  */
-function borrarFicha(id) {
-    const fichas = obtenerFichas().filter(f => f.id !== id);
-    localStorage.setItem(CLAVE_FICHAS, JSON.stringify(fichas));
+function borrarFicha(Id) {
+    const Fichas = obtenerFichas().filter(Ficha => Ficha.id !== Id);
+    localStorage.setItem(ClaveFichas, JSON.stringify(Fichas));
 }
 
 /**
@@ -178,7 +178,7 @@ function fichaEnBlanco() {
         clase: "",
         nivel: 1,
         experiencia: 0,
-        pt: PT_INICIAL,
+        pt: PtInicial,
         atributos: {
             vigor: 1, destreza: 1, inteligencia: 1, voluntad: 1,
             percepcion: 1, aguante: 1, energia: 1
@@ -221,25 +221,25 @@ function fichaEnBlanco() {
 /**
  * Devuelve la velocidad de la ficha (subraza si existe, si no raza).
  */
-function velocidadDe(ficha) {
-    if (!ficha) return 0;
+function velocidadDe(Ficha) {
+    if (!Ficha) return 0;
 
     // 1. Transformación activa (sobrescribe todo)
-    if (ficha.transformacion && DATOS && DATOS.razas) {
-        const trans = DATOS.razas.find(r => r.id === ficha.transformacion);
-        if (trans && trans.velocidad) return parseInt(trans.velocidad, 10) || 0;
+    if (Ficha.transformacion && Datos && Datos.razas) {
+        const Transformacion = Datos.razas.find(Raza => Raza.id === Ficha.transformacion);
+        if (Transformacion && Transformacion.velocidad) return parseInt(Transformacion.velocidad, 10) || 0;
     }
 
     // 2. Subraza
-    if (ficha.subraza) {
-        const sub = subrazasDe(ficha.raza).find(s => s.id === ficha.subraza);
-        if (sub && sub.velocidad) return parseInt(sub.velocidad, 10) || 0;
+    if (Ficha.subraza) {
+        const Subraza = subrazasDe(Ficha.raza).find(Elemento => Elemento.id === Ficha.subraza);
+        if (Subraza && Subraza.velocidad) return parseInt(Subraza.velocidad, 10) || 0;
     }
 
     // 3. Raza
-    if (ficha.raza && DATOS) {
-        const raza = DATOS.razas.find(r => r.id === ficha.raza);
-        if (raza && raza.velocidad) return parseInt(raza.velocidad, 10) || 0;
+    if (Ficha.raza && Datos) {
+        const Raza = Datos.razas.find(Elemento => Elemento.id === Ficha.raza);
+        if (Raza && Raza.velocidad) return parseInt(Raza.velocidad, 10) || 0;
     }
 
     return 0;
