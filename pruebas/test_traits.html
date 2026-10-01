@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Traits DiceMaster</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; max-width: 900px; }
+        .trait { border: 1px solid #ccc; padding: 1em; margin-bottom: 1em; border-radius: 4px; }
+        .trait h3 { margin-top: 0; }
+        textarea { width: 100%; height: 120px; font-family: monospace; font-size: 11px; }
+        button { padding: 0.4em 0.8em; cursor: pointer; }
+        .ok { color: green; }
+        .err { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Test: 5 Traits DiceMaster</h1>
+    <p>Raza: Humano de Dalaran · Clase: Mago · Nivel 5</p>
+    <div id="contenedor">Cargando…</div>
+
+    <script>window.RUTA_BASE = "../";</script>
+    <script src="../js/comun.js"></script>
+    <script src="../js/csv.js"></script>
+    <script src="../js/motor.js"></script>
+    <script src="../js/lua.js"></script>
+    <script src="../js/traits.js"></script>
+    <script>
+        cargarDatosMotor().then(() => {
+            const Ficha = {
+                raza: "humano",
+                subraza: "humano_dalaran",
+                clase: "mago",
+                transformacion: "",
+                nivel: 5
+            };
+
+            const Traits = [
+                { id: "raza",        nombre: "1. Rasgos de Raza",              gen: () => generarTraitRaza(Ficha) },
+                { id: "clase",       nombre: "2. Rasgos de Clase",             gen: () => generarTraitClase(Ficha) },
+                { id: "estadisticas",nombre: "3. Estadísticas",                gen: () => generarTraitEstadisticas(Ficha) },
+                { id: "profesiones", nombre: "4. Profesiones y conocimientos", gen: () => generarTraitProfesiones(Ficha) },
+                { id: "magia",       nombre: "5. Conocimiento en Magia",       gen: () => generarTraitMagiaEstilos(Ficha) }
+            ];
+
+            const Cont = document.getElementById("contenedor");
+            Cont.innerHTML = "";
+
+            Traits.forEach(T => {
+                const Trait = T.gen();
+                if (!Trait) {
+                    Cont.innerHTML += `<div class="trait"><h3>${T.nombre}</h3><p class="err">No se pudo generar (falta raza o clase)</p></div>`;
+                    return;
+                }
+
+                const TraitLua = jsALua(Trait);
+                const TraitBase64 = base64Encode(TraitLua);
+
+                const Div = document.createElement("div");
+                Div.className = "trait";
+                Div.innerHTML =
+                    `<h3>${T.nombre}</h3>` +
+                    `<p><strong>Nombre interno:</strong> ${Trait.name}</p>` +
+                    `<textarea readonly id="b64-${T.id}">${TraitBase64}</textarea>` +
+                    `<p><button data-copiar="b64-${T.id}">📋 Copiar Base64</button> ` +
+                    `<span id="feedback-${T.id}"></span></p>` +
+                    `<p><small>Longitud: ${TraitBase64.length} caracteres</small></p>`;
+                Cont.appendChild(Div);
+            });
+
+            // Botones de copiar
+            Cont.querySelectorAll("[data-copiar]").forEach(Btn => {
+                Btn.addEventListener("click", () => {
+                    const IdTextarea = Btn.dataset.copiar;
+                    const Textarea = document.getElementById(IdTextarea);
+                    const Feedback = document.getElementById("feedback-" + IdTextarea.replace("b64-", ""));
+
+                    Textarea.select();
+                    Textarea.setSelectionRange(0, 999999);
+
+                    navigator.clipboard.writeText(Textarea.value)
+                        .then(() => {
+                            Feedback.textContent = "✅ Copiado";
+                            Feedback.className = "ok";
+                            setTimeout(() => { Feedback.textContent = ""; }, 2000);
+                        })
+                        .catch(() => {
+                            // Fallback: execCommand
+                            document.execCommand("copy");
+                            Feedback.textContent = "✅ Copiado (fallback)";
+                            Feedback.className = "ok";
+                        });
+                });
+            });
+        }).catch(Err => {
+            document.getElementById("contenedor").innerHTML =
+                '<p class="err">Error: ' + Err.message + '</p>';
+        });
+    </script>
+</body>
+</html>

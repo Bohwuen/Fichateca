@@ -18,6 +18,7 @@ const RutasCsv = {
     armasHabilidades:    "datos/armas_habilidades.csv",
     profesiones:         "datos/profesiones.csv",
     conocimientos:       "datos/conocimientos.csv",
+    skillsDicemaster: "datos/skills_dicemaster.csv",
 };
 
 // -----------------------------------------------------------
@@ -179,18 +180,22 @@ function fichaEnBlanco() {
         nivel: 1,
         experiencia: 0,
         pt: PtInicial,
+        pools: {
+            pa: 5, pd: 3, ph: 10, phm: 1,
+            pmye: 3, pha: 5, ppo: 2, pco: 5
+        },
         atributos: {
             vigor: 1, destreza: 1, inteligencia: 1, voluntad: 1,
-            percepcion: 1, aguante: 1, energia: 1
+            percepcion: 1, carisma: 1, aguante: 1, energia: 1
         },
         defensas: {
-            parada: 0, esquivar: 0, bloqueo: 0, metamagia: 0
+            parada_bloqueo: 0, esquivar: 0, metamagia: 0
         },
         habilidades: {
-            atletismo: 0, robo: 0, sigilo: 0, forzar_cerraduras: 0,
-            subsistencia: 0, trepar_escalar: 0, buscar: 0, alerta: 0,
+            atletismo: 0, sigilo: 0, juego_de_manos: 0,
+            subsistencia: 0, acrobacias: 0, buscar: 0, alerta: 0,
             aprendizaje: 0, interpretacion: 0, subterfugio: 0,
-            trato_con_animales: 0, intimidacion: 0, carisma: 0
+            trato_con_animales: 0, intimidacion: 0, diplomacia: 0
         },
         magia: {
             taumaturgia: 0, fe: 0, espiritualidad: 0, naturaleza: 0, caos: 0

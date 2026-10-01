@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Skill Sheet DiceMaster</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; max-width: 900px; }
+        textarea { width: 100%; height: 200px; font-family: monospace; font-size: 11px; }
+        button { padding: 0.4em 0.8em; cursor: pointer; }
+        .ok { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Test: Skill Sheet DiceMaster</h1>
+    <p>Raza: Humano de Dalaran · Clase: Mago · Nivel 5</p>
+    <div id="contenedor">Cargando…</div>
+
+    <script>window.RUTA_BASE = "../";</script>
+    <script src="../js/comun.js"></script>
+    <script src="../js/csv.js"></script>
+    <script src="../js/motor.js"></script>
+    <script src="../js/lua.js"></script>
+    <script src="../js/dicemaster.js"></script>
+    <script>
+        cargarDatosMotor().then(() => {
+            const Ficha = {
+                raza: "humano",
+                subraza: "humano_dalaran",
+                clase: "mago",
+                nivel: 5
+            };
+
+            const Sheet = generarSkillSheet(Ficha);
+
+            const Lua = jsALua(Sheet);
+            const Base64 = base64Encode(Lua);
+
+            let Html = `<p>Total skills: ${Sheet.length}</p>`;
+            Html += `<p>Longitud Base64: ${Base64.length} caracteres</p>`;
+            Html += `<textarea readonly id="b64">${Base64}</textarea>`;
+            Html += `<p><button id="btn-copiar">📋 Copiar Base64</button> <span id="feedback" class="ok"></span></p>`;
+            Html += `<details><summary>Ver Lua generado</summary><pre style="background:#f4f4f4;padding:1em;overflow:auto;max-height:400px">${escaparHtml(Lua)}</pre></details>`;
+
+            document.getElementById("contenedor").innerHTML = Html;
+
+            document.getElementById("btn-copiar").addEventListener("click", () => {
+                const Txt = document.getElementById("b64");
+                Txt.select();
+                Txt.setSelectionRange(0, 999999);
+                navigator.clipboard.writeText(Txt.value).then(() => {
+                    document.getElementById("feedback").textContent = "✅ Copiado";
+                    setTimeout(() => { document.getElementById("feedback").textContent = ""; }, 2000);
+                });
+            });
+        }).catch(Err => {
+            document.getElementById("contenedor").innerHTML =
+                '<p style="color:red">Error: ' + Err.message + '</p>';
+        });
+
+        function escaparHtml(T) {
+            return String(T).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+</body>
+</html>

@@ -20,6 +20,8 @@
     <script src="../js/comun.js"></script>
     <script src="../js/csv.js"></script>
     <script src="../js/motor.js"></script>
+    <script src="../js/lua.js"></script>
+    <script src="../js/traits.js"></script>
     <script>
         cargarDatosMotor().then(() => {
             let Html = "<p>✅ CSVs cargados correctamente.</p>";
@@ -35,14 +37,94 @@
                 clase: "guerrero",
                 transformacion: ""
             });
-            html += "<p>Bonos de Humano de Ventormenta + Guerrero:</p>";
+            Html += "<p>Bonos de Humano de Ventormenta + Guerrero:</p>";
             Html += "<pre>" + JSON.stringify(Ejemplo, null, 2) + "</pre>";
+
+            // ---- Prueba jsALua ----
+            const EjemploLua = {
+                name: "Rasgos de Raza: Humano de Dalaran",
+                usage: "PASSIVE",
+                desc: "Texto con \"comillas\" y salto\nde línea.",
+                aprobado: false,
+                efectos: {
+                    buff: [1, 2, 3],
+                    removebuff: "nada"
+                }
+            };
+            Html += "<p>Prueba jsALua:</p>";
+            Html += "<pre>" + escaparHtml(jsALua(EjemploLua)) + "</pre>";
+
+            // ---- Prueba Base64 ----
+            const TextoLua = "Hola, ¿qué tal? ñÑáéíóú 🎲";
+            const Codificado = base64Encode(TextoLua);
+            const Decodificado = base64Decode(Codificado);
+            Html += "<p>Original: " + escaparHtml(TextoLua) + "</p>";
+            Html += "<p>Base64: <code>" + Codificado + "</code></p>";
+            Html += "<p>Decodificado: " + escaparHtml(Decodificado) + "</p>";
+            Html += "<p>¿Coincide? " + (TextoLua === Decodificado ? "✅ SÍ" : "❌ NO") + "</p>";
+
+            // ---- Prueba luaAJs ----
+            const LuaOriginal = `{
+                ["name"] = "Rasgos de Raza: Humano de Dalaran",
+                ["usage"] = "PASSIVE",
+                ["aprobado"] = false,
+                ["efectos"] = {
+                    ["buff"] = {
+                        1,
+                        2,
+                        3
+                    },
+                    ["removebuff"] = "nada"
+                }
+            }`;
+            const JsConvertido = luaAJs(LuaOriginal);
+            Html += "<p>Prueba luaAJs:</p>";
+            Html += "<pre>" + escaparHtml(JSON.stringify(JsConvertido, null, 2)) + "</pre>";
+
+            // ---- Prueba ida y vuelta ----
+            const VueltaYVuelta = luaAJs(jsALua(EjemploLua));
+            Html += "<p>Ida y vuelta (debe coincidir con EjemploLua):</p>";
+            Html += "<pre>" + escaparHtml(JSON.stringify(VueltaYVuelta, null, 2)) + "</pre>";
+            Html += "<p>¿Coincide? " + (JSON.stringify(VueltaYVuelta) === JSON.stringify(EjemploLua) ? "✅ SÍ" : "❌ NO") + "</p>";
+
+                        // ---- Prueba trait de raza ----
+            const FichaPrueba = {
+                raza: "humano",
+                subraza: "humano_dalaran",
+                clase: "mago",
+                transformacion: ""
+            };
+            const Trait = generarTraitRaza(FichaPrueba);
+            Html += "<p>Trait generado (objeto JS):</p>";
+            Html += "<pre>" + escaparHtml(JSON.stringify(Trait, null, 2)) + "</pre>";
+
+            const TraitLua = jsALua(Trait);
+            Html += "<p>Trait en Lua:</p>";
+            Html += "<pre>" + escaparHtml(TraitLua) + "</pre>";
+
+            const TraitBase64 = base64Encode(TraitLua);
+            Html += "<p>Trait en Base64:</p>";
+            Html += "<pre>" + TraitBase64 + "</pre>";
+
+            Html += "<p>Ida y vuelta (debe coincidir):</p>";
+            const VueltaTrait = luaAJs(base64Decode(TraitBase64));
+            Html += "<p>¿Coincide? " + (JSON.stringify(VueltaTrait) === JSON.stringify(Trait) ? "✅ SÍ" : "❌ NO") + "</p>";
+            Html += "<p>Longitud Base64: " + TraitBase64.length + " caracteres</p>";
 
             document.getElementById("salida").innerHTML = Html;
         }).catch(Error => {
             document.getElementById("salida").innerHTML =
                 '<p class="error">Error: ' + Error.message + '</p>';
         });
+
+        function escaparHtml(Texto) {
+            return String(Texto)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+        
     </script>
 </body>
 </html>

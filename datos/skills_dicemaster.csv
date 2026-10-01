@@ -1,0 +1,55 @@
+skillPosition,header,type,name,desc,icon,showOnMenu,canEdit,skillModifierTarget
+1,1,header,Atributos,,,,
+2,0,Atributos,Fuerza,"La fuerza física de un personaje proviene de sus músculos que han sido ejercitados a lo largo de su vida y son empleados para realizar tareas que requieren el empleo de la fuerza bruta. ",236314,1,1,
+3,0,Atributos,Destreza,"Define la habilidad de un personaje a la hora de realizar ejercicios manuales, de manipular un objeto, uso de la agilidad y del equilibrio. ",132219,1,1,
+4,0,Atributos,Inteligencia,"La inteligencia se mide junto con el conocimiento general que tiene el personaje sobre lo que se le ha sido enseñado en el mundo. ",135740,1,1,
+5,0,Atributos,Voluntad,"La capacidad mental de un individuo de superar los retos que pongan a prueba la resistencia psicológica del personaje. ",135939,1,1,
+6,0,Atributos,Percepción,"Todos los personajes de Azeroth sienten, oyen, ven… pueden percibir cosas, pueden sentir si algo o alguien le acecha, o buscando pueden percibir lo que buscan.",Interface/AddOns/DiceMaster/Icons/WH_EagleEye,1,1,
+7,0,Atributos,Carisma,"La apariencia del personaje y su capacidad de hablar para influir en la gente con buenas palabras.",458228,1,1,
+8,0,Atributos,Aguante,"Determina el aguante del personaje o por así decir las vidas, los puntos de vida determinan los puntos de impacto que el personaje puede soportar.",648207,1,1,
+9,0,Atributos,Energía,"Determina las reservas de energía del personaje ya sea energía, chi, maná….",132848,1,1,
+10,0,Atributos,Armadura,"Clase de Armadura.",134950,1,1,
+11,0,Atributos,Velocidad,"La velocidad del personaje implica la prioridad de batalla del personaje y la distancia de movimiento.",132307,1,1,
+12,1,header,Habilidades,,,,
+13,0,Habilidades,Atletismo,"La habilidad física que tiene el personaje a la hora de correr, esprintar, empujar….",132120,1,1,Destreza
+14,0,Habilidades,Sigilo,"La capacidad de caminar y esconderte en las sombras y evitar ser descubierto.",132320,1,1,Destreza
+15,0,Habilidades,Juego de Manos,"La agilidad, destreza y sutileza con la que manejas tus manos para maniplar mecanismos delicados o poder tocar a alguien sin que este se entere.",1360761,1,1,Destreza
+16,0,Habilidades,Subsistencia,"Cuando tu personaje está en situaciones adversas la supervivencia cuenta y cada vez que se enfrenta a ella los instintos primarios le ayudan a sobrevivir.",Interface/Icons/ability_ambush,1,1,Inteligencia
+17,0,Habilidades,Acrobacias,"La capacidad de tu personaje de realizar acrobacias sin caerse.",Interface/Icons/ability_rogue_quickrecovery,1,1,Destreza
+18,0,Habilidades,Buscar,"La habilidad para localizar objetivos de interés utilizando los sentidos del personaje, se puede utilizar también para registrar personajes, jugadores, cadáveres, baúles… etc. ",4419344,1,1,Percepción
+19,0,Habilidades,Alerta,"El personaje puede tener los sentidos agudizados y prever el riesgo de recibir un golpe, o detectar a alguien bajo sigilo. ",132130,1,1,Percepción
+20,0,Habilidades,Aprendizaje,"La habilidad de un personaje a la hora de recibir nuevas lecciones y de asimilar esas lecciones.",236225,1,1,Inteligencia
+21,0,Habilidades,Interpretación,"Las capacidades interpretativas del personaje de interpretar y saber leer las actuaciones de otros personajes.",Interface/AddOns/DiceMaster/Icons/Bard_MusicalNotation,1,1,Carisma
+22,0,Habilidades,Subterfugio,"La picardía que tiene el personaje a la hora de mentir y manipular a las personas para el fin que el personaje desea realizar.",132288,1,1,Carisma
+23,0,Habilidades,Trato con animales,"Tu personaje tiene la capacidad de influir en los animales, ya sea por que huelas bien, los trates con respeto o seas amistoso con ellos.",132165,1,1,Carisma
+24,0,Habilidades,Intimidación,"Cuando un personaje está en una conversación e intenta sacar algo en un negocio e intenta convencer a alguien y ante las negativas tu personaje puede tratar de intimidar a al receptor en cuestión.",236310,1,1,Carisma
+25,0,Habilidades,Diplomacia,"La capacidad de tu personaje a llegar a acuerdos de forma amistosa.",236550,1,1,Carisma
+26,1,header,Habilidades mágicas,,,,
+27,0,Habilidades mágicas,Taumaturgia,"Un usuario de magia manifiesta el poder de dominar las energías sobrenaturales de la creación cuando comienza a comprenderlas, cuanto más lo comprenda mejor le saldrá su conjuro y más efectivo será.",135738,1,1,Inteligencia
+28,0,Habilidades mágicas,Fe,"Un creyente que abraza una entidad y busca su favor es bendecido por aquello por lo que siente devoción. ",135987,1,1,Voluntad
+29,0,Habilidades mágicas,Espiritualidad,"La conexión del usuario con los planos espirituales y los seres vinculados a ellas mediante pactos con los propios espíritus.",4631364,1,1,Voluntad
+30,0,Habilidades mágicas,Naturaleza,"Aquel que estudie a la naturaleza y establezca vínculos con la misma podrá despertar el poder de la vida misma.",136041,1,1,Voluntad
+31,0,Habilidades mágicas,Caos,"Aquellos que dominan las artes oscuras alterando los poderes primordiales corrompiéndolos y deformándolos para crear nuevas ramas mágicas se nutres de la corrupción misma. ",132851,1,1,Inteligencia
+32,1,header,Defensas,,,,
+33,0,Defensas,Parada y Bloqueo,"La capacidad de defenderse con armas cuerpo a cuerpo.",132359,1,1,Destreza
+34,0,Defensas,Esquivar,"La habilidad más antigua de la existencia, anticiparse a los movimientos del atacante y moverse para evitar el ataque del enemigo da el nombre de esquivar a esta habilidad.",135994,1,1,Destreza
+35,0,Defensas,Abjuración/Metamagia,"La escuela arcana que se basa en crear hechizos de protección individual o grupal para evitar heridas o disuadir a los enemigos de atacar.",135733,1,1,Inteligencia
+36,1,header,Armas,,,,
+37,0,Armas,Espadas de una mano,"La habilidad de manejar espadas de una mano de un peso ligero que permite al usuario manejar espadas de una mano.",3736884,1,1,Destreza
+38,0,Armas,Espadas de dos manos,"La habilidad de manejar de mandobles que resultan pesados para algunos personajes permite al personaje manejar espadas de dos manos. ",3736886,1,1,Destreza
+39,0,Armas,Mazas de una mano,"La habilidad de maniobrar con armas pesadas sin filo que dañan con el impacto permite al usuario manejar mazas de una mano con soltura y destreza.",3736923,1,1,Destreza
+40,0,Armas,Mazas de dos manos,"Las armas sin filo que causan daño con el impacto pueden ser muy pesadas, tanto que a veces requieren utilizarlas con dos manos para mejorar su maniobrabilidad.",3736922,1,1,Destreza
+41,0,Armas,Hachas de una mano,"Un arma de filo corta y pesada sostenida por una empuñadura corta que permite al usuario combatir a distancias cortas con ella.",3736876,1,1,Destreza
+42,0,Armas,Hachas de dos manos,"Un arma de filo muy pesada sostenida por una empuñadura larga capaz de ser sostenida por ambas manos, cuyo impacto puede llegar a ser devastador. ",Interface/Icons/inv_axe_2h_newplayer_a_01,1,1,Destreza
+43,0,Armas,Arcos,"Armas simples creadas a base de una madera flexible y una cuerda tensada que permite lanzar punzantes flechas a una velocidad vertiginosa y provocar heridas letales en el enemigo.",Interface/Icons/inv_bow_1h_newplayer_a_01,1,1,Destreza
+44,0,Armas,Armas de fuego,"Armas creadas por la maravilla de la ingeniería que mediante una bala de metal impulsada por una explosión de pólvora provocan importantes daños a distancias largas.",645221,1,1,Destreza
+45,0,Armas,Armas Arrojadizas,"Algunas armas de filo son compactas y ligeras, ideales para lanzarlas y ocasionarles daños a los enemigos, la habilidad en armas arrojadizas aumenta la puntería y la destreza en lanzar dichas armas.",132324,1,1,Destreza
+46,0,Armas,Ballestas,"Una modificación del arco con el fin de aumentar la potencia del disparo dio pie a la invención de esta arma. ",Interface/Icons/inv_crossbow_2h_kultirasquest_b_01,1,1,Destreza
+47,0,Armas,Bastones,"Los palos largos ligeros y sin filo son considerados bastones, y aquellos que han recibido instrucción para manejar dichas armas pueden causar importantes daños con un golpe de bastón. ",Interface/Icons/inv_staff_2h_newplayer_a_01,1,1,Destreza
+48,0,Armas,Varitas,"Los focos de magia encantados pueden ser considerados varitas, aquellos que puedan entender los misterios de la magia que encierran dichas varitas pueden utilizarlas para lanzar los conjuros.",135467,1,1,Inteligencia
+49,0,Armas,Dagas,"Las armas cortas punzantes y que contienen filo, son consideradas dagas y el usuario de las dagas puede adquirir la habilidad de manejar dichas armas para punzar y cortar con precisión. ",948101,1,1,Destreza
+50,0,Armas,Armas de puño,"Las armas específicas que se colocan como anillos que se combate con ellas dando puñetazos. ",Interface/Icons/inv_gauntlets_04,1,1,Destreza
+51,0,Armas,Armas de Asta,"Son unas armas de filo corto adherido a un bastón largo para combatir a distancias medias.",950903,1,1,Destreza
+52,0,Armas,Gujas de Guerra,"Espadas de origen Kaldorei son armas utilizadas regularmente por cazadores de demonios. ",2200994,1,1,Destreza
+53,0,Armas,Escudo,"El escudo es el suplemento de una armadura y otorga al portador un punto extra de armadura, y puede utilizarlo para golpear con el escudo y provocar importantes daños internos al adversario.",134950,1,1,Destreza
+54,0,Armas,Sin Armas,"La habilidad de golpear a tu objetivo con las manos desnudas.",Interface/AddOns/DiceMaster/Icons/diablo3_wayofthehundredfists,1,1,Destreza

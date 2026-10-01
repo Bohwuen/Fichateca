@@ -180,6 +180,8 @@
                 <p>
                     <label>Puntos de magia:</label>
                     <input type="number" id="phm" value="1" min="0" max="1" readonly>
+                    <button type="button" id="btn-sin-magia">Sin Magia</button>
+                    <button type="button" id="btn-con-magia">Con Magia</button>
                 </p>
 
                 <table id="tabla-magia">
@@ -216,7 +218,7 @@
                 <h2>Habilidades de armas</h2>
                 <p>
                     <label>Puntos de habilidades de armas:</label>
-                    <input type="number" id="pha" value="5" min="0" max="5" readonly>
+                    <input type="number" id="pha" value="5" min="0" readonly>
                 </p>
 
                 <div id="lista-armas-hab"></div>
@@ -248,7 +250,7 @@
                 <h2>Conocimientos</h2>
                 <p>
                     <label>Puntos de conocimientos:</label>
-                    <input type="number" id="pco" value="4" min="0" max="4" readonly>
+                    <input type="number" id="pco" value="5" min="0" max="5" readonly>
                 </p>
 
                 <div id="lista-conocimientos"></div>
@@ -396,15 +398,15 @@
             { id: "inteligencia", nombre: "Inteligencia" },
             { id: "voluntad",     nombre: "Voluntad" },
             { id: "percepcion",   nombre: "Percepción" },
+            { id: "carisma",      nombre: "Carisma" },
             { id: "aguante",      nombre: "Aguante" },
             { id: "energia",      nombre: "Energía" }
         ];
 
         const Defensas = [
-            { id: "parada",    nombre: "Parada" },
-            { id: "esquivar",  nombre: "Esquivar" },
-            { id: "bloqueo",   nombre: "Bloqueo" },
-            { id: "metamagia", nombre: "Metamagia" }
+            { id: "parada_bloqueo", nombre: "Parada y Bloqueo" },
+            { id: "esquivar",       nombre: "Esquivar" },
+            { id: "metamagia",      nombre: "Abjuración/Metamagia" }
         ];
 
         const Habilidades = [
@@ -421,7 +423,7 @@
             { id: "subterfugio",         nombre: "Subterfugio" },
             { id: "trato_con_animales",  nombre: "Trato con animales" },
             { id: "intimidacion",        nombre: "Intimidación" },
-            { id: "carisma",             nombre: "Carisma" }
+            { id: "diplomacia",          nombre: "Diplomacia" }
         ];
 
         const Magia = [
@@ -448,7 +450,7 @@
             { id: "res_luz",          nombre: "Resistencia a la luz" }
         ];
 
-        const PoolMax = { pa: 5, pd: 3, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 4 };
+        const PoolMax = { pa: 5, pd: 3, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 5 };
         // ---------------------------------------------------
         // CARGA INICIAL
         // ---------------------------------------------------
@@ -512,6 +514,16 @@
             document.getElementById("oro").value    = Ficha.dinero.oro || 0;
             document.getElementById("plata").value  = Ficha.dinero.plata || 0;
             document.getElementById("cobre").value  = Ficha.dinero.cobre || 0;
+
+            // Pools
+            if (Ficha.pools) {
+                ["pa", "pd", "ph", "phm", "pmye", "pha", "ppo", "pco"].forEach(IdPool => {
+                    const Input = document.getElementById(IdPool);
+                    if (Input && Ficha.pools[IdPool] !== undefined) {
+                        Input.value = Ficha.pools[IdPool];
+                    }
+                });
+            }
         }
 
         // ---------------------------------------------------
@@ -555,19 +567,46 @@
             });
         }
 
-                function nombreColumna(Id) {
+        function nombreColumna(Id) {
             const Mapa = {
-                vigor: "Vigor", destreza: "Destreza", inteligencia: "Inteligencia",
-                voluntad: "Voluntad", percepcion: "Percepcion", aguante: "Aguante",
+                // Atributos
+                vigor: "Vigor",
+                destreza: "Destreza",
+                inteligencia: "Inteligencia",
+                voluntad: "Voluntad",
+                percepcion: "Percepcion",
+                carisma: "Carisma",
+                aguante: "Aguante",
                 energia: "Energia",
-                parada: "Parada_y_bloqueo", esquivar: "Esquivar", bloqueo: "Parada_y_bloqueo",
+
+                // Defensas
+                parada_bloqueo: "Parada_y_bloqueo",
+                esquivar: "Esquivar",
                 metamagia: "Metamagia",
-                atletismo: "Atletismo", robo: "Robo", sigilo: "Sigilo",
-                forzar_cerraduras: "Forzar_cerraduras", subsistencia: "Subsistencia",
-                trepar_escalar: "Trepar_escalar", buscar: "Buscar", alerta: "Alerta",
-                aprendizaje: "Aprendizaje", interpretacion: "Interpretacion",
-                subterfugio: "Subterfugio", trato_con_animales: "Trato_con_animales",
-                intimidacion: "Intimidacion", carisma: "Carisma",
+
+                // Habilidades
+                atletismo: "Atletismo",
+                sigilo: "Sigilo",
+                juego_de_manos: "Juego_de_manos",
+                subsistencia: "Subsistencia",
+                acrobacias: "Acrobacias",
+                buscar: "Buscar",
+                alerta: "Alerta",
+                aprendizaje: "Aprendizaje",
+                interpretacion: "Interpretacion",
+                subterfugio: "Subterfugio",
+                trato_con_animales: "Trato_con_animales",
+                intimidacion: "Intimidacion",
+                diplomacia: "Diplomacia",
+
+                // Magia
+                taumaturgia: "Taumaturgia",
+                fe: "Fe",
+                espiritualidad: "Espiritualidad",
+                naturaleza: "Naturaleza",
+                caos: "Caos",
+
+                // Resistencias
                 res_fisica: "Resistencia_fisica",
                 res_arcana: "Resistencia_arcana",
                 res_fuego: "Resistencia_al_fuego",
@@ -579,7 +618,6 @@
             };
             return Mapa[Id] || Id;
         }
-
         // ---------------------------------------------------
         // EVENTOS
         // ---------------------------------------------------
@@ -693,6 +731,33 @@
             });
             document.getElementById("btn-del-conocimiento").addEventListener("click", () => {
                 quitarUltimaDeLista("conocimientos", Costes.conocimiento, MaxConocimientos);
+            });
+
+            // ----- Botones Sin Magia / Con Magia -----
+            document.getElementById("btn-sin-magia").addEventListener("click", () => {
+                const PhmActual = parseInt(document.getElementById("phm").value, 10);
+                if (PhmActual <= 0) return;
+
+                // Solo si no se ha gastado ningún punto de magia
+                if (Object.values(Ficha.magia).some(Valor => Valor > 0)) {
+                    alert("No puedes convertir el punto de magia: ya has invertido en habilidades mágicas.");
+                    return;
+                }
+
+                document.getElementById("phm").value = PhmActual - 1;
+                const PhaActual = parseInt(document.getElementById("pha").value, 10);
+                document.getElementById("pha").value = PhaActual + 1;
+                pintarTodasTablas();
+            });
+
+            document.getElementById("btn-con-magia").addEventListener("click", () => {
+                const PhaActual = parseInt(document.getElementById("pha").value, 10);
+                if (PhaActual <= 5) return;
+
+                document.getElementById("pha").value = PhaActual - 1;
+                const PhmActual = parseInt(document.getElementById("phm").value, 10);
+                document.getElementById("phm").value = PhmActual + 1;
+                pintarTodasTablas();
             });
 
             // ----- Guardar / Borrar -----
@@ -930,12 +995,16 @@
 
                 const FilaTabla = document.createElement("tr");
 
-                const IdsAutomaticosMye = Ficha.mye.filter(EntradaMye => EntradaMye.auto).map(EntradaMye => EntradaMye.id);
+                // Ids ya cogidos por OTRAS filas (automáticas o manuales), excepto esta misma
+                const IdsCogidos = Ficha.mye
+                    .filter((Otra, OtroIndice) => OtroIndice !== Indice && Otra.id)
+                    .map(Otra => Otra.id);
 
                 let HtmlSelect = `<select data-mye-select="${Indice}"${Entrada.auto ? " disabled" : ""}>`;
                 HtmlSelect += `<option value="">—</option>`;
                 OpcionesMye.forEach(Opcion => {
-                    if (!Entrada.auto && IdsAutomaticosMye.includes(Opcion.id)) return;
+                    // Si ya está cogido por otra fila, no lo ofrecemos
+                    if (IdsCogidos.includes(Opcion.id)) return;
                     const Seleccion = (Opcion.id === Entrada.id) ? " selected" : "";
                     HtmlSelect += `<option value="${Opcion.id}"${Seleccion}>${Opcion.nombre}</option>`;
                 });
@@ -1100,12 +1169,15 @@
 
                 const FilaTabla = document.createElement("tr");
 
-                const IdsAutomaticosLista = Ficha[NombreGrupo].filter(EntradaLista => EntradaLista.auto).map(EntradaLista => EntradaLista.id);
+                // Ids ya cogidos por OTRAS filas (automáticas o manuales), excepto esta misma
+                const IdsCogidos = Ficha[NombreGrupo]
+                    .filter((Otra, OtroIndice) => OtroIndice !== Indice && Otra.id)
+                    .map(Otra => Otra.id);
 
                 let HtmlSelect = `<select data-lista-select="${NombreGrupo}" data-indice="${Indice}"${Entrada.auto ? " disabled" : ""}>`;
                 HtmlSelect += `<option value="">—</option>`;
                 Opciones.forEach(Opcion => {
-                    if (!Entrada.auto && IdsAutomaticosLista.includes(Opcion.id)) return;
+                    if (IdsCogidos.includes(Opcion.id)) return;
                     const Seleccion = (Opcion.id === Entrada.id) ? " selected" : "";
                     HtmlSelect += `<option value="${Opcion.id}"${Seleccion}>${Opcion.nombre}</option>`;
                 });
@@ -1262,10 +1334,17 @@
             Ficha.trasfondo   = document.getElementById("trasfondo").value;
             Ficha.inventario  = document.getElementById("inventario").value;
 
-            // Dinero
+                        // Dinero
             Ficha.dinero.oro    = parseInt(document.getElementById("oro").value, 10) || 0;
             Ficha.dinero.plata  = parseInt(document.getElementById("plata").value, 10) || 0;
             Ficha.dinero.cobre  = parseInt(document.getElementById("cobre").value, 10) || 0;
+
+            // Pools
+            Ficha.pools = {};
+            ["pa", "pd", "ph", "phm", "pmye", "pha", "ppo", "pco"].forEach(IdPool => {
+                const Input = document.getElementById(IdPool);
+                Ficha.pools[IdPool] = Input ? (parseInt(Input.value, 10) || 0) : 0;
+            });
 
             if (!Ficha.nombre || !Ficha.raza || !Ficha.clase) {
                 document.getElementById("mensaje-guardado").innerHTML =

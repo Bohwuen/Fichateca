@@ -31,7 +31,7 @@ humano_dalaran,Inteligencia,1
 humano_dalaran,Carisma,1
 humano_dalaran,Energia,1
 humano_dalaran,Aprendizaje,1
-humano_dalaran,caos,1
+humano_dalaran,Taumaturgia,1
 humano_dalaran,Bastones,1
 humano_dalaran,Varitas,1
 humano_dalaran,Vision_en_la_penumbra,1
@@ -169,7 +169,7 @@ manari,Vigor,1
 manari,Carisma,-1
 manari,Subterfugio,1
 manari,Intimidacion,1
-manari,caos,1
+manari,Caos,1
 manari,Espadas_de_una_mano,1
 manari,Mazas_de_dos_manos,1
 manari,Bastones,1
@@ -180,7 +180,7 @@ manari,Resistencia_al_fuego,1
 manari,Vision_en_la_oscuridad,1
 elfo_vacio,Voluntad,1
 elfo_vacio,Acrobacias,1
-elfo_vacio,caos,1
+elfo_vacio,Caos,1
 elfo_vacio,Espadas_de_una_mano,1
 elfo_vacio,Bastones,1
 elfo_vacio,Dagas,1
@@ -317,7 +317,7 @@ no_muerto,Subsistencia,1
 no_muerto,Alerta,1
 no_muerto,Subterfugio,1
 no_muerto,Intimidacion,1
-no_muerto,caos,1
+no_muerto,Caos,1
 no_muerto,Espadas_de_una_mano,1
 no_muerto,Espadas_de_dos_manos,1
 no_muerto,Dagas,1
@@ -350,9 +350,9 @@ elfo_sangre,Destreza,1
 elfo_sangre,Inteligencia,1
 elfo_sangre,Carisma,1
 elfo_sangre,Energia,1
-elfo_sangre,caos,1
+elfo_sangre,Caos,1
 elfo_sangre,Fe,1
-elfo_sangre,Espiritualidad,1
+elfo_sangre,Taumaturgia,1
 elfo_sangre,Espadas_de_una_mano,1
 elfo_sangre,Bastones,1
 elfo_sangre,Resistencia_arcana,1
@@ -365,7 +365,7 @@ nocheterna,Interpretacion,1
 nocheterna,Diplomacia,1
 nocheterna,Metamagia,1
 nocheterna,Fe,1
-nocheterna,Espiritualidad,1
+nocheterna,Taumaturgia,1
 nocheterna,Bastones,1
 nocheterna,Varitas,1
 nocheterna,Dagas,1
