@@ -5,8 +5,66 @@
 // -----------------------------------------------------------
 // GENERADOR DE GUIDS
 // -----------------------------------------------------------
+// -----------------------------------------------------------
+// GUIDS REALES DEL ADDON (temporal para pruebas)
+// -----------------------------------------------------------
+const GUIDS_REALES = {
+    "Vigor":               "05F1C282_16E78D29",
+    "Destreza":            "05F1C282_16E78DCD",
+    "Inteligencia":        "05F1C282_16E78E0A",
+    "Voluntad":            "05F1C282_16E78E3C",
+    "Percepción":          "05F1C282_16E7940D",
+    "Carisma":             "05F1C282_18352A4B",
+    "Aguante":             "05F1C282_16E78FC3",
+    "Energía":             "05F1C282_16E79015",
+    "Armadura":            "05F1C282_16E790F6",
+    "Velocidad":           "05F1C282_16E79099",
+    "Atletismo":           "05F1C282_16E7925F",
+    "Sigilo":              "05F1C282_16E79544",
+    "Juego de Manos":      "05F1C282_18352CB2",
+    "Subsistencia":        "05F1C282_16E796D3",
+    "Acrobacias":          "05F1C282_1836FF21",
+    "Buscar":              "05F1C282_16E797D7",
+    "Alerta":              "05F1C282_16E7985A",
+    "Aprendizaje":         "05F1C282_16E799A1",
+    "Interpretación":      "05F1C282_16E79909",
+    "Subterfugio":         "05F1C282_18352E9D",
+    "Trato con animales":  "05F1C282_18352B87",
+    "Intimidación":        "05F1C282_16E7A0F9",
+    "Diplomacia":          "05F1C282_18370027",
+    "Taumaturgia":         "05F1C282_16E792FD",
+    "Fe":                  "05F1C282_16F4F0B2",
+    "Espiritualidad":      "05F1C282_16F4F14E",
+    "Naturaleza":          "05F1C282_16F4F1AA",
+    "Caos":                "05F1C282_16F4F1E7",
+    "Parada y Bloqueo":    "05F1C282_183700C4",
+    "Esquivar":            "05F1C282_16F4F3F5",
+    "Abjuración/Metamagia": "05F1C282_16F4F587",
+    "Espadas de una mano": "05F1C282_16F50092",
+    "Espadas de dos manos": "05F1C282_16F50025",
+    "Mazas de una mano":   "05F1C282_16F50131",
+    "Mazas de dos manos":  "05F1C282_16F4FF83",
+    "Hachas de una mano":  "05F1C282_16F500FE",
+    "Hachas de dos manos": "05F1C282_16F4FE67",
+    "Arcos":               "05F1C282_16F4FE37",
+    "Armas de fuego":      "05F1C282_16F4FE07",
+    "Armas Arrojadizas":   "05F1C282_16F4FD8F",
+    "Ballestas":           "05F1C282_16F4FD31",
+    "Bastones":            "05F1C282_16F4FD07",
+    "Varitas":             "05F1C282_16F4FCC1",
+    "Dagas":               "05F1C282_16F4FC79",
+    "Armas de puño":       "05F1C282_16F4FBBB",
+    "Armas de Asta":       "05F1C282_16F4FB94",
+    "Gujas de Guerra":     "05F1C282_16F4FB0D",
+    "Escudo":              "05F1C282_16F4FAD3",
+    "Sin Armas":           "05F1C282_1837CFCE"
+};
+
+// -----------------------------------------------------------
+// GENERADOR DE GUIDS
+// -----------------------------------------------------------
 const GUID_PREFIJO = "05F1C282";
-const GUID_INICIAL = 0x16E78D29;   // Número hex del primer guid
+const GUID_INICIAL = 0x16E78D29;
 let guidContador = GUID_INICIAL;
 
 function reiniciarGuids() {
@@ -17,6 +75,15 @@ function nuevoGuid() {
     const hex = guidContador.toString(16).toUpperCase();
     guidContador++;
     return GUID_PREFIJO + "_" + hex;
+}
+
+
+
+
+function nuevoGuid() {
+// -----------------------------------------------------------
+// GUIDS REALES DEL ADDON (temporal para pruebas)
+// -----------------------------------------------------------
 }
 
 // -----------------------------------------------------------
@@ -52,7 +119,7 @@ function generarSkillSheet(Ficha) {
             return;
         }
 
-        const Guid = nuevoGuid();
+        const Guid = GUIDS_REALES[Fila.name] || nuevoGuid();
         mapaGuids[Fila.name] = Guid;
 
         const RankCalculado = calcularRankSkill(Fila.name, Ficha);
@@ -91,7 +158,7 @@ function generarSkillSheet(Ficha) {
         const GuidObjetivo = mapaGuids[Fila.skillModifierTarget];
         if (GuidObjetivo) {
             Skill.skillModifiers = {};
-            Skill.skillModifiers["1"] = GuidObjetivo;
+            Skill.skillModifiers[1] = GuidObjetivo;
         }
     });
 

@@ -47,10 +47,14 @@ function jsALua(Valor, Indentacion = 0) {
     if (typeof Valor === "object") {
         const Claves = Object.keys(Valor);
         if (Claves.length === 0) return "{}";
-        const Lineas = Claves.map(Clave => {
-            const ValorLua = jsALua(Valor[Clave], Indentacion + 1);
-            return SangriaInterna + '["' + escaparLuaString(Clave) + '"] = ' + ValorLua;
-        });
+            const Lineas = Claves.map(Clave => {
+                const ValorLua = jsALua(Valor[Clave], Indentacion + 1);
+                // Si la clave es un número o un string numérico, la escribimos sin comillas
+                const ClaveLua = /^\d+$/.test(Clave)
+                    ? "[" + Clave + "]"
+                    : '["' + escaparLuaString(Clave) + '"]';
+                return SangriaInterna + ClaveLua + " = " + ValorLua;
+            });
         return "{\n" + Lineas.join(",\n") + "\n" + Sangria + "}";
     }
 
