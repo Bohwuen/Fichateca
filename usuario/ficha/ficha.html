@@ -334,6 +334,47 @@
                 <p id="raciales-especiales"><em>Elige una raza.</em></p>
             </section>
 
+            <!-- ================= EXPORTAR A DICEMASTER ================= -->
+            <section class="bloque bloque-exportar">
+                <h2>Exportar a DiceMaster</h2>
+                <p>Pulsa un botón para copiar el código. Pégalo en el addon.</p>
+
+                <div class="grid-exportar">
+                    <div>
+                        <button type="button" class="btn-exportar" data-exportar="ficha">📋 Ficha</button>
+                        <button type="button" class="btn-ver" data-ver="ficha">Ver</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-exportar" data-exportar="raza">📋 Rasgos de Raza</button>
+                        <button type="button" class="btn-ver" data-ver="raza">Ver</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-exportar" data-exportar="clase">📋 Rasgos de Clase</button>
+                        <button type="button" class="btn-ver" data-ver="clase">Ver</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-exportar" data-exportar="estadisticas">📋 Estadísticas</button>
+                        <button type="button" class="btn-ver" data-ver="estadisticas">Ver</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-exportar" data-exportar="profesiones">📋 Profesiones y conocimientos</button>
+                        <button type="button" class="btn-ver" data-ver="profesiones">Ver</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn-exportar" data-exportar="magia">📋 Conocimiento en Magia</button>
+                        <button type="button" class="btn-ver" data-ver="magia">Ver</button>
+                    </div>
+                </div>
+
+                <p id="feedback-exportar" class="aviso-info"></p>
+
+                <div id="textarea-emergencia" style="display:none;">
+                    <p><strong>Texto completo (por si el copiado falla):</strong></p>
+                    <textarea id="txt-emergencia" rows="8" readonly></textarea>
+                    <p><button type="button" id="btn-cerrar-emergencia">Cerrar</button></p>
+                </div>
+            </section>
+
             <!-- ================= BOTONES ================= -->
             <p>
                 <button type="button" id="btn-guardar">Guardar ficha</button>
@@ -361,6 +402,9 @@
     <script src="../../js/comun.js"></script>
     <script src="../../js/csv.js"></script>
     <script src="../../js/motor.js"></script>
+    <script src="../../js/lua.js"></script>
+    <script src="../../js/traits.js"></script>
+    <script src="../../js/dicemaster.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -621,7 +665,7 @@
         // ---------------------------------------------------
         // EVENTOS
         // ---------------------------------------------------
-                function enlazarEventos() {
+        function enlazarEventos() {
 
             document.getElementById("raza").addEventListener("change", Evento => {
                 Ficha.raza = Evento.target.value;
@@ -760,12 +804,91 @@
                 pintarTodasTablas();
             });
 
+                        // ----- Exportar a DiceMaster -----
+            document.querySelectorAll("[data-exportar]").forEach(Btn => {
+                Btn.addEventListener("click", () => {
+                    const Cual = Btn.dataset.exportar;
+                    const B64 = generarBase64(Cual);
+
+                    if (!B64) {
+                        mostrarFeedbackExportar("❌ No se pudo generar (falta raza o clase).", true);
+                        return;
+                    }
+
+                    navigator.clipboard.writeText(B64)
+                        .then(() => {
+                            mostrarFeedbackExportar("✅ Copiado al portapapeles.", false);
+                        })
+                        .catch(() => {
+                            mostrarFeedbackExportar("❌ No se pudo copiar. Usa 'Ver' para copiarlo a mano.", true);
+                            // Fallback: mostrar el textarea de emergencia
+                            document.getElementById("txt-emergencia").value = B64;
+                            document.getElementById("textarea-emergencia").style.display = "block";
+                        });
+                });
+            });
+
+            document.querySelectorAll("[data-ver]").forEach(Btn => {
+                Btn.addEventListener("click", () => {
+                    const Cual = Btn.dataset.ver;
+                    const B64 = generarBase64(Cual);
+                    if (!B64) {
+                        mostrarFeedbackExportar("❌ No se pudo generar.", true);
+                        return;
+                    }
+                    document.getElementById("txt-emergencia").value = B64;
+                    document.getElementById("textarea-emergencia").style.display = "block";
+                });
+            });
+
+            document.getElementById("btn-cerrar-emergencia").addEventListener("click", () => {
+                document.getElementById("textarea-emergencia").style.display = "none";
+            });
+
             // ----- Guardar / Borrar -----
 
             document.getElementById("btn-guardar").addEventListener("click", guardar);
             if (ModoEdicion) {
                 document.getElementById("btn-borrar").addEventListener("click", borrar);
             }
+        }
+
+        // ---------------------------------------------------
+        // EXPORTAR A DICEMASTER
+        // ---------------------------------------------------
+        function generarBase64(cual) {
+            if (cual === "ficha") {
+                const Sheet = generarSkillSheet(Ficha);
+                return base64Encode(jsALua(Sheet));
+            }
+            if (cual === "raza") {
+                const T = generarTraitRaza(Ficha);
+                return T ? base64Encode(jsALua(T)) : null;
+            }
+            if (cual === "clase") {
+                const T = generarTraitClase(Ficha);
+                return T ? base64Encode(jsALua(T)) : null;
+            }
+            if (cual === "estadisticas") {
+                const T = generarTraitEstadisticas(Ficha);
+                return T ? base64Encode(jsALua(T)) : null;
+            }
+            if (cual === "profesiones") {
+                const T = generarTraitProfesiones(Ficha);
+                return T ? base64Encode(jsALua(T)) : null;
+            }
+            if (cual === "magia") {
+                const T = generarTraitMagiaEstilos(Ficha);
+                return T ? base64Encode(jsALua(T)) : null;
+            }
+            return null;
+        }
+
+        function mostrarFeedbackExportar(Mensaje, EsError) {
+            const Cont = document.getElementById("feedback-exportar");
+            Cont.textContent = Mensaje;
+            Cont.className = EsError ? "aviso-error" : "aviso-info";
+            setTimeout(() => { Cont.textContent = ""; }, 3000);
         }
 
         function actualizarSubrazas() {

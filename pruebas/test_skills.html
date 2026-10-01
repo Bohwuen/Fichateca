@@ -27,7 +27,32 @@
                 raza: "humano",
                 subraza: "humano_dalaran",
                 clase: "mago",
-                nivel: 5
+                transformacion: "",
+                nivel: 5,
+                atributos: {
+                    vigor: 2, destreza: 3, inteligencia: 4, voluntad: 2,
+                    percepcion: 3, carisma: 2, aguante: 2, energia: 3
+                },
+                defensas: {
+                    parada_bloqueo: 1, esquivar: 2, metamagia: 3
+                },
+                habilidades: {
+                    atletismo: 2, sigilo: 1, juego_de_manos: 0,
+                    subsistencia: 1, acrobacias: 0, buscar: 2, alerta: 1,
+                    aprendizaje: 3, interpretacion: 0, subterfugio: 0,
+                    trato_con_animales: 0, intimidacion: 1, diplomacia: 2
+                },
+                magia: {
+                    taumaturgia: 3, fe: 0, espiritualidad: 0,
+                    naturaleza: 0, caos: 1
+                },
+                armasHabilidades: [
+                    { id: "espadas_1m", valor: 2 },
+                    { id: "bastones", valor: 3 },
+                    { id: "varitas", valor: 1 }
+                ],
+                actual: { armadura: 5, saludExtra: 0, energiaExtra: 0 },
+                pools: { pa: 5, pd: 3, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 5 }
             };
 
             const Sheet = generarSkillSheet(Ficha);
