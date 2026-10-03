@@ -136,7 +136,7 @@
                 <h2>Defensas</h2>
                 <p>
                     <label>Puntos de defensa:</label>
-                    <input type="number" id="pd" value="3" min="0" max="3" readonly>
+                    <input type="number" id="pd" value="3" min="0" max="2" readonly>
                 </p>
 
                 <table id="tabla-defensas">
@@ -203,7 +203,7 @@
                 <h2>Magia y estilos</h2>
                 <p>
                     <label>Puntos de magia y estilos:</label>
-                    <input type="number" id="pmye" value="3" min="0" max="3" readonly>
+                    <input type="number" id="pmye" value="1" min="0" max="1" readonly>
                 </p>
 
                 <div id="lista-mye"></div>
@@ -254,11 +254,6 @@
                 </p>
 
                 <div id="lista-conocimientos"></div>
-
-                <p>
-                    <button type="button" id="btn-add-conocimiento">+ Añadir conocimiento</button>
-                    <button type="button" id="btn-del-conocimiento">− Quitar último</button>
-                </p>
             </section>
 
                         <!-- ================= RESISTENCIAS ================= -->
@@ -379,11 +374,27 @@
             <p>
                 <button type="button" id="btn-guardar">Guardar ficha</button>
                 <button type="button" id="btn-borrar" style="display:none;background:#b00020;">Borrar ficha</button>
-                <button type="reset">Resetear</button>
+                <button type="button" id="btn-resetear">Resetear</button>
             </p>
             <p id="mensaje-guardado"></p>
 
         </form>
+
+        <!-- ================= MODAL DE ELECCIÓN DE PROFESIONES ================= -->
+        <div id="modal-profesiones" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);z-index:1000;align-items:center;justify-content:center;">
+            <div style="background:#f4e9d8;border:2px solid #c8b89a;border-radius:8px;padding:1.5em;max-width:500px;width:90%;">
+                <h3 id="modal-profesiones-titulo">Elige profesiones</h3>
+                <p id="modal-profesiones-desc">Selecciona las profesiones que recibirán el bono racial.</p>
+
+                <div id="modal-profesiones-selects"></div>
+
+                <p style="margin-top:1em;text-align:right;">
+                    <button type="button" id="modal-profesiones-cancelar" style="background:#b00020;">Cancelar</button>
+                    <button type="button" id="modal-profesiones-aceptar">Aceptar</button>
+                </p>
+            </div>
+        </div>
+
     </main>
 
     <footer>
@@ -432,7 +443,7 @@
         } else {
             Ficha = fichaEnBlanco();
         }
-
+            window.Ficha = Ficha; // TEMPORAL para depurar
         // ---------------------------------------------------
         // CONSTANTES
         // ---------------------------------------------------
@@ -455,11 +466,10 @@
 
         const Habilidades = [
             { id: "atletismo",           nombre: "Atletismo" },
-            { id: "robo",                nombre: "Robo" },
             { id: "sigilo",              nombre: "Sigilo" },
-            { id: "forzar_cerraduras",   nombre: "Forzar cerraduras" },
+            { id: "juego_de_manos",      nombre: "Juego de Manos" },
             { id: "subsistencia",        nombre: "Subsistencia" },
-            { id: "trepar_escalar",      nombre: "Trepar/Escalar" },
+            { id: "acrobacias",          nombre: "Acrobacias" },
             { id: "buscar",              nombre: "Buscar" },
             { id: "alerta",              nombre: "Alerta" },
             { id: "aprendizaje",         nombre: "Aprendizaje" },
@@ -468,19 +478,18 @@
             { id: "trato_con_animales",  nombre: "Trato con animales" },
             { id: "intimidacion",        nombre: "Intimidación" },
             { id: "diplomacia",          nombre: "Diplomacia" }
-        ];
+        ];  
 
         const Magia = [
             { id: "taumaturgia",   nombre: "Taumaturgia" },
             { id: "fe",            nombre: "Fe" },
             { id: "espiritualidad",nombre: "Espiritualidad" },
             { id: "naturaleza",    nombre: "Naturaleza" },
-            { id: "caos",    nombre: "caos" }
+            { id: "caos",    nombre: "Caos" }
         ];
 
-        const MaxArmasHab = 18;
-        const MaxProfesiones = 3;
-        const MaxConocimientos = 6;
+        const MaxArmasHab = 15;
+        const MaxProfesiones = 6;
         const MaxMye = 8;
 
         const Resistencias = [
@@ -494,7 +503,7 @@
             { id: "res_luz",          nombre: "Resistencia a la luz" }
         ];
 
-        const PoolMax = { pa: 5, pd: 3, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 5 };
+        const PoolMax = { pa: 5, pd: 2, ph: 10, phm: 1, pmye: 3, pha: 5, ppo: 2, pco: 5 };
         // ---------------------------------------------------
         // CARGA INICIAL
         // ---------------------------------------------------
@@ -515,6 +524,13 @@
         }
 
         function cargarValores() {
+            // Asegurar que existe el historial (fichas antiguas)
+            if (!Ficha.historial) Ficha.historial = [];
+            if (!Ficha.bonosEleccion) Ficha.bonosEleccion = {};
+            if (!Ficha.conocimientos || Ficha.conocimientos.length === 0) {
+                Ficha.conocimientos = [];
+            }
+
             document.getElementById("nombre").value       = Ficha.nombre || "";
             document.getElementById("apellidos").value    = Ficha.apellidos || "";
             document.getElementById("titulo").value       = Ficha.titulo || "";
@@ -581,6 +597,7 @@
             pintarMye();
             pintarListaDinamica("armasHabilidades");
             pintarListaDinamica("profesiones");
+            inicializarConocimientos();
             pintarListaDinamica("conocimientos");
             pintarTablaGenerica("#tabla-resistencias tbody", Resistencias, Ficha.resistencias, "resistencia");
 
@@ -593,6 +610,7 @@
             TBody.innerHTML = "";
 
             const Bonos = calcularBonos(Ficha);
+            const EsResistencia = (Tipo === "resistencia");
 
             Lista.forEach(Item => {
                 const ValorBase = Valores[Item.id] || 0;
@@ -600,13 +618,20 @@
                 const Total = ValorBase + Bono;
 
                 const FilaTabla = document.createElement("tr");
+
+                // Resistencias: sin botones +/-
+                const HtmlBotones = EsResistencia
+                    ? `<td colspan="2" style="text-align:center;color:#888;">—</td>`
+                    : `<td><button type="button" data-tipo="${Tipo}" data-accion="menos" data-id="${Item.id}">−</button></td>` +
+                    `<td><button type="button" data-tipo="${Tipo}" data-accion="mas" data-id="${Item.id}">+</button></td>`;
+
                 FilaTabla.innerHTML =
                     `<td>${Item.nombre}</td>` +
                     `<td>${ValorBase}</td>` +
                     `<td>${Bono >= 0 ? "+" + Bono : Bono}</td>` +
                     `<td><strong>${Total}</strong></td>` +
-                    `<td><button type="button" data-tipo="${Tipo}" data-accion="menos" data-id="${Item.id}">−</button></td>` +
-                    `<td><button type="button" data-tipo="${Tipo}" data-accion="mas" data-id="${Item.id}">+</button></td>`;
+                    HtmlBotones;
+
                 TBody.appendChild(FilaTabla);
             });
         }
@@ -631,7 +656,7 @@
                 // Habilidades
                 atletismo: "Atletismo",
                 sigilo: "Sigilo",
-                juego_de_manos: "Juego_de_manos",
+                juego_de_manos: "Juego_de_Manos",
                 subsistencia: "Subsistencia",
                 acrobacias: "Acrobacias",
                 buscar: "Buscar",
@@ -674,12 +699,20 @@
                 actualizarRacialesEspeciales();
                 actualizarCheckboxHuargen();
                 pintarTodasTablas();
+
+                // Detectar raciales con elección
+                const Eleccion = detectarEleccionesRaciales(Ficha.raza);
+                if (Eleccion) abrirModalProfesiones(Ficha.raza, Eleccion);
             });
 
             document.getElementById("subraza").addEventListener("change", Evento => {
                 Ficha.subraza = Evento.target.value;
                 actualizarRacialesEspeciales();
                 pintarTodasTablas();
+
+                // Detectar raciales con elección
+                const Eleccion = detectarEleccionesRaciales(Ficha.subraza);
+                if (Eleccion) abrirModalProfesiones(Ficha.subraza, Eleccion);
             });
 
             document.getElementById("transformacion-huargen").addEventListener("change", Evento => {
@@ -699,7 +732,8 @@
             document.getElementById("salud-extra").addEventListener("input", refrescarStatsCabecera);
             document.getElementById("energia-extra").addEventListener("input", refrescarStatsCabecera);
 
-            document.querySelectorAll("#tabla-atributos, #tabla-defensas, #tabla-habilidades, #tabla-magia, #tabla-resistencias").forEach(tabla => {                tabla.addEventListener("click", Evento => {
+            document.querySelectorAll("#tabla-atributos, #tabla-defensas, #tabla-habilidades, #tabla-magia, #tabla-resistencias").forEach(tabla => {
+                tabla.addEventListener("click", Evento => {
                     const Boton = Evento.target.closest("button");
                     if (!Boton) return;
                     const Tipo = Boton.dataset.tipo;
@@ -710,7 +744,7 @@
                         if (Accion === "mas") sumarItem("atributos", "pa", Costes.atributo, 5, Id);
                         else restarItem("atributos", "pa", Costes.atributo, Id);
                     } else if (Tipo === "defensa") {
-                        if (Accion === "mas") sumarItem("defensas", "pd", Costes.defensa, 3, Id);
+                        if (Accion === "mas") sumarItem("defensas", "pd", Costes.defensa, 5, Id);
                         else restarItem("defensas", "pd", Costes.defensa, Id);
                     } else if (Tipo === "habilidad") {
                         if (Accion === "mas") sumarItem("habilidades", "ph", Costes.habilidad, 5, Id);
@@ -718,14 +752,7 @@
                     } else if (Tipo === "magia") {
                         if (Accion === "mas") sumarItem("magia", "phm", Costes.magia, 5, Id);
                         else restarItem("magia", "phm", Costes.magia, Id);
-                    }
-                     else if (Tipo === "resistencia") {
-                        if (Accion === "mas" && Ficha.resistencias[Id] < 99) {
-                            Ficha.resistencias[Id]++;
-                        } else if (Accion === "menos" && Ficha.resistencias[Id] > 0) {
-                            Ficha.resistencias[Id]--;
-                        }
-                    }
+                    } 
 
                     pintarTodasTablas();
                 });
@@ -740,15 +767,29 @@
             document.getElementById("btn-del-mye").addEventListener("click", () => {
                 if (Ficha.mye.length === 0) return;
                 const Ultima = Ficha.mye[Ficha.mye.length - 1];
-                if (Ultima.valor > 0) {
-                    Ficha.pt += Ultima.valor * Costes.mye;
-                    refrescarPT();
+
+                for (let i = 0; i < Ultima.valor; i++) {
+                    const Compra = registrarVenta("mye", Ultima.id);
+                    if (Compra) {
+                        if (Compra.pool === "pt") {
+                            Ficha.pt += Compra.coste;
+                            refrescarPT();
+                        } else {
+                            const PoolActual = parseInt(document.getElementById(Compra.pool).value, 10);
+                            const PoolMaximo = PoolMax[Compra.pool] || 5;
+                            if (PoolActual < PoolMaximo) {
+                                document.getElementById(Compra.pool).value = PoolActual + 1;
+                            } else {
+                                Ficha.pt += Compra.coste;
+                                refrescarPT();
+                            }
+                        }
+                    }
                 }
+
                 Ficha.mye.pop();
                 pintarMye();
             });
-
-            // ----- NUEVOS: Botones de añadir/quitar de las listas dinámicas -----
 
             document.getElementById("btn-add-arma-hab").addEventListener("click", () => {
                 if (Ficha.armasHabilidades.length >= MaxArmasHab) return;
@@ -768,21 +809,10 @@
                 quitarUltimaDeLista("profesiones", Costes.profesion, MaxProfesiones);
             });
 
-            document.getElementById("btn-add-conocimiento").addEventListener("click", () => {
-                if (Ficha.conocimientos.length >= MaxConocimientos) return;
-                Ficha.conocimientos.push({ id: "", valor: 0 });
-                pintarListaDinamica("conocimientos");
-            });
-            document.getElementById("btn-del-conocimiento").addEventListener("click", () => {
-                quitarUltimaDeLista("conocimientos", Costes.conocimiento, MaxConocimientos);
-            });
-
-            // ----- Botones Sin Magia / Con Magia -----
             document.getElementById("btn-sin-magia").addEventListener("click", () => {
                 const PhmActual = parseInt(document.getElementById("phm").value, 10);
                 if (PhmActual <= 0) return;
 
-                // Solo si no se ha gastado ningún punto de magia
                 if (Object.values(Ficha.magia).some(Valor => Valor > 0)) {
                     alert("No puedes convertir el punto de magia: ya has invertido en habilidades mágicas.");
                     return;
@@ -791,6 +821,7 @@
                 document.getElementById("phm").value = PhmActual - 1;
                 const PhaActual = parseInt(document.getElementById("pha").value, 10);
                 document.getElementById("pha").value = PhaActual + 1;
+                sincronizarPools();
                 pintarTodasTablas();
             });
 
@@ -801,10 +832,10 @@
                 document.getElementById("pha").value = PhaActual - 1;
                 const PhmActual = parseInt(document.getElementById("phm").value, 10);
                 document.getElementById("phm").value = PhmActual + 1;
+                sincronizarPools();
                 pintarTodasTablas();
             });
 
-                        // ----- Exportar a DiceMaster -----
             document.querySelectorAll("[data-exportar]").forEach(Btn => {
                 Btn.addEventListener("click", () => {
                     const Cual = Btn.dataset.exportar;
@@ -821,7 +852,6 @@
                         })
                         .catch(() => {
                             mostrarFeedbackExportar("❌ No se pudo copiar. Usa 'Ver' para copiarlo a mano.", true);
-                            // Fallback: mostrar el textarea de emergencia
                             document.getElementById("txt-emergencia").value = B64;
                             document.getElementById("textarea-emergencia").style.display = "block";
                         });
@@ -845,18 +875,70 @@
                 document.getElementById("textarea-emergencia").style.display = "none";
             });
 
-            // ----- Guardar / Borrar -----
+            // ----- Modal de profesiones -----
+            document.getElementById("modal-profesiones-cancelar").addEventListener("click", () => {
+                if (EleccionPendiente) {
+                    const OrigenId = EleccionPendiente.origenId;
+                    if (Ficha.subraza === OrigenId) {
+                        Ficha.subraza = "";
+                        document.getElementById("subraza").value = "";
+                    } else if (Ficha.raza === OrigenId) {
+                        Ficha.raza = "";
+                        document.getElementById("raza").value = "";
+                    }
+                }
+                cerrarModalProfesiones();
+                actualizarRacialesEspeciales();
+                pintarTodasTablas();
+            });
+
+            document.getElementById("modal-profesiones-aceptar").addEventListener("click", () => {
+                const Selects = document.querySelectorAll(".modal-profesion-select");
+                const Elegidas = [];
+
+                Selects.forEach(Sel => {
+                    if (Sel.value) Elegidas.push(Sel.value);
+                });
+
+                    console.log("🔵 Click Aceptar. Elegidas:", Elegidas);
+                    console.log("🔵 EleccionPendiente:", EleccionPendiente);
+
+                if (Elegidas.length !== EleccionPendiente.cantidad) {
+                    alert("Debes elegir exactamente " + EleccionPendiente.cantidad + " profesión(es).");
+                    return;
+                }
+
+                if (!Ficha.bonosEleccion) Ficha.bonosEleccion = {};
+                Ficha.bonosEleccion.profesiones = Elegidas;
+
+                cerrarModalProfesiones();
+                pintarListaDinamica("profesiones");
+                pintarTodasTablas();
+            });
 
             document.getElementById("btn-guardar").addEventListener("click", guardar);
+            document.getElementById("btn-resetear").addEventListener("click", resetearFicha);
             if (ModoEdicion) {
                 document.getElementById("btn-borrar").addEventListener("click", borrar);
             }
+
+            // Sincronizar pools en tiempo real
+            ["pa", "pd", "ph", "phm", "pmye", "pha", "ppo", "pco"].forEach(IdPool => {
+                const Input = document.getElementById(IdPool);
+                if (!Input) return;
+                Input.addEventListener("input", () => {
+                    if (!Ficha.pools) Ficha.pools = {};
+                    Ficha.pools[IdPool] = parseInt(Input.value, 10) || 0;
+                });
+            });
         }
 
         // ---------------------------------------------------
         // EXPORTAR A DICEMASTER
         // ---------------------------------------------------
         function generarBase64(cual) {
+            sincronizarFicha();
+
             if (cual === "ficha") {
                 const Sheet = generarSkillSheet(Ficha);
                 return base64Encode(jsALua(Sheet));
@@ -957,6 +1039,68 @@
         }
 
         // ---------------------------------------------------
+        // RACIALES ESPECIALES CON ELECCIÓN
+        // ---------------------------------------------------
+        function detectarEleccionesRaciales(OrigenId) {
+            if (!OrigenId || !Datos) return null;
+            const Fila = Datos.racialesEspeciales.find(R => R.origen_id === OrigenId);
+            if (!Fila) return null;
+
+            const Texto = Fila.descripcion;
+
+            // Detectar "+1 en dos profesiones seleccionadas"
+            const MatchDos = Texto.match(/\+1 en dos profesiones seleccionadas/i);
+            if (MatchDos) {
+                return { tipo: "profesiones", cantidad: 2 };
+            }
+
+            // Detectar "+1 extra en una de las profesiones ya seleccionadas"
+            const MatchExtra = Texto.match(/\+1 extra en una de las profesiones ya seleccionadas/i);
+            if (MatchExtra) {
+                return { tipo: "profesion_extra", cantidad: 1 };
+            }
+
+            return null;
+        }
+
+        let EleccionPendiente = null; // { tipo, cantidad, origenId }
+
+        function abrirModalProfesiones(OrigenId, Eleccion) {
+            EleccionPendiente = { ...Eleccion, origenId: OrigenId };
+
+            const Modal = document.getElementById("modal-profesiones");
+            const ContSelects = document.getElementById("modal-profesiones-selects");
+            const Titulo = document.getElementById("modal-profesiones-titulo");
+
+            Titulo.textContent = "Elige " + Eleccion.cantidad + " profesión(es)";
+
+            // Generar selects
+            ContSelects.innerHTML = "";
+            for (let i = 0; i < Eleccion.cantidad; i++) {
+                const Select = document.createElement("select");
+                Select.className = "modal-profesion-select";
+                Select.dataset.indice = i;
+
+                let Html = '<option value="">—</option>';
+                Datos.profesiones.forEach(Prof => {
+                    Html += `<option value="${Prof.id}">${Prof.nombre}</option>`;
+                });
+                Select.innerHTML = Html;
+
+                ContSelects.appendChild(Select);
+                ContSelects.appendChild(document.createElement("br"));
+            }
+
+            Modal.style.display = "flex";
+        }
+
+        function cerrarModalProfesiones() {
+            document.getElementById("modal-profesiones").style.display = "none";
+            EleccionPendiente = null;
+        }
+
+
+        // ---------------------------------------------------
         // NIVEL Y PT
         // ---------------------------------------------------
         function cambiarNivel(Delta) {
@@ -971,40 +1115,152 @@
         function refrescarPT() {
             document.getElementById("pt").value = Ficha.pt;
         }
+        // ---------------------------------------------------
+        // HISTORIAL DE GASTOS
+        // ---------------------------------------------------
+        function registrarCompra(categoria, id, coste, pool) {
+            if (!Ficha.historial) Ficha.historial = [];
+            Ficha.historial.push({
+                fecha: new Date().toISOString(),
+                categoria: categoria,
+                id: id,
+                accion: "comprar",
+                coste: coste,
+                pool: pool
+            });
+        }
 
+        function registrarVenta(categoria, id) {
+            if (!Ficha.historial) Ficha.historial = [];
+            // Buscar la última compra de esa categoría + id
+            for (let i = Ficha.historial.length - 1; i >= 0; i--) {
+                const E = Ficha.historial[i];
+                if (E.categoria === categoria && E.id === id && E.accion === "comprar") {
+                    Ficha.historial.splice(i, 1);
+                    return E; // { coste, pool }
+                }
+            }
+            return null;
+        }
+
+        function sincronizarPools() {
+            if (!Ficha.pools) Ficha.pools = {};
+            ["pa", "pd", "ph", "phm", "pmye", "pha", "ppo", "pco"].forEach(IdPool => {
+                const Input = document.getElementById(IdPool);
+                if (Input) Ficha.pools[IdPool] = parseInt(Input.value, 10) || 0;
+            });
+        }
+
+        function sincronizarFicha() {
+            // Cabecera
+            Ficha.nombre       = document.getElementById("nombre").value.trim();
+            Ficha.apellidos    = document.getElementById("apellidos").value.trim();
+            Ficha.titulo       = document.getElementById("titulo").value.trim();
+            Ficha.nacimiento   = document.getElementById("nacimiento").value.trim();
+            Ficha.faccion      = document.getElementById("faccion").value;
+            Ficha.alineamiento = document.getElementById("alineamiento").value.trim();
+
+            // Raza / subraza / clase / transformación
+            Ficha.raza           = document.getElementById("raza").value;
+            Ficha.subraza        = document.getElementById("subraza").value;
+            Ficha.clase          = document.getElementById("clase").value;
+            Ficha.transformacion = document.getElementById("transformacion-huargen").checked ? "huargen" : "";
+
+            // Nivel / PT
+            Ficha.nivel = parseInt(document.getElementById("nivel").value, 10) || 1;
+            Ficha.pt    = parseInt(document.getElementById("pt").value, 10) || 0;
+
+            // Actualmente
+            Ficha.actual.saludExtra   = parseInt(document.getElementById("salud-extra").value, 10) || 0;
+            Ficha.actual.energiaExtra = parseInt(document.getElementById("energia-extra").value, 10) || 0;
+            Ficha.actual.armadura     = parseInt(document.getElementById("armadura-act").value, 10) || 0;
+            Ficha.actual.yelmo        = document.getElementById("yelmo").value.trim();
+            Ficha.actual.torso        = document.getElementById("torso").value.trim();
+            Ficha.actual.manos        = document.getElementById("manos").value.trim();
+            Ficha.actual.pies         = document.getElementById("pies").value.trim();
+            Ficha.actual.capa         = document.getElementById("capa").value.trim();
+            Ficha.actual.escudoNombre = document.getElementById("escudo-nombre").value.trim();
+            Ficha.actual.escudo       = document.getElementById("escudo-equipado").checked;
+
+            const RadioArmadura = document.querySelector('input[name="tipo-armadura"]:checked');
+            Ficha.actual.tipoArmadura = RadioArmadura ? RadioArmadura.value : "";
+
+            // Texto
+            Ficha.descripcion = document.getElementById("descripcion").value;
+            Ficha.trasfondo   = document.getElementById("trasfondo").value;
+            Ficha.inventario  = document.getElementById("inventario").value;
+
+            // Dinero
+            Ficha.dinero.oro    = parseInt(document.getElementById("oro").value, 10) || 0;
+            Ficha.dinero.plata  = parseInt(document.getElementById("plata").value, 10) || 0;
+            Ficha.dinero.cobre  = parseInt(document.getElementById("cobre").value, 10) || 0;
+
+            // Pools
+            sincronizarPools();
+        }
         // ---------------------------------------------------
         // POOLS E ITEMS
         // ---------------------------------------------------
-        function sumarItem(Grupo, IdPool, Coste, Maximo, Id) {
+        function sumarItem(Grupo, IdPool, CosteObj, Maximo, Id) {
             if (Ficha[Grupo][Id] >= Maximo) return;
+
             const Pool = parseInt(document.getElementById(IdPool).value, 10);
+
+            // 1. Si hay pool, gastamos del pool
             if (Pool > 0) {
                 document.getElementById(IdPool).value = Pool - 1;
                 Ficha[Grupo][Id]++;
+                registrarCompra(Grupo, Id, 0, IdPool);
                 return;
             }
+
+            // 2. Si no hay pool, gastamos PT (con coste normal o primera vez)
+            const EsPrimeraVez = (Ficha[Grupo][Id] === 0);
+            const Coste = EsPrimeraVez ? CosteObj.primera : CosteObj.normal;
+
             if (Ficha.pt >= Coste) {
                 Ficha.pt -= Coste;
                 Ficha[Grupo][Id]++;
                 refrescarPT();
+                registrarCompra(Grupo, Id, Coste, "pt");
             }
         }
 
-        function restarItem(Grupo, IdPool, Coste, Id) {
+        function restarItem(Grupo, IdPool, CosteObj, Id) {
             const Minimo = (Grupo === "atributos") ? 1 : 0;
             if (Ficha[Grupo][Id] <= Minimo) return;
 
-            const Pool = parseInt(document.getElementById(IdPool).value, 10);
-            const PoolMaximo = PoolMax[IdPool] || 5;
+            // Buscar en el historial de dónde salió el último punto
+            const UltimaCompra = registrarVenta(Grupo, Id);
 
-            if (Pool < PoolMaximo) {
-                document.getElementById(IdPool).value = Pool + 1;
-                Ficha[Grupo][Id]--;
-                return;
+            if (UltimaCompra) {
+                // Devolver al mismo sitio de donde salió
+                if (UltimaCompra.pool === "pt") {
+                    Ficha.pt += UltimaCompra.coste;
+                    refrescarPT();
+                } else {
+                    const PoolActual = parseInt(document.getElementById(UltimaCompra.pool).value, 10);
+                    const PoolMaximo = PoolMax[UltimaCompra.pool] || 5;
+                    if (PoolActual < PoolMaximo) {
+                        document.getElementById(UltimaCompra.pool).value = PoolActual + 1;
+                    } else {
+                        Ficha.pt += UltimaCompra.coste;
+                        refrescarPT();
+                    }
+                }
+            } else {
+                // Fallback: si no hay historial (fichas antiguas), devolver al pool si cabe
+                const Pool = parseInt(document.getElementById(IdPool).value, 10);
+                const PoolMaximo = PoolMax[IdPool] || 5;
+                if (Pool < PoolMaximo) {
+                    document.getElementById(IdPool).value = Pool + 1;
+                } else {
+                    Ficha.pt += CosteObj.normal;
+                    refrescarPT();
+                }
             }
-            Ficha.pt += Coste;
+
             Ficha[Grupo][Id]--;
-            refrescarPT();
         }
 
         function refrescarStatsCabecera() {
@@ -1174,13 +1430,19 @@
             if (Pool > 0) {
                 document.getElementById("pmye").value = Pool - 1;
                 Entrada.valor++;
+                registrarCompra("mye", Entrada.id, 0, "pmye");
                 pintarMye();
                 return;
             }
-            if (Ficha.pt >= Costes.mye) {
-                Ficha.pt -= Costes.mye;
+
+            const EsPrimeraVez = (Entrada.valor === 0);
+            const Coste = EsPrimeraVez ? Costes.mye.primera : Costes.mye.normal;
+
+            if (Ficha.pt >= Coste) {
+                Ficha.pt -= Coste;
                 Entrada.valor++;
                 refrescarPT();
+                registrarCompra("mye", Entrada.id, Coste, "pt");
                 pintarMye();
             }
         }
@@ -1189,16 +1451,25 @@
             const Entrada = Ficha.mye[Indice];
             if (Entrada.valor <= 0) return;
 
-            const Pool = parseInt(document.getElementById("pmye").value, 10);
-            if (Pool < 3) {
-                document.getElementById("pmye").value = Pool + 1;
-                Entrada.valor--;
-                pintarMye();
-                return;
+            const UltimaCompra = registrarVenta("mye", Entrada.id);
+
+            if (UltimaCompra) {
+                if (UltimaCompra.pool === "pt") {
+                    Ficha.pt += UltimaCompra.coste;
+                    refrescarPT();
+                } else {
+                    const PoolActual = parseInt(document.getElementById(UltimaCompra.pool).value, 10);
+                    const PoolMaximo = PoolMax[UltimaCompra.pool] || 5;
+                    if (PoolActual < PoolMaximo) {
+                        document.getElementById(UltimaCompra.pool).value = PoolActual + 1;
+                    } else {
+                        Ficha.pt += UltimaCompra.coste;
+                        refrescarPT();
+                    }
+                }
             }
-            Ficha.pt += Costes.mye;
+
             Entrada.valor--;
-            refrescarPT();
             pintarMye();
         }
     
@@ -1254,6 +1525,18 @@
                 }
             });
 
+            // ⚠️ ESTE BLOQUE ES EL QUE FALTA PROBABLEMENTE
+            if (Grupo === "profesiones" && Ficha.bonosEleccion && Ficha.bonosEleccion.profesiones) {
+                Ficha.bonosEleccion.profesiones.forEach(IdProf => {
+                    const Opcion = Opciones.find(O => O.id === IdProf);
+                    if (Opcion) {
+                        Resultado.push({ id: Opcion.id, nombre: Opcion.nombre, valor: 1 });
+                    }
+                });
+            }
+
+            console.log("🟢 bonosParaLista(" + Grupo + ") →", Resultado);
+
             return Resultado;
         }
 
@@ -1265,6 +1548,9 @@
 
             // 1. Sincronizar
             sincronizarAutomaticos(NombreGrupo, bonosParaLista(NombreGrupo));
+
+            sincronizarAutomaticos(NombreGrupo, bonosParaLista(NombreGrupo));
+            console.log("🟢 Ficha." + NombreGrupo + " tras sincronizar:", JSON.stringify(Ficha[NombreGrupo]));  
 
             // 2. Cabecera
             const Tabla = document.createElement("table");
@@ -1287,27 +1573,45 @@
             Ficha[NombreGrupo].forEach((Entrada, Indice) => {
                 const ValorBase = Entrada.valor || 0;
                 const NombreBono = columnaBonoDe(Entrada.id, Opciones);
-                const Bono = NombreBono ? (BonosActuales[NombreBono] || 0) : 0;
+                let Bono = NombreBono ? (BonosActuales[NombreBono] || 0) : 0;
+
+                // Bono extra por elección racial (profesiones)
+                if (NombreGrupo === "profesiones" && Ficha.bonosEleccion && Ficha.bonosEleccion.profesiones) {
+                    if (Ficha.bonosEleccion.profesiones.includes(Entrada.id)) {
+                        Bono += 1;
+                    }
+                }
+
                 const Total = ValorBase + Bono;
 
                 const FilaTabla = document.createElement("tr");
 
                 // Ids ya cogidos por OTRAS filas (automáticas o manuales), excepto esta misma
-                const IdsCogidos = Ficha[NombreGrupo]
-                    .filter((Otra, OtroIndice) => OtroIndice !== Indice && Otra.id)
-                    .map(Otra => Otra.id);
+                const EsConocimiento = (NombreGrupo === "conocimientos");
 
-                let HtmlSelect = `<select data-lista-select="${NombreGrupo}" data-indice="${Indice}"${Entrada.auto ? " disabled" : ""}>`;
-                HtmlSelect += `<option value="">—</option>`;
-                Opciones.forEach(Opcion => {
-                    if (IdsCogidos.includes(Opcion.id)) return;
-                    const Seleccion = (Opcion.id === Entrada.id) ? " selected" : "";
-                    HtmlSelect += `<option value="${Opcion.id}"${Seleccion}>${Opcion.nombre}</option>`;
-                });
-                HtmlSelect += `</select>`;
+                // Los conocimientos ya tienen id fijo, no se eligen
+                let HtmlSelect;
+                if (EsConocimiento) {
+                    HtmlSelect = `<span>${Entrada.nombre || (Opciones.find(O => O.id === Entrada.id)?.nombre || "")}</span>`;
+                } else {
+                    const IdsCogidos = Ficha[NombreGrupo]
+                        .filter((Otra, OtroIndice) => OtroIndice !== Indice && Otra.id)
+                        .map(Otra => Otra.id);
 
-                const HtmlBotones =
-                    `<button type="button" data-lista-menos="${NombreGrupo}" data-indice="${Indice}">−</button>
+                    HtmlSelect = `<select data-lista-select="${NombreGrupo}" data-indice="${Indice}"${Entrada.auto ? " disabled" : ""}>`;
+                    HtmlSelect += `<option value="">—</option>`;
+                    Opciones.forEach(Opcion => {
+                        if (IdsCogidos.includes(Opcion.id)) return;
+                        const Seleccion = (Opcion.id === Entrada.id) ? " selected" : "";
+                        HtmlSelect += `<option value="${Opcion.id}"${Seleccion}>${Opcion.nombre}</option>`;
+                    });
+                    HtmlSelect += `</select>`;
+                }
+
+                const HtmlBotones = EsConocimiento
+                    ? `<button type="button" data-lista-menos="${NombreGrupo}" data-indice="${Indice}">−</button>
+                    <button type="button" data-lista-mas="${NombreGrupo}" data-indice="${Indice}">+</button>`
+                    : `<button type="button" data-lista-menos="${NombreGrupo}" data-indice="${Indice}">−</button>
                     <button type="button" data-lista-mas="${NombreGrupo}" data-indice="${Indice}">+</button>`;
 
                 FilaTabla.innerHTML =
@@ -1351,13 +1655,19 @@
             if (Pool > 0) {
                 document.getElementById(Configuracion.idPool).value = Pool - 1;
                 Entrada.valor++;
+                registrarCompra(Grupo, Entrada.id, 0, Configuracion.idPool);
                 pintarListaDinamica(Grupo);
                 return;
             }
-            if (Ficha.pt >= Configuracion.coste) {
-                Ficha.pt -= Configuracion.coste;
+
+            const EsPrimeraVez = (Entrada.valor === 0);
+            const Coste = EsPrimeraVez ? Configuracion.coste.primera : Configuracion.coste.normal;
+
+            if (Ficha.pt >= Coste) {
+                Ficha.pt -= Coste;
                 Entrada.valor++;
                 refrescarPT();
+                registrarCompra(Grupo, Entrada.id, Coste, "pt");
                 pintarListaDinamica(Grupo);
             }
         }
@@ -1367,58 +1677,90 @@
             const Entrada = Ficha[Grupo][Indice];
             if (Entrada.valor <= 0) return;
 
-            const Pool = parseInt(document.getElementById(Configuracion.idPool).value, 10);
-            const PoolMaximo = PoolMax[Configuracion.idPool] || 5;
+            const UltimaCompra = registrarVenta(Grupo, Entrada.id);
 
-            if (Pool < PoolMaximo) {
-                document.getElementById(Configuracion.idPool).value = Pool + 1;
-                Entrada.valor--;
-                pintarListaDinamica(Grupo);
-                return;
+            if (UltimaCompra) {
+                if (UltimaCompra.pool === "pt") {
+                    Ficha.pt += UltimaCompra.coste;
+                    refrescarPT();
+                } else {
+                    const PoolActual = parseInt(document.getElementById(UltimaCompra.pool).value, 10);
+                    const PoolMaximo = PoolMax[UltimaCompra.pool] || 5;
+                    if (PoolActual < PoolMaximo) {
+                        document.getElementById(UltimaCompra.pool).value = PoolActual + 1;
+                    } else {
+                        Ficha.pt += UltimaCompra.coste;
+                        refrescarPT();
+                    }
+                }
             }
-            Ficha.pt += Configuracion.coste;
+
             Entrada.valor--;
-            refrescarPT();
             pintarListaDinamica(Grupo);
+        }
+
+
+        function inicializarConocimientos() {
+            if (!Datos || !Datos.conocimientos) return;
+
+            // Si la ficha no tiene conocimientos, los creamos todos con valor 0
+            if (!Ficha.conocimientos || Ficha.conocimientos.length === 0) {
+                Ficha.conocimientos = Datos.conocimientos.map(Conocimiento => ({
+                    id: Conocimiento.id,
+                    valor: 0,
+                    auto: false
+                }));
+            } else {
+                // Si ya existen, aseguramos que estén todos los del CSV
+                Datos.conocimientos.forEach(Conocimiento => {
+                    const Existe = Ficha.conocimientos.find(C => C.id === Conocimiento.id);
+                    if (!Existe) {
+                        Ficha.conocimientos.push({
+                            id: Conocimiento.id,
+                            valor: 0,
+                            auto: false
+                        });
+                    }
+                });
+            }
         }
 
                 // ---------------------------------------------------
         // QUITAR LA ÚLTIMA ENTRADA DE UNA LISTA DINÁMICA
         // ---------------------------------------------------
-        function quitarUltimaDeLista(NombreGrupo, Coste, Maximo) {
+        function quitarUltimaDeLista(NombreGrupo, CosteObj, Maximo) {
             const Lista = Ficha[NombreGrupo];
             if (!Lista || Lista.length === 0) return;
 
-            // Buscar la última entrada MANUAL (las automáticas no se quitan)
+            // Buscar la última entrada MANUAL
             let UltimaManualIndice = -1;
             for (let Indice = Lista.length - 1; Indice >= 0; Indice--) {
                 if (!Lista[Indice].auto) { UltimaManualIndice = Indice; break; }
             }
-            if (UltimaManualIndice === -1) return;   // solo hay automáticas
+            if (UltimaManualIndice === -1) return;
 
             const Ultima = Lista[UltimaManualIndice];
 
-            // Devolver PT/pool de lo gastado
-            if (Ultima.valor > 0) {
-                const Pool = parseInt(document.getElementById(ListasDinamicas[NombreGrupo].idPool).value, 10);
-                const PoolMaximo = PoolMax[ListasDinamicas[NombreGrupo].idPool] || 5;
-                const Sobrante = Ultima.valor;
-
-                if (Pool < PoolMaximo) {
-                    const ADevolver = Math.min(Sobrante, PoolMaximo - Pool);
-                    document.getElementById(ListasDinamicas[NombreGrupo].idPool).value = Pool + ADevolver;
-                    const Resto = Sobrante - ADevolver;
-                    if (Resto > 0) {
-                        Ficha.pt += Resto * Coste;
+            // Devolver cada punto gastado usando el historial
+            for (let i = 0; i < Ultima.valor; i++) {
+                const Compra = registrarVenta(NombreGrupo, Ultima.id);
+                if (Compra) {
+                    if (Compra.pool === "pt") {
+                        Ficha.pt += Compra.coste;
                         refrescarPT();
+                    } else {
+                        const PoolActual = parseInt(document.getElementById(Compra.pool).value, 10);
+                        const PoolMaximo = PoolMax[Compra.pool] || 5;
+                        if (PoolActual < PoolMaximo) {
+                            document.getElementById(Compra.pool).value = PoolActual + 1;
+                        } else {
+                            Ficha.pt += Compra.coste;
+                            refrescarPT();
+                        }
                     }
-                } else {
-                    Ficha.pt += Sobrante * Coste;
-                    refrescarPT();
                 }
             }
 
-            // Quitar solo esa entrada manual
             Lista.splice(UltimaManualIndice, 1);
             pintarListaDinamica(NombreGrupo);
         }
@@ -1482,6 +1824,58 @@
                 // tras crear, recargamos en modo edición
                 window.location.href = "ficha.html?id=" + IdGuardado;
             }
+        }
+
+        function resetearFicha() {
+            if (!confirm("¿Seguro que quieres resetear la ficha? Se perderán todos los cambios no guardados.")) return;
+
+            // 1. Reiniciar Ficha en memoria
+            const IdActual = Ficha.id;
+            Ficha = fichaEnBlanco();
+
+            // 2. Si estamos en modo edición, conservamos el id
+            if (ModoEdicion && IdActual) {
+                Ficha.id = IdActual;
+            }
+
+            // 3. Limpiar el formulario HTML
+            document.getElementById("form-ficha").reset();
+
+            // 4. Resetear selects y valores por defecto
+            document.getElementById("raza").value = "";
+            document.getElementById("subraza").value = "";
+            document.getElementById("clase").value = "";
+            document.getElementById("nivel").value = 1;
+            document.getElementById("pt").value = 20;
+            document.getElementById("transformacion-huargen").checked = false;
+
+            // 5. Resetear pools a sus valores iniciales
+            document.getElementById("pa").value = 5;
+            document.getElementById("pd").value = 2;
+            document.getElementById("ph").value = 10;
+            document.getElementById("phm").value = 1;
+            document.getElementById("pmye").value = 1;
+            document.getElementById("pha").value = 5;
+            document.getElementById("ppo").value = 2;
+            document.getElementById("pco").value = 5;
+
+            // 6. Resetear stats de cabecera
+            document.getElementById("salud-extra").value = 0;
+            document.getElementById("energia-extra").value = 0;
+            document.getElementById("armadura-act").value = 0;
+
+            // 7. Resetear raciales y subrazas
+            actualizarSubrazas();
+            actualizarRacialesEspeciales();
+            actualizarCheckboxHuargen();
+
+            // 8. Volver a pintar todas las tablas
+            pintarTodasTablas();
+            refrescarPT();
+            refrescarStatsCabecera();
+
+            // 9. Limpiar mensaje de guardado
+            document.getElementById("mensaje-guardado").innerHTML = "";
         }
 
         function borrar() {

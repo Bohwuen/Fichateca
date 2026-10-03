@@ -25,15 +25,15 @@ const RutasCsv = {
 // COSTES (constantes del sistema)
 // -----------------------------------------------------------
 const Costes = {
-    atributo:     4,
-    defensa:      3,
-    habilidad:    2,
-    magia:        3,
-    mye:          3,
-    habilidadArma:3,
-    profesion:    2,
-    conocimiento: 2,
-    nivel:        7      // puntos de trasfondo por subir nivel
+  atributo:     { normal: 4, primera: 4 }, // atributos no tienen primera vez
+  defensa:      { normal: 3, primera: 4 },
+  habilidad:    { normal: 2, primera: 3 },
+  magia:        { normal: 3, primera: 4 },
+  mye:          { normal: 3, primera: 4 },
+  habilidadArma:{ normal: 3, primera: 4 },
+  profesion:    { normal: 2, primera: 3 },
+  conocimiento: { normal: 2, primera: 3 },
+  nivel: 7
 };
 
 const PtInicial = 20;
@@ -181,7 +181,7 @@ function fichaEnBlanco() {
         experiencia: 0,
         pt: PtInicial,
         pools: {
-            pa: 5, pd: 3, ph: 10, phm: 1,
+            pa: 5, pd: 2, ph: 10, phm: 1,
             pmye: 3, pha: 5, ppo: 2, pco: 5
         },
         atributos: {
@@ -219,7 +219,9 @@ function fichaEnBlanco() {
         descripcion: "",
         trasfondo: "",
         inventario: "",
-        dinero: { oro: 0, plata: 0, cobre: 0 }
+        dinero: { oro: 0, plata: 0, cobre: 0 },
+        historial: [],
+        bonosEleccion: {}
     };
 }
 

@@ -6,7 +6,7 @@ humano_dalaran,+1 en dos profesiones seleccionadas
 humano_gilneas,+1 en dos profesiones seleccionadas | +1 extra en una de las profesiones ya seleccionadas
 humano_kultiras,+1 en dos profesiones seleccionadas | Puñetazo fuerte: aturde y desplaza al objetivo hacia atrás hasta 3 metros.
 humano_alterac,+1 en dos profesiones seleccionadas | Fiereza guerrera: durante los siguientes tres turnos ganas +2 en tiradas de ataque y daño.
-enano_barbabronce,Forma de piedra: en el siguiente turno ignora todo el daño. | Búsqueda de tesoros: al usar esta habilidad el narrador debe facilitarle información acerca de tesoros cercanos y cómo encontrarlo. | Visión en la oscuridad
+enano_barbabronce,Forma de piedra: en el siguiente turno ignora todo el daño. | Búsqueda de tesoros: al usar esta habilidad el narrador debe facilitarle información acerca de tesoros cercanos y como encontrarlo. | Visión en la oscuridad
 enano_martillo_salvaje,Compañero grifo: tienen un compañero grifo y la habilidad para montarlo. | Martillo de tormentas: puede arrojar su maza contra un enemigo y aturdirlo durante un turno, la maza regresa a la mano tras el impacto. | +1 en velocidad en zonas montañosas. | Visión en la penumbra
 enano_hierro_negro,Sangrardiente: elimina los efectos dañinos y aumenta vigor, destreza y habilidades mágicas en 1 durante 2 turnos. | +1 en velocidad en cuevas e interiores | Visión en la oscuridad
 gnomo_gnomeregan,+2 en destreza para librarse de trampas y ataduras. | Visión en la oscuridad
@@ -26,14 +26,14 @@ trol_farraki,Regeneración: pasivamente regenera 1 p. de salud por turno.
 trol_gurubashi,Regeneración: pasivamente regenera 1 p. de salud por turno.
 trol_amani,Regeneración: pasivamente regenera 1 p. de salud por turno.
 trol_drakkari,Regeneración: pasivamente regenera 1 p. de salud por turno.
-tauren_mulgore,Pisotón de guerra.
-tauren_monte_alto,Embestida astada.
+tauren_mulgore,Pisotón de guerra:
+tauren_monte_alto,Embestida astada:
 no_muerto,La mitad de voluntad frente a embelesamientos o intentos de control mental. | No sufren penalizaciones de respiración. | Visión en la oscuridad
 ogro,Penalización en tiradas de -2 en inteligencia. | Puño aturdidor: aturde al objetivo durante 2 turnos.
-goblin,Tromba de cohetes. | +2 de diplomacia para obtener descuentos.
+goblin,Tromba de cohetes: | Regateo: +2 de diplomacia para obtener descuentos.
 elfo_sangre,Torrente arcano: lanza un área que silencia a los enemigos durante un turno. | Visión en la oscuridad
 nocheterna,Escudo de fuerza: crea un área arcana que hace 1D6 de daño y repele a los enemigos durante 1 turno. | Visión en la oscuridad
 pandaren,Mullido: reduce daño contundente a la mitad. | +1 en habilidades físicas si está bien alimentado.
-vulpera,Hurgar. | Bolsa de trucos. | Visión en la oscuridad
+vulpera,Hurgar: | Bolsa de trucos: | Visión en la oscuridad
 dracthyr,Planear: en mitad de una caída puede desplegar las alas para evitar el daño. | Flagelo de cola: golpe de cola que hace 1D6 a enemigos cercanos. | Rostro: capacidad de cambiar entre forma dracónica y humana. | Sacudida de alas: repele a los enemigos frente al Dracthyr 1D6 metros. | Visión en la oscuridad
 enano_terraneo,Visión en la oscuridad | Visión en la penumbra
