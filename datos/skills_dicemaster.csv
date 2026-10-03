@@ -11,7 +11,7 @@ skillPosition,header,type,name,desc,icon,showOnMenu,canEdit,skillModifierTarget
 10,0,Atributos,Armadura,"Clase de Armadura.",134950,0,1,
 11,0,Atributos,Velocidad,"La velocidad del personaje implica la prioridad de batalla del personaje y la distancia de movimiento.",132307,0,1,
 12,1,header,Habilidades,,,,
-13,0,Habilidades,Atletismo,"La habilidad física que tiene el personaje a la hora de correr, esprintar, empujar….",132120,1,1,Destreza
+13,0,Habilidades,Atletismo,"La habilidad física que tiene el personaje a la hora de correr, esprintar, empujar….",132120,1,1,Vigor
 14,0,Habilidades,Sigilo,"La capacidad de caminar y esconderte en las sombras y evitar ser descubierto.",132320,1,1,Destreza
 15,0,Habilidades,Juego de Manos,"La agilidad, destreza y sutileza con la que manejas tus manos para maniplar mecanismos delicados o poder tocar a alguien sin que este se entere.",1360761,1,1,Destreza
 16,0,Habilidades,Subsistencia,"Cuando tu personaje está en situaciones adversas la supervivencia cuenta y cada vez que se enfrenta a ella los instintos primarios le ayudan a sobrevivir.",Interface/Icons/ability_ambush,1,1,Inteligencia
@@ -22,7 +22,7 @@ skillPosition,header,type,name,desc,icon,showOnMenu,canEdit,skillModifierTarget
 21,0,Habilidades,Interpretación,"Las capacidades interpretativas del personaje de interpretar y saber leer las actuaciones de otros personajes.",Interface/AddOns/DiceMaster/Icons/Bard_MusicalNotation,1,1,Carisma
 22,0,Habilidades,Subterfugio,"La picardía que tiene el personaje a la hora de mentir y manipular a las personas para el fin que el personaje desea realizar.",132288,1,1,Carisma
 23,0,Habilidades,Trato con animales,"Tu personaje tiene la capacidad de influir en los animales, ya sea por que huelas bien, los trates con respeto o seas amistoso con ellos.",132165,1,1,Carisma
-24,0,Habilidades,Intimidación,"Cuando un personaje está en una conversación e intenta sacar algo en un negocio e intenta convencer a alguien y ante las negativas tu personaje puede tratar de intimidar a al receptor en cuestión.",236310,1,1,Carisma
+24,0,Habilidades,Intimidación,"Cuando un personaje está en una conversación e intenta sacar algo en un negocio e intenta convencer a alguien y ante las negativas tu personaje puede tratar de intimidar a al receptor en cuestión.",236310,1,1,Vigor
 25,0,Habilidades,Diplomacia,"La capacidad de tu personaje a llegar a acuerdos de forma amistosa.",236550,1,1,Carisma
 26,1,header,Habilidades mágicas,,,,
 27,0,Habilidades mágicas,Taumaturgia,"Un usuario de magia manifiesta el poder de dominar las energías sobrenaturales de la creación cuando comienza a comprenderlas, cuanto más lo comprenda mejor le saldrá su conjuro y más efectivo será.",135738,1,1,Inteligencia
