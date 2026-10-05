@@ -145,8 +145,55 @@ function generarTraitClase(Ficha) {
 // -----------------------------------------------------------
 function generarTraitEstadisticas(Ficha) {
     const NombreTrait = "Estadísticas";
-    const Descripcion = "<color=ffffff>Sin datos.</color>";
     const Icono = "Interface/Icons/70_professions_scroll_03";
+
+// ----- Resistencias (con bonos) -----
+const Res = Ficha.resistencias || {};
+const Bonos = calcularBonos(Ficha);
+
+const TotalRes = (Id, NombreColumnaBono) =>
+    (Res[Id] || 0) + (Bonos[NombreColumnaBono] || 0);
+
+const FilaRes = (Nombre, Valor) =>
+    "       <*> " + Nombre.padEnd(18, " ") + " " + Valor;
+
+    // ----- Velocidad -----
+    const Velocidad = velocidadDe(Ficha);
+
+    // ----- Construir el texto -----
+    const Lineas = [
+        "<color=ffffff>Daño  físico        0",
+        "",
+        "        <*> Desarmado       1d4",
+        "        <*> Arma 1",
+        "        <*> Arma 2",
+        "        <*> Arma 3",
+        "",
+        "Daño mágico     0",
+        "",
+        "        <*> Magia 1",
+        "        <*> Magia 2",
+        "        <*> Magia 3",
+        "",
+        "Resistencias",
+        "",
+        "",
+        FilaRes("Res. física", TotalRes("res_fisica", "Resistencia_fisica")),
+        FilaRes("Res. arcana", TotalRes("res_arcana", "Resistencia_arcana")),
+        FilaRes("Res. fuego", TotalRes("res_fuego", "Resistencia_al_fuego")),
+        FilaRes("Res. frío", TotalRes("res_frio", "Resistencia_al_frio")),
+        FilaRes("Res. vil", TotalRes("res_vil", "Resistencia_a_lo_vil")),
+        FilaRes("Res. sombra", TotalRes("res_sombra", "Resistencia_a_la_sombra")),
+        FilaRes("Res. naturaleza", TotalRes("res_naturaleza", "Resistencia_a_la_naturaleza")),
+        FilaRes("Res. luz", TotalRes("res_luz", "Resistencia_a_la_luz")),
+        "",
+        "Energía extra   0",
+        "",
+        "Velocidad            " + Velocidad,
+        "</color>"
+    ];
+
+    const Descripcion = Lineas.join("\n");
 
     return generarTraitBase(NombreTrait, Icono, Descripcion);
 }
@@ -156,21 +203,112 @@ function generarTraitEstadisticas(Ficha) {
 // -----------------------------------------------------------
 function generarTraitProfesiones(Ficha) {
     const NombreTrait = "Profesiones y conocimientos";
-    const Descripcion = "<color=ffffff>Sin datos.</color>";
     const Icono = "Interface/Icons/achievement_guildperk_workingovertime";
 
-    return generarTraitBase(NombreTrait, Icono, Descripcion);
+    // ----- Listas -----
+    const Profesiones = (Ficha.profesiones || [])
+        .filter(P => P.valor > 0);
+    const Conocimientos = (Ficha.conocimientos || [])
+        .filter(C => C.valor > 0);
+
+    // ----- Nombre visible de una entrada -----
+    const NombreVisible = (Entrada, Campo) => {
+        if (!Datos || !Datos[Campo]) return Entrada.id;
+        const Fila = Datos[Campo].find(E => E.id === Entrada.id);
+        return Fila ? Fila.nombre : Entrada.id;
+    };
+
+    // ----- Alineado -----
+    const ANCHO = 22;
+    const Fila = (Texto, Valor) =>
+        "       <*> " + Texto.padEnd(ANCHO, " ") + " " + Valor;
+
+    // ----- Construir líneas -----
+    const Lineas = [];
+    Lineas.push("<color=ffffff>Profesiones");
+    Lineas.push("");
+
+    if (Profesiones.length === 0) {
+        Lineas.push("       <*> (ninguna)");
+    } else {
+        Profesiones.forEach(P => {
+            const Nombre = NombreVisible(P, "profesiones");
+            Lineas.push(Fila(Nombre, P.valor));
+        });
+    }
+
+    Lineas.push("");
+    Lineas.push("Conocimientos");
+    Lineas.push("");
+
+    if (Conocimientos.length === 0) {
+        Lineas.push("       <*> (ninguno)");
+    } else {
+        Conocimientos.forEach(C => {
+            const Nombre = NombreVisible(C, "conocimientos");
+            Lineas.push(Fila(Nombre, C.valor));
+        });
+    }
+
+    Lineas.push("</color>");
+
+    return generarTraitBase(NombreTrait, Icono, Lineas.join("\n"));
 }
 
 // -----------------------------------------------------------
 // TRAIT: CONOCIMIENTO EN MAGIA Y ESTILOS
 // -----------------------------------------------------------
 function generarTraitMagiaEstilos(Ficha) {
-    const NombreTrait = "Conocimiento en Magia y estilos de combate";
-    const Descripcion = "<color=ffffff>Sin datos.</color>";
+    const NombreTrait = "Estilos marciales y magia";
     const Icono = "Interface/Icons/spell_holy_arcaneintellect";
 
-    return generarTraitBase(NombreTrait, Icono, Descripcion);
+    // ----- Separar MYE en magia y estilo -----
+    const Mye = Ficha.mye || [];
+
+    const EsCategoria = (Entrada, Cat) => {
+        if (!Datos || !Datos.magias) return false;
+        const Opcion = Datos.magias.find(M => M.id === Entrada.id);
+        return Opcion && Opcion.categoria === Cat;
+    };
+
+    const NombreVisible = (Entrada) => {
+        if (!Datos || !Datos.magias) return Entrada.id;
+        const Opcion = Datos.magias.find(M => M.id === Entrada.id);
+        return Opcion ? Opcion.nombre : Entrada.id;
+    };
+
+    const Magias   = Mye.filter(E => E.valor > 0 && EsCategoria(E, "magia"));
+    const Estilos  = Mye.filter(E => E.valor > 0 && EsCategoria(E, "estilo"));
+
+    // ----- Alineado -----
+    const ANCHO = 22;
+    const Fila = (Texto, Valor) =>
+        "       <*> " + Texto.padEnd(ANCHO, " ") + " " + Valor;
+
+    // ----- Construir líneas -----
+    const Lineas = [];
+    Lineas.push("<color=ffffff>Magia");
+    Lineas.push("");
+
+    if (Magias.length === 0) {
+        Lineas.push("       <*> (ninguna)");
+    } else {
+        Magias.forEach(M => Lineas.push(Fila(NombreVisible(M), M.valor)));
+    }
+
+    Lineas.push("");
+    Lineas.push("Estilos marciales y magia");
+    Lineas.push("");
+
+    if (Estilos.length === 0) {
+        Lineas.push("       <*> (ninguno)");
+    } else {
+        Estilos.forEach(E => Lineas.push(Fila(NombreVisible(E), E.valor)));
+    }
+
+    Lineas.push("</color>");
+
+    return generarTraitBase(NombreTrait, Icono, Lineas.join("\n"));
 }
 
 // -----------------------------------------------------------

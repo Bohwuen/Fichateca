@@ -1,42 +1,42 @@
-id,nombre,columna_bono
-arcanismo,Arcanismo,Arcanismo
-piromancia,Piromancia,Piromancia
-criomancia,Criomancia,Criomancia
-nigromancia,Nigromancia,Nigromancia
-magia_runica,Magia rúnica,Magia_Rúnica
-demonologia,Demonología,Demonología
-piromancia_vil,Piromancia vil,Piromancia_vil
-magia_sangrienta,Magia sangrienta,Magia_sangrienta
-magia_sombra,Magia de la sombra,Magia_de_la_sombra
-magia_druidica_feral,Magia druídica: Feral,Magia_druidica:_Feral
-magia_druidica_equilibrio,Magia druídica: Equilibrio,Magia_druidica:_Equilibrio
-magia_druidica_vida,Magia druídica: Vida,Magia_druidica:_Vida
-dominio_luz,Dominio de la luz,Dominio_de_la_luz
-magia_elemental_agua,Magia elemental: Agua,Magia_elemental:_Agua
-magia_elemental_fuego,Magia elemental: Fuego,Magia_elemental:_Fuego
-magia_elemental_tierra,Magia elemental: Tierra,Magia_elemental:_Tierra
-magia_elemental_aire,Magia elemental: Aire,Magia_elemental:_Aire
-chi,Chi,Chi
-evocacion_rojo,Evocación: Rojo,Evocación:_Rojo
-evocacion_verde,Evocación: Verde,Evocación:_Verde
-evocacion_azul,Evocación: Azul,Evocación:_Azul
-evocacion_bronce,Evocación: Bronce,Evocación:_Bronce
-evocacion_negro,Evocación: Negro,Evocación:_Negro
-maestro_armas,Maestro de armas,Maestro_de_armas
-furibundo,Furibundo,Furibundo
-protector,Protector,Protector
-punteria,Puntería,Puntería
-supervivencia,Supervivencia,Supervivencia
-maestro_bestias,Maestro de bestias,Maestro_de_bestias
-aamm_cervecero,A.A.M.M. Maestro cervecero,A.A.M.M_Maestro_cervecero
-aamm_caminavientos,A.A.M.M. Caminavientos,A.A.M.M._Caminavientos
-asesinato,Asesinato,Asesinato
-sutileza,Sutileza,Sutileza
-forajido,Forajido,Forajido
-protector_sagrado,Protector sagrado,Protector_sagrado
-represion,Represión,Represión
-devastacion,Devastación,Devastación
-venganza,Venganza,Venganza
-caballero_sangriento,Caballero sangriento,Caballero_sangriento
-caballero_hielo,Caballero de hielo,Caballero_de_hielo
-caballero_profano,Caballero profano,Caballero_profano
+id,nombre,columna_bono,categoria
+arcanismo,Arcanismo,Arcanismo,magia
+piromancia,Piromancia,Piromancia,magia
+criomancia,Criomancia,Criomancia,magia
+nigromancia,Nigromancia,Nigromancia,magia
+magia_runica,Magia rúnica,Magia_Rúnica,magia
+demonologia,Demonología,Demonología,magia
+piromancia_vil,Piromancia vil,Piromancia_vil,magia
+magia_sangrienta,Magia sangrienta,Magia_sangrienta,magia
+magia_sombra,Magia de la sombra,Magia_de_la_sombra,magia
+magia_druidica_feral,Magia druídica: Feral,Magia_druidica:_Feral,magia
+magia_druidica_equilibrio,Magia druídica: Equilibrio,Magia_druidica:_Equilibrio,magia
+magia_druidica_vida,Magia druídica: Vida,Magia_druidica:_Vida,magia
+dominio_luz,Dominio de la luz,Dominio_de_la_luz,magia
+magia_elemental_agua,Magia elemental: Agua,Magia_elemental:_Agua,magia
+magia_elemental_fuego,Magia elemental: Fuego,Magia_elemental:_Fuego,magia
+magia_elemental_tierra,Magia elemental: Tierra,Magia_elemental:_Tierra,magia
+magia_elemental_aire,Magia elemental: Aire,Magia_elemental:_Aire,magia
+chi,Chi,Chi,magia
+evocacion_rojo,Evocación: Rojo,Evocación:_Rojo,magia
+evocacion_verde,Evocación: Verde,Evocación:_Verde,magia
+evocacion_azul,Evocación: Azul,Evocación:_Azul,magia
+evocacion_bronce,Evocación: Bronce,Evocación:_Bronce,magia
+evocacion_negro,Evocación: Negro,Evocación:_Negro,magia
+maestro_armas,Maestro de armas,Maestro_de_armas,estilo
+furibundo,Furibundo,Furibundo,estilo
+protector,Protector,Protector,estilo
+punteria,Puntería,Puntería,estilo
+supervivencia,Supervivencia,Supervivencia,estilo
+maestro_bestias,Maestro de bestias,Maestro_de_bestias,estilo
+aamm_cervecero,A.A.M.M. Maestro cervecero,A.A.M.M_Maestro_cervecero,estilo
+aamm_caminavientos,A.A.M.M. Caminavientos,A.A.M.M._Caminavientos,estilo
+asesinato,Asesinato,Asesinato,estilo
+sutileza,Sutileza,Sutileza,estilo
+forajido,Forajido,Forajido,estilo
+protector_sagrado,Protector sagrado,Protector_sagrado,estilo
+represion,Represión,Represión,estilo
+devastacion,Devastación,Devastación,estilo
+venganza,Venganza,Venganza,estilo
+caballero_sangriento,Caballero sangriento,Caballero_sangriento,estilo
+caballero_hielo,Caballero de hielo,Caballero_de_hielo,estilo
+caballero_profano,Caballero profano,Caballero_profano,estilo
