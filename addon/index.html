@@ -21,9 +21,7 @@
         <p>Addon que permite usar el sistema de la Fichateca dentro del propio juego.</p>
 
         <h2>Descarga</h2>
-        <p>
-            Descarga la última versión del addon desde GitHub Releases:
-        </p>
+        <p>Descarga la última versión del addon desde GitHub Releases:</p>
         <p>
             <a href="https://github.com/Bohwuen/DicemasterMidnight/releases/latest"
                target="_blank" rel="noopener">
@@ -37,13 +35,22 @@
             </a>
         </p>
 
-        <h2>Guía de uso</h2>
-        <p><em>Próximamente: pasos de instalación y funcionamiento dentro del juego.</em></p>
+        <h2>Guías</h2>
+        <p>Consulta las guías paso a paso sin salir de la página:</p>
+        <p>
+            <button type="button" class="btn-guia" data-pdf="../guias/guia-instalacion-dicemaster-wowup.pdf">
+                📄 Instalación desde WoWUp
+            </button>
+            <button type="button" class="btn-guia" data-pdf="../guias/guia-dicemaster.pdf">
+                📄 Guía de uso del DiceMaster
+            </button>
+            <button type="button" class="btn-guia" data-pdf="../guias/wow-jdr-resumido.pdf">
+                📄 Sistema resumido (WoW JdR)
+            </button>
+        </p>
 
         <h2>Sistema de rol</h2>
-        <p>
-            Consulta el reglamento completo y las reglas del sistema:
-        </p>
+        <p>Consulta el reglamento completo y las reglas del sistema:</p>
         <p>
             <a href="https://github.com/Bohwuen/WoW-RPG"
                target="_blank" rel="noopener">
@@ -51,6 +58,15 @@
             </a>
         </p>
     </main>
+
+    <!-- ================= MODAL PDF ================= -->
+    <dialog id="modal-pdf">
+        <div class="modal-cabecera">
+            <span id="modal-titulo">Guía</span>
+            <button type="button" id="btn-cerrar-modal">✕ Cerrar</button>
+        </div>
+        <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+    </dialog>
 
     <footer>
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">

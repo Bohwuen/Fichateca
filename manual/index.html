@@ -21,14 +21,20 @@
         <p>El sistema completo está disponible en su repositorio de GitHub. Aquí iremos publicando los capítulos conforme estén escritos.</p>
 
         <h2>Repositorio del sistema</h2>
-        <p>
-            Puedes consultar el sistema completo aquí:
-        </p>
+        <p>Puedes consultar el sistema completo aquí:</p>
         <p>
             <a href="https://github.com/Bohwuen/WoW-RPG"
                target="_blank" rel="noopener">
                 📖 Ver el sistema WoW-RPG en GitHub
             </a>
+        </p>
+
+        <h2>Sistema resumido</h2>
+        <p>Versión condensada del sistema para consulta rápida:</p>
+        <p>
+            <button type="button" class="btn-guia" data-pdf="../guias/wow-jdr-resumido.pdf">
+                📄 Ver sistema resumido
+            </button>
         </p>
 
         <h2>Índice de capítulos</h2>
@@ -45,6 +51,15 @@
 
         <p><em>Próximamente: contenido de cada capítulo en la web.</em></p>
     </main>
+
+    <!-- ================= MODAL PDF ================= -->
+    <dialog id="modal-pdf">
+        <div class="modal-cabecera">
+            <span id="modal-titulo">Guía</span>
+            <button type="button" id="btn-cerrar-modal">✕ Cerrar</button>
+        </div>
+        <iframe id="modal-iframe" src="" frameborder="0"></iframe>
+    </dialog>
 
     <footer>
         <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">

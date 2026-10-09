@@ -126,3 +126,33 @@ function escapar(Texto) {
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;");
 }
+
+        // ---------------------------------------------------
+        // MODAL DE PDFs
+        // ---------------------------------------------------
+        const modal = document.getElementById("modal-pdf");
+        const iframe = document.getElementById("modal-iframe");
+        const tituloModal = document.getElementById("modal-titulo");
+
+        document.querySelectorAll(".btn-guia").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const ruta = btn.dataset.pdf;
+                const titulo = btn.textContent.trim();
+                tituloModal.textContent = titulo;
+                iframe.src = ruta;
+                modal.showModal();
+            });
+        });
+
+        document.getElementById("btn-cerrar-modal").addEventListener("click", () => {
+            iframe.src = "";
+            modal.close();
+        });
+
+        // Cerrar al hacer click fuera del modal
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                iframe.src = "";
+                modal.close();
+            }
+        });
