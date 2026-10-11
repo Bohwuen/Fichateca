@@ -103,51 +103,61 @@ function pintarMenu(RutaBase = "", Activo = "") {
 // UTILIDADES
 // -----------------------------------------------------------
 
-/**
- * Crea un elemento HTML con atributos y contenido.
- */
-function crear(Tag, Atributos = {}, Contenido = "") {
-    const Elemento = document.createElement(Tag);
-    for (const Clave in Atributos) {
-        if (Clave === "clase") Elemento.className = Atributos[Clave];
-        else Elemento.setAttribute(Clave, Atributos[Clave]);
-    }
-    if (Contenido) Elemento.innerHTML = Contenido;
-    return Elemento;
-}
+        /**
+         * Crea un elemento HTML con atributos y contenido.
+         */
+        function crear(Tag, Atributos = {}, Contenido = "") {
+            const Elemento = document.createElement(Tag);
+            for (const Clave in Atributos) {
+                if (Clave === "clase") Elemento.className = Atributos[Clave];
+                else Elemento.setAttribute(Clave, Atributos[Clave]);
+            }
+            if (Contenido) Elemento.innerHTML = Contenido;
+            return Elemento;
+        }
 
-/**
- * Escapa HTML para evitar inyección al pintar texto de usuario.
- */
-function escapar(Texto) {
-    return String(Texto)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
-}
+        /**
+         * Escapa HTML para evitar inyección al pintar texto de usuario.
+         */
+        function escapar(Texto) {
+            return String(Texto)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
 
-        // ---------------------------------------------------
-        // MODAL DE PDFs
-        // ---------------------------------------------------
-        const modal = document.getElementById("modal-pdf");
-        const iframe = document.getElementById("modal-iframe");
-        const tituloModal = document.getElementById("modal-titulo");
+// -----------------------------------------------------------
+// MODAL DE PDFs (solo se activa si la página tiene el modal)
+// -----------------------------------------------------------
+        function enlazarModalPdf() {
+            const modal = document.getElementById("modal-pdf");
+            const iframe = document.getElementById("modal-iframe");
+            const tituloModal = document.getElementById("modal-titulo");
+            const btnCerrarModal = document.getElementById("btn-cerrar-modal");
 
-        document.querySelectorAll(".btn-guia").forEach(btn => {
-            btn.addEventListener("click", () => {
-                const ruta = btn.dataset.pdf;
-                const titulo = btn.textContent.trim();
-                tituloModal.textContent = titulo;
-                iframe.src = ruta;
-                modal.showModal();
+            if (!modal || !iframe) return;
+
+            document.querySelectorAll(".btn-guia").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const ruta = btn.dataset.pdf;
+                    const titulo = btn.textContent.trim();
+                    if (tituloModal) tituloModal.textContent = titulo;
+                    iframe.src = ruta;
+                    modal.showModal();
+                });
             });
-        });
 
-        document.getElementById("btn-cerrar-modal").addEventListener("click", () => {
-            iframe.src = "";
-            modal.close();
-        });
+            if (btnCerrarModal) {
+                btnCerrarModal.addEventListener("click", () => {
+                    iframe.src = "";
+                    modal.close();
+                });
+            }
+        }
+
+        // Llamar automáticamente cuando el DOM esté listo
+        document.addEventListener("DOMContentLoaded", enlazarModalPdf);
 
         // Cerrar al hacer click fuera del modal
         modal.addEventListener("click", (e) => {

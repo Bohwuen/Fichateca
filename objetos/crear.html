@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichateca - Crear objeto (prueba)</title>
+    <link rel="stylesheet" href="../../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="../../imagenes/Wow_Logo_1.png" alt="Fichateca" class="logo">
+    </header>
+
+    <nav id="nav-principal" class="nav-principal"></nav>
+
+    <div id="barra-sesion" class="barra-sesion"></div>
+
+    <main class="contenedor-ancho">
+        <h1>Crear objeto (prueba)</h1>
+        <p><a href="../perfil.html">← Volver al perfil</a></p>
+
+        <!-- ================= PESTAÑAS ================= -->
+        <div class="pestanas">
+            <button type="button" class="pestana activa" data-pestana="objeto">Objeto</button>
+            <button type="button" class="pestana" data-pestana="armadura">Armadura</button>
+            <button type="button" class="pestana" data-pestana="arma">Arma</button>
+        </div>
+
+        <!-- ================= PESTAÑA OBJETO ================= -->
+        <section class="panel-pestana" data-panel="objeto">
+            <h2>Objeto</h2>
+
+            <div class="ob-columnas">
+
+                <!-- ============ COLUMNA IZQUIERDA ============ -->
+                <div class="ob-col-izq">
+
+                    <p>
+                        <label>Nombre:</label>
+                        <input type="text" class="ob-nombre">
+                    </p>
+                    <p>
+                        <label>Calidad:</label>
+                        <select class="ob-calidad"></select>
+                    </p>
+                    <p>
+                        <label>Subtipo:</label>
+                        <select class="ob-subtipo"></select>
+                    </p>
+
+                    <h3>Efectos</h3>
+                    <div class="ob-efectos"></div>
+                    <p><button type="button" class="btn-add-efecto">+ Añadir efecto</button></p>
+                    <p>Total efectos: <strong class="ob-total-efectos">0</strong></p>
+
+                    <h3>Contenedores</h3>
+                    <div class="ob-contenedores"></div>
+                    <p><button type="button" class="btn-add-contenedor">+ Añadir contenedor</button></p>
+
+                    <h3>Requisitos</h3>
+                    <div class="ob-requisitos"></div>
+                    <p><button type="button" class="btn-add-requisito">+ Añadir requisito</button></p>
+                    <p>Total requisitos: <strong class="ob-total-requisitos">0</strong></p>
+
+                    <h3>Balance</h3>
+                    <p>Calidad: <strong class="ob-valor-calidad">0</strong></p>
+                    <p>Balance total: <strong class="ob-balance">0</strong></p>
+                    <p class="ob-estado">—</p>
+
+                    <h3>Detalles</h3>
+                    <p>
+                        <label>Descripción narrativa:</label><br>
+                        <textarea class="ob-desc" rows="3" style="width:100%"></textarea>
+                    </p>
+                    <p>
+                        <label>Acción al usar:</label>
+                        <input type="text" class="ob-accion">
+                    </p>
+                    <p>
+                        <label>Precio:</label>
+                        <input type="number" class="ob-precio" min="0" value="0">
+                    </p>
+
+                </div>
+
+                <!-- ============ COLUMNA DERECHA ============ -->
+                <div class="ob-col-der">
+
+                    <h3>Atributos del objeto (TRP3)</h3>
+                    <p>
+                        <label>Peso (gramos):</label>
+                        <input type="number" class="ob-peso" value="0" min="0">
+                    </p>
+                    <p>
+                        <label>Máx units per stack:</label>
+                        <input type="number" class="ob-stack" value="0" min="0">
+                    </p>
+                    <p>
+                        <label><input type="checkbox" class="ob-ligado"> Ligado</label>
+                        <label><input type="checkbox" class="ob-unico"> Único</label>
+                        <label><input type="checkbox" class="ob-apilable"> Apilable</label>
+                        <label><input type="checkbox" class="ob-usable"> Usable</label>
+                    </p>
+                    <p>
+                        <label><input type="checkbox" class="ob-equipable"> Equipable</label>
+                        <label><input type="checkbox" class="ob-contenedor"> Contenedor</label>
+                        <label><input type="checkbox" class="ob-prevent"> Prevent manual adding</label>
+                    </p>
+                    <p>
+                        <label>Sonido al cogerlo:</label>
+                        <select class="ob-sonido-coger">
+                            <option value="">—</option>
+                            <option>Anillo</option>
+                            <option>Bolsa</option>
+                            <option>Cadena</option>
+                            <option>Cadena pequeña</option>
+                            <option>Carne</option>
+                            <option>Comida</option>
+                            <option>Gemas</option>
+                            <option>Hierba</option>
+                            <option>Libro</option>
+                            <option>Líquido</option>
+                            <option>Metal grande</option>
+                            <option>Metal pequeño</option>
+                            <option>Palo grande</option>
+                            <option>Palo pequeño</option>
+                            <option>Papel</option>
+                            <option>Roca</option>
+                            <option>Tela</option>
+                            <option>Varita</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label>Sonido al soltarlo:</label>
+                        <select class="ob-sonido-soltar">
+                            <option value="">—</option>
+                            <option>Anillo</option>
+                            <option>Bolsa</option>
+                            <option>Cadena</option>
+                            <option>Cadena pequeña</option>
+                            <option>Carne</option>
+                            <option>Comida</option>
+                            <option>Gemas</option>
+                            <option>Hierba</option>
+                            <option>Libro</option>
+                            <option>Líquido</option>
+                            <option>Metal grande</option>
+                            <option>Metal pequeño</option>
+                            <option>Palo grande</option>
+                            <option>Palo pequeño</option>
+                            <option>Papel</option>
+                            <option>Roca</option>
+                            <option>Tela</option>
+                            <option>Varita</option>
+                        </select>
+                    </p>
+
+                    <h3>Vista previa TRP3</h3>
+                    <pre class="ob-preview"></pre>
+
+                    <p>
+                        <button type="button" class="btn-enviar" disabled>Enviar a Google Sheets</button>
+                        <button type="button" class="btn-resetear">🔄 Resetear</button>
+                    </p>
+
+                </div>
+
+            </div>
+        </section>
+
+    <!-- ================= PESTAÑA ARMADURA ================= -->
+    <section class="panel-pestana" data-panel="armadura" style="display:none">
+        <h2>Armadura</h2>
+
+        <div class="ob-columnas">
+
+            <!-- ============ COLUMNA IZQUIERDA ============ -->
+            <div class="ob-col-izq">
+
+                <p>
+                    <label>Nombre:</label>
+                    <input type="text" class="ar-nombre">
+                </p>
+                <p>
+                    <label>Calidad:</label>
+                    <select class="ar-calidad"></select>
+                </p>
+                <p>
+                    <label>Material:</label>
+                    <select class="ar-material"></select>
+                </p>
+                <p>
+                    <label>Pieza:</label>
+                    <select class="ar-pieza"></select>
+                </p>
+
+                <h3>Efectos</h3>
+                <div class="ar-efectos"></div>
+                <p><button type="button" class="btn-ar-add-efecto">+ Añadir efecto</button></p>
+                <p>Total efectos: <strong class="ar-total-efectos">0</strong></p>
+
+                <h3>Contenedores</h3>
+                <div class="ar-contenedores"></div>
+                <p><button type="button" class="btn-ar-add-contenedor">+ Añadir contenedor</button></p>
+
+                <h3>Requisitos</h3>
+                <div class="ar-requisitos"></div>
+                <p><button type="button" class="btn-ar-add-requisito">+ Añadir requisito</button></p>
+                <p>Total requisitos: <strong class="ar-total-requisitos">0</strong></p>
+
+                <h3>Balance</h3>
+                <p>Calidad: <strong class="ar-valor-calidad">0</strong></p>
+                <p>Balance total: <strong class="ar-balance">0</strong></p>
+                <p class="ar-estado">—</p>
+
+                <h3>Detalles</h3>
+                <p>
+                    <label>Descripción narrativa:</label><br>
+                    <textarea class="ar-desc" rows="3" style="width:100%"></textarea>
+                </p>
+                <p>
+                    <label>Acción al usar:</label>
+                    <input type="text" class="ar-accion">
+                </p>
+                <p>
+                    <label>Precio:</label>
+                    <input type="number" class="ar-precio" min="0" value="0">
+                </p>
+
+            </div>
+
+            <!-- ============ COLUMNA DERECHA ============ -->
+            <div class="ob-col-der">
+
+                <h3>Atributos de la armadura (TRP3)</h3>
+                <p>
+                    <label>Peso (gramos):</label>
+                    <input type="number" class="ar-peso" value="0" min="0">
+                </p>
+                <p>
+                    <label>Máx units per stack:</label>
+                    <input type="number" class="ar-stack" value="0" min="0">
+                </p>
+                <p>
+                    <label><input type="checkbox" class="ar-ligado"> Ligado</label>
+                    <label><input type="checkbox" class="ar-unico"> Único</label>
+                    <label><input type="checkbox" class="ar-apilable"> Apilable</label>
+                    <label><input type="checkbox" class="ar-usable"> Usable</label>
+                </p>
+                <p>
+                    <label><input type="checkbox" class="ar-equipable"> Equipable</label>
+                    <label><input type="checkbox" class="ar-contenedor"> Contenedor</label>
+                    <label><input type="checkbox" class="ar-prevent"> Prevent manual adding</label>
+                </p>
+                <p>
+                    <label>Sonido al cogerlo:</label>
+                    <select class="ar-sonido-coger">
+                        <option value="">—</option>
+                        <option>Anillo</option>
+                        <option>Bolsa</option>
+                        <option>Cadena</option>
+                        <option>Cadena pequeña</option>
+                        <option>Carne</option>
+                        <option>Comida</option>
+                        <option>Gemas</option>
+                        <option>Hierba</option>
+                        <option>Libro</option>
+                        <option>Líquido</option>
+                        <option>Metal grande</option>
+                        <option>Metal pequeño</option>
+                        <option>Palo grande</option>
+                        <option>Palo pequeño</option>
+                        <option>Papel</option>
+                        <option>Roca</option>
+                        <option>Tela</option>
+                        <option>Varita</option>
+                    </select>
+                </p>
+                <p>
+                    <label>Sonido al soltarlo:</label>
+                    <select class="ar-sonido-soltar">
+                        <option value="">—</option>
+                        <option>Anillo</option>
+                        <option>Bolsa</option>
+                        <option>Cadena</option>
+                        <option>Cadena pequeña</option>
+                        <option>Carne</option>
+                        <option>Comida</option>
+                        <option>Gemas</option>
+                        <option>Hierba</option>
+                        <option>Libro</option>
+                        <option>Líquido</option>
+                        <option>Metal grande</option>
+                        <option>Metal pequeño</option>
+                        <option>Palo grande</option>
+                        <option>Palo pequeño</option>
+                        <option>Papel</option>
+                        <option>Roca</option>
+                        <option>Tela</option>
+                        <option>Varita</option>
+                    </select>
+                </p>
+
+                <h3>Vista previa TRP3</h3>
+                <pre class="ar-preview"></pre>
+
+                <p>
+                    <button type="button" class="btn-ar-enviar" disabled>Enviar a Google Sheets</button>
+                    <button type="button" class="btn-ar-resetear">🔄 Resetear</button>
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+        <!-- ================= PESTAÑA ARMA ================= -->
+<!-- ================= PESTAÑA ARMA ================= -->
+<section class="panel-pestana" data-panel="arma" style="display:none">
+    <h2>Arma</h2>
+
+    <div class="ob-columnas">
+
+        <!-- ============ COLUMNA IZQUIERDA ============ -->
+        <div class="ob-col-izq">
+
+            <p>
+                <label>Nombre:</label>
+                <input type="text" class="aw-nombre">
+            </p>
+            <p>
+                <label>Calidad:</label>
+                <select class="aw-calidad"></select>
+            </p>
+            <p>
+                <label>Tipo de arma:</label>
+                <select class="aw-tipo-arma"></select>
+            </p>
+            <p>
+                <label>Dado base:</label>
+                <input type="text" class="aw-dado-base" readonly style="width:6em">
+                <label>Tipo de daño:</label>
+                <input type="text" class="aw-tipo-dano-base" readonly style="width:10em">
+            </p>
+
+            <h3>Efectos</h3>
+            <div class="aw-efectos"></div>
+            <p><button type="button" class="btn-aw-add-efecto">+ Añadir efecto</button></p>
+            <p>Total efectos: <strong class="aw-total-efectos">0</strong></p>
+
+            <h3>Contenedores</h3>
+            <div class="aw-contenedores"></div>
+            <p><button type="button" class="btn-aw-add-contenedor">+ Añadir contenedor</button></p>
+
+            <h3>Requisitos</h3>
+            <div class="aw-requisitos"></div>
+            <p><button type="button" class="btn-aw-add-requisito">+ Añadir requisito</button></p>
+            <p>Total requisitos: <strong class="aw-total-requisitos">0</strong></p>
+
+            <h3>Balance</h3>
+            <p>Calidad: <strong class="aw-valor-calidad">0</strong></p>
+            <p>Balance total: <strong class="aw-balance">0</strong></p>
+            <p class="aw-estado">—</p>
+
+            <h3>Detalles</h3>
+            <p>
+                <label>Descripción narrativa:</label><br>
+                <textarea class="aw-desc" rows="3" style="width:100%"></textarea>
+            </p>
+            <p>
+                <label>Acción al usar:</label>
+                <input type="text" class="aw-accion">
+            </p>
+            <p>
+                <label>Precio:</label>
+                <input type="number" class="aw-precio" min="0" value="0">
+            </p>
+
+        </div>
+
+        <!-- ============ COLUMNA DERECHA ============ -->
+        <div class="ob-col-der">
+
+            <h3>Atributos del arma (TRP3)</h3>
+            <p>
+                <label>Peso (gramos):</label>
+                <input type="number" class="aw-peso" value="0" min="0">
+            </p>
+            <p>
+                <label>Máx units per stack:</label>
+                <input type="number" class="aw-stack" value="0" min="0">
+            </p>
+            <p>
+                <label><input type="checkbox" class="aw-ligado"> Ligado</label>
+                <label><input type="checkbox" class="aw-unico"> Único</label>
+                <label><input type="checkbox" class="aw-apilable"> Apilable</label>
+                <label><input type="checkbox" class="aw-usable"> Usable</label>
+            </p>
+            <p>
+                <label><input type="checkbox" class="aw-equipable"> Equipable</label>
+                <label><input type="checkbox" class="aw-contenedor"> Contenedor</label>
+                <label><input type="checkbox" class="aw-prevent"> Prevent manual adding</label>
+            </p>
+            <p>
+                <label>Sonido al cogerlo:</label>
+                <select class="aw-sonido-coger">
+                    <option value="">—</option>
+                    <option>Anillo</option>
+                    <option>Bolsa</option>
+                    <option>Cadena</option>
+                    <option>Cadena pequeña</option>
+                    <option>Carne</option>
+                    <option>Comida</option>
+                    <option>Gemas</option>
+                    <option>Hierba</option>
+                    <option>Libro</option>
+                    <option>Líquido</option>
+                    <option>Metal grande</option>
+                    <option>Metal pequeño</option>
+                    <option>Palo grande</option>
+                    <option>Palo pequeño</option>
+                    <option>Papel</option>
+                    <option>Roca</option>
+                    <option>Tela</option>
+                    <option>Varita</option>
+                </select>
+            </p>
+            <p>
+                <label>Sonido al soltarlo:</label>
+                <select class="aw-sonido-soltar">
+                    <option value="">—</option>
+                    <option>Anillo</option>
+                    <option>Bolsa</option>
+                    <option>Cadena</option>
+                    <option>Cadena pequeña</option>
+                    <option>Carne</option>
+                    <option>Comida</option>
+                    <option>Gemas</option>
+                    <option>Hierba</option>
+                    <option>Libro</option>
+                    <option>Líquido</option>
+                    <option>Metal grande</option>
+                    <option>Metal pequeño</option>
+                    <option>Palo grande</option>
+                    <option>Palo pequeño</option>
+                    <option>Papel</option>
+                    <option>Roca</option>
+                    <option>Tela</option>
+                    <option>Varita</option>
+                </select>
+            </p>
+
+            <h3>Vista previa TRP3</h3>
+            <pre class="aw-preview"></pre>
+
+            <p>
+                <button type="button" class="btn-aw-enviar" disabled>Enviar a Google Sheets</button>
+                <button type="button" class="btn-aw-resetear">🔄 Resetear</button>
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+    </main>
+
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0"
+                 src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+        </a><br>
+        Esta obra está bajo una
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional
+        </a>.
+    </footer>
+
+    <script>window.RUTA_BASE = "../../";</script>
+    <script src="../../js/comun.js"></script>
+    <script src="../../js/csv.js"></script>
+    <script src="../../js/motor.js"></script>
+    <script src="../../js/objeto.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        exigirSesion("../../login/signin.html");
+        pintarMenu("../../", "");
+        pintarBarraSesion("../../");
+
+        // ---------------------------------------------------
+        // OBJETO EN MEMORIA
+        // ---------------------------------------------------
+        const objeto = objetoEnBlanco();
+        objeto.tipo = "objeto";
+
+        let datosListos = false;
+
+        // ---------------------------------------------------
+        // CARGA
+        // ---------------------------------------------------
+        cargarDatosMotor().then(() => {
+            datosListos = true;
+            rellenarSelect(".ob-calidad", Datos.calidadesObjeto, "id", "nombre");
+            rellenarSelect(".ob-subtipo", Datos.tiposObjeto, "id", "nombre");
+            enlazar();
+            refrescar();
+        });
+
+        function rellenarSelect(sel, filas, campoValor, campoTexto) {
+            const el = document.querySelector(sel);
+            if (!el) return;
+            el.innerHTML = '<option value="">—</option>' +
+                filas.map(f => `<option value="${f[campoValor]}">${f[campoTexto]}</option>`).join("");
+        }
+
+        // ---------------------------------------------------
+        // EVENTOS
+        // ---------------------------------------------------
+        function enlazar() {
+
+            // Pestañas
+            document.querySelectorAll(".pestana").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    document.querySelectorAll(".pestana").forEach(b => b.classList.remove("activa"));
+                    btn.classList.add("activa");
+                    const destino = btn.dataset.pestana;
+                    document.querySelectorAll(".panel-pestana").forEach(p => {
+                        p.style.display = (p.dataset.panel === destino) ? "block" : "none";
+                    });
+                });
+            });
+
+            // Campos de objeto
+            document.querySelector(".ob-nombre").addEventListener("input", e => {
+                objeto.nombre = e.target.value;
+                refrescar();
+            });
+            document.querySelector(".ob-calidad").addEventListener("change", e => {
+                objeto.calidad = e.target.value;
+                refrescar();
+            });
+            document.querySelector(".ob-subtipo").addEventListener("change", e => {
+                objeto.tipoObjeto = e.target.value;
+                refrescar();
+            });
+            document.querySelector(".ob-desc").addEventListener("input", e => {
+                objeto.descripcion = e.target.value;
+                refrescar();
+            });
+            document.querySelector(".ob-accion").addEventListener("input", e => {
+                objeto.accion = e.target.value;
+                refrescar();
+            });
+            document.querySelector(".ob-precio").addEventListener("input", e => {
+                objeto.precio = parseInt(e.target.value, 10) || 0;
+                refrescar();
+            });
+                        // Campos nuevos TRP3
+            document.querySelector(".ob-peso").addEventListener("input", e => {
+                objeto.peso = parseInt(e.target.value, 10) || 0;
+                refrescar();
+            });
+            document.querySelector(".ob-stack").addEventListener("input", e => {
+                objeto.stack = parseInt(e.target.value, 10) || 0;
+                refrescar();
+            });
+            document.querySelector(".ob-ligado").addEventListener("change", e => {
+                objeto.ligado = e.target.checked;
+                refrescar();
+            });
+            document.querySelector(".ob-unico").addEventListener("change", e => {
+                objeto.unico = e.target.checked;
+                refrescar();
+            });
+            document.querySelector(".ob-apilable").addEventListener("change", e => {
+                objeto.apilable = e.target.checked;
+                refrescar();
+            });
+            document.querySelector(".ob-usable").addEventListener("change", e => {
+                objeto.usable = e.target.checked;
+                refrescar();
+            });
+            document.querySelector(".ob-equipable").addEventListener("change", e => {
+                objeto.equipable = e.target.checked;
+            });
+            document.querySelector(".ob-contenedor").addEventListener("change", e => {
+                objeto.contenedor = e.target.checked;
+            });
+            document.querySelector(".ob-prevent").addEventListener("change", e => {
+                objeto.prevent = e.target.checked;
+            });
+            document.querySelector(".ob-sonido-coger").addEventListener("change", e => {
+                objeto.sonidoCoger = e.target.value;
+            });
+            document.querySelector(".ob-sonido-soltar").addEventListener("change", e => {
+                objeto.sonidoSoltar = e.target.value;
+            });
+
+            // Botón enviar a Google Sheets
+            document.querySelector(".btn-enviar").addEventListener("click", enviarAGoogleSheets);
+
+            // Botón resetear
+            document.querySelector(".btn-resetear").addEventListener("click", resetearFormulario);
+
+            // Añadir efecto
+            document.querySelector(".btn-add-efecto").addEventListener("click", () => {
+                objeto.efectos.push(afijoEnBlanco());
+                refrescar();
+            });
+            document.querySelector(".btn-add-contenedor").addEventListener("click", () => {
+                objeto.contenedores = objeto.contenedores || [];
+                objeto.contenedores.push(contenedorEnBlanco("aumento_temporal"));
+                refrescar();
+            });
+
+            // Añadir requisito
+            document.querySelector(".btn-add-requisito").addEventListener("click", () => {
+                objeto.requisitos.push({ id: "", cantidad: 1, multiplicador: 1 });
+                refrescar();
+            });
+        }
+
+        // ---------------------------------------------------
+        // REFRESCAR
+        // ---------------------------------------------------
+        function refrescar() {
+        objeto.nombre = document.querySelector(".ob-nombre").value;
+        objeto.descripcion = document.querySelector(".ob-desc").value;
+        objeto.accion = document.querySelector(".ob-accion").value;
+        objeto.precio = parseInt(document.querySelector(".ob-precio").value, 10) || 0;
+        if (!datosListos) return;
+
+        // ---------------------------------------------------
+        // EFECTOS EXTERNOS
+        // ---------------------------------------------------
+        const contEf = document.querySelector(".ob-efectos");
+        contEf.innerHTML = "";
+        objeto.efectos.forEach((ef, i) => {
+            pintarFilaEfecto(objeto, i, contEf, Datos.efectosObjetos);
+        });
+
+        // Listeners de efectos
+        contEf.querySelectorAll("select, input").forEach(el => {
+            el.addEventListener("change", e => {
+                const ind = parseInt(e.target.dataset.indice, 10);
+                const tipo = e.target.dataset.tipo;
+                const valor = e.target.value;
+                const ef = objeto.efectos[ind];
+
+                if (tipo === "efecto")            ef.id = valor;
+                if (tipo === "cantidad-efecto")   ef.cantidad = parseInt(valor, 10) || 1;
+                if (tipo === "duracion-efecto")   ef.duracion = parseInt(valor, 10) || 1;
+                if (tipo === "cualidad-efecto")   ef.cualidad = valor;
+                if (tipo === "tipodano-efecto")   ef.tipoDano = valor;
+                if (tipo === "dado-efecto")       ef.dado = valor;
+                if (tipo === "escuela-efecto")    ef.escuela = valor;
+                if (tipo === "atributo-efecto")   ef.atributo = valor;
+                if (tipo === "arma-efecto")       ef.arma = valor;
+
+                refrescar();
+            });
+        });
+        contEf.querySelectorAll("button[data-tipo='borrar-efecto']").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const ind = parseInt(btn.dataset.indice, 10);
+                objeto.efectos.splice(ind, 1);
+                refrescar();
+            });
+        });
+
+        // ---------------------------------------------------
+        // CONTENEDORES
+        // ---------------------------------------------------
+        const contCont = document.querySelector(".ob-contenedores");
+        contCont.innerHTML = "";
+        (objeto.contenedores || []).forEach((cont, i) => {
+            pintarContenedor(objeto, i, contCont, Datos.efectosObjetos);
+        });
+
+        // Listeners de parámetros del contenedor
+            contCont.querySelectorAll("[data-cont-tipo]").forEach(el => {
+                el.addEventListener("change", e => {
+                    const ind = parseInt(e.target.dataset.contIndice, 10);
+                    const tipo = e.target.dataset.contTipo;
+                    const valor = e.target.value;
+
+                    if (tipo === "tipo") {
+                        // Cambiar tipo: recrear contenedor (se pierden afijos internos)
+                        objeto.contenedores[ind] = contenedorEnBlanco(valor);
+                        refrescar();
+                        return;
+                    }
+
+                    const c = objeto.contenedores[ind];
+                    if (tipo === "duracion")      c.duracion = parseInt(valor, 10) || 1;
+                    if (tipo === "criatura")      c.criatura = valor;
+                    if (tipo === "poder")         c.poder = parseInt(valor, 10) || 1;
+                    if (tipo === "coste")         c.coste = parseInt(valor, 10) || 0;
+
+                    refrescar();
+                });
+            });
+
+        // Quitar contenedor
+        contCont.querySelectorAll("[data-cont-borrar]").forEach(btn => {
+            btn.addEventListener("click", e => {
+                const ind = parseInt(e.target.dataset.contBorrar, 10);
+                objeto.contenedores.splice(ind, 1);
+                refrescar();
+            });
+        });
+
+        // Listeners de afijos internos
+        contCont.querySelectorAll("[data-int-tipo]").forEach(el => {
+            el.addEventListener("change", e => {
+                const indCont = parseInt(e.target.dataset.intCont, 10);
+                const indAf = parseInt(e.target.dataset.intAf, 10);
+                const tipo = e.target.dataset.intTipo;
+                const valor = e.target.value;
+                const af = objeto.contenedores[indCont].afijos[indAf];
+
+                if (tipo === "efecto")     af.id = valor;
+                if (tipo === "cantidad")   af.cantidad = parseInt(valor, 10) || 1;
+                if (tipo === "duracion")   af.duracion = parseInt(valor, 10) || 1;
+                if (tipo === "dado")       af.dado = valor;
+                if (tipo === "tipodano")   af.tipoDano = valor;
+                if (tipo === "cualidad")   af.cualidad = valor;
+                if (tipo === "fuente")     af.tipoFuente = valor;
+                if (tipo === "escuela")    af.escuela = valor;
+                if (tipo === "atributo-efecto")   ef.atributo = valor;
+                if (tipo === "arma-efecto")       ef.arma = valor;
+
+                refrescar();
+            });
+        });
+
+        // Borrar afijo interno
+        contCont.querySelectorAll("[data-int-borrar]").forEach(btn => {
+            btn.addEventListener("click", e => {
+                const indCont = parseInt(e.target.dataset.intCont, 10);
+                const indAf = parseInt(e.target.dataset.intBorrar, 10);
+                objeto.contenedores[indCont].afijos.splice(indAf, 1);
+                refrescar();
+            });
+        });
+
+        // ---------------------------------------------------
+        // REQUISITOS
+        // ---------------------------------------------------
+        const contRq = document.querySelector(".ob-requisitos");
+        contRq.innerHTML = "";
+        objeto.requisitos.forEach((rq, i) => {
+            pintarFilaRequisito(objeto, i, contRq, Datos.requisitos);
+        });
+        contRq.querySelectorAll("select").forEach(sel => {
+            sel.addEventListener("change", e => {
+                const ind = parseInt(e.target.dataset.indice, 10);
+                if (e.target.dataset.tipo === "requisito") objeto.requisitos[ind].id = e.target.value;
+                if (e.target.dataset.tipo === "mult-requisito") objeto.requisitos[ind].multiplicador = parseInt(e.target.value, 10);
+                refrescar();
+            });
+        });
+        contRq.querySelectorAll("button[data-tipo='borrar-requisito']").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const ind = parseInt(btn.dataset.indice, 10);
+                objeto.requisitos.splice(ind, 1);
+                refrescar();
+            });
+        });
+
+        // ---------------------------------------------------
+        // BALANCE
+        // ---------------------------------------------------
+        const bal = calcularBalance(objeto, Datos.efectosObjetos);
+        document.querySelector(".ob-total-efectos").textContent = bal.totalEfectos;
+        document.querySelector(".ob-total-requisitos").textContent = bal.totalRequisitos;
+        document.querySelector(".ob-valor-calidad").textContent = bal.calidad;
+        document.querySelector(".ob-balance").textContent = bal.balance;
+
+        const estado = document.querySelector(".ob-estado");
+        if (bal.esBueno) {
+            estado.textContent = "✅ " + bal.texto;
+            estado.className = "ob-estado";
+            estado.style.color = "green";
+        } else {
+            estado.textContent = "❌ " + bal.texto;
+            estado.className = "ob-estado";
+            estado.style.color = "red";
+        }
+
+        // Botón enviar
+        document.querySelector(".btn-enviar").disabled = !bal.esBueno;
+
+        // Preview TRP3
+            document.querySelector(".ob-preview").textContent = generarPreviewTRP3(objeto, Datos.efectosObjetos);
+        }
+
+    window.refrescar = refrescar;
+
+        // ---------------------------------------------------
+        // ENVIAR A GOOGLE SHEETS
+        // ---------------------------------------------------
+        async function enviarAGoogleSheets() {
+            const URL = "https://script.google.com/macros/s/AKfycbzS-aWBs770ZQqBrQJRTjToQLtYNfyvf3k7YLph9imzKbfBKprfKfJQt9BjntSpzW0TaA/exec";
+
+        const datos = {
+            tipo: objeto.tipo,
+            nombre: objeto.nombre,
+            calidad: obtenerNombreCalidad(objeto.calidad),
+            tooltipIzq: generarTooltipIzquierdo(objeto),
+            tooltipDer: generarTooltipDerecho(objeto),
+            efectos: generarTextoEfectos(objeto),
+            descripcion: objeto.descripcion,
+            creador: obtenerUsuario() || "",
+            peso: parseInt(document.querySelector(".ob-peso").value, 10) || 0,
+            ligado: document.querySelector(".ob-ligado").checked,
+            unico: document.querySelector(".ob-unico").checked,
+            apilable: document.querySelector(".ob-apilable").checked,
+            usable: document.querySelector(".ob-usable").checked,
+            equipable: document.querySelector(".ob-equipable").checked,
+            contenedor: document.querySelector(".ob-contenedor").checked,
+            prevent: document.querySelector(".ob-prevent").checked,
+            stack: parseInt(document.querySelector(".ob-stack").value, 10) || 0,
+            sonidoCoger: document.querySelector(".ob-sonido-coger").value,
+            sonidoSoltar: document.querySelector(".ob-sonido-soltar").value,
+        };
+
+            const btn = document.querySelector(".btn-enviar");
+            btn.disabled = true;
+            btn.textContent = "Enviando...";
+
+            try {
+                const res = await fetch(URL, {
+                    method: "POST",
+                    body: JSON.stringify(datos),
+                    headers: { "Content-Type": "text/plain;charset=utf-8" }
+                });
+                const json = await res.json();
+
+                if (json.ok) {
+                    btn.textContent = "✅ Enviado";
+                    setTimeout(() => {
+                        btn.textContent = "Enviar a Google Sheets";
+                        btn.disabled = false;
+                    }, 2000);
+                } else {
+                    btn.textContent = "❌ Error";
+                    alert("Error del Sheet: " + json.error);
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                btn.textContent = "❌ Error de red";
+                alert("No se pudo conectar: " + err);
+                btn.disabled = false;
+            }
+        }
+        // ---------------------------------------------------
+        // RESETEAR FORMULARIO
+        // ---------------------------------------------------
+        function resetearFormulario() {
+            if (!confirm("¿Seguro que quieres vaciar todos los campos?")) return;
+
+            // Resetear objeto en memoria
+            const nuevo = objetoEnBlanco();
+            nuevo.tipo = "objeto";
+            Object.keys(objeto).forEach(k => delete objeto[k]);
+            Object.assign(objeto, nuevo);
+
+            // Resetear campos simples
+            document.querySelector(".ob-nombre").value = "";
+            document.querySelector(".ob-calidad").value = "";
+            document.querySelector(".ob-subtipo").value = "";
+            document.querySelector(".ob-desc").value = "";
+            document.querySelector(".ob-accion").value = "";
+            document.querySelector(".ob-precio").value = 0;
+
+            // Resetear campos TRP3
+            document.querySelector(".ob-peso").value = 0;
+            document.querySelector(".ob-stack").value = 0;
+            document.querySelector(".ob-ligado").checked = false;
+            document.querySelector(".ob-unico").checked = false;
+            document.querySelector(".ob-apilable").checked = false;
+            document.querySelector(".ob-usable").checked = false;
+            document.querySelector(".ob-equipable").checked = false;
+            document.querySelector(".ob-contenedor").checked = false;
+            document.querySelector(".ob-prevent").checked = false;
+            document.querySelector(".ob-sonido-coger").value = "";
+            document.querySelector(".ob-sonido-soltar").value = "";
+            // Repintar efectos, requisitos, balance y preview
+            refrescar();
+        }
+        // ===================================================
+        // PESTAÑA ARMADURA
+        // ===================================================
+
+        const objetoArmadura = objetoEnBlanco();
+        objetoArmadura.tipo = "armadura";
+
+        // Rellenar selects al cargar
+        cargarDatosMotor().then(() => {
+            // Ya está cargado por la pestaña Objeto, pero por si acaso
+            rellenarSelectArmadura();
+            enlazarArmadura();
+            refrescarArmadura();
+        });
+
+        function rellenarSelectArmadura() {
+            // Calidad
+            const SelCalidad = document.querySelector(".ar-calidad");
+            SelCalidad.innerHTML = '<option value="">—</option>' +
+                Datos.calidadesObjeto.map(c => `<option value="${c.id}">${c.nombre}</option>`).join("");
+
+            // Material
+            const SelMaterial = document.querySelector(".ar-material");
+            SelMaterial.innerHTML = '<option value="">—</option>' +
+                Datos.materialesArmadura.map(m => `<option value="${m.id}">${m.nombre}</option>`).join("");
+
+            // Pieza: vacío hasta que se elija material
+            document.querySelector(".ar-pieza").innerHTML = '<option value="">—</option>';
+        }
+
+        function actualizarPiezasArmadura() {
+            const SelPieza = document.querySelector(".ar-pieza");
+            const Piezas = piezasDeMaterial(objetoArmadura.material);
+
+            if (Piezas.length === 0) {
+                SelPieza.innerHTML = '<option value="">—</option>';
+                SelPieza.disabled = true;
+                return;
+            }
+
+            SelPieza.disabled = false;
+            SelPieza.innerHTML = '<option value="">—</option>' +
+                Piezas.map(p => `<option value="${p.id}">${p.nombre}</option>`).join("");
+        }
+
+        function enlazarArmadura() {
+            // Campos simples
+            document.querySelector(".ar-nombre").addEventListener("input", e => {
+                objetoArmadura.nombre = e.target.value;
+                refrescarArmadura();
+            });
+            document.querySelector(".ar-calidad").addEventListener("change", e => {
+                objetoArmadura.calidad = e.target.value;
+                refrescarArmadura();
+            });
+            document.querySelector(".ar-material").addEventListener("change", e => {
+                objetoArmadura.material = e.target.value;
+                objetoArmadura.pieza = "";
+                actualizarPiezasArmadura();
+                refrescarArmadura();
+            });
+            document.querySelector(".ar-pieza").addEventListener("change", e => {
+                objetoArmadura.pieza = e.target.value;
+                refrescarArmadura();
+            });
+            document.querySelector(".ar-desc").addEventListener("input", e => {
+                objetoArmadura.descripcion = e.target.value;
+                refrescarArmadura();
+            });
+            document.querySelector(".ar-accion").addEventListener("input", e => {
+                objetoArmadura.accion = e.target.value;
+                refrescarArmadura();
+            });
+            document.querySelector(".ar-precio").addEventListener("input", e => {
+                objetoArmadura.precio = parseInt(e.target.value, 10) || 0;
+                refrescarArmadura();
+            });
+
+            // Campos TRP3
+            document.querySelector(".ar-peso").addEventListener("input", e => {
+                objetoArmadura.peso = parseInt(e.target.value, 10) || 0;
+            });
+            document.querySelector(".ar-stack").addEventListener("input", e => {
+                objetoArmadura.stack = parseInt(e.target.value, 10) || 0;
+            });
+            ["ligado","unico","apilable","usable","equipable","contenedor","prevent"].forEach(k => {
+                document.querySelector(".ar-" + k).addEventListener("change", e => {
+                    objetoArmadura[k] = e.target.checked;
+                });
+            });
+            document.querySelector(".ar-sonido-coger").addEventListener("change", e => {
+                objetoArmadura.sonidoCoger = e.target.value;
+            });
+            document.querySelector(".ar-sonido-soltar").addEventListener("change", e => {
+                objetoArmadura.sonidoSoltar = e.target.value;
+            });
+
+            // Botones
+            document.querySelector(".btn-ar-add-efecto").addEventListener("click", () => {
+                objetoArmadura.efectos.push(afijoEnBlanco());
+                refrescarArmadura();
+            });
+            document.querySelector(".btn-ar-add-contenedor").addEventListener("click", () => {
+                objetoArmadura.contenedores.push(contenedorEnBlanco("aumento_temporal"));
+                refrescarArmadura();
+            });
+            document.querySelector(".btn-ar-add-requisito").addEventListener("click", () => {
+                objetoArmadura.requisitos.push({ id: "", multiplicador: 1 });
+                refrescarArmadura();
+            });
+
+            // Reset
+            document.querySelector(".btn-ar-resetear").addEventListener("click", () => {
+                if (!confirm("¿Seguro que quieres vaciar todos los campos?")) return;
+                const nuevo = objetoEnBlanco();
+                nuevo.tipo = "armadura";
+                Object.keys(objetoArmadura).forEach(k => delete objetoArmadura[k]);
+                Object.assign(objetoArmadura, nuevo);
+
+                document.querySelector(".ar-nombre").value = "";
+                document.querySelector(".ar-calidad").value = "";
+                document.querySelector(".ar-material").value = "";
+                document.querySelector(".ar-pieza").innerHTML = '<option value="">—</option>';
+                document.querySelector(".ar-desc").value = "";
+                document.querySelector(".ar-accion").value = "";
+                document.querySelector(".ar-precio").value = 0;
+                document.querySelector(".ar-peso").value = 0;
+                document.querySelector(".ar-stack").value = 0;
+                ["ligado","unico","apilable","usable","equipable","contenedor","prevent"].forEach(k => {
+                    document.querySelector(".ar-" + k).checked = false;
+                });
+                document.querySelector(".ar-sonido-coger").value = "";
+                document.querySelector(".ar-sonido-soltar").value = "";
+                actualizarPiezasArmadura();
+                refrescarArmadura();
+            });
+        }
+
+        function refrescarArmadura() {
+            if (!datosListos) return;
+
+            // Efectos
+            const contEf = document.querySelector(".ar-efectos");
+            contEf.innerHTML = "";
+            objetoArmadura.efectos.forEach((ef, i) => {
+                pintarFilaEfecto(objetoArmadura, i, contEf, Datos.efectosArmaduras);
+            });
+            // Listeners
+            contEf.querySelectorAll("select, input").forEach(el => {
+                el.addEventListener("change", e => {
+                    const ind = parseInt(e.target.dataset.indice, 10);
+                    const tipo = e.target.dataset.tipo;
+                    const valor = e.target.value;
+                    const ef = objetoArmadura.efectos[ind];
+
+                    if (tipo === "efecto")            ef.id = valor;
+                    if (tipo === "cantidad-efecto")   ef.cantidad = parseInt(valor, 10) || 1;
+                    if (tipo === "duracion-efecto")   ef.duracion = parseInt(valor, 10) || 1;
+                    if (tipo === "cualidad-efecto")   ef.cualidad = valor;
+                    if (tipo === "tipodano-efecto")   ef.tipoDano = valor;
+                    if (tipo === "dado-efecto")       ef.dado = valor;
+                    if (tipo === "escuela-efecto")    ef.escuela = valor;
+                    if (tipo === "atributo-efecto")   ef.atributo = valor;
+                    if (tipo === "arma-efecto")       ef.arma = valor;
+
+                    refrescarArmadura();
+                });
+            });
+            contEf.querySelectorAll("button[data-tipo='borrar-efecto']").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const ind = parseInt(btn.dataset.indice, 10);
+                    objetoArmadura.efectos.splice(ind, 1);
+                    refrescarArmadura();
+                });
+            });
+
+            // Contenedores
+            const contCont = document.querySelector(".ar-contenedores");
+            contCont.innerHTML = "";
+            objetoArmadura.contenedores.forEach((cont, i) => {
+                pintarContenedor(objetoArmadura, i, contCont, Datos.efectosArmaduras);
+            });
+            contCont.querySelectorAll("[data-cont-tipo]").forEach(el => {
+                el.addEventListener("change", e => {
+                    const ind = parseInt(e.target.dataset.contIndice, 10);
+                    const tipo = e.target.dataset.contTipo;
+                    const valor = e.target.value;
+
+                    if (tipo === "tipo") {
+                        objetoArmadura.contenedores[ind] = contenedorEnBlanco(valor);
+                        refrescarArmadura();
+                        return;
+                    }
+                    const c = objetoArmadura.contenedores[ind];
+                    if (tipo === "duracion")      c.duracion = parseInt(valor, 10) || 1;
+                    if (tipo === "criatura")      c.criatura = valor;
+                    if (tipo === "poder")         c.poder = parseInt(valor, 10) || 1;
+                    if (tipo === "coste")         c.coste = parseInt(valor, 10) || 0;
+                    refrescarArmadura();
+                });
+            });
+            contCont.querySelectorAll("[data-cont-borrar]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const ind = parseInt(e.target.dataset.contBorrar, 10);
+                    objetoArmadura.contenedores.splice(ind, 1);
+                    refrescarArmadura();
+                });
+            });
+            contCont.querySelectorAll("[data-int-tipo]").forEach(el => {
+                el.addEventListener("change", e => {
+                    const indCont = parseInt(e.target.dataset.intCont, 10);
+                    const indAf = parseInt(e.target.dataset.intAf, 10);
+                    const tipo = e.target.dataset.intTipo;
+                    const valor = e.target.value;
+                    const af = objetoArmadura.contenedores[indCont].afijos[indAf];
+
+                    if (tipo === "efecto")     af.id = valor;
+                    if (tipo === "cantidad")   af.cantidad = parseInt(valor, 10) || 1;
+                    if (tipo === "duracion")   af.duracion = parseInt(valor, 10) || 1;
+                    if (tipo === "dado")       af.dado = valor;
+                    if (tipo === "tipodano")   af.tipoDano = valor;
+                    if (tipo === "cualidad")   af.cualidad = valor;
+                    if (tipo === "fuente")     af.tipoFuente = valor;
+                    if (tipo === "escuela")    af.escuela = valor;
+                    if (tipo === "atributo")   af.atributo = valor;
+                    if (tipo === "arma")       af.arma = valor;
+
+                    refrescarArmadura();
+                });
+            });
+            contCont.querySelectorAll("[data-int-borrar]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const indCont = parseInt(e.target.dataset.intCont, 10);
+                    const indAf = parseInt(e.target.dataset.intBorrar, 10);
+                    objetoArmadura.contenedores[indCont].afijos.splice(indAf, 1);
+                    refrescarArmadura();
+                });
+            });
+
+            // Requisitos
+            const contRq = document.querySelector(".ar-requisitos");
+            contRq.innerHTML = "";
+            objetoArmadura.requisitos.forEach((rq, i) => {
+                pintarFilaRequisito(objetoArmadura, i, contRq, Datos.requisitos);
+            });
+            contRq.querySelectorAll("select").forEach(sel => {
+                sel.addEventListener("change", e => {
+                    const ind = parseInt(e.target.dataset.indice, 10);
+                    if (e.target.dataset.tipo === "requisito") objetoArmadura.requisitos[ind].id = e.target.value;
+                    if (e.target.dataset.tipo === "mult-requisito") objetoArmadura.requisitos[ind].multiplicador = parseInt(e.target.value, 10);
+                    refrescarArmadura();
+                });
+            });
+            contRq.querySelectorAll("button[data-tipo='borrar-requisito']").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const ind = parseInt(btn.dataset.indice, 10);
+                    objetoArmadura.requisitos.splice(ind, 1);
+                    refrescarArmadura();
+                });
+            });
+
+            // Balance
+            const bal = calcularBalance(objetoArmadura, Datos.efectosArmaduras);
+            document.querySelector(".ar-total-efectos").textContent = bal.totalEfectos;
+            document.querySelector(".ar-total-requisitos").textContent = bal.totalRequisitos;
+            document.querySelector(".ar-valor-calidad").textContent = bal.calidad;
+            document.querySelector(".ar-balance").textContent = bal.balance;
+
+            const estado = document.querySelector(".ar-estado");
+            if (bal.esBueno) {
+                estado.textContent = "✅ " + bal.texto;
+                estado.style.color = "green";
+            } else {
+                estado.textContent = "❌ " + bal.texto;
+                estado.style.color = "red";
+            }
+
+            document.querySelector(".btn-ar-enviar").disabled = !bal.esBueno;
+
+            // Vista previa TRP3
+            document.querySelector(".ar-preview").textContent = generarPreviewTRP3(objetoArmadura, Datos.efectosArmaduras);
+        }
+
+        // ===================================================
+        // PESTAÑA ARMA
+        // ===================================================
+
+        const objetoArma = objetoEnBlanco();
+        objetoArma.tipo = "arma";
+
+        cargarDatosMotor().then(() => {
+            rellenarSelectArma();
+            enlazarArma();
+            refrescarArma();
+        });
+
+        function rellenarSelectArma() {
+            const SelCalidad = document.querySelector(".aw-calidad");
+            SelCalidad.innerHTML = '<option value="">—</option>' +
+                Datos.calidadesObjeto.map(c => `<option value="${c.id}">${c.nombre}</option>`).join("");
+
+            const SelTipo = document.querySelector(".aw-tipo-arma");
+            SelTipo.innerHTML = '<option value="">—</option>' +
+                Datos.armas.map(a => `<option value="${a.id}">${a.nombre}</option>`).join("");
+        }
+
+        function actualizarDadosBaseArma() {
+            const Tipo = objetoArma.tipoArma;
+            const Fila = Datos.armas.find(a => a.id === Tipo);
+            document.querySelector(".aw-dado-base").value = Fila ? Fila.dado : "";
+            document.querySelector(".aw-tipo-dano-base").value = Fila ? Fila.tipo_dano : "";
+        }
+
+        function enlazarArma() {
+            document.querySelector(".aw-nombre").addEventListener("input", e => {
+                objetoArma.nombre = e.target.value;
+                refrescarArma();
+            });
+            document.querySelector(".aw-calidad").addEventListener("change", e => {
+                objetoArma.calidad = e.target.value;
+                refrescarArma();
+            });
+            document.querySelector(".aw-tipo-arma").addEventListener("change", e => {
+                objetoArma.tipoArma = e.target.value;
+                actualizarDadosBaseArma();
+                refrescarArma();
+            });
+            document.querySelector(".aw-desc").addEventListener("input", e => {
+                objetoArma.descripcion = e.target.value;
+                refrescarArma();
+            });
+            document.querySelector(".aw-accion").addEventListener("input", e => {
+                objetoArma.accion = e.target.value;
+                refrescarArma();
+            });
+            document.querySelector(".aw-precio").addEventListener("input", e => {
+                objetoArma.precio = parseInt(e.target.value, 10) || 0;
+                refrescarArma();
+            });
+
+            document.querySelector(".aw-peso").addEventListener("input", e => {
+                objetoArma.peso = parseInt(e.target.value, 10) || 0;
+            });
+            document.querySelector(".aw-stack").addEventListener("input", e => {
+                objetoArma.stack = parseInt(e.target.value, 10) || 0;
+            });
+            ["ligado","unico","apilable","usable","equipable","contenedor","prevent"].forEach(k => {
+                document.querySelector(".aw-" + k).addEventListener("change", e => {
+                    objetoArma[k] = e.target.checked;
+                });
+            });
+            document.querySelector(".aw-sonido-coger").addEventListener("change", e => {
+                objetoArma.sonidoCoger = e.target.value;
+            });
+            document.querySelector(".aw-sonido-soltar").addEventListener("change", e => {
+                objetoArma.sonidoSoltar = e.target.value;
+            });
+
+            document.querySelector(".btn-aw-add-efecto").addEventListener("click", () => {
+                objetoArma.efectos.push(afijoEnBlanco());
+                refrescarArma();
+            });
+            document.querySelector(".btn-aw-add-contenedor").addEventListener("click", () => {
+                objetoArma.contenedores.push(contenedorEnBlanco("aumento_temporal"));
+                refrescarArma();
+            });
+            document.querySelector(".btn-aw-add-requisito").addEventListener("click", () => {
+                objetoArma.requisitos.push({ id: "", multiplicador: 1 });
+                refrescarArma();
+            });
+
+            document.querySelector(".btn-aw-resetear").addEventListener("click", () => {
+                if (!confirm("¿Seguro que quieres vaciar todos los campos?")) return;
+                const nuevo = objetoEnBlanco();
+                nuevo.tipo = "arma";
+                Object.keys(objetoArma).forEach(k => delete objetoArma[k]);
+                Object.assign(objetoArma, nuevo);
+
+                document.querySelector(".aw-nombre").value = "";
+                document.querySelector(".aw-calidad").value = "";
+                document.querySelector(".aw-tipo-arma").value = "";
+                document.querySelector(".aw-dado-base").value = "";
+                document.querySelector(".aw-tipo-dano-base").value = "";
+                document.querySelector(".aw-desc").value = "";
+                document.querySelector(".aw-accion").value = "";
+                document.querySelector(".aw-precio").value = 0;
+                document.querySelector(".aw-peso").value = 0;
+                document.querySelector(".aw-stack").value = 0;
+                ["ligado","unico","apilable","usable","equipable","contenedor","prevent"].forEach(k => {
+                    document.querySelector(".aw-" + k).checked = false;
+                });
+                document.querySelector(".aw-sonido-coger").value = "";
+                document.querySelector(".aw-sonido-soltar").value = "";
+                refrescarArma();
+            });
+        }
+
+        function refrescarArma() {
+            if (!datosListos) return;
+
+            // Efectos
+            const contEf = document.querySelector(".aw-efectos");
+            contEf.innerHTML = "";
+            objetoArma.efectos.forEach((ef, i) => {
+                pintarFilaEfecto(objetoArma, i, contEf, Datos.efectosArmas);
+            });
+            contEf.querySelectorAll("select, input").forEach(el => {
+                el.addEventListener("change", e => {
+                    const ind = parseInt(e.target.dataset.indice, 10);
+                    const tipo = e.target.dataset.tipo;
+                    const valor = e.target.value;
+                    const ef = objetoArma.efectos[ind];
+
+                    if (tipo === "efecto")            ef.id = valor;
+                    if (tipo === "cantidad-efecto")   ef.cantidad = parseInt(valor, 10) || 1;
+                    if (tipo === "duracion-efecto")   ef.duracion = parseInt(valor, 10) || 1;
+                    if (tipo === "cualidad-efecto")   ef.cualidad = valor;
+                    if (tipo === "atributo-efecto")   ef.atributo = valor;
+                    if (tipo === "tipodano-efecto")   ef.tipoDano = valor;
+                    if (tipo === "arma-efecto")       ef.arma = valor;
+                    if (tipo === "dado-efecto")       ef.dado = valor;
+                    if (tipo === "escuela-efecto")    ef.escuela = valor;
+
+                    refrescarArma();
+                });
+            });
+            contEf.querySelectorAll("button[data-tipo='borrar-efecto']").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const ind = parseInt(btn.dataset.indice, 10);
+                    objetoArma.efectos.splice(ind, 1);
+                    refrescarArma();
+                });
+            });
+
+            // Contenedores
+            const contCont = document.querySelector(".aw-contenedores");
+            contCont.innerHTML = "";
+            objetoArma.contenedores.forEach((cont, i) => {
+                pintarContenedor(objetoArma, i, contCont, Datos.efectosArmas);
+            });
+            contCont.querySelectorAll("[data-cont-tipo]").forEach(el => {
+                el.addEventListener("change", e => {
+                    const ind = parseInt(e.target.dataset.contIndice, 10);
+                    const tipo = e.target.dataset.contTipo;
+                    const valor = e.target.value;
+
+                    if (tipo === "tipo") {
+                        objetoArma.contenedores[ind] = contenedorEnBlanco(valor);
+                        refrescarArma();
+                        return;
+                    }
+                    const c = objetoArma.contenedores[ind];
+                    if (tipo === "duracion")      c.duracion = parseInt(valor, 10) || 1;
+                    if (tipo === "criatura")      c.criatura = valor;
+                    if (tipo === "poder")         c.poder = parseInt(valor, 10) || 1;
+                    if (tipo === "coste")         c.coste = parseInt(valor, 10) || 0;
+                    refrescarArma();
+                });
+            });
+            contCont.querySelectorAll("[data-cont-borrar]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const ind = parseInt(e.target.dataset.contBorrar, 10);
+                    objetoArma.contenedores.splice(ind, 1);
+                    refrescarArma();
+                });
+            });
+            contCont.querySelectorAll("[data-int-tipo]").forEach(el => {
+                el.addEventListener("change", e => {
+                    const indCont = parseInt(e.target.dataset.intCont, 10);
+                    const indAf = parseInt(e.target.dataset.intAf, 10);
+                    const tipo = e.target.dataset.intTipo;
+                    const valor = e.target.value;
+                    const af = objetoArma.contenedores[indCont].afijos[indAf];
+
+                    if (tipo === "efecto")     af.id = valor;
+                    if (tipo === "cantidad")   af.cantidad = parseInt(valor, 10) || 1;
+                    if (tipo === "duracion")   af.duracion = parseInt(valor, 10) || 1;
+                    if (tipo === "dado")       af.dado = valor;
+                    if (tipo === "tipodano")   af.tipoDano = valor;
+                    if (tipo === "cualidad")   af.cualidad = valor;
+                    if (tipo === "atributo")   af.atributo = valor;
+                    if (tipo === "arma")       af.arma = valor;
+                    if (tipo === "escuela")    af.escuela = valor;
+
+                    refrescarArma();
+                });
+            });
+            contCont.querySelectorAll("[data-int-borrar]").forEach(btn => {
+                btn.addEventListener("click", e => {
+                    const indCont = parseInt(e.target.dataset.intCont, 10);
+                    const indAf = parseInt(e.target.dataset.intBorrar, 10);
+                    objetoArma.contenedores[indCont].afijos.splice(indAf, 1);
+                    refrescarArma();
+                });
+            });
+
+            // Requisitos
+            const contRq = document.querySelector(".aw-requisitos");
+            contRq.innerHTML = "";
+            objetoArma.requisitos.forEach((rq, i) => {
+                pintarFilaRequisito(objetoArma, i, contRq, Datos.requisitos);
+            });
+            contRq.querySelectorAll("select").forEach(sel => {
+                sel.addEventListener("change", e => {
+                    const ind = parseInt(e.target.dataset.indice, 10);
+                    if (e.target.dataset.tipo === "requisito") objetoArma.requisitos[ind].id = e.target.value;
+                    if (e.target.dataset.tipo === "mult-requisito") objetoArma.requisitos[ind].multiplicador = parseInt(e.target.value, 10);
+                    refrescarArma();
+                });
+            });
+            contRq.querySelectorAll("button[data-tipo='borrar-requisito']").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    const ind = parseInt(btn.dataset.indice, 10);
+                    objetoArma.requisitos.splice(ind, 1);
+                    refrescarArma();
+                });
+            });
+
+            // Balance
+            const bal = calcularBalance(objetoArma, Datos.efectosArmas);
+            document.querySelector(".aw-total-efectos").textContent = bal.totalEfectos;
+            document.querySelector(".aw-total-requisitos").textContent = bal.totalRequisitos;
+            document.querySelector(".aw-valor-calidad").textContent = bal.calidad;
+            document.querySelector(".aw-balance").textContent = bal.balance;
+
+            const estado = document.querySelector(".aw-estado");
+            if (bal.esBueno) {
+                estado.textContent = "✅ " + bal.texto;
+                estado.style.color = "green";
+            } else {
+                estado.textContent = "❌ " + bal.texto;
+                estado.style.color = "red";
+            }
+
+            document.querySelector(".btn-aw-enviar").disabled = !bal.esBueno;
+
+            // Vista previa TRP3
+            document.querySelector(".aw-preview").textContent = generarPreviewTRP3Arma(objetoArma, Datos.efectosArmas);
+        }
+
+        function generarPreviewTRP3Arma(objeto, csvEfectos) {
+            const Nombre = objeto.nombre || "[Sin nombre]";
+            const TipoArma = obtenerNombreTipoArma(objeto.tipoArma) || "";
+            const Fila = Datos.armas.find(a => a.id === objeto.tipoArma);
+            const DadoBase = Fila ? Fila.dado : "";
+            const TipoDanoBase = Fila ? Fila.tipo_dano : "";
+            const Desc = objeto.descripcion || "";
+            const Accion = objeto.accion || "";
+            const Precio = objeto.precio || 0;
+
+            // Requisitos
+            const LineasReq = [];
+            objeto.requisitos.forEach(r => {
+                const Nombre = obtenerNombreRequisito(r.id);
+                LineasReq.push(Nombre + " " + (r.multiplicador || 1));
+            });
+
+            // Afijos externos
+            const LineasEf = [];
+            if (DadoBase || TipoDanoBase) {
+                LineasEf.push(DadoBase + " " + TipoDanoBase);
+            }
+            objeto.efectos.forEach(e => {
+                const Nombre = resolverNombreAfijo(e, csvEfectos);
+                LineasEf.push(Nombre);
+            });
+
+            // Contenedores
+            const LineasCont = [];
+            (objeto.contenedores || []).forEach(cont => {
+                const def = TIPOS_CONTENEDOR[cont.tipo];
+                if (!def) return;
+                const Z = parseInt(cont.duracion, 10) || 1;
+                const Enfr = Z * 2;
+                const Disparador = def.disparador || "Uso";
+                LineasCont.push(Disparador + ": durante " + Z + " turnos obtienes:");
+                cont.afijos.forEach(af => {
+                    LineasCont.push("- " + resolverNombreAfijo(af, csvEfectos));
+                });
+                LineasCont.push("(Y " + Enfr + " turnos de enfriamiento)");
+            });
+
+            const Lineas = [];
+            Lineas.push(Nombre);
+            Lineas.push("Arma                         " + TipoArma);
+            Lineas.push('"Requiere:');
+            LineasReq.forEach(l => Lineas.push(l));
+            Lineas.push("");
+            Lineas.push("Equipar:");
+            LineasEf.forEach(l => Lineas.push(l));
+            if (LineasCont.length) {
+                Lineas.push("");
+                LineasCont.forEach(l => Lineas.push(l));
+            }
+            if (Desc) {
+                Lineas.push("");
+                Lineas.push(Desc);
+            }
+            Lineas.push('"');
+            if (Accion) Lineas.push("Usar: " + Accion);
+            if (Precio) Lineas.push("🪙 " + Precio + " g");
+
+            return Lineas.join("\n");
+        }
+
+        });
+    </script>
+</body>
+</html>

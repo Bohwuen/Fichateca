@@ -1,0 +1,118 @@
+id,nombre,tipo,coste,requiere_cantidad,requiere_tipo,notas
+fuerza,Fuerza,requisito,2,true,false,Atributo
+destreza,Destreza,requisito,2,true,false,Atributo
+inteligencia,Inteligencia,requisito,2,true,false,Atributo
+voluntad,Voluntad,requisito,2,true,false,Atributo
+percepcion,Percepción,requisito,2,true,false,Atributo
+carisma,Carisma,requisito,2,true,false,Atributo
+aguante,Aguante,requisito,2,true,false,Atributo
+energia,Energía,requisito,2,true,false,Atributo
+atletismo,Atletismo,requisito,1,true,false,Habilidad
+sigilo,Sigilo,requisito,1,true,false,Habilidad
+juego_de_manos,juego de manos,requisito,1,true,false,Habilidad
+subsistencia,Subsistencia,requisito,1,true,false,Habilidad
+acrobacias,Acrobacias,requisito,1,true,false,Habilidad
+buscar,Buscar,requisito,1,true,false,Habilidad
+alerta,Alerta,requisito,1,true,false,Habilidad
+aprendizaje,Aprendizaje,requisito,1,true,false,Habilidad
+interpretacion,Interpretación,requisito,1,true,false,Habilidad
+subterfugio,Subterfugio,requisito,1,true,false,Habilidad
+trato_con_animales,Trato con animales,requisito,1,true,false,Habilidad
+intimidacion,Intimidación,requisito,1,true,false,Habilidad
+diplomacia,Diplomacia,requisito,1,true,false,Habilidad
+parada_y_bloqueo,Parada y Bloqueo,requisito,1,true,false,Habilidad
+esquivar,Esquivar,requisito,1,true,false,Habilidad
+metamagia,Metamagia,requisito,1,true,false,Habilidad
+magia,Magia,requisito,1,true,false,Habilidad
+taumaturgia,Taumaturgia,requisito,1,true,false,Habilidad
+fe,Fe,requisito,1,true,false,Habilidad
+espiritualidad,Espiritualidad,requisito,1,true,false,Habilidad
+naturaleza,Naturaleza,requisito,1,true,false,Habilidad
+caos,Caos,requisito,1,true,false,Habilidad
+arcanismo,Arcanismo,requisito,1,true,false,Habilidad
+piromancia,Piromancia,requisito,1,true,false,Habilidad
+criomancia,Criomancia,requisito,1,true,false,Habilidad
+nigromancia,Nigromancia,requisito,1,true,false,Habilidad
+magia_runica,Magia Rúnica,requisito,1,true,false,Habilidad
+demonologia,Demonología,requisito,1,true,false,Habilidad
+piromancia_vil,Piromancia vil,requisito,1,true,false,Habilidad
+magia_sangrienta,Magia sangrienta,requisito,1,true,false,Habilidad
+magia_de_la_sombra,Magia de la sombra,requisito,1,true,false,Habilidad
+magia_druidica_feral,Magia druidica: Feral,requisito,1,true,false,Habilidad
+magia_druidica_equilibrio,Magia druidica: Equilibrio,requisito,1,true,false,Habilidad
+magia_druidica_vida,Magia druidica: Vida,requisito,1,true,false,Habilidad
+magia_elemental_agua,Magia elemental: Agua,requisito,1,true,false,Habilidad
+magia_elemental_fuego,Magia elemental: Fuego,requisito,1,true,false,Habilidad
+magia_elemental_tierra,Magia elemental: Tierra,requisito,1,true,false,Habilidad
+magia_elemental_aire,Magia elemental: Aire,requisito,1,true,false,Habilidad
+dominio_de_la_luz,Dominio de la luz,requisito,1,true,false,Habilidad
+chi,Chi,requisito,1,true,false,Habilidad
+evocacion_rojo,Evocación: Rojo,requisito,1,true,false,Habilidad
+evocacion_verde,Evocación: Verde,requisito,1,true,false,Habilidad
+evocacion_azul,Evocación: Azul,requisito,1,true,false,Habilidad
+evocacion_bronce,Evocación: Bronce,requisito,1,true,false,Habilidad
+evocacion_negro,Evocación: Negro,requisito,1,true,false,Habilidad
+maestro_de_armas,Maestro de armas,requisito,1,true,false,Habilidad
+furibundo,Furibundo,requisito,1,true,false,Habilidad
+protector,Protector,requisito,1,true,false,Habilidad
+punteria,Puntería,requisito,1,true,false,Habilidad
+supervivencia,Supervivencia,requisito,1,true,false,Habilidad
+maestro_de_bestias,Maestro de bestias,requisito,1,true,false,Habilidad
+aamm_cervecero,A.A.M.M Maestro cervecero,requisito,1,true,false,Habilidad
+aamm_caminavientos,A.A.M.M. Caminavientos,requisito,1,true,false,Habilidad
+asesinato,Asesinato,requisito,1,true,false,Habilidad
+sutileza,Sutileza,requisito,1,true,false,Habilidad
+forajido,Forajido,requisito,1,true,false,Habilidad
+protector_sagrado,Protector sagrado,requisito,1,true,false,Habilidad
+represion,Represión,requisito,1,true,false,Habilidad
+devastacion,Devastación,requisito,1,true,false,Habilidad
+venganza,Venganza,requisito,1,true,false,Habilidad
+caballero_sangriento,Caballero sangriento,requisito,1,true,false,Habilidad
+caballero_hielo,Caballero de hielo,requisito,1,true,false,Habilidad
+caballero_profano,Caballero profano,requisito,1,true,false,Habilidad
+espadas_de_una_mano,Espadas de una mano,requisito,1,true,false,Habilidad
+espadas_de_dos_manos,Espadas de dos manos,requisito,1,true,false,Habilidad
+mazas_de_una_mano,Mazas de una mano,requisito,1,true,false,Habilidad
+mazas_de_dos_manos,Mazas de dos manos,requisito,1,true,false,Habilidad
+hachas_de_una_mano,Hachas de una mano,requisito,1,true,false,Habilidad
+hachas_de_dos_manos,Hachas de dos manos,requisito,1,true,false,Habilidad
+arcos,Arcos,requisito,1,true,false,Habilidad
+armas_de_fuego,Armas de fuego,requisito,1,true,false,Habilidad
+armas_arrojadizas,Armas arrojadizas,requisito,1,true,false,Habilidad
+ballestas,Ballestas,requisito,1,true,false,Habilidad
+bastones,Bastones,requisito,1,true,false,Habilidad
+varitas,Varitas,requisito,1,true,false,Habilidad
+dagas,Dagas,requisito,1,true,false,Habilidad
+armas_de_puno,Armas de puño,requisito,1,true,false,Habilidad
+armas_de_asta,Armas de asta,requisito,1,true,false,Habilidad
+gujas_de_guerra,Gujas de guerra,requisito,1,true,false,Habilidad
+escudo,Escudo,requisito,1,true,false,Habilidad
+sin_armas,Sin Armas,requisito,1,true,false,Habilidad
+alquimia,Alquimia,requisito,1,true,false,Habilidad
+sastreria,Sastrería,requisito,1,true,false,Habilidad
+desuello,Desuello,requisito,1,true,false,Habilidad
+carpinteria,Carpintería,requisito,1,true,false,Habilidad
+herboristeria,Herboristería,requisito,1,true,false,Habilidad
+encantamiento,Encantamiento,requisito,1,true,false,Habilidad
+herreria,Herrería,requisito,1,true,false,Habilidad
+inscripcion,Inscripción,requisito,1,true,false,Habilidad
+ingenieria,Ingeniería,requisito,1,true,false,Habilidad
+joyeria,Joyería,requisito,1,true,false,Habilidad
+lenador,Leñador,requisito,1,true,false,Habilidad
+mineria,Minería,requisito,1,true,false,Habilidad
+peleteria,Peleteria,requisito,1,true,false,Habilidad
+granjero,Granjero,requisito,1,true,false,Habilidad
+bardo,Bardo,requisito,1,true,false,Habilidad
+marinero,Marinero,requisito,1,true,false,Habilidad
+mercader,Mercader,requisito,1,true,false,Habilidad
+cazarrecompensas,Cazarrecompensas,requisito,1,true,false,Habilidad
+criador_de_animales,Criador de Animales,requisito,1,true,false,Habilidad
+equitacion,Equitación,requisito,1,true,false,Habilidad
+pesca,Pesca,requisito,1,true,false,Habilidad
+arqueologia,Arqueología,requisito,1,true,false,Habilidad
+medicina,Medicina,requisito,1,true,false,Habilidad
+cocina,Cocina,requisito,1,true,false,Habilidad
+conocimiento_de_la_magia,Conocimiento de la magia,requisito,1,true,false,Habilidad
+enfriamiento,Enfriamiento X,requisito,1,true,false,No puede usarse hasta pasar X turnos
+consumo,Consumo [Fuente de poder] X,requisito,2,true,true,Consume X de [Fuente de poder]
+canalizado,Canalizado X,neutral,0,true,false,Requiere X turnos de canalización

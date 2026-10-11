@@ -544,3 +544,156 @@ footer a {
 .btn-guia:hover {
     background-color: #3d8b40;
 }
+
+/* Columnas del formulario de objeto */
+.ob-columnas {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+}
+
+.ob-col-izq,
+.ob-col-der {
+    flex: 1 1 0;
+    min-width: 0; /* para que los textarea no rompan el flex */
+}
+
+/* En pantallas estrechas, apilar */
+@media (max-width: 900px) {
+    .ob-columnas {
+        flex-direction: column;
+    }
+}
+
+.fila-efecto select {
+    max-width: 110px;
+}
+
+.fila-efecto select[data-tipo="dado-efecto"],
+.fila-efecto select[data-tipo="mult-efecto"] {
+    max-width: 60px;
+}
+
+/* En css/estilos.css */
+.fila-efecto select {
+    max-width: 160px;
+}
+
+.fila-efecto select[data-tipo="efecto"] {
+    min-width: 140px;
+}
+
+.fila-efecto select[data-tipo="dado-efecto"],
+.fila-efecto select[data-tipo="cualidad-efecto"],
+.fila-efecto select[data-tipo="tipodano-efecto"],
+.fila-efecto select[data-tipo="fuente-efecto"],
+.fila-efecto select[data-tipo="escuela-efecto"] {
+    min-width: 100px;
+}
+
+.fila-efecto input[type="number"] {
+    width: 3em;
+}
+
+.fila-efecto label {
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+/* ---------- Contenedores ---------- */
+.contenedor-afijos {
+    border: 2px solid #8a7a5a;
+    border-radius: 6px;
+    padding: 0.6em 0.8em;
+    margin-bottom: 0.6em;
+    background: #f4e9d8;
+}
+
+.contenedor-afijos .cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: center;
+    padding-bottom: 0.4em;
+    border-bottom: 1px dashed #c8b89a;
+    margin-bottom: 0.5em;
+}
+
+.contenedor-afijos .cabecera strong {
+    font-size: 1.05em;
+    color: #2a1a08;
+}
+
+.contenedor-afijos .cabecera label {
+    font-size: 0.9em;
+    color: #4a3a1a;
+}
+
+.contenedor-afijos .afijos-internos {
+    margin-left: 0.8em;
+}
+
+.contenedor-afijos .btn-add-interno {
+    margin-top: 0.4em;
+    background: #6b8e3a;
+    font-size: 0.85em;
+    padding: 0.3em 0.7em;
+}
+
+.contenedor-afijos .btn-add-interno:hover {
+    background: #567a2e;
+}
+
+.contenedor-afijos .btn-quitar {
+    background: #b00020;
+    font-size: 0.85em;
+    padding: 0.3em 0.7em;
+}
+
+.contenedor-afijos .btn-quitar:hover {
+    background: #8a0018;
+}
+
+.contenedor-afijos .enfriamiento {
+    font-size: 0.85em;
+    color: #666;
+    font-style: italic;
+}
+
+/* ---------- Filas de afijos ---------- */
+.fila-efecto,
+.fila-afijo-interno {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+    align-items: center;
+    margin-bottom: 0.25em;
+}
+
+.fila-efecto label,
+.fila-afijo-interno label {
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.fila-efecto select,
+.fila-afijo-interno select {
+    max-width: 160px;
+}
+
+.fila-efecto select[data-tipo="efecto"],
+.fila-afijo-interno select[data-int-tipo="efecto"] {
+    min-width: 140px;
+}
+
+.fila-efecto input[type="number"],
+.fila-afijo-interno input[type="number"] {
+    width: 3em;
+}
+
+.coste {
+    font-weight: bold;
+    color: #2a1a08;
+    min-width: 2.5em;
+    text-align: right;
+}

@@ -1,0 +1,48 @@
+id,nombre,tipo,coste,requiere_cantidad,requiere_tipo,notas
+acelerado,Acelerado X,buff,1,true,false,Duplica velocidad.
+amplificado,Amplificado [Cualidad] X,buff,1,true,true,Amplifica una cualidad.
+armadura,Armadura X,buff,1,true,false,Aumenta X de armadura.
+aumentado,Aumentado X,buff,1,true,false,Aumenta el tamaño.
+disminuido,Disminuido X,buff,1,true,false,Reduce el tamaño.
+aumento_temporal,Aumento temporal X,modificador,0,true,true,Se adjunta a una cualidad Z.
+caida_lenta,Caída Lenta,buff,1,false,false,Evita daño por caída.
+escudo,Escudo XDZ,buff,1,true,false,Crea un escudo.
+espinas,Espinas X,buff,1,true,false,Devuelve X% del daño cuerpo a cuerpo.
+fuente_poder,[Fuente de poder] X,buff,1,true,true,Aumenta tope de recurso.
+levitando,Levitando,buff,1,false,false,El objetivo flota.
+potenciado,Potenciado [Tipo] X,buff,1,true,true,Aumenta daño de [Tipo].
+potenciado_sanacion,Potenciado sanación X,buff,1,true,false,Aumenta sanación permanente.
+preciso,Preciso X,buff,1,true,false,Añade X a la tirada.
+res,Res. [Tipo] X,buff,1,true,true,Aumenta resistencia a [Tipo].
+salud,Salud X,buff,1,true,false,Aumenta salud.
+sanacion_perdida,Sanación por pérdida X,buff,1,true,false,Cura al perder salud.
+sanacion_herida_grave,Sanación por herida grave X,buff,1,true,false,Cura al bajar de umbral.
+sanacion_critico,Sanación por crítico X,buff,1,true,false,Cura al recibir crítico.
+sanacion_turno,Sanación por turno X,buff,1,true,false,Cura al final de turno sin daño.
+sanacion_muerte,Sanación por muerte X,buff,1,true,false,Revive al morir.
+velocidad,Velocidad X,buff,1,true,false,Aumenta velocidad.
+succion,Succión X Z,buff,1,true,false,Dot positivo. Recupera X salud por turno.
+rest_fuente_poder,Rest. [Fuente de poder] X Z,buff,1,true,true,Dot positivo. Recupera X recurso por turno.
+
+provocado,Provocado X,debuff,1,true,false,El objetivo te ataca.
+aturdido,Aturdido X,debuff,1,true,false,No puede actuar.
+controlado,Controlado X,debuff,1,true,false,El narrador controla al objetivo.
+dano_fijo_agregado,Daño fijo agregado [Tipo] X,debuff,1,true,true,Recibe X daño extra de [Tipo].
+desarmado,Desarmado X,debuff,1,true,false,El objetivo suelta el arma.
+enraizado,Enraizado X,debuff,1,true,false,Fijo al suelo.
+inmovilizado,Inmovilizado X,debuff,1,true,false,Impide movimiento y ataque.
+descontrolado,Descontrolado X,debuff,1,true,false,Acciones aleatorias.
+ralentizado,Ralentizado X,debuff,1,true,false,Reduce movimiento.
+secuela,Secuela: Daño [Tipo] X Z,debuff,1,true,true,Dot negativo.
+silenciado,Silenciado X,debuff,1,true,false,Impide conjuros.
+silenciado_escuela,Silenciado [Escuela] X,debuff,1,true,true,Impide conjuros de una escuela.
+succion_inversa,Succión X Z (inversa),debuff,1,true,false,Dot negativo. Pierde X salud por turno.
+rest_fuente_poder_inversa,Rest. [Fuente de poder] X Z (inversa),debuff,1,true,true,Dot negativo. Pierde X recurso por turno.
+sueno,Sueño X Z,debuff,1,true,false,Dormido. Se despierta al recibir daño.
+paralisis,Parálisis X Z,debuff,1,true,false,No puede moverse ni atacar.
+perdida_consciencia,Pérdida de consciencia X Z,debuff,1,true,false,Inconsciente y vulnerable.
+confusion,Confusión X Z,debuff,1,true,false,Acciones aleatorias.
+miedo,Miedo X Z,debuff,1,true,false,Huye o evita al lanzador.
+ceguera,Ceguera X Z,debuff,1,true,false,No puede ver.
+sordera,Sordera X Z,debuff,1,true,false,No puede oír.
+mudez,Mudez X Z,debuff,1,true,false,No puede hablar.
