@@ -485,9 +485,11 @@
     <script>
     document.addEventListener("DOMContentLoaded", function () {
 
-        exigirSesion("../../login/signin.html");
-        pintarMenu("../../", "");
-        pintarBarraSesion("../../");
+        const BASE = window.RUTA_BASE;
+        
+        exigirSesion(BASE + "login/signin.html");
+        pintarMenu(BASE, "");
+        pintarBarraSesion(BASE);
 
         // ---------------------------------------------------
         // OBJETO EN MEMORIA
