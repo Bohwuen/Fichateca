@@ -1,29 +1,23 @@
 id,nombre,tipo,coste,requiere_cantidad,requiere_tipo,requiere_dado,requiere_duracion,notas
-aceleracion,Aceleración,efecto,-1,false,false,false,true,Aplica Acelerado con Z contadores (duración Z turnos).
-armadura,Armadura,efecto,-1,true,false,false,false,Aumenta X de armadura.
-aumentar,Aumentar,efecto,-1,true,true,false,false,Aumenta [Atributo] en X.
-consumo,Consumo de Energía,requisito,2,true,false,false,false,Consume X de Energía.
+armadura,Armadura X,efecto,-1,true,false,false,false,Aumenta X de armadura al portador.
+consumo,Consumo de Energía X,requisito,2,true,false,false,false,Consume X de Energía.
 efecto_inferior,Efecto inferior,efecto,-4,false,false,false,false,Efecto genérico.
 efecto_mayor,Efecto mayor,efecto,-8,false,false,false,false,Efecto genérico.
 efecto_menor,Efecto menor,efecto,-2,false,false,false,false,Efecto genérico.
 efecto_normal,Efecto normal,efecto,-6,false,false,false,false,Efecto genérico.
 efecto_potenciado,Efecto potenciado,efecto,-12,false,false,false,false,Efecto genérico.
 efecto_superior,Efecto superior,efecto,-10,false,false,false,false,Efecto genérico.
-espinas,Espinas,efecto,-1,true,false,false,false,Devuelve X% del daño cuerpo a cuerpo.
-invocacion,Invocación,efecto,-1,true,true,false,true,Invoca criatura de poder X durante Z turnos.
-fuente_poder,Energía,efecto,-1,true,false,false,false,Aumenta X de Energía máxima.
-penetracion,Penetración,efecto,-1,true,false,false,false,Ignora X de armadura.
-potenciar,Potenciar,efecto,-1,true,true,false,false,Aumenta daño de [Tipo] en X.
-potenciar_magia,Potenciar magia,efecto,-2,true,false,false,false,Aumenta daño de toda magia en X.
-potenciar_marcial,Potenciar arma,efecto,-1,true,true,false,false,Aumenta daño con [Arma] en X.
-precision,Precisión,efecto,-1,true,false,false,false,Añade X a la tirada de prueba.
-precision_arma,Precisión con arma,efecto,-1,true,true,false,false,Añade X a la tirada de ataque con [Arma].
-rest_mana,Rest. Energía,efecto,-1,true,false,true,false,Restaura X dados de Z caras de Energía.
-res,Resistencia,efecto,-1,true,true,false,false,Aumenta X de resistencia a [Tipo].
-salud,Salud,efecto,-1,true,false,false,false,Aumenta X de salud máxima.
-sanacion_perdida,Sanación por pérdida,efecto,-1,true,false,false,false,Cura X al perder salud.
-sanacion_herida_grave,Sanación por herida grave,efecto,-1,true,false,false,false,Cura X al bajar de un umbral.
-sanacion_critico,Sanación por crítico,efecto,-1,true,false,false,false,Cura X al recibir crítico.
-sanacion_turno,Sanación por turno,efecto,-1,true,false,false,false,Cura X al final de turno sin daño.
-sanacion_muerte,Sanación por muerte,efecto,-1,true,false,false,false,Revive con X de salud al morir.
-velocidad,Velocidad,efecto,-1,true,false,false,false,Aumenta X de velocidad.
+espinas,Espinas X,efecto,-2,true,false,false,false,Devuelve X% del daño recibido cuerpo a cuerpo.
+invocacion,Invocación X Z,efecto,-1,true,true,false,true,Invoca criatura ligada a la armadura de poder X durante Z turnos.
+fuente_poder,[Fuente de poder] X,efecto,-1,true,false,false,false,Aumenta X puntos el tope máximo de Energía.
+potenciar,Potenciar [Tipo] X,efecto,-1,true,true,false,false,Aumenta el daño de [Tipo] en X.
+potenciar_magia,Potenciar magia X,efecto,-2,true,false,false,false,Aumenta el daño de todos los hechizos mágicos en X.
+potenciar_marcial,Potenciar arma [Arma] X,efecto,-1,true,true,false,false,Aumenta el daño con [Arma] en X.
+precision_arma,Precisión con arma [Arma] X,efecto,-1,true,true,false,false,Añade X a la tirada de ataque con [Arma].
+res,Res. [Tipo] X,efecto,-1,true,true,false,false,Aumenta X de resistencia a [Tipo].
+rest_mana,Rest. Energía XDZ,efecto,-1,true,false,true,false,Restaura X dados de Z caras de Energía.
+salud,Salud X,efecto,-1,true,false,false,false,Aumenta X de salud máxima del portador.
+velocidad,Velocidad X,efecto,-1,true,false,false,false,Aumenta X de velocidad del portador.
+aplica_estado,Aplica estado [Estado] X,efecto,-1,true,false,false,false,Aplica el estado indicado con X contadores.
+otorga_beneficio,Otorga beneficio [Beneficio] X,efecto,-1,true,false,false,false,Otorga el beneficio indicado con X contadores.
+aplica_perjuicio,Aplica perjuicio [Perjuicio] X,efecto,-1,true,false,false,false,Aplica el perjuicio indicado con X contadores.

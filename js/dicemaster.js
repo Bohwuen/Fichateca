@@ -95,7 +95,7 @@ function generarSkillSheet(Ficha) {
     const Resultado = [];
 
     // 1ª pasada: construir todos los skills y guardar sus guids
-    const mapaGuids = {};   // { "Fuerza": "F1CHA7EC_16E78D29", ... }
+    const mapaGuids = {};   // { "Vigor": "F1CHA7EC_16E78D29", ... }
 
     Skills.forEach(Fila => {
         const EsHeader = Fila.header === "1";

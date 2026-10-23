@@ -1,5 +1,5 @@
 id,nombre,tipo,coste,requiere_cantidad,requiere_tipo,notas
-fuerza,Fuerza,requisito,2,true,false,Atributo
+fuerza,Vigor,requisito,2,true,false,Atributo
 destreza,Destreza,requisito,2,true,false,Atributo
 inteligencia,Inteligencia,requisito,2,true,false,Atributo
 voluntad,Voluntad,requisito,2,true,false,Atributo

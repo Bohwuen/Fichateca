@@ -1,41 +1,31 @@
 id,nombre,tipo,coste,requiere_cantidad,requiere_tipo,requiere_dado,requiere_duracion,notas
-amenazante,Amenazante,efecto,-1,false,false,false,false,Dura 2 turnos fijos. No se renueva ni acumula.
 area,Área,efecto,-2,false,false,false,false,El daño se divide entre los afectados.
 area_absoluta,Área absoluta,efecto,-6,false,false,false,false,El daño afecta por igual a todos.
-armadura,Armadura,efecto,-1,true,false,false,false,Solo permitida en escudo. Aumenta X de armadura.
-aturdidor,Aturdidor,efecto,-3,false,false,false,true,Aplica Aturdido con Z contadores.
-aumentar,Aumentar,efecto,-1,true,true,false,false,Aumenta [Atributo] en X.
-cambio_tamano,Cambio de tamaño,efecto,-1,true,false,false,false,El arma cambia de tamaño a escala 1:X o X:1.
-canalizado,Canalizado,neutral,0,false,false,false,true,Requiere Z turnos de canalización. Solo si desencadena ritual/hechizo.
-consumo,Consumo de Energía,requisito,2,true,false,false,false,Consume X de Energía.
-dano,Daño,efecto,-3,true,true,true,false,Daño de [Tipo] con X dados de Z caras.
-dano_fijo,Daño fijo,efecto,-2,true,true,false,false,Añade X de daño [Tipo] a una tirada.
-desplazamiento,Desplazamiento,efecto,-2,true,false,false,false,Mueve al portador X×10 metros.
-desarmar,Desarmar,efecto,-1,true,false,false,false,El objetivo suelta el arma; cae a X metros.
+armadura,Armadura X,efecto,-1,true,false,false,false,Solo permitida en escudo. Aumenta X de armadura.
+cambio_tamano,Cambio de tamaño X,efecto,-1,true,false,false,false,El arma cambia de tamaño a escala 1:X o X:1.
+canalizado,Canalizado X,neutral,0,true,false,false,false,Requiere X turnos de canalización. Solo si desencadena ritual o hechizo.
+consumo,Consumo de Energía X,requisito,2,true,false,false,false,Consume X de Energía.
+dano,Daño [Tipo] XDZ,efecto,-3,true,true,true,false,Daño de [Tipo] con X dados de Z caras.
+dano_fijo,Daño fijo [Tipo] X,efecto,-2,true,true,false,false,Añade X de daño [Tipo] a una tirada.
+desplazamiento,Desplazamiento X,efecto,-2,true,false,false,false,Mueve al portador X×10 metros.
+desarmar,Desarmar X,efecto,-1,true,false,false,false,El arma cae a X metros del objetivo.
 efecto_inferior,Efecto inferior,efecto,-4,false,false,false,false,Efecto genérico.
 efecto_mayor,Efecto mayor,efecto,-8,false,false,false,false,Efecto genérico.
 efecto_menor,Efecto menor,efecto,-2,false,false,false,false,Efecto genérico.
 efecto_normal,Efecto normal,efecto,-6,false,false,false,false,Efecto genérico.
 efecto_potenciado,Efecto potenciado,efecto,-12,false,false,false,false,Efecto genérico.
 efecto_superior,Efecto superior,efecto,-10,false,false,false,false,Efecto genérico.
-empuje,Empuje,efecto,-1,true,false,false,false,Empuja al objetivo X×5 metros.
-enfriamiento,Enfriamiento,requisito,1,false,false,false,true,No puede usarse hasta pasar Z turnos.
-enraizado,Enraizado,efecto,-1,false,false,false,true,Fija al objetivo al suelo durante Z turnos.
-escudo,Escudo,efecto,-1,true,false,true,false,Solo permitida en escudos. Crea escudo de X dados de Z caras.
-inmovilizacion,Inmovilización,efecto,-2,false,false,false,true,Impide movimiento y ataque durante Z turnos.
+empuje,Empuje X,efecto,-1,true,false,false,false,Empuja al objetivo X×5 metros.
+enfriamiento,Enfriamiento X,requisito,1,false,false,false,true,No puede usarse hasta pasar X turnos.
+escudo,Escudo XDZ,efecto,-1,true,false,true,false,Solo permitida en escudos. Crea un escudo de X dados de Z caras.
 interruptor,Interruptor,efecto,-1,false,false,false,false,Interrumpe hechizos y canalizaciones.
-invocacion,Invocación,efecto,-1,true,true,false,true,Invoca criatura de poder X durante Z turnos.
-penetracion,Penetración,efecto,-1,true,false,false,false,Ignora X de armadura.
-perdida_control,Pérdida de control,efecto,-1,false,false,false,true,Acciones aleatorias durante Z turnos.
-potenciar,Potenciar,efecto,-1,true,true,false,false,Aumenta daño de [Tipo] en X.
-potenciar_marcial,Potenciar arma,efecto,-1,true,true,false,false,Aumenta daño con [Arma] en X.
-precision,Precisión,efecto,-1,true,false,false,false,Añade X a la tirada de prueba.
-precision_arma,Precisión con arma,efecto,-1,true,true,false,false,Añade X a la tirada de ataque con [Arma].
-punto_combo,Punto de combo,efecto,-1,true,false,false,false,Genera X puntos de combo.
-ralentizacion,Ralentización,efecto,-1,false,false,false,true,Reduce movimiento a la mitad durante Z turnos.
-res,Resistencia,efecto,-1,true,true,false,false,Solo permitida en escudo. Aumenta X de resistencia a [Tipo].
-salud,Salud,efecto,-1,true,false,false,false,Aumenta X de salud máxima.
-secuela,Secuela,efecto,-1,true,true,false,true,Daño de [Tipo] X por turno durante Z turnos.
-silencio,Silencio,efecto,-1,false,false,false,true,Impide conjuros durante Z turnos.
-silencio_escuela,Silencio [Escuela],efecto,-1,false,true,false,true,Impide conjuros de [Escuela] durante Z turnos.
-succion,Succión,efecto,-1,true,false,false,false,Recupera X% del daño infligido como salud.
+invocacion,Invocación X Z,efecto,-1,true,true,false,true,Invoca criatura de poder X durante Z turnos.
+penetracion,Penetración X,efecto,-1,true,false,false,false,Ignora X de armadura.
+potenciar,Potenciar [Tipo] X,efecto,-1,true,true,false,false,Aumenta el daño de [Tipo] en X.
+precision,Precisión X,efecto,-1,true,false,false,false,Añade X a la tirada de prueba.
+punto_combo,Punto de combo X,efecto,-1,true,false,false,false,Genera X puntos de combo.
+res,Res. [Tipo] X,efecto,-1,true,true,false,false,Solo permitida en escudo. Aumenta X de resistencia a [Tipo].
+succion,Succión X,efecto,-1,true,false,false,false,Recupera X% del daño infligido como salud.
+aplica_estado,Aplica estado [Estado] X,efecto,-1,true,false,false,false,Aplica el estado indicado con X contadores.
+otorga_beneficio,Otorga beneficio [Beneficio] X,efecto,-1,true,false,false,false,Otorga el beneficio indicado con X contadores.
+aplica_perjuicio,Aplica perjuicio [Perjuicio] X,efecto,-1,true,false,false,false,Aplica el perjuicio indicado con X contadores.

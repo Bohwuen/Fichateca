@@ -6,9 +6,8 @@
 // CONSTANTES
 // -----------------------------------------------------------
 const CUALIDADES = [
-    "Fuerza", "Destreza", "Inteligencia", "Voluntad",
-    "Percepción", "Carisma", "Aguante", "Energía",
-    "Armadura", "Velocidad"
+    "Vigor", "Destreza", "Inteligencia", "Voluntad",
+    "Percepción", "Carisma", "Armadura", "Velocidad"
 ];
 
 const TIPOS_DANO = [
@@ -21,7 +20,7 @@ const DADOS = ["D4", "D6", "D8", "D10", "D12", "D20"];
 const ESCUELAS = ["Arcano", "Fuego", "Hielo", "Naturaleza", "Sombra", "Sagrado", "Vil"];
 
 const ATRIBUTOS = [
-    "Fuerza", "Destreza", "Inteligencia", "Voluntad",
+    "Vigor", "Destreza", "Inteligencia", "Voluntad",
     "Percepción", "Carisma"
 ];
 

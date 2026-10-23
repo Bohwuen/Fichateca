@@ -1,63 +1,47 @@
-id,nombre,tipo,coste,requiere_cantidad,requiere_tipo,notas
-aceleracion,Acelerado X,efecto,1,true,false,Duplica velocidad.
-amenazante,Provocado X,efecto,1,true,false,El objetivo te ataca.
-amplificar,Amplificado [Cualidad] X,efecto,2,true,true,Amplifica una cualidad.
-area,Área,efecto,2,false,false,El daño se divide.
-area_absoluta,Área absoluta,efecto,4,false,false,El daño afecta por igual.
-armadura,Armadura X,efecto,1,true,false,Aumenta X de armadura.
-aturdidor,Aturdido X,efecto,2,true,false,El afectado no puede actuar.
-aumento_tamano,Aumentado X,efecto,1,true,false,Aumenta el tamaño.
-disminucion_tamano,Disminuido X,efecto,1,true,false,Reduce el tamaño.
-aumento_temporal,Aumento temporal X,modificador,1,true,true,Se adjunta a una cualidad Z.
-caida_lenta,Caída Lenta,efecto,1,false,false,Evita daño por caída.
-canalizado,Canalizado X,neutral,0,true,false,Requiere X turnos.
-consume_combo_x,Consume Combo X,efecto,1,true,false,Usa combos para alterar dados.
-consume_combo_z,Consume Combo Z,efecto,1,true,false,Usa combos para alterar modificador.
-consumo,Consumo [Fuente de poder] X,requisito,2,true,true,Consume recurso.
-control_mental,Controlado X,efecto,4,true,false,El narrador controla al objetivo.
-dano,Daño [Tipo] XDZ,efecto,2,true,true,Daño de [Tipo] con X dados.
-dano_fijo,Daño fijo [Tipo] X,efecto,1,true,true,Añade X de daño [Tipo].
-dano_por_turno,Secuela: Daño [Tipo] X Z,efecto,1,true,true,Daño por turno.
-desarmar,Desarmado X,efecto,1,true,false,El objetivo suelta el arma.
-desplazamiento,Desplazamiento X,efecto,1,true,false,Mueve al lanzador.
-efecto_inferior,Efecto inferior,efecto,4,false,false,Efecto genérico.
-efecto_mayor,Efecto mayor,efecto,8,false,false,Efecto genérico.
-efecto_menor,Efecto menor,efecto,2,false,false,Efecto genérico.
-efecto_normal,Efecto normal,efecto,6,false,false,Efecto genérico.
-efecto_potenciado,Efecto potenciado,efecto,12,false,false,Efecto genérico.
-efecto_superior,Efecto superior,efecto,10,false,false,Efecto genérico.
-empuje,Empuje X,efecto,1,true,false,Empuja al objetivo.
-enraizado,Enraizado X,efecto,2,true,false,Fija al objetivo al suelo.
-escudo,Escudo XDZ,efecto,1,true,false,Crea un escudo.
-espinas,Espinas X,efecto,1,true,false,Devuelve X% del daño cuerpo a cuerpo.
-inbloqueable,Imbloqueable,efecto,1,false,false,Solo puede esquivarse.
-inmovilizacion,Inmovilizado X,efecto,1,true,false,Impide movimiento y ataque.
-interruptor,Interruptor,efecto,2,false,false,Interrumpe hechizos.
-invocacion,Invocación X Z,efecto,1,true,false,Invoca criatura.
-levitacion,Levitando,efecto,1,false,false,El objetivo flota.
-mana,[Fuente de poder] X,efecto,0,true,true,Aumenta tope de recurso.
-penetracion,Penetración X,efecto,2,true,false,Ignora X de armadura.
-perdida_control,Descontrolado X,efecto,2,true,false,Acciones aleatorias.
-potenciar,Potenciado [Tipo] X,efecto,2,true,true,Aumenta daño de [Tipo].
-precision,Preciso X,efecto,2,true,false,Añade X a la tirada.
-punto_combo,Punto de combo X,efecto,1,true,false,Genera X puntos de combo.
-ralentizacion,Ralentizado X,efecto,1,true,false,Reduce movimiento.
-res,Res. [Tipo] X,efecto,1,true,true,Aumenta resistencia.
-rest_mana,Rest. [Fuente de poder] XDZ,efecto,0,true,true,Restaura recurso.
-resurreccion_impura,Resurrección impura,efecto,5,false,false,Resucita como no-muerto.
-resurreccion_pura,Resurrección pura,efecto,10,false,false,Resucita sin consecuencias.
-salud,Salud X,efecto,1,true,false,Aumenta salud temporal.
-sanacion,Sanación X,efecto,1,true,false,Cura X.
-sanacion_fija,Potenciado sanación X,efecto,2,true,false,Aumenta sanación permanente.
-sanacion_dado,Sanación XDZ,efecto,1,true,false,Cura X dados.
-sanacion_perdida,Sanación por pérdida X,efecto,1,true,false,Cura al perder salud.
-sanacion_herida_grave,Sanación por herida grave X,efecto,1,true,false,Cura al bajar de umbral.
-sanacion_critico,Sanación por crítico X,efecto,1,true,false,Cura al recibir crítico.
-sanacion_turno,Sanación por turno X,efecto,1,true,false,Cura al final de turno sin daño.
-sanacion_muerte,Sanación por muerte X,efecto,1,true,false,Revive al morir.
-secuela,Secuela: Daño [Tipo] X Z,efecto,1,true,true,Daño por turno.
-silencio,Silenciado X,efecto,2,true,false,Impide conjuros.
-silencio_escuela,Silenciado [Escuela] X,efecto,2,true,true,Impide conjuros de una escuela.
-sin_prueba,Sin prueba,efecto,1,false,false,Siempre acierta.
-succion,Succión X,efecto,1,true,false,Recupera X% del daño infligido.
-velocidad,Velocidad X,efecto,1,true,false,Aumenta velocidad.
+id,nombre,tipo,coste,requiere_cantidad,requiere_tipo,requiere_dado,requiere_duracion,notas
+amplificar,Amplificar [Cualidad] X,efecto,-1,true,true,false,false,Amplifica [Cualidad] en X.
+area,Área,efecto,-2,false,false,false,false,El daño se divide entre los afectados.
+area_absoluta,Área absoluta,efecto,-6,false,false,false,false,El daño afecta por igual a todos.
+aumento_tamano,Aumento de tamaño X,efecto,-3,true,false,false,false,Aumenta el tamaño a escala 1:X.
+disminucion_tamano,Disminución de tamaño X,efecto,-1,true,false,false,false,Reduce el tamaño a escala X:1.
+canalizado,Canalizado X,neutral,0,true,false,false,false,Requiere X turnos de canalización.
+consume_combo_x,Consume Combo X,efecto,-1,true,false,false,false,Usa los combos para alterar el número de dados.
+consume_combo_z,Consume Combo Z,efecto,-1,true,false,false,false,Usa los combos para alterar el modificador final del dado.
+consumo,Consumo de Energía X,requisito,2,true,false,false,false,Consume X de Energía.
+dano,Daño [Tipo] XDZ,efecto,-3,true,true,true,false,Daño de [Tipo] con X dados de Z caras.
+dano_fijo,Daño fijo [Tipo] X,efecto,-2,true,true,false,false,Añade X de daño [Tipo] a una tirada.
+desarmar,Desarmar X,efecto,-1,true,false,false,false,El arma cae a X metros del objetivo.
+desplazamiento,Desplazamiento X,efecto,-2,true,false,false,false,Mueve al lanzador X×10 metros.
+efecto_inferior,Efecto inferior,efecto,-4,false,false,false,false,Efecto genérico.
+efecto_mayor,Efecto mayor,efecto,-8,false,false,false,false,Efecto genérico.
+efecto_menor,Efecto menor,efecto,-2,false,false,false,false,Efecto genérico.
+efecto_normal,Efecto normal,efecto,-6,false,false,false,false,Efecto genérico.
+efecto_potenciado,Efecto potenciado,efecto,-12,false,false,false,false,Efecto genérico.
+efecto_superior,Efecto superior,efecto,-10,false,false,false,false,Efecto genérico.
+empuje,Empuje X,efecto,-1,true,false,false,false,Empuja al objetivo X×5 metros.
+escudo,Escudo XDZ,efecto,-1,true,false,true,false,Crea un escudo de X dados de Z caras.
+inbloqueable,Inbloqueable,efecto,-1,false,false,false,false,Solo puede esquivarse.
+interruptor,Interruptor,efecto,-1,false,false,false,false,Interrumpe hechizos y canalizaciones.
+invocacion,Invocación X Z,efecto,-1,true,true,false,true,Invoca criatura de poder X durante Z turnos.
+penetracion,Penetración X,efecto,-1,true,false,false,false,Ignora X de armadura.
+potenciar,Potenciar [Tipo] X,efecto,-1,true,true,false,false,Aumenta el daño de [Tipo] en X.
+preciso,Preciso X,efecto,-1,true,false,false,false,Añade X a la tirada de prueba.
+punto_combo,Punto de combo X,efecto,-1,true,false,false,false,Genera X puntos de combo.
+purga,Purga,efecto,-2,false,false,false,false,Elimina los estados positivos del objetivo.
+rest_mana,Rest. Energía XDZ,efecto,-1,true,false,true,false,Restaura X dados de Z caras de Energía.
+res,Res. [Tipo] X,efecto,-1,true,true,false,false,Aumenta X de resistencia a [Tipo].
+resurreccion_impura,Resurrección impura,efecto,-5,false,false,false,false,Resucita como no-muerto.
+resurreccion_pura,Resurrección pura,efecto,-10,false,false,false,false,Resucita sin consecuencias.
+salud,Salud X,efecto,-1,true,false,false,false,Aumenta X de salud.
+sanacion,Sanación X,efecto,-1,true,false,false,false,Cura X.
+sanacion_dado,Sanación XDZ,efecto,-1,true,false,true,false,Cura X dados de Z caras.
+sanacion_fija,Potenciar sanación X,efecto,-2,true,false,false,false,Aumenta la sanación del hechizo en X.
+sin_prueba,Sin prueba,efecto,-1,false,false,false,false,Siempre acierta sin tirada.
+succion,Succión X,efecto,-1,true,false,false,false,Recupera X% del daño infligido como salud.
+velocidad,Velocidad X,efecto,-1,true,false,false,false,Aumenta X de velocidad.
+limpieza_estados,Limpieza de estados,efecto,-2,false,false,false,false,Elimina los estados negativos del objetivo.
+robo_estado,Robo de estado X,efecto,-2,true,false,false,false,Roba X estados positivos del objetivo.
+transferencia_estado,Transferencia de estado X,efecto,-2,true,false,false,false,Transfiere X estados negativos del portador a otro objetivo.
+aplica_estado,Aplica estado [Estado] X,efecto,-1,true,false,false,false,Aplica el estado indicado con X contadores.
+otorga_beneficio,Otorga beneficio [Beneficio] X,efecto,-1,true,false,false,false,Otorga el beneficio indicado con X contadores.
+aplica_perjuicio,Aplica perjuicio [Perjuicio] X,efecto,-1,true,false,false,false,Aplica el perjuicio indicado con X contadores.

@@ -1,0 +1,42 @@
+id,nombre,tipo
+arcanismo,Arcanismo,magica
+piromancia,Piromancia,magica
+criomancia,Criomancia,magica
+nigromancia,Nigromancia,magica
+magia_runica,Magia rúnica,magica
+demonologia,Demonología,magica
+piromancia_vil,Piromancia vil,magica
+magia_sangrienta,Magia sangrienta,magica
+magia_sombra,Magia de la sombra,magica
+magia_druidica_feral,Magia druídica: Feral,magica
+magia_druidica_equilibrio,Magia druídica: Equilibrio,magica
+magia_druidica_vida,Magia druídica: Vida,magica
+dominio_luz,Dominio de la luz,magica
+magia_elemental_agua,Magia elemental: Agua,magica
+magia_elemental_fuego,Magia elemental: Fuego,magica
+magia_elemental_tierra,Magia elemental: Tierra,magica
+magia_elemental_aire,Magia elemental: Aire,magica
+chi,Chi,magica
+evocacion_rojo,Evocación: Rojo,magica
+evocacion_verde,Evocación: Verde,magica
+evocacion_azul,Evocación: Azul,magica
+evocacion_bronce,Evocación: Bronce,magica
+evocacion_negro,Evocación: Negro,magica
+maestro_armas,Maestro de armas,marcial
+furibundo,Furibundo,marcial
+protector,Protector,marcial
+punteria,Puntería,marcial
+supervivencia,Supervivencia,marcial
+maestro_bestias,Maestro de bestias,marcial
+aamm_cervecero,A.A.M.M. Maestro cervecero,marcial
+aamm_caminavientos,A.A.M.M. Caminavientos,marcial
+asesinato,Asesinato,marcial
+sutileza,Sutileza,marcial
+forajido,Forajido,marcial
+protector_sagrado,Protector sagrado,marcial
+represion,Represión,marcial
+devastacion,Devastación,marcial
+venganza,Venganza,marcial
+caballero_sangriento,Caballero sangriento,marcial
+caballero_hielo,Caballero de hielo,marcial
+caballero_profano,Caballero profano,marcial
