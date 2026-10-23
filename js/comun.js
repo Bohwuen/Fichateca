@@ -30,6 +30,26 @@ function cerrarSesion() {
 }
 
 /**
+ * Calcula la ruta base correcta para la página actual.
+ * Ejemplos:
+ *  - /Fichateca/index.html -> ""
+ *  - /Fichateca/usuario/ficha/ficha.html -> "../../"
+ *  - /Fichateca/objetos/crear.html -> "../"
+ */
+function obtenerRutaBase() {
+    const pathname = window.location.pathname.replace(/\/+$/, "");
+    const repoRoot = "/Fichateca";
+
+    if (!pathname.includes(repoRoot)) return "";
+
+    const restante = pathname.slice(repoRoot.length + 1); // quita /Fichateca/
+    const partes = restante ? restante.split("/").filter(Boolean) : [];
+    const nivel = partes.length > 0 && partes[partes.length - 1] !== "index.html" ? partes.length : partes.length - 1;
+
+    return "../".repeat(Math.max(0, nivel));
+}
+
+/**
  * Comprueba si hay sesión. Si no la hay, redirige a login.
  * @param {string} rutaLogin - ruta relativa al signin (por defecto login/signin.html)
  */
@@ -49,7 +69,7 @@ function exigirSesion(RutaLogin = "login/signin.html") {
  *  - Nombre + botón cerrar sesión si lo hay
  * @param {string} rutaBase - prefijo relativo a la raíz del proyecto ("" en raíz, "../" en subcarpetas)
  */
-function pintarBarraSesion(RutaBase = "") {
+function pintarBarraSesion(RutaBase = obtenerRutaBase()) {
     const Cont = document.getElementById("barra-sesion");
     if (!Cont) return;
 
@@ -78,15 +98,15 @@ function pintarBarraSesion(RutaBase = "") {
  * @param {string} rutaBase - prefijo relativo a la raíz ("" o "../" etc.)
  * @param {string} activo - id de la sección activa: 'inicio' | 'manual' | 'addon' | 'foro'
  */
-function pintarMenu(RutaBase = "", Activo = "") {
+function pintarMenu(RutaBase = obtenerRutaBase(), Activo = "") {
     const Cont = document.getElementById("nav-principal");
     if (!Cont) return;
 
     const Enlaces = [
-        { id: "inicio", texto: "Inicio",  href: RutaBase + "index.html" },
-        { id: "manual", texto: "Manual",  href: RutaBase + "manual/index.html" },
-        { id: "addon",  texto: "Addon",   href: RutaBase + "addon/index.html" },
-        { id: "foro",   texto: "Foro",    href: RutaBase + "foro/index.html" }
+        { id: "inicio", texto: "Inicio", href: RutaBase + "index.html" },
+        { id: "manual", texto: "Manual", href: RutaBase + "manual/index.html" },
+        { id: "addon", texto: "Addon", href: RutaBase + "addon/index.html" },
+        { id: "foro", texto: "Foro", href: RutaBase + "foro/index.html" }
     ];
 
     const Html =
@@ -103,66 +123,65 @@ function pintarMenu(RutaBase = "", Activo = "") {
 // UTILIDADES
 // -----------------------------------------------------------
 
-        /**
-         * Crea un elemento HTML con atributos y contenido.
-         */
-        function crear(Tag, Atributos = {}, Contenido = "") {
-            const Elemento = document.createElement(Tag);
-            for (const Clave in Atributos) {
-                if (Clave === "clase") Elemento.className = Atributos[Clave];
-                else Elemento.setAttribute(Clave, Atributos[Clave]);
-            }
-            if (Contenido) Elemento.innerHTML = Contenido;
-            return Elemento;
-        }
+/**
+ * Crea un elemento HTML con atributos y contenido.
+ */
+function crear(Tag, Atributos = {}, Contenido = "") {
+    const Elemento = document.createElement(Tag);
+    for (const Clave in Atributos) {
+        if (Clave === "clase") Elemento.className = Atributos[Clave];
+        else Elemento.setAttribute(Clave, Atributos[Clave]);
+    }
+    if (Contenido) Elemento.innerHTML = Contenido;
+    return Elemento;
+}
 
-        /**
-         * Escapa HTML para evitar inyección al pintar texto de usuario.
-         */
-        function escapar(Texto) {
-            return String(Texto)
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;");
-        }
+/**
+ * Escapa HTML para evitar inyección al pintar texto de usuario.
+ */
+function escapar(Texto) {
+    return String(Texto)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+}
 
 // -----------------------------------------------------------
 // MODAL DE PDFs (solo se activa si la página tiene el modal)
 // -----------------------------------------------------------
-        function enlazarModalPdf() {
-            const modal = document.getElementById("modal-pdf");
-            const iframe = document.getElementById("modal-iframe");
-            const tituloModal = document.getElementById("modal-titulo");
-            const btnCerrarModal = document.getElementById("btn-cerrar-modal");
+function enlazarModalPdf() {
+    const modal = document.getElementById("modal-pdf");
+    const iframe = document.getElementById("modal-iframe");
+    const tituloModal = document.getElementById("modal-titulo");
+    const btnCerrarModal = document.getElementById("btn-cerrar-modal");
 
-            if (!modal || !iframe) return;
+    if (!modal || !iframe) return;
 
-            document.querySelectorAll(".btn-guia").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const ruta = btn.dataset.pdf;
-                    const titulo = btn.textContent.trim();
-                    if (tituloModal) tituloModal.textContent = titulo;
-                    iframe.src = ruta;
-                    modal.showModal();
-                });
-            });
-
-            if (btnCerrarModal) {
-                btnCerrarModal.addEventListener("click", () => {
-                    iframe.src = "";
-                    modal.close();
-                });
-            }
-        }
-
-        // Llamar automáticamente cuando el DOM esté listo
-        document.addEventListener("DOMContentLoaded", enlazarModalPdf);
-
-        // Cerrar al hacer click fuera del modal
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) {
-                iframe.src = "";
-                modal.close();
-            }
+    document.querySelectorAll(".btn-guia").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const ruta = btn.dataset.pdf;
+            const titulo = btn.textContent.trim();
+            if (tituloModal) tituloModal.textContent = titulo;
+            iframe.src = ruta;
+            modal.showModal();
         });
+    });
+
+    if (btnCerrarModal) {
+        btnCerrarModal.addEventListener("click", () => {
+            iframe.src = "";
+            modal.close();
+        });
+    }
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            iframe.src = "";
+            modal.close();
+        }
+    });
+}
+
+// Llamar automáticamente cuando el DOM esté listo
+document.addEventListener("DOMContentLoaded", enlazarModalPdf);
