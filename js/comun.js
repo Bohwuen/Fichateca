@@ -84,9 +84,9 @@ function pintarMenu(RutaBase = "", Activo = "") {
 
     const Enlaces = [
         { id: "inicio", texto: "Inicio",  href: RutaBase + "Fichateca/index.html" },
-        { id: "manual", texto: "Manual",  href: RutaBase + "Fichateca/manual/index.html" },
-        { id: "addon",  texto: "Addon",   href: RutaBase + "Fichateca/addon/index.html" },
-        { id: "foro",   texto: "Foro",    href: RutaBase + "Fichateca/foro/index.html" }
+        { id: "manual", texto: "Manual",  href: RutaBase + "manual/index.html" },
+        { id: "addon",  texto: "Addon",   href: RutaBase + "addon/index.html" },
+        { id: "foro",   texto: "Foro",    href: RutaBase + "foro/index.html" }
     ];
 
     const Html =
