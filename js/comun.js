@@ -49,7 +49,7 @@ function exigirSesion(RutaLogin = "login/signin.html") {
  *  - Nombre + botón cerrar sesión si lo hay
  * @param {string} rutaBase - prefijo relativo a la raíz del proyecto ("" en raíz, "../" en subcarpetas)
  */
-function pintarBarraSesion(RutaBase = "Fichateca/") {
+function pintarBarraSesion(RutaBase = "") {
     const Cont = document.getElementById("barra-sesion");
     if (!Cont) return;
 
@@ -83,10 +83,10 @@ function pintarMenu(RutaBase = "", Activo = "") {
     if (!Cont) return;
 
     const Enlaces = [
-        { id: "inicio", texto: "Inicio",  href: RutaBase + "index.html" },
-        { id: "manual", texto: "Manual",  href: RutaBase + "manual/index.html" },
-        { id: "addon",  texto: "Addon",   href: RutaBase + "addon/index.html" },
-        { id: "foro",   texto: "Foro",    href: RutaBase + "foro/index.html" }
+        { id: "inicio", texto: "Inicio",  href: RutaBase + "Fichateca/index.html" },
+        { id: "manual", texto: "Manual",  href: RutaBase + "Fichateca/manual/index.html" },
+        { id: "addon",  texto: "Addon",   href: RutaBase + "Fichateca/addon/index.html" },
+        { id: "foro",   texto: "Foro",    href: RutaBase + "Fichateca/foro/index.html" }
     ];
 
     const Html =
