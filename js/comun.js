@@ -49,7 +49,7 @@ function exigirSesion(RutaLogin = "login/signin.html") {
  *  - Nombre + botón cerrar sesión si lo hay
  * @param {string} rutaBase - prefijo relativo a la raíz del proyecto ("" en raíz, "../" en subcarpetas)
  */
-function pintarBarraSesion(RutaBase = "") {
+function pintarBarraSesion(RutaBase = "Fichateca/") {
     const Cont = document.getElementById("barra-sesion");
     if (!Cont) return;
 
