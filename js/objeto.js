@@ -220,7 +220,8 @@ function analizarAfijo(fila) {
         pideTipoDano:  false,
         pideArma:      false,
         pideEscuela:   false,
-        pideCriatura:  false
+        pideCriatura:  false,
+        pideEstado:    false // NUEVO
     };
     if (!fila) return r;
 
@@ -233,6 +234,11 @@ function analizarAfijo(fila) {
     if (id === "potenciar_marcial" || id === "precision_arma") r.pideArma = true;
     if (id === "silencio_escuela") r.pideEscuela = true;
     if (id === "invocacion") r.pideCriatura = true;
+    
+    // NUEVO: Detectar aplicadores de estado
+    if (id === "aplica_estado" || id === "otorga_beneficio" || id === "aplica_perjuicio") {
+        r.pideEstado = true;
+    }
 
     return r;
 }
@@ -396,6 +402,16 @@ function resolverNombreAfijo(afijo, csvEfectos) {
         nombre += " (" + afijo.duracion + " turnos)";
     }
 
+    // Si el afijo es un aplicador de estado, buscamos el nombre del estado elegido
+    if (afijo.estadoId && window.EstadosDisponibles) {
+        const est = window.EstadosDisponibles.find(e => e.id === afijo.estadoId);
+        if (est) {
+            nombre = nombre.replace(/\[Estado\]/gi, est.nombre);
+            nombre = nombre.replace(/\[Beneficio\]/gi, est.nombre);
+            nombre = nombre.replace(/\[Perjuicio\]/gi, est.nombre);
+        }
+    }
+
     return nombre;
 }
 
@@ -527,6 +543,21 @@ function pintarFilaEfecto(objeto, indice, contenedor, opciones) {
             const sel = (Efecto.cualidad === c) ? " selected" : "";
             html += '<option value="' + c + '"' + sel + '>' + c + '</option>';
         });
+        html += '</select>';
+    }
+
+        if (An.pideEstado) {
+        html += ' <select data-tipo="estado-efecto" data-indice="' + indice + '">';
+        html += '<option value="">Elige estado…</option>';
+        
+        // Esta variable "EstadosDisponibles" la tendremos que cargar al principio
+        if (window.EstadosDisponibles) {
+            window.EstadosDisponibles.forEach(est => {
+                const sel = (Efecto.estadoId === est.id) ? " selected" : "";
+                html += '<option value="' + est.id + '"' + sel + '>' + est.nombre + '</option>';
+            });
+        }
+        
         html += '</select>';
     }
 
@@ -789,4 +820,22 @@ function piezasDeMaterial(idMaterial) {
         ...(Datos.complementosArmadura || [])
     ];
     return ids.map(id => Todas.find(p => p.id === id)).filter(Boolean);
+}
+
+// -----------------------------------------------------------
+// CARGAR CATÁLOGO DE ESTADOS (Desde Sheets o LocalStorage)
+// -----------------------------------------------------------
+async function cargarCatalogoEstados() {
+    // En local, el navegador bloquea la lectura de Google Sheets por CORS.
+    // Para evitar errores, leemos directamente del localStorage (donde el creador de estados guarda copia).
+    // En producción (GitHub Pages), esta función se podría cambiar para leer del Sheet.
+    
+    let estados = JSON.parse(localStorage.getItem("fichateca_estados_custom") || "[]");
+    
+    // Si el localStorage está vacío, avisamos por consola
+    if (estados.length === 0) {
+        console.warn("No hay estados en localStorage. Crea uno en el Creador de Estados para poder usarlo aquí.");
+    }
+    
+    return estados;
 }

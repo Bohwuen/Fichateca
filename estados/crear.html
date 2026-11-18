@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichateca - Crear Estado</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="../imagenes/Wow_Logo_1.png" alt="Fichateca" class="logo">
+    </header>
+
+    <nav id="nav-principal" class="nav-principal"></nav>
+
+    <div id="barra-sesion" class="barra-sesion"></div>
+
+    <main class="contenedor-ancho">
+        <h1>Crear Estado (Beneficio / Perjuicio)</h1>
+        <p><a href="../usuario/perfil.html">← Volver al perfil</a></p>
+
+        <div class="ob-columnas">
+
+            <!-- ============ COLUMNA IZQUIERDA ============ -->
+            <div class="ob-col-izq">
+
+                <p>
+                    <label>1. Nombre del estado:</label>
+                    <input type="text" id="est-nombre" placeholder="Ej: Fuego Abrasador, Veneno de Viuda..." style="width:100%">
+                </p>
+
+                <p>
+                    <label>2. Familia:</label><br>
+                    <label><input type="radio" name="est-familia" value="positivo" checked onchange="actualizarSubtipos()"> Positivo (Buff)</label>
+                    <label><input type="radio" name="est-familia" value="negativo" onchange="actualizarSubtipos()"> Negativo (Debuff)</label>
+                </p>
+                <p>
+                    <label>Categoría específica:</label>
+                    <select id="est-subtipo" style="width:100%">
+                        <!-- Se llena con JS -->
+                    </select>
+                </p>
+
+                <p>
+                    <label>Duración del estado:</label><br>
+                    <select id="est-duracion-tipo" style="width:30%">
+                        <option value="indefinido">Indefinido</option>
+                        <option value="turnos">Turnos</option>
+                        <option value="minutos">Minutos</option>
+                        <option value="horas">Horas</option>
+                    </select>
+                    <input type="number" id="est-duracion-valor" min="1" value="1" style="width:15%; display:none;">
+                </p>
+
+                <h3>3. Afijos (Keywords)</h3>
+                <div id="est-lista-afijos" style="margin-bottom:1em;"></div>
+                
+                <div class="contenedor-afijos">
+                    <div class="cabecera">
+                        <strong>Añadir Afijo</strong>
+                    </div>
+                    <p>
+                        <select id="est-selector-afijo" style="width:100%">
+                            <option value="">— Cargando diccionario... —</option>
+                        </select>
+                    </p>
+                    <div id="est-campos-dinamicos" style="margin-top:1em; display:none; padding-left:1em; border-left: 2px solid #c8b89a;"></div>
+                    <p style="margin-top:1em;">
+                        <button type="button" class="btn-add-interno" id="est-btn-add-afijo" style="display:none;">+ Añadir este afijo al estado</button>
+                    </p>
+                </div>
+
+                <h3>4. Notas / Descripción</h3>
+                <p>
+                    <textarea id="est-notas" rows="3" style="width:100%" placeholder="Notas IC u OC..."></textarea>
+                </p>
+
+                <h3>5. Guardar</h3>
+                <p>
+                    <button type="button" class="btn-exportar" id="est-btn-guardar">💾 Guardar Estado</button>
+                    <button type="button" class="btn-ver" id="est-btn-reset">🔄 Reset</button>
+                </p>
+                <p id="est-mensaje" class="aviso-info"></p>
+            </div>
+
+            <!-- ============ COLUMNA DERECHA ============ -->
+            <div class="ob-col-der">
+                <h3>Vista previa del Estado</h3>
+                <div class="bloque bloque-habilidades" style="padding:1em; margin-bottom:1em;">
+                    <h3 id="prev-nombre" style="margin-top:0; color:#2a1a08;">[Nombre]</h3>
+                    <p><em id="prev-tipo">[Categoría]</em></p>
+                    <p id="prev-duracion" style="font-size:0.9em; margin-top:0.5em; color:#4a3a1a;">Duración: —</p>
+                    <hr style="border:1px dashed #c8b89a; margin:0.5em 0;">
+                    <div id="prev-afijos">
+                        <p style="color:#888;">Sin afijos añadidos.</p>
+                    </div>
+                    <hr style="border:1px dashed #c8b89a; margin:0.5em 0;">
+                    <p id="prev-notas" style="font-size:0.9em; color:#555;"></p>
+                </div>
+
+                <h3>Vista previa TRP3 (Texto)</h3>
+                <pre id="est-preview-trp3" class="ob-preview" style="background:#111; color:#fff; padding:1em; border-radius:4px; white-space:pre-wrap; min-height:100px;"></pre>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0"
+                 src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+        </a><br>
+        Esta obra está bajo una
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional
+        </a>.
+    </footer>
+
+    <script>window.RUTA_BASE = "../";</script>
+    <script src="../js/comun.js"></script>
+    <script src="../js/csv.js"></script>
+    <script src="../js/estado.js"></script>
+</body>
+</html>

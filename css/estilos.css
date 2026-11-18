@@ -697,3 +697,11 @@ footer a {
     min-width: 2.5em;
     text-align: right;
 }
+
+/* Arreglar ancho de los selects de efectos */
+.fila-efecto select[data-tipo="efecto"] {
+    min-width: 250px;
+}
+.fila-efecto select[data-tipo="estado-efecto"] {
+    min-width: 200px;
+}

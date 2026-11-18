@@ -477,11 +477,11 @@
         </a>.
     </footer>
 
-    <script>window.RUTA_BASE = "/Fichateca/";</script>
-    <script src="/Fichateca/js/comun.js"></script>
-    <script src="/Fichateca/js/csv.js"></script>
-    <script src="/Fichateca/js/motor.js"></script>
-    <script src="/Fichateca/js/objeto.js"></script>
+    <script>window.RUTA_BASE = "../";</script>
+    <script src="../js/comun.js"></script>
+    <script src="../js/csv.js"></script>
+    <script src="../js/motor.js"></script>
+    <script src="../js/objeto.js"></script>
     <script>
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -506,6 +506,11 @@
             datosListos = true;
             rellenarSelect(".ob-calidad", Datos.calidadesObjeto, "id", "nombre");
             rellenarSelect(".ob-subtipo", Datos.tiposObjeto, "id", "nombre");
+            // NUEVO: Cargar estados y guardarlos en una variable global
+            cargarCatalogoEstados().then(estados => {
+                window.EstadosDisponibles = estados;
+                refrescar(); // Repintar si ya había algo
+            });
             enlazar();
             refrescar();
         });
@@ -651,7 +656,12 @@
                 const valor = e.target.value;
                 const ef = objeto.efectos[ind];
 
-                if (tipo === "efecto")            ef.id = valor;
+                if (tipo === "efecto") {
+                    ef.id = valor;
+                    ef.estadoId = ""; // Limpiar estado si cambia el afijo
+                    refrescar(); // Este sí repinta porque cambia toda la fila
+                    return;
+                }
                 if (tipo === "cantidad-efecto")   ef.cantidad = parseInt(valor, 10) || 1;
                 if (tipo === "duracion-efecto")   ef.duracion = parseInt(valor, 10) || 1;
                 if (tipo === "cualidad-efecto")   ef.cualidad = valor;
@@ -660,10 +670,13 @@
                 if (tipo === "escuela-efecto")    ef.escuela = valor;
                 if (tipo === "atributo-efecto")   ef.atributo = valor;
                 if (tipo === "arma-efecto")       ef.arma = valor;
+                if (tipo === "estado-efecto")     ef.estadoId = valor;
 
-                refrescar();
+                // Solo actualizamos balances y preview, SIN borrar el HTML
+                actualizarBalanceYPreview(); 
             });
         });
+
         contEf.querySelectorAll("button[data-tipo='borrar-efecto']").forEach(btn => {
             btn.addEventListener("click", () => {
                 const ind = parseInt(btn.dataset.indice, 10);
@@ -800,6 +813,27 @@
         }
 
     window.refrescar = refrescar;
+
+    // Nueva función para actualizar sin destruir el DOM
+    function actualizarBalanceYPreview() {
+        const bal = calcularBalance(objeto, Datos.efectosObjetos);
+        document.querySelector(".ob-total-efectos").textContent = bal.totalEfectos;
+        document.querySelector(".ob-total-requisitos").textContent = bal.totalRequisitos;
+        document.querySelector(".ob-valor-calidad").textContent = bal.calidad;
+        document.querySelector(".ob-balance").textContent = bal.balance;
+
+        const estadoDiv = document.querySelector(".ob-estado");
+        if (bal.esBueno) {
+            estadoDiv.textContent = "✅ " + bal.texto;
+            estadoDiv.style.color = "green";
+        } else {
+            estadoDiv.textContent = "❌ " + bal.texto;
+            estadoDiv.style.color = "red";
+        }
+
+        document.querySelector(".btn-enviar").disabled = !bal.esBueno;
+        document.querySelector(".ob-preview").textContent = generarPreviewTRP3(objeto, Datos.efectosObjetos);
+    }
 
         // ---------------------------------------------------
         // ENVIAR A GOOGLE SHEETS
@@ -1057,6 +1091,7 @@
                     if (tipo === "escuela-efecto")    ef.escuela = valor;
                     if (tipo === "atributo-efecto")   ef.atributo = valor;
                     if (tipo === "arma-efecto")       ef.arma = valor;
+                    if (tipo === "estado-efecto")      ef.estadoId = valor;
 
                     refrescarArmadura();
                 });
@@ -1313,6 +1348,7 @@
                     if (tipo === "atributo-efecto")   ef.atributo = valor;
                     if (tipo === "tipodano-efecto")   ef.tipoDano = valor;
                     if (tipo === "arma-efecto")       ef.arma = valor;
+                    if (tipo === "estado-efecto")      ef.estadoId = valor;
                     if (tipo === "dado-efecto")       ef.dado = valor;
                     if (tipo === "escuela-efecto")    ef.escuela = valor;
 
