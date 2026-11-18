@@ -1535,8 +1535,6 @@
                 });
             }
 
-            console.log("🟢 bonosParaLista(" + Grupo + ") →", Resultado);
-
             return Resultado;
         }
 
@@ -1550,7 +1548,6 @@
             sincronizarAutomaticos(NombreGrupo, bonosParaLista(NombreGrupo));
 
             sincronizarAutomaticos(NombreGrupo, bonosParaLista(NombreGrupo));
-            console.log("🟢 Ficha." + NombreGrupo + " tras sincronizar:", JSON.stringify(Ficha[NombreGrupo]));  
 
             // 2. Cabecera
             const Tabla = document.createElement("table");

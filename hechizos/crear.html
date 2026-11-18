@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichateca - Crear Hechizo</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="../imagenes/Wow_Logo_1.png" alt="Fichateca" class="logo">
+    </header>
+
+    <nav id="nav-principal" class="nav-principal"></nav>
+
+    <div id="barra-sesion" class="barra-sesion"></div>
+
+    <main class="contenedor">
+        <h1>Crear Hechizo</h1>
+        <p>
+            <a href="../usuario/perfil.html">← Volver al perfil</a> ·
+            <a href="../manual/index.html">Manual</a> ·
+            <a href="../estados/crear.html">Crear estado</a>
+        </p>
+
+        <div class="bloque" style="text-align:center; padding:3em 1em;">
+            <h2>🚧 En obras</h2>
+            <p style="font-size:1.1em;">
+                El creador de hechizos todavía está en desarrollo.
+            </p>
+            <p>
+                Mientras tanto, puedes:
+            </p>
+            <ul style="list-style:none; padding:0; font-size:1.05em; line-height:2;">
+                <li>📋 <a href="../usuario/ficha/ficha.html">Crear una ficha de personaje</a></li>
+                <li>⚔️ <a href="../objetos/crear.html">Crear un objeto</a></li>
+                <li>⚡ <a href="../estados/crear.html">Crear un estado (buff/debuff)</a></li>
+                <li>💬 <a href="../foro/index.html">Preguntar en el foro</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0"
+                 src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+        </a><br>
+        Esta obra está bajo una
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional
+        </a>.
+    </footer>
+
+    <script src="../js/comun.js"></script>
+    <script>
+        exigirSesion("../login/signin.html");
+        pintarMenu("../", "");
+        pintarBarraSesion("../");
+    </script>
+</body>
+</html>

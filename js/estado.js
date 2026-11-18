@@ -295,14 +295,14 @@ document.addEventListener("DOMContentLoaded", function () {
             listaCustom.push(estadoFinal);
             localStorage.setItem("fichateca_estados_custom", JSON.stringify(listaCustom));
             
-            mensaje.textContent = "✅ Estado guardado.";
+            mensaje.innerHTML = '✅ Estado guardado. <a href="../usuario/perfil.html">Volver al perfil</a> · <a href="crear.html">Crear otro</a>';
             mensaje.className = "aviso-info";
             btn.disabled = false;
             btn.textContent = textoOriginal;
             
             setTimeout(() => {
                 document.getElementById("est-btn-reset").click();
-                mensaje.textContent = "";
+                // NO borramos el mensaje: el enlace debe quedar visible
             }, 2000);
 
             document.body.removeChild(form);
