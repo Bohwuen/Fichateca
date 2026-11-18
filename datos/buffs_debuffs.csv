@@ -1,46 +1,47 @@
-id,nombre,tipo,coste,requiere_cantidad,requiere_duracion,requiere_cualidad,requiere_tipo,requiere_escuela,requiere_fuente,notas
-acelerado,Acelerado X,buff,-1,true,false,false,false,false,false,Duplica velocidad y reduce a la mitad los turnos de canalizado durante X turnos.
-amplificado,Amplificado [Cualidad] X,buff,-1,true,false,true,false,false,false,Aumenta en X la cualidad especificada durante el efecto.
-armadura,Armadura X,buff,-1,true,false,false,false,false,false,Agrega X de armadura.
-aumentado,Aumentado X,buff,-1,true,false,false,false,false,false,Aumenta el tamaño a escala 1:X.
-disminuido,Disminuido X,buff,-1,true,false,false,false,false,false,Reduce el tamaño a escala X:1.
-caida_lenta,Caída Lenta,buff,-1,false,false,false,false,false,false,Caída ralentizada sin daño hasta tocar suelo.
-escudo,Escudo XDZ,buff,-1,true,false,false,false,false,false,Crea un escudo por el valor de X dados de Z caras.
-espinas,Espinas X,buff,-2,true,false,false,false,false,false,Devuelve X% del daño recibido cuerpo a cuerpo.
-fuente_poder,[Fuente de poder] X,buff,-1,true,false,false,false,false,true,Aumenta X puntos el tope máximo de Energía.
-levitando,Levitando,buff,-1,false,false,false,false,false,false,El objetivo flota hasta ser cancelado.
-potenciado,Potenciado [Tipo] X,buff,-1,true,false,false,true,false,false,Potencia el daño de [Tipo] en X puntos.
-potenciado_sanacion,Potenciado sanación X,buff,-1,true,false,false,false,false,false,Agrega X puntos de sanación fijos permanentes.
-preciso,Preciso X,buff,-1,true,false,false,false,false,false,Añade X puntos a la tirada de prueba.
-res,Res. [Tipo] X,buff,-1,true,false,false,true,false,false,Aumenta X de resistencia a [Tipo].
-salud,Salud X,buff,-1,true,false,false,false,false,false,Aumenta la salud del objetivo en X puntos.
-sanacion_perdida,Sanación por pérdida X,buff,-2,true,false,false,false,false,false,Cura X al perder salud.
-sanacion_herida_grave,Sanación por herida grave X,buff,-2,true,false,false,false,false,false,Cura X al bajar de un umbral de salud.
-sanacion_critico,Sanación por crítico X,buff,-2,true,false,false,false,false,false,Cura X al recibir un crítico.
-sanacion_turno,Sanación por turno X,buff,-2,true,false,false,false,false,false,Cura X al final de un turno sin recibir daño.
-sanacion_muerte,Sanación por muerte X,buff,-4,true,false,false,false,false,false,Revive con X de salud al morir.
-velocidad,Velocidad X,buff,-1,true,false,false,false,false,false,Aumenta X de velocidad.
-succion,Succión X Z,buff,-1,true,true,false,false,false,false,Dot positivo: recupera X de salud por turno durante Z turnos.
-restaurar_fuente_poder,Restaurar [Fuente de poder] X Z,buff,-1,true,true,false,false,false,true,Dot positivo: recupera X de Energía por turno durante Z turnos.
-provocado,Provocado X,debuff,-1,true,false,false,false,false,false,El objetivo centra su atención en el lanzador durante X turnos.
-aturdido,Aturdido X,debuff,-2,true,false,false,false,false,false,No puede realizar acciones durante X turnos.
-controlado,Controlado X,debuff,-3,true,false,false,false,false,false,El narrador controla al objetivo durante X turnos.
-dano_fijo_agregado,Daño fijo agregado [Tipo] X,debuff,-1,true,false,false,true,false,false,Recibe X de daño extra de [Tipo] por cada ataque recibido.
-desarmado,Desarmado X,debuff,-1,true,false,false,false,false,false,El arma cae a X metros y no puede atacar con arma hasta recuperarla.
-enraizado,Enraizado X,debuff,-1,true,false,false,false,false,false,Fijo al suelo durante X turnos; no puede moverse.
-inmovilizado,Inmovilizado X,debuff,-2,true,false,false,false,false,false,No puede moverse ni atacar durante X turnos.
-descontrolado,Descontrolado X,debuff,-3,true,false,false,false,false,false,Acciones aleatorias durante X turnos.
-ralentizado,Ralentizado X,debuff,-1,true,false,false,false,false,false,Reduce a la mitad el movimiento durante X turnos.
-secuela,Secuela: Daño [Tipo] X Z,debuff,-1,true,true,false,true,false,false,Dot negativo: recibe X de daño de [Tipo] por turno durante Z turnos.
-silenciado,Silenciado X,debuff,-2,true,false,false,false,false,false,Impide conjurar durante X turnos.
-silenciado_escuela,Silenciado [Escuela] X,debuff,-2,true,false,false,false,true,false,Impide conjurar hechizos de [Escuela] durante X turnos.
-succion_inversa,Succión X Z (inversa),debuff,-2,true,true,false,false,false,false,Dot negativo: pierde X de salud por turno durante Z turnos y el lanzador lo recupera.
-rest_fuente_poder,Rest. [Fuente de poder] X Z,debuff,-1,true,true,false,false,false,true,Dot negativo: pierde X de Energía por turno durante Z turnos.
-sueno,Sueño X,debuff,-3,true,false,false,false,false,false,Dormido durante X turnos; despierta al recibir daño.
-paralisis,Parálisis X,debuff,-3,true,false,false,false,false,false,No puede moverse ni atacar durante X turnos.
-perdida_consciencia,Pérdida de consciencia X,debuff,-3,true,false,false,false,false,false,Inconsciente y vulnerable durante X turnos.
-confusion,Confusión X,debuff,-2,true,false,false,false,false,false,Acciones aleatorias durante X turnos.
-miedo,Miedo X,debuff,-2,true,false,false,false,false,false,Huye o evita al lanzador durante X turnos.
-ceguera,Ceguera X,debuff,-2,true,false,false,false,false,false,No puede ver durante X turnos.
-sordera,Sordera X,debuff,-2,true,false,false,false,false,false,No puede oír durante X turnos.
-mudez,Mudez X,debuff,-2,true,false,false,false,false,false,No puede hablar durante X turnos.
+id,nombre,notas,requiere_cantidad,requiere_duracion,requiere_cualidad,requiere_tipo,requiere_escuela,requiere_fuente
+acelerado,Acelerado X,Duplica velocidad y reduce a la mitad los turnos de canalizado durante X turnos,true,false,false,false,false,false
+amplificado,Amplificado [Cualidad] X,Aumenta en X puntos la cualidad especificada durante el efecto,true,false,true,false,false,false
+armadura,Armadura X,Agrega X puntos de armadura al apartado de armadura,true,false,false,false,false,false
+aumentado,Aumentado X,Aumenta el tamaño del objetivo a una escala 1:X,true,false,false,false,false,false
+disminuido,Disminuido X,Disminuye el tamaño del objetivo a una escala X:1,true,false,false,false,false,false
+caida_lenta,Caída Lenta,Reduce la caída y evita daño por caída hasta tocar el suelo,false,false,false,false,false,false
+escudo,Escudo XDZ,Crea un escudo por el valor de X dados de Z caras,true,false,false,false,false,false
+espinas,Espinas X,Cuando el portador recibe daño cuerpo a cuerpo el atacante recibe X% del daño,true,false,false,false,false,false
+fuente_poder,[Fuente de poder] X,Agrega X puntos de [Fuente de poder] fijos al tope máximo,true,false,false,false,false,true
+levitando,Levitando,Coloca un afijo de levitación al objetivo hasta que sea cancelado,false,false,false,false,false,false
+potenciado,Potenciado [Tipo de daño] X,Potencia el daño de [Tipo de daño] en X puntos,true,false,false,true,false,false
+preciso,Preciso X,Añade X puntos a la tirada de prueba,true,false,false,false,false,false
+res,Res. [Tipo] X,Aumenta X de resistencia a [Tipo] al apartado de resistencias,true,false,false,true,false,false
+salud,Salud X,Aumenta la salud del objetivo (o lanzador) en X puntos,true,false,false,false,false,false
+sanacion_potenciada,Sanación potenciada X,Agrega X puntos de sanación fijos al apartado permanente,true,false,false,false,false,false
+sanacion_por_perdida,Sanación por pérdida X,Cuando el objetivo pierde salud recupera X puntos,true,false,false,false,false,false
+sanacion_por_herida_grave,Sanación por herida grave X,Cuando el objetivo baja de un umbral de salud recupera X puntos,true,false,false,false,false,false
+sanacion_por_critico,Sanación por crítico X,Cuando el objetivo recibe un golpe crítico recupera X puntos,true,false,false,false,false,false
+sanacion_por_turno,Sanación por turno X,Al final de un turno sin daño recupera X puntos,true,false,false,false,false,false
+sanacion_por_muerte,Sanación por muerte X,Cuando el objetivo muere recupera X puntos reviviendo,true,false,false,false,false,false
+velocidad,Velocidad X,Agrega X puntos de velocidad al apartado de velocidad,true,false,false,false,false,false
+succion,Succión X Z,El objetivo recupera X puntos de salud por turno durante Z turnos,true,true,false,false,false,false
+restaurar_fuente,Restaurar [Fuente de poder] X Z,El objetivo recupera X puntos de [Fuente de poder] por turno durante Z turnos,true,true,false,false,false,true
+provocado,Provocado X,El objetivo centra su atención sobre ti y te ataca durante X turnos,true,false,false,false,false,false
+aturdido,Aturdido X,El afectado no puede realizar acciones durante X turnos,true,false,false,false,false,false
+controlado,Controlado X,El control del objetivo pasa al narrador durante X turnos,true,false,false,false,false,false
+dano_fijo_agregado,Daño fijo agregado [Tipo] X,Recibe X puntos extra de daño de [Tipo] por cada ataque recibido,true,false,false,true,false,false
+desarmado,Desarmado X,El arma cae X metros de la víctima y no puede atacar con arma hasta recuperarla,true,false,false,false,false,false
+enraizado,Enraizado X,Fija al objetivo al suelo impidiendo movimiento durante X turnos,true,false,false,false,false,false
+inmovilizado,Inmovilizado X,No puede realizar acciones de movimiento ni de ataque durante X turnos,true,false,false,false,false,false
+descontrolado,Descontrolado X,Realiza acciones aleatorias siguiendo la lógica de la situación durante X turnos,true,false,false,false,false,false
+ralentizado,Ralentizado X,Reduce a la mitad su movimiento durante X turnos,true,false,false,false,false,false
+restar_fuente,Restar [Fuente de poder] X Z,El objetivo pierde X puntos de [Fuente de poder] por turno durante Z turnos,true,true,false,false,false,true
+secuela_dano,Secuela: Daño [Tipo] X Z,Recibe X puntos de daño por turno durante Z turnos,true,true,false,true,false,false
+silenciado,Silenciado X,Impide al objetivo realizar conjuros durante X turnos,true,false,false,false,false,false
+silenciado_escuela,Silenciado [Escuela] X,Impide al objetivo realizar conjuros de la misma escuela durante X turnos,true,false,false,false,true,false
+succion_perdida,Succión (pérdida) X Z,El objetivo pierde X puntos de salud por turno y el lanzador recupera esa cantidad,true,true,false,false,false,false
+rest_fuente,Rest. [Fuente de poder] X Z,El objetivo pierde X puntos de [Fuente de poder] por turno durante Z turnos,true,true,false,false,false,true
+sueno,Sueño X,El objetivo queda dormido durante X turnos. Si recibe daño se despierta,true,false,false,false,false,false
+paralisis,Parálisis X,El objetivo queda paralizado durante X turnos. No puede moverse ni atacar,true,false,false,false,false,false
+perdida_consciencia,Pérdida de consciencia X,El objetivo pierde la consciencia durante X turnos y es vulnerable,true,false,false,false,false,false
+confusion,Confusión X,El objetivo realiza acciones aleatorias durante X turnos,true,false,false,false,false,false
+miedo,Miedo X,El objetivo huye o evita al lanzador durante X turnos,true,false,false,false,false,false
+ceguera,Ceguera X,El objetivo no puede ver durante X turnos,true,false,false,false,false,false
+sordera,Sordera X,El objetivo no puede oír durante X turnos,true,false,false,false,false,false
+mudez,Mudez X,El objetivo no puede hablar durante X turnos,true,false,false,false,false,false

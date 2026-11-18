@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichateca - Mis Estados</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <img src="../imagenes/Wow_Logo_1.png" alt="Fichateca" class="logo">
+    </header>
+
+    <nav id="nav-principal" class="nav-principal"></nav>
+
+    <div id="barra-sesion" class="barra-sesion"></div>
+
+    <main class="contenedor-ancho">
+        <h1>Catálogo de Objetos</h1>
+        <p>
+            <a href="../usuario/perfil.html">← Volver al perfil</a> ·
+            <a href="../objetos/crear.html">Crear nuevo objeto</a>
+        </p>
+
+        <div id="mensaje-carga" class="aviso-info" style="margin-bottom: 1em;">Cargando objetos desde la nube...</div>
+
+        <div style="margin-bottom: 1em;">
+            <label>Filtrar por: </label>
+            <select id="filtro-familia" style="padding: 0.2em 0.5em; font-family: inherit;">
+                <option value="todos">Todos</option>
+                <option value="positivo">Solo Beneficios (Buff)</option>
+                <option value="negativo">Solo Perjuicios (Debuff)</option>
+            </select>
+        </div>
+
+        <div id="tabla-estados" style="display:none;">
+            <table style="width:100%; border-collapse: collapse; background: rgba(255,255,255,0.9); text-align: left;">
+                <thead>
+                    <tr style="background-color: #f4e9d8; border-bottom: 2px solid #c8b89a;">
+                        <th style="padding: 0.5em;">Nombre</th>
+                        <th style="padding: 0.5em;">Familia</th>
+                        <th style="padding: 0.5em;">Categoría</th>
+                        <th style="padding: 0.5em;">Duración</th>
+                        <th style="padding: 0.5em;">Creador</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpo-tabla">
+                    <!-- Se llena con JS -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            <img alt="Licencia Creative Commons" style="border-width:0"
+                 src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png">
+        </a><br>
+        Esta obra está bajo una
+        <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+            Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional
+        </a>.
+    </footer>
+
+    <script src="../js/comun.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            exigirSesion("../login/signin.html");
+            pintarMenu("../", "");
+            pintarBarraSesion("../");
+
+            const URL_SHEETS = "https://api.allorigins.win/raw?url=https://script.google.com/macros/s/AKfycbz1m2XiUU1N16p2y_P8B3Y9vWnCCNsyg851AIIIE5QjaU2oc1kitWopAobidmcL7MZ5/exec";
+            
+            let todosLosEstados = [];
+
+            // 1. Cargar datos
+            fetch(URL_SHEETS)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.ok && data.estados) {
+                        // Ordenar por fecha descendente (los más nuevos primero)
+                        todosLosEstados = data.estados.reverse(); 
+                        document.getElementById("mensaje-carga").style.display = "none";
+                        document.getElementById("tabla-estados").style.display = "block";
+                        pintarTabla();
+                    } else {
+                        document.getElementById("mensaje-carga").textContent = "Error de la BBDD: " + (data.error || "Desconocido");
+                        document.getElementById("mensaje-carga").className = "aviso-error";
+                    }
+                })
+                .catch(err => {
+                    document.getElementById("mensaje-carga").textContent = "Error al conectar con Google Sheets.";
+                    document.getElementById("mensaje-carga").className = "aviso-error";
+                    console.error(err);
+                });
+
+            // 2. Escuchar filtro
+            document.getElementById("filtro-familia").addEventListener("change", pintarTabla);
+
+            // 3. Pintar la tabla
+            function pintarTabla() {
+                const filtro = document.getElementById("filtro-familia").value;
+                const tbody = document.getElementById("cuerpo-tabla");
+                tbody.innerHTML = "";
+
+                const filtrados = todosLosEstados.filter(e => filtro === "todos" || e.familia === filtro);
+
+                if (filtrados.length === 0) {
+                    tbody.innerHTML = "<tr><td colspan='5' style='text-align:center; padding: 1em;'>No hay estados guardados.</td></tr>";
+                    return;
+                }
+
+                filtrados.forEach(e => {
+                    const dur = e.duracion.tipo === "indefinido" ? "Indefinido" : `${e.duracion.valor} ${e.duracion.tipo}`;
+                    const colorFamilia = e.familia === "positivo" ? "green" : "#b00020";
+                    
+                    tbody.innerHTML += `
+                        <tr style="border-bottom: 1px solid #ccc;">
+                            <td style="padding: 0.5em;"><strong>${escapar(e.nombre)}</strong></td>
+                            <td style="padding: 0.5em; color: ${colorFamilia}; font-weight: bold; text-transform: capitalize;">${e.familia}</td>
+                            <td style="padding: 0.5em;">${escapar(e.subtipo)}</td>
+                            <td style="padding: 0.5em;">${dur}</td>
+                            <td style="padding: 0.5em;">${escapar(e.creador)}</td>
+                        </tr>
+                    `;
+                });
+            }
+        });
+    </script>
+</body>
+</html>

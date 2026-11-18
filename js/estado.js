@@ -74,9 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // 3. Al elegir un afijo, preparar los campos dinámicos (estilo objeto)
     selAfijo.addEventListener("change", () => {
         const id = selAfijo.value;
+        const divAyuda = document.getElementById("est-ayuda-afijo");
+
         if (!id) {
             camposDinamicos.style.display = "none";
             btnAddAfijo.style.display = "none";
+            if (divAyuda) divAyuda.style.display = "none";
             return;
         }
 
@@ -87,6 +90,16 @@ document.addEventListener("DOMContentLoaded", function () {
         camposDinamicos.style.gap = "0.5em";
         camposDinamicos.style.alignItems = "center";
         btnAddAfijo.style.display = "inline-block";
+
+        // Mostrar la ayuda en su nuevo sitio
+        if (divAyuda) {
+            if (afijoBase.notas && afijoBase.notas.trim() !== "") {
+                divAyuda.innerHTML = `<strong>Ayuda:</strong> ${afijoBase.notas}`;
+                divAyuda.style.display = "block";
+            } else {
+                divAyuda.style.display = "none";
+            }
+        }
 
         if (afijoBase.requiere_cantidad === "true") {
             camposDinamicos.innerHTML += `<label>X:</label><input type="number" id="var-X" value="1" min="1" style="width:3em;">`;
@@ -202,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (AfijosDelEstadoActual.length > 0) {
             AfijosDelEstadoActual.forEach(af => {
                 trp3 += `\n• ${af.nombre}`;
-                if (af.notas) trp3 += ` (${af.notas})`;
+                // Quitamos las notas del diccionario de la vista previa TRP3
             });
         } else {
             trp3 += `\n(Sin efectos mecánicos definidos)`;
@@ -267,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // --- TRUCO ANTI-CORS: Usar un formulario oculto ---
         // ¡AQUÍ ESTÁ LA URL NUEVA!
-        const URL_SHEETS = "https://script.google.com/macros/s/AKfycbzFYqIX_u5jQUZeqmqZB9LRd4aBx0p1fJ0ktrmzPzdJaFtugAvhV7Eyh8UF9HfBCE75/exec";
+        const URL_SHEETS = "https://script.google.com/macros/s/AKfycbz1m2XiUU1N16p2y_P8B3Y9vWnCCNsyg851AIIIE5QjaU2oc1kitWopAobidmcL7MZ5/exec";
         
         const iframeName = "iframe_sheets_" + Date.now();
         const iframe = document.createElement("iframe");
